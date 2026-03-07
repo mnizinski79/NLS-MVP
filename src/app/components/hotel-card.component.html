@@ -1,0 +1,55 @@
+<div 
+  class="hotel-card"
+  [class.hotel-card-desktop]="variant === 'desktop'"
+  [class.hotel-card-mobile]="variant === 'mobile'"
+  [class.highlighted]="highlighted"
+  (click)="onClick()"
+  (keydown.enter)="onClick()"
+  (keydown.space)="onClick()"
+  role="button"
+  tabindex="0"
+  [attr.aria-label]="'View details for ' + hotel.name + ', ' + hotel.rating + ' stars, ' + formatPrice() + ' per night'"
+>
+  <!-- Hotel Image -->
+  <div class="hotel-card-image">
+    <img 
+      [src]="hotel.imageUrls[0]" 
+      [alt]="hotel.name + ' hotel exterior'"
+      loading="lazy"
+    />
+    
+    <!-- Star Rating (Top Left) -->
+    <div class="rating-overlay" role="img" [attr.aria-label]="hotel.rating + ' out of 5 stars'">
+      <span class="star-icon" aria-hidden="true">★</span>
+      <span class="rating-value">{{ hotel.rating }}/5</span>
+    </div>
+    
+    <!-- Brand Chiclet (Top Right) -->
+    <div 
+      class="brand-chiclet"
+      [style.background-color]="getBrandColor()"
+      role="img"
+      [attr.aria-label]="hotel.brand + ' brand'"
+    >
+      <img 
+        [src]="getBrandLogo()" 
+        [alt]=""
+        class="brand-logo"
+        aria-hidden="true"
+      />
+    </div>
+  </div>
+
+  <!-- Hotel Info -->
+  <div class="hotel-card-content">
+    <!-- Hotel Name (2 lines with truncation) -->
+    <h3 class="hotel-name">{{ hotel.name }}</h3>
+
+    <!-- Price -->
+    <div class="hotel-price">
+      <div class="price-label">From</div>
+      <div class="price-main">{{ hotel.pricing.nightlyRate.toFixed(0) }} <span class="price-currency">USD / night</span></div>
+      <div class="price-breakdown">{{ hotel.pricing.roomRate.toFixed(0) }} room + {{ hotel.pricing.fees.toFixed(0) }} fees</div>
+    </div>
+  </div>
+</div>

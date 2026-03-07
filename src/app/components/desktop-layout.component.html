@@ -1,0 +1,87 @@
+<div class="desktop-layout">
+  <!-- ARIA live region for screen reader announcements -->
+  <div 
+    id="aria-live-region" 
+    class="sr-only" 
+    role="status" 
+    aria-live="polite" 
+    aria-atomic="true">
+  </div>
+
+  <!-- Map (full-width background) -->
+  <div class="map-container">
+    <app-map
+      [hotels]="hotels"
+      [center]="mapCenter"
+      [zoom]="mapZoom"
+      (markerClicked)="onMarkerClicked($event)">
+    </app-map>
+  </div>
+
+  <!-- Floating Chat Panel (bottom-left) -->
+  <div class="floating-chat-panel" 
+       [class.focused-view]="viewState === 'focused'"
+       [class.chat-collapsed]="isChatCollapsed">
+    <!-- Header with chevron toggle -->
+    <div class="header">
+      <h1 class="header-title">IHG Hotel Search</h1>
+      <button 
+        (click)="toggleChatCollapse()"
+        class="chevron-button"
+        [attr.aria-label]="isChatCollapsed ? 'Expand chat messages' : 'Collapse chat messages'"
+        [attr.aria-expanded]="!isChatCollapsed">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+             [style.transform]="isChatCollapsed ? 'rotate(180deg)' : 'rotate(0deg)'">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Chat -->
+    <div class="chat-container">
+      <app-chat
+        [messages]="messages"
+        [isThinking]="isThinking"
+        [isMobile]="false"
+        (dateSelected)="onDateSelected($event)"
+        (hotelCardClicked)="onHotelCardClicked($event)">
+      </app-chat>
+    </div>
+
+    <!-- Input -->
+    <div class="input-container">
+      <app-input
+        [disabled]="inputDisabled"
+        placeholder="Ask me about hotels in NYC..."
+        (messageSent)="onMessageSent($event)">
+      </app-input>
+    </div>
+  </div>
+
+  <!-- Hotel Cards (bottom, horizontal scroll) -->
+  <div class="hotel-cards-container" *ngIf="hotels.length > 0">
+    <div class="hotel-cards-scroll">
+      <app-hotel-card
+        *ngFor="let hotel of hotels"
+        [hotel]="hotel"
+        [variant]="'desktop'"
+        [highlighted]="selectedHotel?.id === hotel.id"
+        [attr.data-hotel-id]="hotel.id"
+        (cardClicked)="onHotelCardClicked($event)">
+      </app-hotel-card>
+    </div>
+  </div>
+
+  <!-- Detail Drawer (33% width, slides from right) -->
+  <app-hotel-detail-drawer
+    [hotel]="selectedHotel"
+    [visible]="showDetailDrawer"
+    [hasDates]="hasDates"
+    [checkInDate]="checkInDate"
+    [checkOutDate]="checkOutDate"
+    [guestCount]="guestCount"
+    (closed)="onDetailDrawerClosed()"
+    (dateSelected)="onDateSelected($event)"
+    (selectDatesRequested)="onSelectDatesRequested()">
+  </app-hotel-detail-drawer>
+</div>

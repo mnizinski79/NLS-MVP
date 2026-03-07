@@ -1,0 +1,282 @@
+/* Inline mode - fits in chat flow */
+.calendar-inline {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  background: transparent;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.calendar-content {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Header */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-content {
+  flex: 1;
+}
+
+.calendar-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s;
+  border-radius: 6px;
+}
+
+.close-button:hover {
+  color: #111827;
+  background: #f3f4f6;
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Month navigation */
+.month-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+}
+
+.current-month-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  flex: 1;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-button {
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-button:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.nav-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Calendar container */
+.calendar-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding: 0 24px 24px;
+}
+
+.month-section {
+  min-width: 0;
+}
+
+/* Week day headers */
+.weekday-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  padding: 8px 4px;
+}
+
+/* Calendar grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  background: white;
+  border: 1px solid transparent;
+}
+
+.calendar-day:not(.disabled):not(.not-current-month):hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.calendar-day.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.calendar-day.not-current-month {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.calendar-day.in-range {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.calendar-day.selected {
+  background: #1F4456;
+  color: white;
+  border-color: #1F4456;
+}
+
+.calendar-day.check-in {
+  border-radius: 6px 0 0 6px;
+}
+
+.calendar-day.check-out {
+  border-radius: 0 6px 6px 0;
+}
+
+.calendar-day.check-in.check-out {
+  border-radius: 6px;
+}
+
+.day-number {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Footer */
+.calendar-footer {
+  border-top: 1px solid #e5e7eb;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.booking-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-label {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.summary-nights {
+  font-size: 14px;
+  color: #111827;
+  font-weight: 500;
+}
+
+.continue-button {
+  width: 100%;
+  padding: 14px 24px;
+  background-color: #1F4456;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.continue-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.continue-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .calendar-header {
+    padding: 20px 16px 12px;
+  }
+
+  .calendar-title {
+    font-size: 20px;
+  }
+
+  .month-navigation {
+    padding: 12px 16px;
+  }
+
+  .calendar-container {
+    padding: 0 16px 16px;
+  }
+
+  .calendar-footer {
+    padding: 16px;
+  }
+
+  .day-number {
+    font-size: 14px;
+  }
+}

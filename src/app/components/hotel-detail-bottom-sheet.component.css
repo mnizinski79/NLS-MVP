@@ -1,0 +1,824 @@
+/* Backdrop */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  animation: fadeIn 0.3s ease-out;
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+/* Backdrop fade out */
+.backdrop.closing {
+  animation: fadeOut 0.3s ease-out;
+}
+
+/* Transparent backdrop for map context - allows map to be visible */
+.backdrop-transparent {
+  background-color: transparent;
+  pointer-events: none; /* Allow clicks to pass through to map */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Bottom sheet */
+.bottom-sheet {
+  position: fixed;
+  top: 0; /* Start from top instead of bottom */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.2), 0 -2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1100;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  will-change: transform, height;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  max-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom); /* Add safe area for bottom */
+  transition: height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  
+  /* Slide in animation */
+  animation: slideIn 0.35s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Slide out animation */
+.bottom-sheet.closing {
+  animation: slideOut 0.3s cubic-bezier(0.4, 0.0, 0.6, 1);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%) translateZ(0);
+  }
+  to {
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0) translateZ(0);
+  }
+  to {
+    transform: translateY(100%) translateZ(0);
+  }
+}
+
+/* Drag handle */
+.drag-handle-container {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 8px 0;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  will-change: transform;
+}
+
+.drag-handle-container:active {
+  cursor: grabbing;
+}
+
+.drag-handle {
+  width: 48px;
+  height: 5px;
+  background-color: #d1d5db;
+  border-radius: 3px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  will-change: transform, background-color;
+  transform: translateZ(0);
+}
+
+.drag-handle-container:hover .drag-handle {
+  background-color: #9ca3af;
+  transform: scaleY(1.2) translateZ(0);
+}
+
+.drag-handle-container:active .drag-handle {
+  background-color: #6b7280;
+}
+
+/* Brand header */
+.brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid #f3f4f6;
+  position: relative;
+  z-index: 20;
+}
+
+.brand-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-chiclet {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  padding: 0;
+  border: none;
+}
+
+.chiclet-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+/* Close button */
+.close-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #f3f4f6;
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+  color: #6b7280;
+}
+
+/* Scrollable content */
+.sheet-content {
+  flex: 1;
+  min-height: 0; /* Important for flex scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+  transform: translateZ(0);
+}
+
+.sheet-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sheet-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sheet-content::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+}
+
+/* Photo gallery mosaic */
+.photo-gallery {
+  width: 100%;
+  padding: 0 24px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Hero image */
+.hero-image {
+  width: 100%;
+  height: 210px; /* Reduced from 280px (25% reduction) */
+  background-color: #f3f4f6;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Thumbnail row */
+.thumbnail-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.thumbnail-item {
+  width: 100%;
+  height: 90px; /* Reduced from 120px (25% reduction) */
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.thumbnail-item:first-child {
+  border-radius: 0 0 0 12px;
+}
+
+.thumbnail-item:last-child {
+  border-radius: 0 0 12px 0;
+}
+
+.thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.thumbnail-item:hover .thumbnail-img {
+  transform: scale(1.05);
+}
+
+/* Hotel info */
+.hotel-info {
+  padding: 0 24px 16px 24px;
+}
+
+/* Rating pill */
+.rating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #F5F5F5;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.rating-pill .star-icon {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rating-pill .rating-value {
+  font-size: 12px;
+  color: #111827;
+  font-weight: 500;
+}
+
+/* Hotel name */
+.hotel-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+/* Address */
+.address-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.address-text {
+  flex: 1;
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.copy-button {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+}
+
+.copy-button:hover {
+  color: #1F4456;
+}
+
+.copy-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 12px 0;
+}
+
+.description-text {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Amenities */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.amenity-icon {
+  font-size: 20px;
+}
+
+.amenity-text {
+  font-size: 14px;
+  color: #374151;
+}
+
+/* Map container */
+.map-container {
+  width: 100%;
+  height: 200px;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.map-container app-map {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Reviews */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.review-card {
+  background-color: #f9fafb;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.review-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.review-star {
+  width: 14px;
+  height: 14px;
+  color: #fbbf24;
+}
+
+.review-author {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 6px 0;
+}
+
+.review-text {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Footer spacer */
+.footer-spacer {
+  height: 80px;
+}
+
+/* Calendar section */
+.calendar-section {
+  margin-bottom: 24px;
+  padding-top: 32px;
+  border-top: 2px solid #e5e7eb;
+  margin-top: 32px;
+}
+
+.calendar-subheader {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.calendar-wrapper {
+  padding: 20px;
+  background-color: #f9fafb;
+  border-radius: 12px;
+}
+
+.calendar-wrapper app-rate-calendar {
+  display: block;
+  width: 100%;
+}
+
+/* Guest Selector */
+.guest-selector {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.guest-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.guest-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.guest-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.guest-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #d1d5db;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #374151;
+}
+
+.guest-btn:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.guest-btn:active:not(:disabled) {
+  background: #e5e7eb;
+}
+
+.guest-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.guest-count {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  min-width: 24px;
+  text-align: center;
+}
+
+.calendar-cta-container {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Booking Summary Minimized */
+.booking-summary-minimized {
+  padding: 16px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-summary-minimized:active {
+  border-color: #d1d5db;
+  background: #fafafa;
+}
+
+.summary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-icon {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.summary-text {
+  font-size: 14px;
+  color: #111827;
+  font-weight: 500;
+}
+
+.expand-icon {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+/* Booking Summary Expanded */
+.booking-summary-expanded {
+  /* No special styling needed, just a container */
+}
+
+.expanded-header {
+  padding: 16px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.expanded-header:active {
+  border-color: #d1d5db;
+  background: #fafafa;
+}
+
+.collapse-icon {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+/* Collapse button */
+.collapse-container {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.collapse-btn {
+  padding: 8px 24px;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.collapse-btn:active {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+/* CTA icon */
+.cta-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  stroke: white;
+}
+
+.cta-filled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating footer */
+.floating-footer {
+  flex-shrink: 0; /* Don't shrink the footer */
+  position: relative; /* Changed from sticky */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  padding: 12px 24px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+  transform: translateY(0);
+  transition: transform 0.3s ease-out;
+}
+
+.floating-footer.footer-hidden {
+  transform: translateY(100%);
+}
+
+.cta-outline {
+  flex: 1;
+  padding: 14px 20px;
+  background-color: #ffffff;
+  border: 1.5px solid;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cta-outline.cta-full-width {
+  flex: none;
+  width: 100%;
+}
+
+.cta-outline:hover {
+  background-color: #f9fafb;
+}
+
+.cta-filled {
+  flex: 1;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cta-filled.cta-full-width {
+  flex: none;
+  width: 100%;
+}
+
+.cta-filled:hover {
+  opacity: 0.9;
+}
+
+/* Touch interaction */
+.bottom-sheet {
+  touch-action: pan-y;
+}
+
+/* Sheet pages */
+.sheet-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0; /* Important for flex scrolling */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Calendar page */
+.calendar-page {
+  position: absolute;
+  top: 105px; /* Start below drag handle + brand header */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.back-button-container {
+  padding: 4px 20px 0 20px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  border-radius: 0;
+  transition: opacity 0.2s ease;
+  color: #1F4456;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.back-button:active {
+  opacity: 0.6;
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+  color: #1F4456;
+  flex-shrink: 0;
+}
+
+.back-text {
+  color: #1F4456;
+}
+
+.calendar-header-section {
+  padding: 16px 20px;
+}
+
+.calendar-page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.calendar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 20px;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.calendar-content app-rate-calendar {
+  display: block;
+  width: 100%;
+}

@@ -1,0 +1,220 @@
+[
+  {
+    "id": "NYCEA",
+    "name": "Kimpton Theta New York Times Square",
+    "location": {
+      "lat": 40.761212,
+      "lng": -73.98651,
+      "address": "790 8th Avenue, New York, NY 10019"
+    },
+    "sentiment": [
+      "Times Square",
+      "Rooftop Bar",
+      "Theater District",
+      "Modern"
+    ],
+    "price": {
+      "currency": "USD",
+      "amount": 405,
+      "nightlyRate": 345
+    },
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9149634521-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10073255838-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9149634491-original"
+    ],
+    "description": "Renovated hotel located one block from Times Square with rooftop Bar Sprezzatura.",
+    "rating": 4.2,
+    "amenities": [
+      "Rooftop Bar",
+      "Fitness Center",
+      "Pet Friendly",
+      "Hosted Wine Hour"
+    ],
+    "brandColor": "#6B7F83",
+    "brandId": "kimpton",
+    "phoneNumber": "1-800-KIMPTON",
+    "bookingUrl": "https://www.ihg.com/kimptonhotels/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCEA&setPMCookies=true&qSHBrC=KI&qDest=790%208th%20Avenue,%20New%20York,%20NY,%20US"
+  },
+  {
+    "id": "NYCXV",
+    "name": "voco Times Square - Broadway",
+    "location": {
+      "lat": 40.7595257,
+      "lng": -73.9838434,
+      "address": "170 W. 48th Street, New York, NY 10036"
+    },
+    "sentiment": [
+      "Times Square",
+      "Broadway",
+      "Theater District",
+      "Rooftop Bar"
+    ],
+    "price": {
+      "currency": "USD",
+      "amount": 325,
+      "nightlyRate": 285
+    },
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10286760679-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10518085643-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10498503074-original"
+    ],
+    "description": "Step into the energy of Times Square from a hotel that puts you in the center of it all. Just steps from the neon glow, you’ll find Radio City Music Hall, Rockefeller Center, and the Theater District.",
+    "rating": 5,
+    "amenities": [
+      "Rooftop Bar",
+      "Fitness Center",
+      "Free Wi-Fi",
+      "Pet Friendly"
+    ],
+    "brandColor": "#FFC700",
+    "brandId": "voco",
+    "phoneNumber": "1-212-555-0199",
+    "bookingUrl": "https://www.ihg.com/voco/hotels/us/en/find-hotels/select-roomrate?qDest=343%20West%2036th%20Street,%20New%20York,%20NY,%20US&qPt=CASH&qSlH=NYCVM&srb_u=1&qSrt=sBR&qBrs=6c.hi.ex.sb.ul.ic.cp.cw.in.vn.cv.rs.ki.kd.ma.sp.va.sp.re.vx.nd.sx.we.lx.rn.sn.sn.sn.sn.sn.nu.ge&qWch=0&qSmP=0&qRad=30&qRdU=mi&setPMCookies=false&qpMbw=0&qErm=false&qpMn=1&qRmFltr="
+  },
+  {
+    "id": "NYCHC",
+    "name": "InterContinental New York Times Square",
+    "location": {
+      "lat": 40.758541,
+      "lng": -73.988838,
+      "address": "300 West 44th Street, New York, NY 10036"
+    },
+    "sentiment": [
+      "Luxury",
+      "Times Square",
+      "Skyline Views",
+      "Theater District"
+    ],
+    "price": {
+      "currency": "USD",
+      "amount": 550,
+      "nightlyRate": 495
+    },
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-9975465351-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-8384822709-original"
+    ],
+    "description": "Rising 36 stories above the pulse and pageantry of Times Square, InterContinental New York Times Square is a hub of tranquility nestled in Midtown Manhattan.",
+    "rating": 4.2,
+    "amenities": [
+      "Cocktail Bar",
+      "Fitness Center",
+      "Room Service",
+      "Concierge"
+    ],
+    "brandColor": "#D6AE71",
+    "brandId": "intercontinental",
+    "phoneNumber": "1-212-803-4500",
+    "bookingUrl": "https://www.ihg.com/intercontinental/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qErm=false&qSlH=NYCHC&qRms=1&setPMCookies=true&qSHBrC=IC&qDest=300%20West%2044th%20Street,%20New%20York,%20NY,%20US&qpMbw=0&qpMn=1&srb_u=1&qRmFltr="
+  },
+  {
+    "id": "NYCDD",
+    "name": "Kimpton Era Midtown New York",
+    "location": {
+      "lat": 40.7577789,
+      "lng": -73.9798407,
+      "address": "32 West 48th Street, New York, NY 10036"
+    },
+    "sentiment": [
+      "Modern",
+      "Rockefeller Center",
+      "Rooftop Bar",
+      "New Opening"
+    ],
+    "price": {
+      "currency": "USD",
+      "amount": 350,
+      "nightlyRate": 299
+    },
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10623966449-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10590660046-original"
+    ],
+    "description": "Opening in spring 2026 and redefining hospitality at Rockefeller Center while honoring its cultural legacy, Kimpton Era is a vibrant hub where tourists and locals converge.",
+    "rating": 0,
+    "amenities": [
+      "Rooftop Bar",
+      "Fitness Center",
+      "Terrace Rooms",
+      "Pet Friendly"
+    ],
+    "brandColor": "#6B7F83",
+    "brandId": "kimpton",
+    "phoneNumber": "1-800-KIMPTON",
+    "bookingUrl": "https://www.ihg.com/kimptonhotels/hotels/us/en/find-hotels/select-roomrate?qDest=32%20West%2048th%20Street,%20New%20York,%20NY,%20US&qPt=CASH&qSlH=NYCDD&qPm=NYCDD&qAkamaiCC=US&srb_u=1&qExpndSrch=false&qFS=false&qSrt=sBR&qBrs=ki.sx.ic.ul.in.vx.cp.vn.re.lx&qWch=0&qSmP=0&qRad=30&qRdU=mi&setPMCookies=true&qpMbw=0&qErm=false&qpMn=1&qLoSe=false&qRmFltr="
+  },
+  {
+    "id": "NYCAT",
+    "name": "The Manhattan at Times Square Hotel",
+    "location": {
+      "lat": 40.762293,
+      "lng": -73.9826365,
+      "address": "790 7th Ave, New York, NY 10019"
+    },
+    "sentiment": [
+      "Times Square",
+      "Central Location",
+      "Value",
+      "City Views"
+    ],
+    "price": {
+      "currency": "USD",
+      "amount": 250,
+      "nightlyRate": 199
+    },
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-9357359629-original",
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-10310188810-original"
+    ],
+    "description": "The Manhattan at Times Square Hotel is located in the heart of Midtown-Times Square, steps away from New York's best and most amazing attractions.",
+    "rating": 3.5,
+    "amenities": [
+      "Fitness Center",
+      "Business Center",
+      "Grab & Go Market",
+      "Concierge"
+    ],
+    "brandColor": "#555555",
+    "brandId": "independent",
+    "phoneNumber": "1-212-581-3300",
+    "bookingUrl": "https://www.ihg.com/spnd/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qErm=false&qSlH=NYCAT&qRms=1&setPMCookies=true&qSHBrC=SP&qDest=790%207th%20Ave,%20New%20York,%20NY,%20US&qpMbw=0&qpMn=1&srb_u=1&qRmFltr="
+  },
+  {
+    "id": "NYCMA",
+    "name": "Holiday Inn New York City - Times Square",
+    "location": {
+      "lat": 40.755131,
+      "lng": -73.99134,
+      "address": "585 8th Avenue, New York, NY 10018"
+    },
+    "sentiment": [
+      "Times Square",
+      "Family Friendly",
+      "Value",
+      "Convenient"
+    ],
+    "price": {
+      "currency": "USD",
+      "amount": 200,
+      "nightlyRate": 169
+    },
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-4132403197-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-4204279974-original"
+    ],
+    "description": "The Holiday Inn New York City – Times Square is located in the heart of Midtown-Times Square, steps away from New York's best and most amazing attractions.",
+    "rating": 4.1,
+    "amenities": [
+      "Kids Eat Free",
+      "Fitness Center",
+      "Business Center",
+      "Free Wi-Fi"
+    ],
+    "brandColor": "#009B4E",
+    "brandId": "holiday-inn",
+    "phoneNumber": "1-888-HOLIDAY",
+    "bookingUrl": "https://www.ihg.com/holidayinn/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qErm=false&qSlH=NYCMA&qRms=1&qAAR=6CBARC&qRtP=6CBARC&setPMCookies=true&qSHBrC=HI&qDest=585%208th%20Avenue,%20New%20York,%20NY,%20US&qpMbw=0&qpMn=1&srb_u=1&qRmFltr="
+  }
+]

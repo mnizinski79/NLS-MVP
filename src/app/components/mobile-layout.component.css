@@ -1,0 +1,211 @@
+.mobile-layout {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1F4456;
+  margin: 0;
+}
+
+/* Chat container - scrollable content area */
+.chat-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+  padding-bottom: 100px; /* Space for fixed input */
+}
+
+/* Input container - fixed at bottom, with sharp gradient cutoff */
+.input-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom, transparent 0%, transparent 70%, #ffffff 71%, #ffffff 100%);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: 60px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.input-container app-input {
+  pointer-events: auto;
+}
+
+.view-all-container {
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.view-all-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #1F4456;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.view-all-button:hover {
+  background-color: #163540;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.view-all-button:active {
+  transform: translateY(0);
+}
+
+.view-all-button .icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* Map Overlay */
+.map-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.map-overlay-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+.close-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.close-button:hover {
+  background-color: #e5e7eb;
+}
+
+.close-button:active {
+  background-color: #d1d5db;
+}
+
+.close-button .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #1F4456;
+}
+
+.map-overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hotel-cards-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  max-height: 40%;
+  background: transparent;
+  padding: 0 0 env(safe-area-inset-bottom) 0;
+  overflow: visible;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.hotel-cards-scroll {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 0 1rem;
+  -webkit-overflow-scrolling: touch;
+  pointer-events: auto;
+}
+
+.hotel-cards-scroll app-hotel-card {
+  transform: scale(0.85);
+  transform-origin: top left;
+  margin-right: -20px;
+}
+
+.hotel-cards-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.hotel-cards-scroll::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.hotel-cards-scroll::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.hotel-cards-scroll::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}

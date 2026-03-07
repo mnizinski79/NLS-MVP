@@ -1,0 +1,16 @@
+<div *ngIf="visible && tags.length > 0" class="helper-tags-container" role="region" aria-label="Suggested refinements">
+  <div class="tags-scroll" role="list">
+    <button
+      *ngFor="let tag of tags"
+      class="tag-pill"
+      (click)="onTagClick(tag)"
+      (keydown.enter)="onTagClick(tag)"
+      (keydown.space)="onTagClick(tag)"
+      role="listitem"
+      [attr.aria-label]="'Refine search by ' + tag.label"
+    >
+      <span class="tag-icon" aria-hidden="true">{{ tag.icon }}</span>
+      <span class="tag-label">{{ tag.label }}</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+/* Base Hotel Card Styles */
+.hotel-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transition-all duration-200;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop Variant: 280px × 340px */
+.hotel-card-desktop {
+  width: 280px;
+  height: 340px;
+  flex-shrink: 0;
+}
+
+/* Mobile Variant: 240px × 300px */
+.hotel-card-mobile {
+  width: 240px;
+  height: 300px;
+}
+
+/* Hover Effect (Desktop Only) */
+@media (min-width: 1024px) {
+  .hotel-card-desktop:hover {
+    @apply shadow-xl;
+    transform: translateY(-2px);
+  }
+}
+
+/* Highlighted State */
+.hotel-card.highlighted {
+  @apply ring-2 ring-blue-500;
+}
+
+/* Hotel Image Container */
+.hotel-card-image {
+  @apply relative overflow-hidden;
+  flex-shrink: 0;
+}
+
+.hotel-card-desktop .hotel-card-image {
+  height: 180px;
+}
+
+.hotel-card-mobile .hotel-card-image {
+  height: 150px;
+}
+
+.hotel-card-image img {
+  @apply w-full h-full object-cover;
+}
+
+/* Star Rating Overlay (Top Left) */
+.rating-overlay {
+  @apply absolute top-2 left-2 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg shadow-md;
+}
+
+.rating-overlay .star-icon {
+  @apply text-gray-900 text-sm;
+  font-weight: 600;
+}
+
+.rating-overlay .rating-value {
+  @apply text-xs text-gray-900 font-medium;
+}
+
+/* Brand Chiclet (Top Right) */
+.brand-chiclet {
+  @apply absolute top-2 right-2 rounded-md flex items-center justify-center shadow-md;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+}
+
+.brand-logo {
+  @apply w-full h-full object-contain;
+}
+
+/* Hotel Card Content */
+.hotel-card-content {
+  @apply flex flex-col p-4 flex-grow;
+}
+
+.hotel-card-mobile .hotel-card-content {
+  @apply p-3;
+}
+
+/* Hotel Name (2 lines with truncation) */
+.hotel-name {
+  @apply text-base font-semibold text-gray-900 mb-3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+  min-height: 2.8em; /* 2 lines minimum */
+}
+
+.hotel-card-mobile .hotel-name {
+  @apply text-sm mb-2;
+  min-height: 2.6em;
+}
+
+/* Price */
+.hotel-price {
+  @apply mt-auto;
+}
+
+.price-label {
+  @apply text-xs text-gray-500 mb-1;
+}
+
+.price-main {
+  @apply text-2xl font-bold text-gray-900 mb-1;
+}
+
+.hotel-card-mobile .price-main {
+  @apply text-xl;
+}
+
+.price-currency {
+  @apply text-sm font-normal text-gray-500;
+}
+
+.price-breakdown {
+  @apply text-xs text-gray-400;
+}
+
+/* Focus Styles for Accessibility */
+.hotel-card:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}

@@ -1,0 +1,300 @@
+<!-- Drawer container -->
+<div 
+  #drawerContainer
+  *ngIf="visible && hotel"
+  class="drawer"
+  [class.closing]="isClosing"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="drawer-title"
+>
+  <!-- Brand header (always visible) -->
+  <div class="brand-header">
+    <div class="brand-info">
+      <div class="brand-chiclet">
+        <img 
+          [src]="getBrandLogo()" 
+          [alt]="hotel.brand"
+          class="chiclet-logo"
+          loading="lazy"
+        />
+      </div>
+      <h2 id="drawer-title" class="brand-name">{{ hotel.brand }}</h2>
+    </div>
+    <button
+      (click)="close()"
+      class="close-button"
+      aria-label="Close detail view"
+    >
+      <svg class="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Hotel Details Page -->
+  <div *ngIf="!showRateCalendarPage" class="drawer-page">
+
+  <!-- Scrollable content -->
+  <div class="drawer-content">
+    <!-- Photo gallery mosaic -->
+    <div class="photo-gallery">
+      <!-- Large hero image -->
+      <div class="hero-image">
+        <img 
+          [src]="hotel.imageUrls[0]" 
+          [alt]="hotel.name"
+          class="hero-img"
+          loading="lazy"
+        />
+      </div>
+      
+      <!-- Three thumbnail images -->
+      <div class="thumbnail-row">
+        <div 
+          *ngFor="let imageUrl of getThumbnailImages(); let i = index"
+          class="thumbnail-item"
+          (click)="currentImageIndex = i + 1"
+        >
+          <img [src]="imageUrl" [alt]="'Photo ' + (i + 2)" class="thumbnail-img" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Hotel info -->
+    <div class="hotel-info">
+      <!-- Rating pill -->
+      <div class="rating-pill">
+        <span class="star-icon" aria-hidden="true">★</span>
+        <span class="rating-value">{{ hotel.rating }}/5</span>
+      </div>
+
+      <!-- Hotel name -->
+      <h3 class="hotel-name">{{ hotel.name }}</h3>
+
+      <!-- Address with copy -->
+      <div class="address-container">
+        <p class="address-text">{{ hotel.location.address }}</p>
+        <button class="copy-button" aria-label="Copy address">
+          <svg class="copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Description -->
+      <div class="section">
+        <h3 class="section-title">Description</h3>
+        <p class="description-text">{{ hotel.description }}</p>
+      </div>
+
+      <!-- Amenities -->
+      <div class="section">
+        <h3 class="section-title">Amenities</h3>
+        <div class="amenities-grid">
+          <div class="amenity-item" *ngFor="let amenity of getAmenitiesWithIcons()">
+            <span class="amenity-icon">{{ amenity.icon }}</span>
+            <span class="amenity-text">{{ amenity.name }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location map -->
+      <div class="section">
+        <h3 class="section-title">Location</h3>
+        <div class="map-container">
+          <app-map
+            [hotels]="[hotel]"
+            [center]="[hotel.location.coordinates.lat, hotel.location.coordinates.lng]"
+            [zoom]="15"
+            [selectedHotelId]="hotel.id"
+            [isMobile]="false"
+          ></app-map>
+        </div>
+      </div>
+
+      <!-- Reviews -->
+      <div class="section">
+        <h3 class="section-title">What other guests have to say</h3>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars">
+              <svg *ngFor="let star of [1,2,3,4,5]" class="review-star" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+              </svg>
+            </div>
+            <p class="review-author">mini_1996</p>
+            <p class="review-text">We arrived to a warm welcoming staff out front. They took our bags, parked our car. $88/ night...</p>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg *ngFor="let star of [1,2,3,4,5]" class="review-star" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+              </svg>
+            </div>
+            <p class="review-author">luv_vaca_92</p>
+            <p class="review-text">We arrived to a warm welcoming staff out front. They took our bags, parked our car. $88/ night...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendar Section -->
+      <div #calendarSection class="section calendar-section">
+        <h3 class="section-title">Select dates</h3>
+        <p class="calendar-subheader">Fill in your trip information to check availability and pricing</p>
+        <div class="calendar-wrapper">
+          <!-- Guest Selector -->
+          <div class="guest-selector">
+            <div class="guest-row">
+              <span class="guest-label">Adults</span>
+              <div class="guest-controls">
+                <button class="guest-btn" (click)="decrementAdults()" [disabled]="adults <= 1">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <span class="guest-count">{{ adults }}</span>
+                <button class="guest-btn" (click)="incrementAdults()" [disabled]="adults >= 8">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 4v8M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="guest-row">
+              <span class="guest-label">Children</span>
+              <div class="guest-controls">
+                <button class="guest-btn" (click)="decrementChildren()" [disabled]="children <= 0">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <span class="guest-count">{{ children }}</span>
+                <button class="guest-btn" (click)="incrementChildren()" [disabled]="children >= 6">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 4v8M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <app-rate-calendar
+            #rateCalendar
+            [visible]="true"
+            [inline]="true"
+            [hotel]="hotel"
+            [basePrice]="(hotel?.pricing?.nightlyRate) || 200"
+            [brandColor]="getBrandColor()"
+            [initialCheckIn]="checkInDate"
+            [initialCheckOut]="checkOutDate"
+            (dateSelected)="onDateSelected($event)"
+            (closed)="onCalendarClosed()">
+          </app-rate-calendar>
+          
+          <!-- View Rooms button (always visible) -->
+          <div class="calendar-cta-container">
+            <button 
+              class="cta-filled cta-full-width"
+              [style.background-color]="getBrandColor()"
+              (click)="viewRooms()"
+            >
+              <span>View Rooms</span>
+              <svg class="cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spacer for floating footer -->
+      <div class="footer-spacer"></div>
+    </div>
+  </div>
+
+  <!-- Floating footer with CTAs -->
+  <div *ngIf="!showRateCalendarPage" class="floating-footer" [class.footer-hidden]="hideFooter">
+    <!-- Dual buttons when user has complete booking info -->
+    <ng-container *ngIf="hasCompleteBookingInfo()">
+      <button 
+        class="cta-outline"
+        [style.border-color]="getBrandColor()"
+        [style.color]="getBrandColor()"
+        (click)="scrollToCalendar()"
+      >
+        Check Availability
+      </button>
+      <button 
+        class="cta-filled"
+        [style.background-color]="getBrandColor()"
+        (click)="viewRooms()"
+      >
+        <span>View Rooms</span>
+        <svg class="cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </button>
+    </ng-container>
+    
+    <!-- Single button when user doesn't have complete booking info -->
+    <button 
+      *ngIf="!hasCompleteBookingInfo()"
+      class="cta-filled cta-full-width"
+      [style.background-color]="getBrandColor()"
+      (click)="scrollToCalendar()"
+    >
+      Check Availability
+    </button>
+  </div>
+  </div>
+
+  <!-- Rate Calendar Page -->
+  <div *ngIf="showRateCalendarPage" class="drawer-page calendar-page">
+    <!-- Back button below header -->
+    <div class="back-button-container">
+      <button
+        (click)="backToHotelDetails()"
+        class="back-button"
+        aria-label="Back to hotel details"
+      >
+        <svg class="back-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span class="back-text">Back to hotel details</span>
+      </button>
+    </div>
+
+    <!-- Select dates header -->
+    <div class="calendar-header-section">
+      <h3 class="calendar-page-title">Select dates</h3>
+    </div>
+
+    <!-- Calendar content -->
+    <div class="calendar-content">
+      <app-rate-calendar
+        [visible]="true"
+        [inline]="true"
+        [hotel]="hotel"
+        [basePrice]="(hotel?.pricing?.nightlyRate) || 200"
+        (dateSelected)="onDateSelected($event)"
+        (closed)="onCalendarClosed()">
+      </app-rate-calendar>
+    </div>
+
+    <!-- Sticky footer for calendar -->
+    <div class="floating-footer">
+      <button 
+        class="cta-filled cta-full-width"
+        [style.background-color]="getBrandColor()"
+        (click)="onCalendarContinue()"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</div>

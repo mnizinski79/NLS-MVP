@@ -1,0 +1,144 @@
+<div *ngIf="visible" [class.calendar-overlay]="!inline" [class.calendar-inline]="inline" (click)="!inline && onClose()">
+  <div [class.calendar-modal]="!inline" [class.calendar-content]="inline" (click)="$event.stopPropagation()">
+    <!-- Header (only show when not inline) -->
+    <div *ngIf="!inline" class="calendar-header">
+      <div class="header-content">
+        <div class="hotel-info" *ngIf="hotel">
+          <div class="hotel-chiclet">
+            <img 
+              [src]="getBrandLogo(hotel)" 
+              [alt]="hotel.brand"
+              class="chiclet-logo"
+              loading="lazy"
+            />
+          </div>
+          <div class="hotel-text">
+            <h2 class="hotel-name">{{ hotel.name }}</h2>
+            <p class="calendar-subtitle">Select new dates</p>
+          </div>
+        </div>
+        <div class="fallback-header" *ngIf="!hotel">
+          <h2 class="calendar-title">Select new dates</h2>
+        </div>
+      </div>
+      <button class="close-button" (click)="onClose()" aria-label="Close calendar">
+        <svg class="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Month navigation -->
+    <div class="month-navigation">
+      <h3 class="current-month-mobile">{{ getMonthYearLabel(currentMonth) }}</h3>
+      <div class="nav-buttons">
+        <button 
+          class="nav-button" 
+          (click)="previousMonthView()"
+          [disabled]="!canGoBack()"
+          aria-label="Previous month"
+        >
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button 
+          class="nav-button" 
+          (click)="nextMonthView()"
+          aria-label="Next month"
+        >
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Calendar grid container -->
+    <div class="calendar-container">
+      <!-- Current month -->
+      <div class="month-section">
+        <!-- Week day headers -->
+        <div class="weekday-header">
+          <div class="weekday" *ngFor="let day of weekDays">{{ day }}</div>
+        </div>
+        
+        <!-- Calendar days -->
+        <div class="calendar-grid">
+          <div 
+            *ngFor="let day of calendarDays"
+            class="calendar-day"
+            [class.disabled]="day.isDisabled"
+            [class.not-current-month]="!day.isCurrentMonth"
+            [class.selected]="day.isSelected"
+            [class.in-range]="day.isInRange"
+            [class.check-in]="day.isCheckIn"
+            [class.check-out]="day.isCheckOut"
+            [style.background-color]="(day.isSelected || day.isInRange) ? brandColor : ''"
+            [style.color]="(day.isSelected || day.isInRange) ? 'white' : ''"
+            (click)="onDayClick(day)"
+          >
+            <div class="day-number">{{ day.dayNumber }}</div>
+            <div class="day-price" *ngIf="day.isCurrentMonth && !day.isDisabled">
+              {{ day.price }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next month -->
+      <div class="month-section">
+        <!-- Week day headers -->
+        <div class="weekday-header">
+          <div class="weekday" *ngFor="let day of weekDays">{{ day }}</div>
+        </div>
+        
+        <!-- Calendar days -->
+        <div class="calendar-grid">
+          <div 
+            *ngFor="let day of nextMonthDays"
+            class="calendar-day"
+            [class.disabled]="day.isDisabled"
+            [class.not-current-month]="!day.isCurrentMonth"
+            [class.selected]="day.isSelected"
+            [class.in-range]="day.isInRange"
+            [class.check-in]="day.isCheckIn"
+            [class.check-out]="day.isCheckOut"
+            [style.background-color]="(day.isSelected || day.isInRange) ? brandColor : ''"
+            [style.color]="(day.isSelected || day.isInRange) ? 'white' : ''"
+            (click)="onDayClick(day)"
+          >
+            <div class="day-number">{{ day.dayNumber }}</div>
+            <div class="day-price" *ngIf="day.isCurrentMonth && !day.isDisabled">
+              {{ day.price }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="calendar-footer">
+      <div class="booking-summary">
+        <div class="summary-row">
+          <span class="summary-label">{{ getDateRangeLabel() }}</span>
+          <span class="summary-price">{{ basePrice }} USD/night</span>
+        </div>
+        <div class="summary-row total">
+          <span class="summary-label">Total</span>
+          <span class="summary-price">{{ totalPrice }} USD</span>
+        </div>
+      </div>
+      
+      <!-- Continue button (only show when not inline) -->
+      <button 
+        *ngIf="!inline"
+        class="continue-button"
+        (click)="onContinue()"
+        [disabled]="!selectedCheckIn || !selectedCheckOut"
+      >
+        CONTINUE
+      </button>
+    </div>
+  </div>
+</div>

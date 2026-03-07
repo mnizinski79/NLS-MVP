@@ -1,0 +1,228 @@
+[
+  {
+    "id": "NYCEA",
+    "name": "Kimpton Theta New York Times Square",
+    "brand": "Kimpton",
+    "rating": 4.2,
+    "location": {
+      "address": "790 8th Avenue, New York, NY 10019",
+      "neighborhood": "Times Square",
+      "coordinates": {
+        "lat": 40.761212,
+        "lng": -73.98651
+      }
+    },
+    "pricing": {
+      "nightlyRate": 345,
+      "roomRate": 345,
+      "fees": 60
+    },
+    "amenities": [
+      "Rooftop Bar",
+      "Fitness Center",
+      "Pet Friendly",
+      "Hosted Wine Hour"
+    ],
+    "description": "Renovated hotel located one block from Times Square with rooftop Bar Sprezzatura.",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9149634521-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10073255838-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9149634491-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10073188294-original"
+    ],
+    "phone": "1-800-KIMPTON",
+    "sentiment": [
+      "Times Square",
+      "Rooftop Bar",
+      "Theater District",
+      "Modern"
+    ],
+    "bookingUrl": "https://www.ihg.com/kimptonhotels/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCEA&setPMCookies=true&qSHBrC=KI&qDest=790%208th%20Avenue,%20New%20York,%20NY,%20US"
+  },
+  {
+    "id": "NYCXV",
+    "name": "voco Times Square - Broadway",
+    "brand": "voco",
+    "rating": 5,
+    "location": {
+      "address": "170 W. 48th Street, New York, NY 10036",
+      "neighborhood": "Times Square",
+      "coordinates": {
+        "lat": 40.7595257,
+        "lng": -73.9838434
+      }
+    },
+    "pricing": {
+      "nightlyRate": 285,
+      "roomRate": 285,
+      "fees": 40
+    },
+    "amenities": [
+      "Rooftop Bar",
+      "Fitness Center",
+      "Free Wi-Fi",
+      "Pet Friendly"
+    ],
+    "description": "Step into the energy of Times Square from a hotel that puts you in the center of it all. Just steps from the neon glow, you'll find Radio City Music Hall, Rockefeller Center, and the Theater District.",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10286760679-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10518085643-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10498503074-original"
+    ],
+    "phone": "1-212-555-0199",
+    "sentiment": [
+      "Times Square",
+      "Broadway",
+      "Theater District",
+      "Rooftop Bar"
+    ]
+  },
+  {
+    "id": "NYCHC",
+    "name": "InterContinental New York Times Square",
+    "brand": "InterContinental",
+    "rating": 4.2,
+    "location": {
+      "address": "300 West 44th Street, New York, NY 10036",
+      "neighborhood": "Times Square",
+      "coordinates": {
+        "lat": 40.758541,
+        "lng": -73.988838
+      }
+    },
+    "pricing": {
+      "nightlyRate": 495,
+      "roomRate": 495,
+      "fees": 55
+    },
+    "amenities": [
+      "Cocktail Bar",
+      "Fitness Center",
+      "Room Service",
+      "Concierge"
+    ],
+    "description": "Rising 36 stories above the pulse and pageantry of Times Square, InterContinental New York Times Square is a hub of tranquility nestled in Midtown Manhattan.",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-9975465351-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-8384822709-original"
+    ],
+    "phone": "1-212-803-4500",
+    "sentiment": [
+      "Luxury",
+      "Times Square",
+      "Skyline Views",
+      "Theater District"
+    ]
+  },
+  {
+    "id": "NYCDD",
+    "name": "Kimpton Era Midtown New York",
+    "brand": "Kimpton",
+    "rating": 4.5,
+    "location": {
+      "address": "32 West 48th Street, New York, NY 10036",
+      "neighborhood": "Midtown",
+      "coordinates": {
+        "lat": 40.7577789,
+        "lng": -73.9798407
+      }
+    },
+    "pricing": {
+      "nightlyRate": 299,
+      "roomRate": 299,
+      "fees": 51
+    },
+    "amenities": [
+      "Rooftop Bar",
+      "Fitness Center",
+      "Terrace Rooms",
+      "Pet Friendly"
+    ],
+    "description": "Opening in spring 2026 and redefining hospitality at Rockefeller Center while honoring its cultural legacy, Kimpton Era is a vibrant hub where tourists and locals converge.",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10623966449-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10590660046-original"
+    ],
+    "phone": "1-800-KIMPTON",
+    "sentiment": [
+      "Modern",
+      "Rockefeller Center",
+      "Rooftop Bar",
+      "New Opening"
+    ]
+  },
+  {
+    "id": "NYCAT",
+    "name": "The Manhattan at Times Square Hotel",
+    "brand": "Independent",
+    "rating": 3.5,
+    "location": {
+      "address": "790 7th Ave, New York, NY 10019",
+      "neighborhood": "Times Square",
+      "coordinates": {
+        "lat": 40.762293,
+        "lng": -73.9826365
+      }
+    },
+    "pricing": {
+      "nightlyRate": 199,
+      "roomRate": 199,
+      "fees": 51
+    },
+    "amenities": [
+      "Fitness Center",
+      "Business Center",
+      "Grab & Go Market",
+      "Concierge"
+    ],
+    "description": "The Manhattan at Times Square Hotel is located in the heart of Midtown-Times Square, steps away from New York's best and most amazing attractions.",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-9357359629-original",
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-10310188810-original"
+    ],
+    "phone": "1-212-581-3300",
+    "sentiment": [
+      "Times Square",
+      "Central Location",
+      "Value",
+      "City Views"
+    ]
+  },
+  {
+    "id": "NYCMA",
+    "name": "Holiday Inn New York City - Times Square",
+    "brand": "Holiday Inn",
+    "rating": 4.1,
+    "location": {
+      "address": "585 8th Avenue, New York, NY 10018",
+      "neighborhood": "Times Square",
+      "coordinates": {
+        "lat": 40.755131,
+        "lng": -73.99134
+      }
+    },
+    "pricing": {
+      "nightlyRate": 169,
+      "roomRate": 169,
+      "fees": 31
+    },
+    "amenities": [
+      "Kids Eat Free",
+      "Fitness Center",
+      "Business Center",
+      "Free Wi-Fi"
+    ],
+    "description": "The Holiday Inn New York City – Times Square is located in the heart of Midtown-Times Square, steps away from New York's best and most amazing attractions.",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-4132403197-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-4204279974-original"
+    ],
+    "phone": "1-888-HOLIDAY",
+    "sentiment": [
+      "Times Square",
+      "Family Friendly",
+      "Value",
+      "Convenient"
+    ]
+  }
+]

@@ -1,0 +1,75 @@
+<div class="mobile-layout">
+  <!-- Header -->
+  <div class="header">
+    <h1 class="header-title">IHG Hotel Search</h1>
+  </div>
+
+  <!-- Chat with inline cards - scrollable content -->
+  <div class="chat-container">
+    <app-chat
+      [messages]="messages"
+      [isThinking]="isThinking"
+      [isMobile]="true"
+      (dateSelected)="onDateSelected($event)"
+      (hotelCardClicked)="onHotelCardClicked($event)"
+      (viewAllClicked)="onViewAllClicked()">
+    </app-chat>
+  </div>
+
+  <!-- Input (fixed at bottom) -->
+  <div class="input-container">
+    <app-input
+      [disabled]="inputDisabled"
+      placeholder="Ask me about hotels in NYC..."
+      (messageSent)="onMessageSent($event)">
+    </app-input>
+  </div>
+
+  <!-- Map Overlay (toggled) -->
+  <div class="map-overlay" *ngIf="showMapOverlay">
+    <div class="map-overlay-header">
+      <button class="close-button" (click)="closeMapOverlay()" aria-label="Close map">
+        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="map-overlay-content">
+      <app-map
+        [hotels]="hotels"
+        [center]="mapCenter"
+        [zoom]="mapZoom"
+        [selectedHotelId]="selectedHotel?.id || null"
+        (markerClicked)="onMarkerClicked($event)">
+      </app-map>
+    </div>
+
+    <!-- Hotel Cards at bottom -->
+    <div class="hotel-cards-container">
+      <div class="hotel-cards-scroll">
+        <app-hotel-card
+          *ngFor="let hotel of hotels"
+          [hotel]="hotel"
+          [variant]="'mobile'"
+          [highlighted]="selectedHotel?.id === hotel.id"
+          (cardClicked)="onHotelCardClicked($event)">
+        </app-hotel-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Sheet for details -->
+  <app-hotel-detail-bottom-sheet
+    [hotel]="selectedHotel"
+    [visible]="showBottomSheet"
+    [isMapContext]="isMapContext"
+    [hasDates]="hasDates"
+    [checkInDate]="checkInDate"
+    [checkOutDate]="checkOutDate"
+    [guestCount]="guestCount"
+    (closed)="onBottomSheetClosed()"
+    (dateSelected)="onDateSelected($event)"
+    (selectDatesRequested)="onSelectDatesRequested()">
+  </app-hotel-detail-bottom-sheet>
+</div>

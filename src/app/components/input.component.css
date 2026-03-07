@@ -1,0 +1,118 @@
+/* Input wrapper - no borders, no background, just clean spacing */
+.input-wrapper {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  background-color: transparent;
+  padding: 16px;
+}
+
+/* Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Pill container */
+.input-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Input field - clean rounded rectangle style */
+.input-field {
+  flex: 1;
+  padding: 16px 60px 16px 20px; /* Extra right padding for send button */
+  border: 1px solid #e5e5e5;
+  border-radius: 16px; /* Changed from 50px to 16px for rounded rectangle */
+  background-color: #ffffff;
+  font-size: 15px;
+  line-height: 1.5;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  color: #1F4456;
+}
+
+.input-field::placeholder {
+  color: #9ca3af;
+}
+
+.input-field:focus {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.input-field:disabled {
+  background-color: #f9fafb;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Send button - rounded square inside input */
+.send-button {
+  position: absolute;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px; /* Changed from 50% to 10px for rounded square */
+  background-color: #e5e7eb;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.send-button.has-text {
+  background-color: #1F4456;
+  color: #ffffff;
+}
+
+.send-button.has-text:hover:not(:disabled) {
+  background-color: #163540;
+  transform: scale(1.05);
+}
+
+.send-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.send-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 1024px) {
+  .input-wrapper {
+    margin: 0;
+    padding: 12px 16px;
+  }
+
+  .input-field {
+    font-size: 16px; /* Prevents zoom on iOS */
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 14px 56px 14px 18px;
+  }
+
+  .send-button {
+    width: 34px;
+    height: 34px;
+  }
+}

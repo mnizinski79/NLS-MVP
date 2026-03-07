@@ -1,0 +1,103 @@
+<div class="chat-container" 
+     [class.collapsed]="isCollapsed"
+     role="log" 
+     aria-live="polite" 
+     aria-label="Conversation history">
+  
+  <!-- Collapsed view - shows only most recent message -->
+  <div class="collapsed-content" *ngIf="isCollapsed && messages.length > 0">
+    <div class="most-recent-message">
+      <div class="message-wrapper"
+           [class.user-message]="messages[messages.length - 1].sender === 'user'"
+           [class.ai-message]="messages[messages.length - 1].sender === 'ai'">
+        <div class="message-bubble"
+             [class.user-bubble]="messages[messages.length - 1].sender === 'user'"
+             [class.ai-bubble]="messages[messages.length - 1].sender === 'ai'">
+          <p class="message-text" [innerHTML]="messages[messages.length - 1].text | markdown"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expanded view - shows all messages -->
+  <div class="messages-list" *ngIf="!isCollapsed">
+    <div *ngFor="let message of messages" 
+         class="message-wrapper"
+         [class.user-message]="message.sender === 'user'"
+         [class.ai-message]="message.sender === 'ai'"
+         role="article"
+         [attr.aria-label]="message.sender === 'user' ? 'Your message' : 'AI assistant message'">
+      
+      <div class="message-bubble"
+           [class.user-bubble]="message.sender === 'user'"
+           [class.ai-bubble]="message.sender === 'ai'">
+        <p class="message-text" [innerHTML]="message.text | markdown"></p>
+      </div>
+
+      <!-- Inline hotel cards for mobile -->
+      <div *ngIf="message.sender === 'ai' && isMobile && message.hotels && message.hotels.length > 0" 
+           class="inline-hotels"
+           role="region"
+           aria-label="Hotel search results">
+        <div class="inline-hotels-container">
+          <app-hotel-card 
+            *ngFor="let hotel of getInlineHotels(message)"
+            [hotel]="hotel"
+            [variant]="'mobile'"
+            (cardClicked)="onCardClick($event)">
+          </app-hotel-card>
+        </div>
+      </div>
+
+      <!-- View all CTA for mobile (only show for 4+ hotels) -->
+      <div *ngIf="message.sender === 'ai' && isMobile && message.hotels && message.hotels.length > 3" 
+           class="view-all-cta">
+        <button class="view-all-button" (click)="onViewAllClick()" aria-label="View all hotels on map">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+          </svg>
+          View All on Map
+        </button>
+      </div>
+
+      <!-- Date picker button for small result sets -->
+      <div *ngIf="message.sender === 'ai' && message.showDatePicker && !isDatePickerVisible(message.id)" 
+           class="date-picker-prompt">
+        <p class="date-prompt-text">{{ getDatePromptMessage(message) }}</p>
+        <button class="select-dates-button" 
+                (click)="onSelectDatesClick(message.id)"
+                aria-label="Open date picker to select check-in and check-out dates">
+          Select Dates →
+        </button>
+      </div>
+
+      <!-- Date picker component -->
+      <div *ngIf="message.sender === 'ai' && isDatePickerVisible(message.id)" 
+           class="date-picker-container">
+        <app-date-picker
+          [visible]="true"
+          (datesSelected)="onDatesSelected($event)"
+          (cancelled)="onDatePickerCancelled()">
+        </app-date-picker>
+      </div>
+
+      <!-- Rate calendar component -->
+      <div *ngIf="message.sender === 'ai' && message.showRateCalendar && message.rateCalendarHotel" 
+           class="rate-calendar-container">
+        <app-rate-calendar
+          [visible]="true"
+          [inline]="true"
+          [hotel]="message.rateCalendarHotel"
+          [basePrice]="message.rateCalendarHotel.pricing.nightlyRate"
+          (dateSelected)="onRateCalendarDatesSelected($event)"
+          (closed)="onRateCalendarClosed()">
+        </app-rate-calendar>
+      </div>
+    </div>
+
+    <!-- Thinking animation -->
+    <div *ngIf="isThinking" class="message-wrapper ai-message" role="status" aria-live="polite" aria-label="AI is thinking">
+      <app-thinking-animation [visible]="true"></app-thinking-animation>
+    </div>
+  </div>
+</div>
