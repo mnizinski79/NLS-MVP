@@ -398,12 +398,41 @@ Current query: "${query}"${context}
     const criteria: SearchCriteria = {};
 
     // Extract location/sentiment keywords
-    const locationKeywords = ['times square', 'midtown', 'broadway', 'financial district', 'chelsea', 'soho', 'tribeca', 'upper east side', 'upper west side'];
+    const locationKeywords = [
+      'times square', 'broadway', 'theater district', 'rockefeller center',
+      'financial district', 'chelsea', 'soho', 'tribeca', 
+      'upper east side', 'upper west side', 'luxury', 'modern'
+    ];
+    
+    // Map broader location terms to specific sentiment keywords
+    const locationMappings: Record<string, string[]> = {
+      'midtown': ['Times Square', 'Theater District', 'Rockefeller Center', 'Broadway'],
+      'times square': ['Times Square'],
+      'broadway': ['Broadway', 'Theater District'],
+      'theater district': ['Theater District'],
+      'rockefeller center': ['Rockefeller Center']
+    };
+    
+    let foundSentiments: string[] = [];
+    
+    // Check for direct matches first
     const foundLocations = locationKeywords.filter(loc => lowerQuery.includes(loc));
     if (foundLocations.length > 0) {
-      criteria.sentiments = foundLocations.map(loc => 
+      foundSentiments = foundLocations.map(loc => 
         loc.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
       );
+    }
+    
+    // Check for mapped locations (like "midtown")
+    for (const [key, mappedSentiments] of Object.entries(locationMappings)) {
+      if (lowerQuery.includes(key)) {
+        foundSentiments.push(...mappedSentiments);
+      }
+    }
+    
+    // Remove duplicates and set criteria
+    if (foundSentiments.length > 0) {
+      criteria.sentiments = [...new Set(foundSentiments)];
     }
 
     // Extract brand keywords

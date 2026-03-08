@@ -495,7 +495,10 @@ export class AppComponent implements OnInit, OnDestroy {
    * current results or start fresh with all hotels.
    */
   private handleStandardSearch(aiResponse: AIResponse): Hotel[] {
+    console.log('🔍 handleStandardSearch - criteria:', aiResponse.searchCriteria);
+    
     if (!aiResponse.searchCriteria) {
+      console.log('📋 No criteria, returning all hotels');
       return this.allHotels;
     }
 
@@ -505,8 +508,14 @@ export class AppComponent implements OnInit, OnDestroy {
       ? this.currentHotels  // Refine current results
       : this.allHotels;     // New search from all hotels
 
+    console.log('🏨 Base hotels count:', baseHotels.length);
+    console.log('🔎 Search criteria:', JSON.stringify(aiResponse.searchCriteria, null, 2));
+
     // Apply filter pipeline: brand → sentiment → price → amenities → rating → sort
-    return this.hotelService.filterHotels(baseHotels, aiResponse.searchCriteria);
+    const results = this.hotelService.filterHotels(baseHotels, aiResponse.searchCriteria);
+    console.log('✅ Filtered results count:', results.length);
+    
+    return results;
   }
 
   /**
