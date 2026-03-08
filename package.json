@@ -10,6 +10,7 @@
     "start:dev": "concurrently \"npm run start:api\" \"npm run start\"",
     "start:dev:mobile": "concurrently --kill-others \"npm run start:api\" \"npm run start:mobile\"",
     "build": "ng build --configuration production",
+    "vercel-build": "ng build --configuration production",
     "build:stats": "ng build --configuration production --stats-json",
     "analyze": "webpack-bundle-analyzer dist/hotel-search/stats.json",
     "watch": "ng build --watch --configuration development",
