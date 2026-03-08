@@ -17,6 +17,11 @@ import { Hotel, Message, AIResponse, ConversationState } from './models';
   imports: [CommonModule, DesktopLayoutComponent, MobileLayoutComponent, LandingComponent],
   template: `
     <div class="app-container">
+      <!-- Debug info (remove in production) -->
+      <div *ngIf="!showLanding && allHotels.length === 0" class="fixed top-4 left-4 bg-red-100 text-red-800 p-2 rounded text-sm z-50">
+        Loading hotels... ({{allHotels.length}} loaded)
+      </div>
+      
       <!-- Landing Screen -->
       <app-landing
         *ngIf="showLanding"
@@ -128,13 +133,16 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('🚀 App component initializing...');
+    
     // Load configuration (API keys) first
     this.configService.loadConfig().subscribe({
       next: (config) => {
-        console.log('✅ Configuration loaded successfully');
+        console.log('✅ Configuration loaded successfully', config);
       },
       error: (error) => {
         console.error('❌ Failed to load configuration:', error);
+        // Continue with app initialization even if config fails
       }
     });
 
@@ -157,6 +165,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.hasDates = true;
       }
     });
+
+    console.log('✅ App component initialized');
   }
 
   ngOnDestroy(): void {

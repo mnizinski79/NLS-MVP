@@ -23,7 +23,7 @@ export class HotelService {
       return of(this.hotelsCache);
     }
 
-    return this.http.get<any[]>('assets/hotels (1).json').pipe(
+    return this.http.get<any[]>('assets/hotels.json').pipe(
       map(rawHotels => {
         // Transform raw data to Hotel interface
         const hotels = rawHotels.map(raw => this.transformRawHotel(raw));
