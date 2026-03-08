@@ -1,80 +1,92 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, fromEvent, Subscription } from 'rxjs';
 import { map, startWith, distinctUntilChanged, shareReplay, take, switchMap } from 'rxjs/operators';
 import { DesktopLayoutComponent } from './components/desktop-layout.component';
 import { MobileLayoutComponent } from './components/mobile-layout.component';
 import { LandingComponent } from './components/landing.component';
+import { PasswordGateComponent } from './components/password-gate.component';
 import { HotelService } from './services/hotel.service';
 import { AIService } from './services/ai.service';
 import { ConversationService } from './services/conversation.service';
 import { ConfigService } from './services/config.service';
+import { AuthService } from './services/auth.service';
 import { Hotel, Message, AIResponse, ConversationState } from './models';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, DesktopLayoutComponent, MobileLayoutComponent, LandingComponent],
+  imports: [CommonModule, DesktopLayoutComponent, MobileLayoutComponent, LandingComponent, PasswordGateComponent],
   template: `
     <div class="app-container">
-      <!-- Landing Screen -->
-      <app-landing
-        *ngIf="showLanding"
-        [visible]="showLanding"
-        (messageSent)="onMessageSent($event)"
-        (dismissed)="onLandingDismissed()"
-      ></app-landing>
-      
-      <!-- Desktop Layout -->
-      <app-desktop-layout
-        *ngIf="!showLanding && !(isMobile$ | async)"
-        [messages]="messages"
-        [isThinking]="isThinking"
-        [hotels]="currentHotels"
-        [selectedHotel]="selectedHotel"
-        [showDetailDrawer]="showDetailDrawer"
-        [inputDisabled]="inputDisabled"
-        [mapCenter]="mapCenter"
-        [mapZoom]="mapZoom"
-        [hasDates]="hasDates"
-        [checkInDate]="checkInDate"
-        [checkOutDate]="checkOutDate"
-        [guestCount]="guestCount"
-        (messageSent)="onMessageSent($event)"
-        (tagClicked)="onTagClicked($event)"
-        (hotelCardClicked)="onHotelCardClicked($event)"
-        (markerClicked)="onMarkerClicked($event)"
-        (detailDrawerClosed)="onDetailDrawerClosed()"
-        (dateSelected)="onDateSelected($event)"
-        (hotelFocused)="onHotelFocused($event)"
-        (hotelUnfocused)="onHotelUnfocused()"
-        (selectDatesRequested)="onSelectDatesRequested($event)"
-      ></app-desktop-layout>
-      
-      <!-- Mobile Layout -->
-      <app-mobile-layout
-        *ngIf="!showLanding && (isMobile$ | async)"
-        [messages]="messages"
-        [isThinking]="isThinking"
-        [hotels]="currentHotels"
-        [selectedHotel]="selectedHotel"
-        [showBottomSheet]="showBottomSheet"
-        [isMapContext]="isMapContext"
-        [inputDisabled]="inputDisabled"
-        [mapCenter]="mapCenter"
-        [mapZoom]="mapZoom"
-        [hasDates]="hasDates"
-        [checkInDate]="checkInDate"
-        [checkOutDate]="checkOutDate"
-        [guestCount]="guestCount"
-        (messageSent)="onMessageSent($event)"
-        (tagClicked)="onTagClicked($event)"
-        (hotelCardClicked)="onHotelCardClicked($event)"
-        (markerClicked)="onMarkerClicked($event)"
-        (bottomSheetClosed)="onBottomSheetClosed()"
-        (dateSelected)="onDateSelected($event)"
-        (selectDatesRequested)="onSelectDatesRequested($event)"
-      ></app-mobile-layout>
+      <!-- Password Gate -->
+      <app-password-gate
+        *ngIf="showPasswordGate"
+        (authenticated)="onPasswordSubmit($event)"
+        #passwordGate
+      ></app-password-gate>
+
+      <!-- Main App Content -->
+      <ng-container *ngIf="isAuthenticated">
+        <!-- Landing Screen -->
+        <app-landing
+          *ngIf="showLanding"
+          [visible]="showLanding"
+          (messageSent)="onMessageSent($event)"
+          (dismissed)="onLandingDismissed()"
+        ></app-landing>
+        
+        <!-- Desktop Layout -->
+        <app-desktop-layout
+          *ngIf="!showLanding && !(isMobile$ | async)"
+          [messages]="messages"
+          [isThinking]="isThinking"
+          [hotels]="currentHotels"
+          [selectedHotel]="selectedHotel"
+          [showDetailDrawer]="showDetailDrawer"
+          [inputDisabled]="inputDisabled"
+          [mapCenter]="mapCenter"
+          [mapZoom]="mapZoom"
+          [hasDates]="hasDates"
+          [checkInDate]="checkInDate"
+          [checkOutDate]="checkOutDate"
+          [guestCount]="guestCount"
+          (messageSent)="onMessageSent($event)"
+          (tagClicked)="onTagClicked($event)"
+          (hotelCardClicked)="onHotelCardClicked($event)"
+          (markerClicked)="onMarkerClicked($event)"
+          (detailDrawerClosed)="onDetailDrawerClosed()"
+          (dateSelected)="onDateSelected($event)"
+          (hotelFocused)="onHotelFocused($event)"
+          (hotelUnfocused)="onHotelUnfocused()"
+          (selectDatesRequested)="onSelectDatesRequested($event)"
+        ></app-desktop-layout>
+        
+        <!-- Mobile Layout -->
+        <app-mobile-layout
+          *ngIf="!showLanding && (isMobile$ | async)"
+          [messages]="messages"
+          [isThinking]="isThinking"
+          [hotels]="currentHotels"
+          [selectedHotel]="selectedHotel"
+          [showBottomSheet]="showBottomSheet"
+          [isMapContext]="isMapContext"
+          [inputDisabled]="inputDisabled"
+          [mapCenter]="mapCenter"
+          [mapZoom]="mapZoom"
+          [hasDates]="hasDates"
+          [checkInDate]="checkInDate"
+          [checkOutDate]="checkOutDate"
+          [guestCount]="guestCount"
+          (messageSent)="onMessageSent($event)"
+          (tagClicked)="onTagClicked($event)"
+          (hotelCardClicked)="onHotelCardClicked($event)"
+          (markerClicked)="onMarkerClicked($event)"
+          (bottomSheetClosed)="onBottomSheetClosed()"
+          (dateSelected)="onDateSelected($event)"
+          (selectDatesRequested)="onSelectDatesRequested($event)"
+        ></app-mobile-layout>
+      </ng-container>
     </div>
   `,
   styles: [`
@@ -90,6 +102,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // Viewport detection
   isMobile$: Observable<boolean>;
+
+  // Authentication
+  @ViewChild('passwordGate') passwordGate?: PasswordGateComponent;
+  showPasswordGate = false;
+  isAuthenticated = false;
 
   // State
   showLanding = true;
@@ -116,7 +133,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private hotelService: HotelService,
     private aiService: AIService,
     private conversationService: ConversationService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private authService: AuthService
   ) {
     // Set up viewport detection
     this.isMobile$ = fromEvent(window, 'resize').pipe(
@@ -130,14 +148,22 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log('🚀 App component initializing...');
     
-    // Load configuration (API keys) first
+    // Load configuration (API keys and password protection) first
     this.configService.loadConfig().subscribe({
       next: (config) => {
         console.log('✅ Configuration loaded successfully', config);
+        
+        // Check authentication status after config loads
+        this.authService.isAuthenticated().subscribe(authenticated => {
+          this.isAuthenticated = authenticated;
+          this.showPasswordGate = !authenticated && this.authService.isPasswordProtectionEnabled();
+        });
       },
       error: (error) => {
         console.error('❌ Failed to load configuration:', error);
-        // Continue with app initialization even if config fails
+        // If config fails, allow access (fail open)
+        this.isAuthenticated = true;
+        this.showPasswordGate = false;
       }
     });
 
@@ -723,6 +749,18 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   onLandingDismissed(): void {
     this.showLanding = false;
+  }
+
+  /**
+   * Handle password submission
+   */
+  onPasswordSubmit(event: any): void {
+    const password = this.passwordGate?.passwordInput || '';
+    const isValid = this.authService.authenticate(password);
+    
+    if (!isValid && this.passwordGate) {
+      this.passwordGate.setError();
+    }
   }
 
   /**

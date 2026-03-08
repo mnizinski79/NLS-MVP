@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { AppConfig } from '../models';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ import { AppConfig } from '../models';
 export class ConfigService {
   private configCache: AppConfig | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   /**
    * Load application configuration from server endpoint
@@ -26,9 +30,16 @@ export class ConfigService {
     return this.http.get<AppConfig>('/api/config').pipe(
       tap(config => {
         this.configCache = config;
+        
+        // Initialize password protection
+        const passwordProtected = config.passwordProtected === 'true' || config.passwordProtected === true;
+        const appPassword = config.appPassword || '';
+        this.authService.initializePasswordProtection(passwordProtected, appPassword);
       }),
       catchError(error => {
         console.error('Failed to load configuration:', error);
+        // If config fails to load, disable password protection
+        this.authService.initializePasswordProtection(false, '');
         return throwError(() => new Error('Failed to load application configuration. Please try again later.'));
       })
     );

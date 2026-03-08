@@ -15,7 +15,9 @@ app.use(express.static(__dirname));
 // API Config endpoint
 app.get('/api/config', (req, res) => {
   res.json({
-    geminiApiKey: process.env.GEMINI_API_KEY || 'YOUR_API_KEY_HERE'
+    geminiApiKey: process.env.GEMINI_API_KEY || 'YOUR_API_KEY_HERE',
+    passwordProtected: process.env.PASSWORD_PROTECTED || 'false',
+    appPassword: process.env.APP_PASSWORD || ''
   });
 });
 

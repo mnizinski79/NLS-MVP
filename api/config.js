@@ -12,7 +12,9 @@ export default function handler(req, res) {
 
   if (req.method === 'GET') {
     res.status(200).json({
-      geminiApiKey: process.env.GEMINI_API_KEY || 'YOUR_API_KEY_HERE'
+      geminiApiKey: process.env.GEMINI_API_KEY || 'YOUR_API_KEY_HERE',
+      passwordProtected: process.env.PASSWORD_PROTECTED || 'false',
+      appPassword: process.env.APP_PASSWORD || ''
     });
   } else {
     res.status(405).json({ error: 'Method not allowed' });
