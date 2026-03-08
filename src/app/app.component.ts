@@ -17,11 +17,6 @@ import { Hotel, Message, AIResponse, ConversationState } from './models';
   imports: [CommonModule, DesktopLayoutComponent, MobileLayoutComponent, LandingComponent],
   template: `
     <div class="app-container">
-      <!-- Debug info (remove in production) -->
-      <div *ngIf="!showLanding && allHotels.length === 0" class="fixed top-4 left-4 bg-red-100 text-red-800 p-2 rounded text-sm z-50">
-        Loading hotels... ({{allHotels.length}} loaded)
-      </div>
-      
       <!-- Landing Screen -->
       <app-landing
         *ngIf="showLanding"

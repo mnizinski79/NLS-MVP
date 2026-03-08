@@ -47,25 +47,25 @@ export class HotelService {
     return {
       id: raw.id,
       name: raw.name,
-      brand: this.mapBrandId(raw.brandId),
+      brand: raw.brand || 'Independent', // Use existing brand field
       rating: raw.rating,
       location: {
         address: raw.location.address,
-        neighborhood: raw.sentiment?.[0] || '',
+        neighborhood: raw.location.neighborhood || raw.sentiment?.[0] || '',
         coordinates: {
-          lat: raw.location.lat,
-          lng: raw.location.lng
+          lat: raw.location.coordinates?.lat || raw.location.lat,
+          lng: raw.location.coordinates?.lng || raw.location.lng
         }
       },
       pricing: {
-        nightlyRate: raw.price.nightlyRate,
-        roomRate: raw.price.amount,
-        fees: raw.price.amount - raw.price.nightlyRate
+        nightlyRate: raw.pricing?.nightlyRate || raw.price?.nightlyRate || 0,
+        roomRate: raw.pricing?.roomRate || raw.price?.amount || 0,
+        fees: raw.pricing?.fees || (raw.price?.amount - raw.price?.nightlyRate) || 0
       },
       amenities: raw.amenities || [],
-      description: raw.description,
+      description: raw.description || '',
       imageUrls: raw.imageUrls || [],
-      phone: raw.phoneNumber,
+      phone: raw.phoneNumber || raw.phone || '',
       sentiment: raw.sentiment || [],
       bookingUrl: raw.bookingUrl
     };
