@@ -36,7 +36,7 @@
   <div *ngIf="!showRateCalendarPage" class="drawer-page">
 
   <!-- Scrollable content -->
-  <div class="drawer-content">
+  <div #drawerContent class="drawer-content">
     <!-- Photo gallery mosaic -->
     <div class="photo-gallery">
       <!-- Large hero image -->
@@ -102,6 +102,7 @@
       <!-- Location map -->
       <div class="section">
         <h3 class="section-title">Location</h3>
+        <p *ngIf="pointOfInterest" class="poi-distance">{{ getDistanceFromPOI() }} from {{ pointOfInterest.name }}</p>
         <div class="map-container">
           <app-map
             [hotels]="[hotel]"
@@ -109,6 +110,7 @@
             [zoom]="15"
             [selectedHotelId]="hotel.id"
             [isMobile]="false"
+            [pointOfInterest]="pointOfInterest"
           ></app-map>
         </div>
       </div>
@@ -148,13 +150,13 @@
             <div class="guest-row">
               <span class="guest-label">Adults</span>
               <div class="guest-controls">
-                <button class="guest-btn" (click)="decrementAdults()" [disabled]="adults <= 1">
+                <button class="guest-btn" (click)="decrementAdults()" [disabled]="(adults ?? 2) <= 1">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                   </svg>
                 </button>
                 <span class="guest-count">{{ adults }}</span>
-                <button class="guest-btn" (click)="incrementAdults()" [disabled]="adults >= 8">
+                <button class="guest-btn" (click)="incrementAdults()" [disabled]="(adults ?? 2) >= 8">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 4v8M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                   </svg>
@@ -164,13 +166,13 @@
             <div class="guest-row">
               <span class="guest-label">Children</span>
               <div class="guest-controls">
-                <button class="guest-btn" (click)="decrementChildren()" [disabled]="children <= 0">
+                <button class="guest-btn" (click)="decrementChildren()" [disabled]="(children ?? 0) <= 0">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                   </svg>
                 </button>
                 <span class="guest-count">{{ children }}</span>
-                <button class="guest-btn" (click)="incrementChildren()" [disabled]="children >= 6">
+                <button class="guest-btn" (click)="incrementChildren()" [disabled]="(children ?? 0) >= 6">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 4v8M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                   </svg>
@@ -210,8 +212,7 @@
         </div>
       </div>
 
-      <!-- Spacer for floating footer -->
-      <div class="footer-spacer"></div>
+      <!-- Spacer for floating footer - REMOVED, footer now overlays content -->
     </div>
   </div>
 

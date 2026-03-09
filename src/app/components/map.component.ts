@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange
 import { CommonModule } from '@angular/common';
 import * as L from 'leaflet';
 import { Hotel } from '../models/hotel.model';
+import { PointOfInterest } from '../models';
 import { MapService } from '../services/map.service';
 
 // Simple interface for map viewport
@@ -66,6 +67,9 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
   /** ID of the currently selected hotel for highlighting */
   @Input() selectedHotelId: string | null = null;
 
+  /** Point of Interest to display on the map */
+  @Input() pointOfInterest: PointOfInterest | null = null;
+
   /** Emitted when a marker is clicked, passes the hotel object */
   @Output() markerClicked = new EventEmitter<Hotel>();
 
@@ -77,6 +81,9 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
 
   /** Array of current markers on the map */
   private markers: L.Marker[] = [];
+
+  /** POI marker on the map */
+  private poiMarker: L.Marker | null = null;
 
   /** Currently focused hotel for zoom/highlight */
   focusedHotel: Hotel | null = null;
@@ -94,6 +101,12 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
    */
   ngOnInit(): void {
     this.initMap();
+    
+    // Add POI marker if it exists on init
+    if (this.pointOfInterest) {
+      console.log('📍 POI exists on init:', this.pointOfInterest);
+      setTimeout(() => this.updatePOIMarker(), 100);
+    }
   }
 
   /**
@@ -115,6 +128,11 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
 
       if (changes['selectedHotelId']) {
         this.updatePinHighlight();
+      }
+
+      if (changes['pointOfInterest']) {
+        console.log('📍 POI changed:', changes['pointOfInterest'].currentValue);
+        this.updatePOIMarker();
       }
     }
   }
@@ -609,5 +627,52 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
       }
     }
 
+    /**
+     * Update POI marker on the map
+     * Creates or removes POI marker based on pointOfInterest input
+     */
+    private updatePOIMarker(): void {
+      if (!this.map) return;
+
+      // Remove existing POI marker
+      if (this.poiMarker) {
+        this.poiMarker.remove();
+        this.poiMarker = null;
+      }
+
+      // Create new POI marker if POI exists
+      if (this.pointOfInterest) {
+        this.poiMarker = this.createPOIMarker(this.pointOfInterest);
+        this.poiMarker.addTo(this.map);
+        
+        console.log('📍 POI marker added to map:', this.pointOfInterest.name);
+      }
+    }
+
+    /**
+     * Create a custom POI marker
+     * Uses a star icon to distinguish from hotel markers
+     * @param poi - Point of Interest to create marker for
+     * @returns Leaflet marker for the POI
+     */
+    private createPOIMarker(poi: PointOfInterest): L.Marker {
+      const icon = L.divIcon({
+        className: 'poi-marker',
+        html: `
+          <div class="poi-marker-content">
+            <div class="poi-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#C7370F" stroke="white" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="poi-label">${poi.name}</div>
+          </div>
+        `,
+        iconSize: [120, 60],
+        iconAnchor: [60, 30]
+      });
+
+      return L.marker([poi.coordinates.lat, poi.coordinates.lng], { icon });
+    }
 
 }

@@ -111,9 +111,24 @@ export class HotelService {
     if (!sentiments || sentiments.length === 0) {
       return hotels;
     }
-    return hotels.filter(h =>
+    
+    console.log('🔍 SENTIMENT FILTER DEBUG:', {
+      searchingFor: sentiments,
+      hotelCount: hotels.length,
+      allHotelSentiments: hotels.map(h => ({ name: h.name, sentiments: h.sentiment }))
+    });
+    
+    const filtered = hotels.filter(h =>
       h.sentiment.some(s => sentiments.includes(s))
     );
+    
+    console.log('🔍 SENTIMENT FILTER RESULT:', {
+      inputCount: hotels.length,
+      outputCount: filtered.length,
+      filteredHotels: filtered.map(h => ({ name: h.name, sentiments: h.sentiment }))
+    });
+    
+    return filtered;
   }
 
   /**
@@ -127,9 +142,28 @@ export class HotelService {
     if (!amenities || amenities.length === 0) {
       return hotels;
     }
-    return hotels.filter(h =>
-      amenities.some(a => h.amenities.includes(a))
-    );
+    
+    console.log('🔍 AMENITY FILTER DEBUG:', {
+      searchingFor: amenities,
+      hotelCount: hotels.length,
+      sampleHotelAmenities: hotels[0]?.amenities || []
+    });
+    
+    const filtered = hotels.filter(h => {
+      const hasAmenity = amenities.some(a => h.amenities.includes(a));
+      if (hasAmenity) {
+        console.log('✅ Hotel matched:', h.name, 'has amenities:', h.amenities);
+      }
+      return hasAmenity;
+    });
+    
+    console.log('🔍 AMENITY FILTER RESULT:', {
+      inputCount: hotels.length,
+      outputCount: filtered.length,
+      filteredHotels: filtered.map(h => ({ name: h.name, amenities: h.amenities }))
+    });
+    
+    return filtered;
   }
 
   /**
@@ -189,6 +223,7 @@ export class HotelService {
   /**
    * Main filter pipeline - applies all filters in sequence
    * Filter order: brand → sentiment → price → amenities → rating → sort
+   * If price filter returns 0 results, expands budget and sorts by price
    * @param hotels - Array of hotels to filter
    * @param criteria - Search criteria object with optional filter parameters
    * @returns Filtered and sorted array of hotels
@@ -196,39 +231,73 @@ export class HotelService {
   filterHotels(hotels: Hotel[], criteria: SearchCriteria): Hotel[] {
     let filtered = hotels;
 
+    console.log('💰 PRICE FILTER DEBUG - Starting:', {
+      totalHotels: hotels.length,
+      priceRange: criteria.priceRange,
+      hotelPrices: hotels.map(h => ({ name: h.name, price: h.pricing.nightlyRate }))
+    });
+
     // 1. Brand filter
     if (criteria.brands?.length) {
       filtered = this.filterByBrand(filtered, criteria.brands);
+      console.log('💰 After brand filter:', filtered.length, 'hotels');
     }
 
     // 2. Sentiment filter (location/neighborhood)
     if (criteria.sentiments?.length) {
       filtered = this.filterBySentiment(filtered, criteria.sentiments);
+      console.log('💰 After sentiment filter:', filtered.length, 'hotels');
     }
 
-    // 3. Price range filter
+    // 3. Price range filter with fallback
     if (criteria.priceRange) {
-      filtered = this.filterByPrice(
+      const beforePriceFilter = filtered.length;
+      const priceFiltered = this.filterByPrice(
         filtered,
         criteria.priceRange.min,
         criteria.priceRange.max
       );
+      
+      console.log('💰 PRICE FILTER RESULT:', {
+        beforeFilter: beforePriceFilter,
+        afterFilter: priceFiltered.length,
+        priceRange: criteria.priceRange,
+        filteredHotels: priceFiltered.map(h => ({ name: h.name, price: h.pricing.nightlyRate }))
+      });
+      
+      // If price filter returns 0 results, remove price filter and sort by price
+      if (priceFiltered.length === 0 && filtered.length > 0) {
+        console.log('⚠️ Price filter returned 0 results, expanding budget and showing cheapest options');
+        console.log('💰 Available hotels before price filter:', filtered.map(h => ({ name: h.name, price: h.pricing.nightlyRate })));
+        // Don't apply price filter, keep the filtered list and sort by price ascending
+        criteria.sortBy = 'price_asc';
+      } else {
+        filtered = priceFiltered;
+      }
     }
 
     // 4. Amenities filter (OR logic)
     if (criteria.amenities?.length) {
       filtered = this.filterByAmenities(filtered, criteria.amenities);
+      console.log('💰 After amenities filter:', filtered.length, 'hotels');
     }
 
     // 5. Rating filter
     if (criteria.minRating !== undefined) {
       filtered = this.filterByRating(filtered, criteria.minRating);
+      console.log('💰 After rating filter:', filtered.length, 'hotels');
     }
 
     // 6. Sort
     if (criteria.sortBy) {
       filtered = this.sortHotels(filtered, criteria.sortBy);
+      console.log('💰 After sorting by', criteria.sortBy, ':', filtered.map(h => ({ name: h.name, price: h.pricing.nightlyRate })));
     }
+
+    console.log('💰 FINAL RESULT:', {
+      count: filtered.length,
+      hotels: filtered.map(h => ({ name: h.name, price: h.pricing.nightlyRate }))
+    });
 
     return filtered;
   }

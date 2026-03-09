@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild, AfterViewInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Hotel } from '../models/hotel.model';
+import { PointOfInterest } from '../models/ai-response.model';
 import { BRAND_COLORS, BRAND_LOGOS } from '../models/brand-config';
 import { RateCalendarComponent, DateRange } from './rate-calendar.component';
 import { MapComponent } from './map.component';
@@ -19,7 +20,10 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   @Input() hasDates: boolean = false;
   @Input() checkInDate: Date | null = null;
   @Input() checkOutDate: Date | null = null;
-  @Input() guestCount: number | null = null;
+  @Input() guestCount: number | null = null; // DEPRECATED - use adults/children
+  @Input() adults: number | null = 2; // Default to 2 adults
+  @Input() children: number | null = 0; // Default to 0 children
+  @Input() pointOfInterest: PointOfInterest | null = null; // POI for distance calculation
   @Output() closed = new EventEmitter<void>();
   @Output() dateSelected = new EventEmitter<DateRange>();
   @Output() selectDatesRequested = new EventEmitter<void>();
@@ -34,10 +38,6 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   showRateCalendarPage: boolean = false;
   /** Whether the footer should be hidden (calendar in view) */
   hideFooter: boolean = false;
-  
-  /** Guest counts */
-  adults: number = 2;
-  children: number = 0;
   
   /** Calendar expansion state */
   isCalendarExpanded: boolean = false;
@@ -69,6 +69,10 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
       if (this.visible) {
         this.isCollapsed = true; // Reset to collapsed state when opened
         this.isClosing = false; // Reset closing state
+        
+        // Immediately compute booking info to avoid flash of wrong footer
+        this._hasCompleteBookingInfo = this.computeCompleteBookingInfo();
+        
         this.trapFocus();
         // Setup observer when sheet becomes visible
         setTimeout(() => this.setupCalendarObserver(), 200);
@@ -83,19 +87,25 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
     }
 
     // Initialize guest count from conversation state if available
-    if (changes['guestCount'] && this.guestCount !== null && this.guestCount > 0 && !this.hasUserModifiedGuests) {
+    if ((changes['adults'] || changes['children'] || changes['guestCount']) && !this.hasUserModifiedGuests) {
       // Use setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
       setTimeout(() => {
-        // Set adults to the guest count (assuming all are adults for simplicity)
-        this.adults = this.guestCount!;
-        this.children = 0;
+        // Use separate adults/children if provided, otherwise fall back to guestCount
+        if (this.adults !== null || this.children !== null) {
+          this.adults = this.adults ?? 2; // Default to 2 adults if not specified
+          this.children = this.children ?? 0;
+        } else if (this.guestCount && this.guestCount > 0) {
+          // Fallback: assume all guests are adults
+          this.adults = this.guestCount;
+          this.children = 0;
+        }
         this.updateCompleteBookingInfo();
         this.cdr.markForCheck();
       });
     }
 
     // Update cached booking info when inputs change (even if already visible)
-    if (changes['guestCount'] || changes['checkInDate'] || changes['checkOutDate']) {
+    if (changes['adults'] || changes['children'] || changes['guestCount'] || changes['checkInDate'] || changes['checkOutDate']) {
       setTimeout(() => {
         console.log('[BottomSheet] Input changed - updating booking info');
         console.log('[BottomSheet] guestCount:', this.guestCount);
@@ -412,8 +422,9 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   }
 
   incrementAdults(): void {
-    if (this.adults < 8) {
-      this.adults++;
+    const currentAdults = this.adults ?? 2;
+    if (currentAdults < 8) {
+      this.adults = currentAdults + 1;
       this.hasUserModifiedGuests = true;
       this.updateCompleteBookingInfo();
       this.cdr.markForCheck();
@@ -421,8 +432,9 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   }
 
   decrementAdults(): void {
-    if (this.adults > 1) {
-      this.adults--;
+    const currentAdults = this.adults ?? 2;
+    if (currentAdults > 1) {
+      this.adults = currentAdults - 1;
       this.hasUserModifiedGuests = true;
       this.updateCompleteBookingInfo();
       this.cdr.markForCheck();
@@ -430,8 +442,9 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   }
 
   incrementChildren(): void {
-    if (this.children < 6) {
-      this.children++;
+    const currentChildren = this.children ?? 0;
+    if (currentChildren < 6) {
+      this.children = currentChildren + 1;
       this.hasUserModifiedGuests = true;
       this.updateCompleteBookingInfo();
       this.cdr.markForCheck();
@@ -439,8 +452,9 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   }
 
   decrementChildren(): void {
-    if (this.children > 0) {
-      this.children--;
+    const currentChildren = this.children ?? 0;
+    if (currentChildren > 0) {
+      this.children = currentChildren - 1;
       this.hasUserModifiedGuests = true;
       this.updateCompleteBookingInfo();
       this.cdr.markForCheck();
@@ -456,8 +470,11 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
    *    - Manual interaction with guest selector
    */
   private computeCompleteBookingInfo(): boolean {
-    // Check if dates are selected
-    const hasDates = !!(this.rateCalendar?.selectedCheckIn && this.rateCalendar?.selectedCheckOut);
+    // Check if dates are selected - prioritize input dates over calendar dates
+    const hasDates = !!(
+      (this.checkInDate && this.checkOutDate) || 
+      (this.rateCalendar?.selectedCheckIn && this.rateCalendar?.selectedCheckOut)
+    );
     
     // Check if we have a specific guest count from conversation OR user modified guests
     const hasSpecificGuestCount = (this.guestCount !== null && this.guestCount > 0) || this.hasUserModifiedGuests;
@@ -510,11 +527,14 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
 
   getGuestCountText(): string {
     const parts = [];
-    if (this.adults > 0) {
-      parts.push(`${this.adults} ${this.adults === 1 ? 'Adult' : 'Adults'}`);
+    const adultsCount = this.adults ?? 2;
+    const childrenCount = this.children ?? 0;
+    
+    if (adultsCount > 0) {
+      parts.push(`${adultsCount} ${adultsCount === 1 ? 'Adult' : 'Adults'}`);
     }
-    if (this.children > 0) {
-      parts.push(`${this.children} ${this.children === 1 ? 'Child' : 'Children'}`);
+    if (childrenCount > 0) {
+      parts.push(`${childrenCount} ${childrenCount === 1 ? 'Child' : 'Children'}`);
     }
     return parts.join(', ');
   }
@@ -625,5 +645,40 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
 
   onCalendarClosed(): void {
     this.showRateCalendarPage = false;
+  }
+
+  /**
+   * Calculate distance between hotel and POI using Haversine formula
+   * @returns Distance in miles, or null if no POI
+   */
+  getDistanceFromPOI(): string | null {
+    if (!this.hotel || !this.pointOfInterest) {
+      return null;
+    }
+
+    const hotelLat = this.hotel.location.coordinates.lat;
+    const hotelLng = this.hotel.location.coordinates.lng;
+    const poiLat = this.pointOfInterest.coordinates.lat;
+    const poiLng = this.pointOfInterest.coordinates.lng;
+
+    // Haversine formula
+    const R = 3959; // Earth's radius in miles
+    const dLat = (poiLat - hotelLat) * Math.PI / 180;
+    const dLng = (poiLng - hotelLng) * Math.PI / 180;
+    const a = 
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(hotelLat * Math.PI / 180) * Math.cos(poiLat * Math.PI / 180) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+
+    // Format distance
+    if (distance < 0.1) {
+      return 'Less than 0.1 miles';
+    } else if (distance < 1) {
+      return `${distance.toFixed(1)} miles`;
+    } else {
+      return `${distance.toFixed(1)} miles`;
+    }
   }
 }

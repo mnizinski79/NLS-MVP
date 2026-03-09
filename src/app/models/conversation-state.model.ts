@@ -1,4 +1,5 @@
 import { Hotel } from './hotel.model';
+import { PointOfInterest } from './ai-response.model';
 
 export type IntentType = 
   | 'location_only'
@@ -38,4 +39,5 @@ export interface ConversationState {
   lastResponse: string | null;
   lastDisplayedHotels: Hotel[];
   focusedHotel: Hotel | null; // Currently viewed hotel in detail view
+  pointOfInterest: PointOfInterest | null; // User's POI (e.g., "near Central Park")
 }

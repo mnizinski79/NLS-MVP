@@ -14,6 +14,7 @@
       [hotels]="hotels"
       [center]="mapCenter"
       [zoom]="mapZoom"
+      [pointOfInterest]="pointOfInterest"
       (markerClicked)="onMarkerClicked($event)">
     </app-map>
   </div>
@@ -22,19 +23,9 @@
   <div class="floating-chat-panel" 
        [class.focused-view]="viewState === 'focused'"
        [class.chat-collapsed]="isChatCollapsed">
-    <!-- Header with chevron toggle -->
+    <!-- Header -->
     <div class="header">
       <h1 class="header-title">IHG Hotel Search</h1>
-      <button 
-        (click)="toggleChatCollapse()"
-        class="chevron-button"
-        [attr.aria-label]="isChatCollapsed ? 'Expand chat messages' : 'Collapse chat messages'"
-        [attr.aria-expanded]="!isChatCollapsed">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
-             [style.transform]="isChatCollapsed ? 'rotate(180deg)' : 'rotate(0deg)'">
-          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
     </div>
 
     <!-- Chat -->
@@ -80,6 +71,9 @@
     [checkInDate]="checkInDate"
     [checkOutDate]="checkOutDate"
     [guestCount]="guestCount"
+    [adults]="adults"
+    [children]="children"
+    [pointOfInterest]="pointOfInterest"
     (closed)="onDetailDrawerClosed()"
     (dateSelected)="onDateSelected($event)"
     (selectDatesRequested)="onSelectDatesRequested()">

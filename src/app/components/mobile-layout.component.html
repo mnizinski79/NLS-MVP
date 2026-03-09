@@ -41,6 +41,7 @@
         [center]="mapCenter"
         [zoom]="mapZoom"
         [selectedHotelId]="selectedHotel?.id || null"
+        [pointOfInterest]="pointOfInterest"
         (markerClicked)="onMarkerClicked($event)">
       </app-map>
     </div>
@@ -68,6 +69,9 @@
     [checkInDate]="checkInDate"
     [checkOutDate]="checkOutDate"
     [guestCount]="guestCount"
+    [adults]="adults"
+    [children]="children"
+    [pointOfInterest]="pointOfInterest"
     (closed)="onBottomSheetClosed()"
     (dateSelected)="onDateSelected($event)"
     (selectDatesRequested)="onSelectDatesRequested()">

@@ -11,6 +11,7 @@ import { Message } from '../models/message.model';
 import { DateSelection } from '../models/date-selection.model';
 import { ViewStateMode, MapState } from '../models/view-state.model';
 import { TRANSFORM_ANIMATION_CONFIG } from '../models/animation-config.model';
+import { PointOfInterest } from '../models';
 
 @Component({
   selector: 'app-desktop-layout',
@@ -79,8 +80,17 @@ export class DesktopLayoutComponent implements OnDestroy {
   /** Check-out date from conversation state */
   @Input() checkOutDate: Date | null = null;
 
-  /** Guest count from conversation state */
+  /** Guest count from conversation state - DEPRECATED */
   @Input() guestCount: number | null = null;
+  
+  /** Number of adults from conversation state */
+  @Input() adults: number | null = null;
+  
+  /** Number of children from conversation state */
+  @Input() children: number | null = null;
+
+  /** Point of Interest from conversation state */
+  @Input() pointOfInterest: PointOfInterest | null = null;
 
   /** Current view state mode (default, transforming, or focused) */
   viewState: ViewStateMode = 'default';

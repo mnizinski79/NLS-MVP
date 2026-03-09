@@ -11,7 +11,7 @@ import { AIService } from './services/ai.service';
 import { ConversationService } from './services/conversation.service';
 import { ConfigService } from './services/config.service';
 import { AuthService } from './services/auth.service';
-import { Hotel, Message, AIResponse, ConversationState } from './models';
+import { Hotel, Message, AIResponse, ConversationState, PointOfInterest } from './models';
 
 @Component({
   selector: 'app-root',
@@ -51,6 +51,9 @@ import { Hotel, Message, AIResponse, ConversationState } from './models';
           [checkInDate]="checkInDate"
           [checkOutDate]="checkOutDate"
           [guestCount]="guestCount"
+          [adults]="adults"
+          [children]="children"
+          [pointOfInterest]="pointOfInterest"
           (messageSent)="onMessageSent($event)"
           (tagClicked)="onTagClicked($event)"
           (hotelCardClicked)="onHotelCardClicked($event)"
@@ -78,6 +81,9 @@ import { Hotel, Message, AIResponse, ConversationState } from './models';
           [checkInDate]="checkInDate"
           [checkOutDate]="checkOutDate"
           [guestCount]="guestCount"
+          [adults]="adults"
+          [children]="children"
+          [pointOfInterest]="pointOfInterest"
           (messageSent)="onMessageSent($event)"
           (tagClicked)="onTagClicked($event)"
           (hotelCardClicked)="onHotelCardClicked($event)"
@@ -124,7 +130,10 @@ export class AppComponent implements OnInit, OnDestroy {
   hasDates = false; // Track if user has selected dates
   checkInDate: Date | null = null; // Check-in date from conversation state
   checkOutDate: Date | null = null; // Check-out date from conversation state
-  guestCount: number | null = null; // Guest count from conversation state
+  guestCount: number | null = null; // Guest count from conversation state - DEPRECATED
+  adults: number | null = null; // Number of adults from AI response
+  children: number | null = null; // Number of children from AI response
+  pointOfInterest: PointOfInterest | null = null; // POI from conversation state
 
   // Request cancellation
   private currentAIRequest$: Subscription | null = null;
@@ -180,6 +189,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.checkInDate = state.conversationContext.checkIn;
       this.checkOutDate = state.conversationContext.checkOut;
       this.guestCount = state.conversationContext.guestCount;
+      this.pointOfInterest = state.pointOfInterest;
       
       // Update hasDates flag
       if (this.checkInDate && this.checkOutDate) {
@@ -318,9 +328,26 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Handle extracted dates from AI response
     if (aiResponse.checkIn && aiResponse.checkOut) {
+      console.log('🔍 APP COMPONENT - Dates detected in AI response:', {
+        checkIn: aiResponse.checkIn,
+        checkOut: aiResponse.checkOut
+      });
+      
       try {
-        const checkInDate = new Date(aiResponse.checkIn);
-        const checkOutDate = new Date(aiResponse.checkOut);
+        // Parse dates in local timezone to avoid timezone offset issues
+        // "2026-03-20" should be March 20 in local time, not UTC
+        const checkInParts = aiResponse.checkIn.split('-').map(Number);
+        const checkInDate = new Date(checkInParts[0], checkInParts[1] - 1, checkInParts[2]);
+        
+        const checkOutParts = aiResponse.checkOut.split('-').map(Number);
+        const checkOutDate = new Date(checkOutParts[0], checkOutParts[1] - 1, checkOutParts[2]);
+        
+        console.log('🔍 APP COMPONENT - Parsed dates (LOCAL TIME):', {
+          checkInDate: checkInDate.toISOString(),
+          checkInDay: checkInDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
+          checkOutDate: checkOutDate.toISOString(),
+          checkOutDay: checkOutDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
+        });
         
         // Update conversation state with extracted dates
         this.conversationService.getState().pipe(take(1)).subscribe(currentState => {
@@ -343,21 +370,41 @@ export class AppComponent implements OnInit, OnDestroy {
       } catch (error) {
         console.error('Error parsing extracted dates:', error);
       }
+    } else {
+      console.log('🔍 APP COMPONENT - No dates in AI response');
     }
 
-    // Handle extracted guest count from AI response
-    if (aiResponse.guestCount) {
+    // Handle extracted guest count from AI response (adults and children)
+    if (aiResponse.adults !== undefined || aiResponse.children !== undefined) {
+      // Store adults and children separately
+      this.adults = aiResponse.adults ?? null;
+      this.children = aiResponse.children ?? null;
+      
       this.conversationService.getState().pipe(take(1)).subscribe(currentState => {
+        const totalGuests = (aiResponse.adults || 0) + (aiResponse.children || 0);
         const updates: Partial<ConversationState> = {
           conversationContext: {
             ...currentState.conversationContext,
-            guestCount: aiResponse.guestCount ?? null
+            guestCount: totalGuests > 0 ? totalGuests : null
           }
         };
         this.conversationService.updateState(updates);
       });
       
-      console.log('👥 Guest count extracted from query:', aiResponse.guestCount);
+      console.log('👥 Guest count extracted from query:', {
+        adults: aiResponse.adults,
+        children: aiResponse.children,
+        total: (aiResponse.adults || 0) + (aiResponse.children || 0)
+      });
+    }
+
+    // Handle extracted POI (Point of Interest) from AI response
+    if (aiResponse.pointOfInterest) {
+      this.conversationService.updateState({
+        pointOfInterest: aiResponse.pointOfInterest
+      });
+      
+      console.log('📍 POI extracted from query:', aiResponse.pointOfInterest);
     }
 
     // Show date picker for small result sets (1-3 hotels) ONLY if dates weren't already extracted

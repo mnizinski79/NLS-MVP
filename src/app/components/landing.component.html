@@ -1,88 +1,59 @@
 <div *ngIf="visible" class="landing-container" [class.landing-exit]="!visible" role="main" aria-label="Hotel search landing page">
   <!-- Desktop: Split view with globe on right -->
   <div class="landing-desktop">
-    <!-- Left side: Content -->
+    <!-- Left side: Chat Panel (matching desktop-layout) -->
     <div class="landing-left">
-      <div class="landing-left-content">
-        <div class="brand-section">
-          <div class="brand-icon">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="48" height="48" rx="12" fill="url(#gradient)"/>
-              <path d="M16 18h16M16 24h16M16 30h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-              <defs>
-                <linearGradient id="gradient" x1="0" y1="0" x2="48" y2="48">
-                  <stop offset="0%" stop-color="#1F4456"/>
-                  <stop offset="100%" stop-color="#374151"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <h1 class="brand-title">IHG Hotel Search</h1>
-          <p class="brand-subtitle">Find your perfect stay in New York City</p>
+      <div class="floating-chat-panel">
+        <!-- Header -->
+        <div class="header">
         </div>
-        
-        <div class="examples-section">
-          <p class="examples-label">Popular searches</p>
-          <div class="examples-grid">
-            <button
-              *ngFor="let query of exampleQueries"
-              class="example-chip"
-              (click)="onFirstMessage(query)"
-              [attr.aria-label]="'Try example query: ' + query"
-            >
-              {{ query }}
-            </button>
+
+        <!-- Chat content area -->
+        <div class="chat-container">
+          <!-- Welcome content when no messages -->
+          <div class="welcome-content">
+            <div class="brand-section">
+              <div class="brand-icon">
+                <img src="assets/independent-logo.png" alt="Independent Hotels" class="brand-logo">
+              </div>
+              <p class="brand-subtitle">Find your perfect stay in New York City</p>
+            </div>
+            
+            <div class="examples-section">
+              <p class="examples-label">Popular searches</p>
+              <div class="examples-grid">
+                <button
+                  *ngFor="let query of exampleQueries"
+                  class="example-chip"
+                  (click)="onFirstMessage(query)"
+                  [attr.aria-label]="'Try example query: ' + query"
+                >
+                  {{ query }}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Fixed input at bottom -->
-      <div class="desktop-input-container">
-        <app-input
-          [placeholder]="'Ask me about hotels in NYC...'"
-          (messageSent)="onFirstMessage($event)"
-        ></app-input>
+
+        <!-- Input at bottom -->
+        <div class="input-container">
+          <app-input
+            [placeholder]="'Ask me about hotels in NYC...'"
+            (messageSent)="onFirstMessage($event)"
+          ></app-input>
+        </div>
       </div>
     </div>
     
     <!-- Right side: Globe -->
     <div class="landing-right">
       <div class="globe-container">
-        <svg class="globe-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Globe circle -->
-          <circle cx="200" cy="200" r="150" fill="url(#globeGradient)" stroke="#e5e7eb" stroke-width="2"/>
-          
-          <!-- Latitude lines -->
-          <ellipse cx="200" cy="200" rx="150" ry="40" fill="none" stroke="#d1d5db" stroke-width="1" opacity="0.5"/>
-          <ellipse cx="200" cy="200" rx="150" ry="80" fill="none" stroke="#d1d5db" stroke-width="1" opacity="0.5"/>
-          <ellipse cx="200" cy="200" rx="150" ry="120" fill="none" stroke="#d1d5db" stroke-width="1" opacity="0.5"/>
-          
-          <!-- Longitude lines -->
-          <ellipse cx="200" cy="200" rx="40" ry="150" fill="none" stroke="#d1d5db" stroke-width="1" opacity="0.5"/>
-          <ellipse cx="200" cy="200" rx="80" ry="150" fill="none" stroke="#d1d5db" stroke-width="1" opacity="0.5"/>
-          <ellipse cx="200" cy="200" rx="120" ry="150" fill="none" stroke="#d1d5db" stroke-width="1" opacity="0.5"/>
-          
-          <!-- Location pins -->
-          <g class="pin" transform="translate(180, 160)">
-            <circle cx="0" cy="0" r="6" fill="#1F4456"/>
-            <circle cx="0" cy="0" r="3" fill="#ffffff"/>
-          </g>
-          <g class="pin" transform="translate(240, 190)">
-            <circle cx="0" cy="0" r="6" fill="#1F4456"/>
-            <circle cx="0" cy="0" r="3" fill="#ffffff"/>
-          </g>
-          <g class="pin" transform="translate(160, 220)">
-            <circle cx="0" cy="0" r="6" fill="#1F4456"/>
-            <circle cx="0" cy="0" r="3" fill="#ffffff"/>
-          </g>
-          
-          <defs>
-            <linearGradient id="globeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#f9fafb"/>
-              <stop offset="100%" stop-color="#f3f4f6"/>
-            </linearGradient>
-          </defs>
-        </svg>
+        <om-globe
+          [rotationSpeed]="0.001"
+          [globeSize]="700"
+          [globeOptions]="globeOptions"
+          styleClass="interactive-globe"
+        ></om-globe>
       </div>
     </div>
   </div>
@@ -92,18 +63,8 @@
     <div class="mobile-content">
       <div class="brand-section">
         <div class="brand-icon">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="48" height="48" rx="12" fill="url(#gradient-mobile)"/>
-            <path d="M16 18h16M16 24h16M16 30h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-            <defs>
-              <linearGradient id="gradient-mobile" x1="0" y1="0" x2="48" y2="48">
-                <stop offset="0%" stop-color="#1F4456"/>
-                <stop offset="100%" stop-color="#374151"/>
-              </linearGradient>
-            </defs>
-          </svg>
+          <img src="assets/independent-logo.png" alt="Independent Hotels" class="brand-logo">
         </div>
-        <h1 class="brand-title">IHG Hotel Search</h1>
         <p class="brand-subtitle">Find your perfect stay in New York City</p>
       </div>
       

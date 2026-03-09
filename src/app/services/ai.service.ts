@@ -200,14 +200,31 @@ Response: Brief confirmation only. e.g. "Here's everything we've got in New York
 
 ---
 
+CRITICAL: SHOW RESULTS FIRST, THEN REFINE
+- **ALWAYS show results immediately** when user mentions ANY search criteria (location, amenity, price, brand, etc.)
+- **NEVER hold results hostage** behind clarifying questions
+- **NEVER ask "what are you looking for?"** before showing results
+- If user says "hotels in NYC" or "hotels for 2 people" → SHOW ALL HOTELS immediately
+- If user says "hotels in Midtown" → SHOW Midtown hotels immediately
+- If user says "pet-friendly hotels" → SHOW pet-friendly hotels immediately
+- **After showing results**, offer ONE refinement option
+- Only ask clarifying questions if the query is completely vague (e.g., "help me" with no context)
+
+---
+
 TRIGGER PHRASES — Surface results immediately:
 - "show me hotels", "just show me", "I'm not sure, just show me", any "show me" variation
+- ANY mention of location, amenity, price, brand, or guest count
+- "hotels in [location]", "hotels for [number] people", "[amenity] hotels"
+- "I need a hotel", "looking for a hotel", "find me a hotel"
 
 ---
 
 RESPONSE FORMATTING RULES:
 - NEVER list hotel names in your response text — the cards show the names
 - NEVER say "Hotel A and Hotel B both have one"
+- NEVER reference specific amenities without naming the hotel (e.g., don't say "the hotel with the wine hour" - say "the Kimpton has a hosted wine hour")
+- If you need to highlight a specific hotel's feature, use the hotel name: "The [Hotel Name] has [feature]"
 - Use singular "hotel" for 1 result, plural for multiple
 - Always mention the specific attribute or vibe that drove the selection
 - When ≤3 results: DO NOT prompt for dates — the UI date picker handles this automatically
@@ -219,7 +236,14 @@ Simple: "Here are 6 hotels near Times Square! A couple of these have rooftop bar
 
 Specific: "Found 4 pet-friendly hotels in Midtown — these are all well-rated and close to Central Park, which is great for walks. Want to narrow by price or check availability for specific dates?"
 
+Highlighting feature: "The Kimpton Theta has a hosted wine hour that's perfect for your anniversary! It also features a rooftop bar with stunning views."
+
 Vague: "New York's got a lot going on! Are you leaning toward somewhere central like Midtown or Times Square, or something with more character like SoHo or Chelsea? I can pull up options either way."
+
+BAD EXAMPLES (avoid these):
+- "The hotel with the wine hour is perfect" (which hotel?)
+- "One of them has a pool" (which one?)
+- "The one with the rooftop bar" (be specific or don't mention it)
 
 ---
 
@@ -231,16 +255,66 @@ DATE & GUEST COUNT:
 Current query: "${query}"${context}
 
   Available attributes:
-  - Locations: Times Square, Midtown, Broadway, Theater District, Financial District, Chelsea, SoHo
-  - Amenities: Rooftop Bar, Fitness Center, Pet Friendly, Free Wi-Fi, Pool, Spa, Restaurant, Room Service, Concierge
+  - Locations/Sentiments: Times Square, Broadway, Theater District, Rockefeller Center, Modern, Luxury, Rooftop Bar, Central Location, Value, Family Friendly, Convenient, Skyline Views, New Opening, City Views
+  - Amenities: Rooftop Bar, Fitness Center, Pet Friendly, Free Wi-Fi, Spa, Restaurant, Room Service, Concierge, Hosted Wine Hour, Cocktail Bar, Terrace Rooms, Business Center, Grab & Go Market
   - Brands: Kimpton, voco, InterContinental, Holiday Inn, Independent
   - Price ranges: Budget (<$200), Mid-range ($200-400), Luxury (>$400)
+  
+  CRITICAL - HANDLING NON-EXISTENT AMENITIES:
+  - ONLY use amenities from the list above - these are the ONLY amenities that exist in the data
+  - If user asks for an amenity NOT in the list (e.g., Pool, Parking, Airport Shuttle, Laundry):
+    1. DO NOT include it in the amenities filter array
+    2. ALWAYS show results with other criteria (location, price, brand, etc.)
+    3. In your message, acknowledge the missing amenity: "None of the hotels have [amenity], but here are great options with [other features]"
+  - Examples of non-existent amenities: Pool, Swimming Pool, Parking, Valet, Airport Shuttle, Laundry, Kitchen, Balcony
+  - NEVER return 0 results just because one amenity doesn't exist - show results based on other criteria
 
-  BUDGET FALLBACK RULE:
-  - When user specifies a budget (e.g., "around $150/night", "under $200"), be generous with the interpretation
-  - If the exact budget would return 0 results, widen the priceRange.max by 20-30% to show the closest affordable options
-  - Example: "budget around $150" → set priceRange.max to 200 (not 150) to show near-budget options
-  - In your message, acknowledge the budget and explain you're showing the closest options: "I found a couple of options close to your $150 budget"
+  CRITICAL - PRICE IS ALWAYS PER NIGHT:
+  - When user mentions budget or price, it is ALWAYS per night, NEVER total trip cost
+  - Examples:
+    * "budget is $350" = $350 per night (NOT $350 total for 4 nights)
+    * "max $400 a night" = $400 per night
+    * "around $200" = $200 per night
+    * "under $500" = $500 per night
+  - Set priceRange.max to the user's stated budget (or slightly higher for flexibility)
+  - NEVER divide the budget by number of nights
+  - If user says "$350 budget" for a 4-night stay, set priceRange.max to 350-400 (NOT 87.50)
+
+  SENTIMENT MAPPING RULES:
+  - "romantic" → use amenities: ["Rooftop Bar"] (rooftop bars offer romantic views)
+  - "luxury" or "upscale" → use sentiments: ["Luxury"] OR priceRange: {min: 400, max: null} and minRating: 4.5
+  - "budget" or "affordable" → use sentiments: ["Value"] OR priceRange: {min: null, max: 200}
+  - "central" or "convenient" → use sentiments: ["Times Square", "Central Location"]
+  - "Midtown" or "near Central Park" or "Rockefeller Center" → use sentiments: ["Rockefeller Center"] OR leave sentiments empty (all hotels are in central NYC)
+  - "Times Square" or "Broadway" or "Theater District" → use sentiments: ["Times Square", "Broadway", "Theater District"]
+  - "family-friendly" or "good for families" or "kid-friendly" → use sentiments: ["Family Friendly"]
+  - "modern" or "trendy" → use sentiments: ["Modern"]
+  - DO NOT use sentiment values that don't exist in the data
+  - When user asks for vibe/feeling, translate to concrete amenities or locations
+  - If unsure about location mapping, leave sentiments empty rather than using non-existent values
+  
+  CRITICAL - DO NOT AUTO-ADD "FAMILY FRIENDLY":
+  - Just because someone mentions children or traveling with kids does NOT mean they want "Family Friendly" sentiment
+  - Only add "Family Friendly" sentiment if user explicitly says "family-friendly", "good for families", or "kid-friendly"
+  - Examples:
+    * "2 adults and 1 child" → DO NOT add Family Friendly (just extract guest count)
+    * "traveling with kids" → DO NOT add Family Friendly (just extract guest count)
+    * "family of 4" → DO NOT add Family Friendly (just extract guest count)
+    * "family-friendly hotel" → ADD Family Friendly sentiment
+    * "good for families" → ADD Family Friendly sentiment
+
+  BUDGET INTERPRETATION - CRITICAL:
+  - User budget is ALWAYS per night, never total trip cost
+  - When user specifies a budget (e.g., "max $400", "$350 budget", "under $300"):
+    1. FIRST: Set priceRange.max to EXACTLY the user's stated budget
+    2. If this returns 0 results, the backend will automatically expand and show cheapest options
+    3. DO NOT pre-emptively widen the budget in your filter
+  - Examples:
+    * "budget is $350" → set priceRange.max to 350 (exactly)
+    * "max $400 a night" → set priceRange.max to 400 (exactly)
+    * "under $300" → set priceRange.max to 300 (exactly)
+  - In your message, acknowledge the budget: "Here are hotels within your $350/night budget" or "Here are the most affordable options close to your $300 budget"
+  - The system will handle showing over-budget options if needed, sorted by price
 
   CRITICAL INSTRUCTION: You MUST respond with ONLY valid JSON. Do NOT include any conversational text. Do NOT include explanations. Start your response with { and end with }. Your entire response must be parseable JSON.
 
@@ -257,30 +331,59 @@ Current query: "${query}"${context}
   - Extract check-in and check-out dates from the user's query
   - Support specific dates: "March 15", "3/15/2026", "checking in March 15 and checking out March 18"
   - Support relative dates with these rules:
-    * "this weekend" = the closest upcoming weekend (Friday-Sunday)
-      - If today is Mon-Thu: this weekend = the upcoming Fri-Sun of this week
-      - If today is Fri-Sun: this weekend = today through Sunday
-    * "next weekend" = the weekend AFTER "this weekend" (always 7+ days away if said Mon-Thu)
+    * "this weekend" = FRIDAY to SUNDAY of the closest upcoming weekend
+      - If today is Mon-Thu: this weekend = the upcoming Friday-Sunday of this week
+      - If today is Fri-Sun: this weekend = this Friday through Sunday (starting from today or the most recent Friday)
+    * "next weekend" = FRIDAY to SUNDAY of the weekend AFTER "this weekend"
+      - Always the Friday-Sunday that comes after "this weekend"
+      - Example: If today is Monday, "next weekend" = Friday-Sunday of NEXT week (not this week)
     * "tomorrow" = the day after today
     * "next Friday" = the next occurrence of Friday
-  - Weekend check-in/check-out: Friday check-in, Sunday check-out
+  - CRITICAL: Weekends are ALWAYS Friday check-in, Sunday check-out (NOT Thursday-Saturday)
+  - WEEKEND CALCULATION EXAMPLES (today is ${new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}):
+    * If today is Monday March 9, 2026:
+      - "this weekend" = Friday March 13, 2026 to Sunday March 15, 2026
+      - "next weekend" = Friday March 20, 2026 to Sunday March 22, 2026
+    * If today is Thursday March 12, 2026:
+      - "this weekend" = Friday March 13, 2026 to Sunday March 15, 2026
+      - "next weekend" = Friday March 20, 2026 to Sunday March 22, 2026
+    * If today is Friday March 13, 2026:
+      - "this weekend" = Friday March 13, 2026 to Sunday March 15, 2026
+      - "next weekend" = Friday March 20, 2026 to Sunday March 22, 2026
   - Convert all dates to ISO format (YYYY-MM-DD)
   - Current date for reference: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} (${new Date().toLocaleDateString('en-US', { weekday: 'long' })})
   - If dates are mentioned, include them in checkIn and checkOut fields
   - If no dates mentioned, leave checkIn and checkOut as null
 
   GUEST COUNT EXTRACTION:
-  - Extract the total number of adults from the user's query
+  - Extract adults and children separately from the user's query
   - Examples:
-    * "going with 3 friends" = 4 adults (user + 3 friends)
-    * "for 2 people" = 2 adults
-    * "me and my partner" = 2 adults
-    * "family of 4" = 4 adults
-    * "just me" or "solo" = 1 adult
-    * "group of 6" = 6 adults
+    * "going with 3 friends" = 4 adults, 0 children
+    * "for 2 people" = 2 adults, 0 children
+    * "me and my partner" = 2 adults, 0 children
+    * "family of 4" = 4 adults, 0 children (unless children are explicitly mentioned)
+    * "2 adults and 1 child" = 2 adults, 1 child
+    * "2 adults and 2 kids" = 2 adults, 2 children
+    * "3 adults and a 7 year old" = 3 adults, 1 child
+    * "just me" or "solo" = 1 adult, 0 children
+    * "group of 6" = 6 adults, 0 children
   - Always count the user as 1 person when they say "with X friends/people"
-  - If no guest count mentioned, leave guestCount as null
-  - Only count adults (ignore children/kids mentions for now)
+  - If no guest count mentioned, leave both adults and children as null
+  - IMPORTANT: Extract both "adults" and "children" fields separately in your JSON response
+
+  POI (POINT OF INTEREST) EXTRACTION:
+  - Extract landmarks or locations mentioned by the user (e.g., "near Central Park", "close to Times Square", "walking distance to Broadway")
+  - Common NYC POIs and their coordinates:
+    * Central Park: {lat: 40.785091, lng: -73.968285}
+    * Times Square: {lat: 40.758896, lng: -73.985130}
+    * Rockefeller Center: {lat: 40.758740, lng: -73.978674}
+    * Empire State Building: {lat: 40.748817, lng: -73.985428}
+    * Broadway Theater District: {lat: 40.759011, lng: -73.984472}
+    * Grand Central Terminal: {lat: 40.752726, lng: -73.977229}
+    * Madison Square Garden: {lat: 40.750504, lng: -73.993439}
+    * Bryant Park: {lat: 40.753597, lng: -73.983233}
+  - If user mentions a POI, include it in the pointOfInterest field with name and coordinates
+  - If no specific POI mentioned, leave pointOfInterest as null
 
   Return ONLY this JSON structure (no other text):
   {
@@ -299,12 +402,17 @@ Current query: "${query}"${context}
     "specificHotelId": "optional-hotel-id",
     "checkIn": "YYYY-MM-DD or null",
     "checkOut": "YYYY-MM-DD or null",
-    "guestCount": number or null
+    "adults": number or null,
+    "children": number or null,
+    "pointOfInterest": {"name": "string", "coordinates": {"lat": number, "lng": number}} or null
   }
 
 
   SPECIAL INTENTS:
   - "show_all": User wants to see all hotels without filters - set shouldSearch to true, shouldRefine to false, with empty criteria
+  - "show_results_now": User mentions ANY search criteria (location, guests, amenity, price) - ALWAYS set shouldSearch to true and return results immediately
+    * Examples: "hotels in NYC", "hotels for 2 people", "pet-friendly hotels", "hotels in Midtown"
+    * NEVER ask clarifying questions first - show results, then offer refinements
   - "cheapest": User asks for cheapest/most affordable option
     * If asking about CURRENTLY DISPLAYED hotels (e.g., "which one is cheapest"): set shouldRefine to true, shouldSearch to false, intent to "cheapest", sortBy to "price_asc"
     * If starting fresh (e.g., "show me the cheapest hotel"): set shouldSearch to true, shouldRefine to false, sortBy "price_asc"
@@ -340,6 +448,12 @@ Current query: "${query}"${context}
         // Extract text from Gemini response structure
         const responseText = apiResponse?.candidates?.[0]?.content?.parts?.[0]?.text;
 
+        console.log('🔍 RAW GEMINI RESPONSE:', {
+          query: query,
+          responseText: responseText,
+          fullApiResponse: apiResponse
+        });
+
         if (!responseText) {
           throw new Error('No response text from API');
         }
@@ -351,6 +465,8 @@ Current query: "${query}"${context}
         } else if (cleanedText.startsWith('```')) {
           cleanedText = cleanedText.replace(/```\n?/g, '');
         }
+
+        console.log('🔍 CLEANED JSON TEXT:', cleanedText);
 
         // Parse JSON
         const parsed = JSON.parse(cleanedText);
@@ -369,6 +485,18 @@ Current query: "${query}"${context}
           parsed.message = this.truncateToSentences(parsed.message, 4);
         }
 
+        // 🔍 DEBUG: Log extracted dates
+        console.log('🔍 AI DATE EXTRACTION DEBUG:', {
+          query: query,
+          rawCheckIn: parsed.checkIn,
+          rawCheckOut: parsed.checkOut,
+          checkInType: typeof parsed.checkIn,
+          checkOutType: typeof parsed.checkOut,
+          adults: parsed.adults,
+          children: parsed.children,
+          fullResponse: parsed
+        });
+
         return {
           intent: parsed.intent,
           message: parsed.message,
@@ -378,7 +506,9 @@ Current query: "${query}"${context}
           specificHotelId: parsed.specificHotelId,
           checkIn: parsed.checkIn,
           checkOut: parsed.checkOut,
-          guestCount: parsed.guestCount
+          adults: parsed.adults,
+          children: parsed.children,
+          pointOfInterest: parsed.pointOfInterest
         };
 
       } catch (error) {

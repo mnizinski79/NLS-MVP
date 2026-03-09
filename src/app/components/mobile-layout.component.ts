@@ -9,6 +9,7 @@ import { HotelDetailBottomSheetComponent } from './hotel-detail-bottom-sheet.com
 import { Hotel } from '../models/hotel.model';
 import { Message } from '../models/message.model';
 import { DateSelection } from '../models/date-selection.model';
+import { PointOfInterest } from '../models';
 
 @Component({
   selector: 'app-mobile-layout',
@@ -38,7 +39,10 @@ export class MobileLayoutComponent implements OnChanges {
   @Input() hasDates: boolean = false;
   @Input() checkInDate: Date | null = null;
   @Input() checkOutDate: Date | null = null;
-  @Input() guestCount: number | null = null;
+  @Input() guestCount: number | null = null; // DEPRECATED
+  @Input() adults: number | null = null;
+  @Input() children: number | null = null;
+  @Input() pointOfInterest: PointOfInterest | null = null;
 
   @Output() messageSent = new EventEmitter<string>();
   @Output() tagClicked = new EventEmitter<string>();

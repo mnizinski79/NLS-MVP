@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild, AfterViewInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Hotel } from '../models/hotel.model';
+import { PointOfInterest } from '../models/ai-response.model';
 import { BRAND_COLORS, BRAND_LOGOS } from '../models/brand-config';
 import { RateCalendarComponent, DateRange } from './rate-calendar.component';
 import { MapComponent } from './map.component';
@@ -52,8 +53,17 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
   /** Check-out date from conversation state */
   @Input() checkOutDate: Date | null = null;
 
-  /** Guest count from conversation state */
+  /** Guest count from conversation state - DEPRECATED, use adults/children */
   @Input() guestCount: number | null = null;
+  
+  /** Number of adults from conversation state */
+  @Input() adults: number | null = 2; // Default to 2 adults
+  
+  /** Number of children from conversation state */
+  @Input() children: number | null = 0; // Default to 0 children
+
+  /** Point of Interest for distance calculation */
+  @Input() pointOfInterest: PointOfInterest | null = null;
 
   /** Emitted when drawer is closed */
   @Output() closed = new EventEmitter<void>();
@@ -66,6 +76,9 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
 
   /** Reference to drawer container for focus management */
   @ViewChild('drawerContainer') drawerContainer?: ElementRef;
+
+  /** Reference to drawer content for debugging */
+  @ViewChild('drawerContent') drawerContent?: ElementRef;
 
   /** Reference to calendar section for scrolling */
   @ViewChild('calendarSection') calendarSection?: ElementRef;
@@ -84,10 +97,6 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
 
   /** Whether the footer should be hidden (calendar in view) */
   hideFooter: boolean = false;
-
-  /** Guest counts */
-  adults: number = 2;
-  children: number = 0;
 
   /** Calendar expansion state */
   isCalendarExpanded: boolean = false;
@@ -113,6 +122,9 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
 
     if (changes['visible']) {
       if (this.visible) {
+        // Immediately compute booking info to avoid flash of wrong footer
+        this._hasCompleteBookingInfo = this.computeCompleteBookingInfo();
+        
         this.trapFocus();
         // Setup observer when drawer becomes visible
         setTimeout(() => this.setupCalendarObserver(), 200);
@@ -120,6 +132,9 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
         setTimeout(() => {
           this.updateCompleteBookingInfo();
           this.cdr.detectChanges();
+          
+          // DEBUG: Log dimensions when drawer becomes visible
+          this.logDrawerDimensions();
         }, 400);
       } else {
         this.restoreFocus();
@@ -127,12 +142,18 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
     }
 
     // Initialize guest count from conversation state if available
-    if (changes['guestCount'] && this.guestCount !== null && this.guestCount > 0 && !this.hasUserModifiedGuests) {
+    if ((changes['adults'] || changes['children'] || changes['guestCount']) && !this.hasUserModifiedGuests) {
       // Use setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
       setTimeout(() => {
-        // Set adults to the guest count (assuming all are adults for simplicity)
-        this.adults = this.guestCount!;
-        this.children = 0;
+        // Use separate adults/children if provided, otherwise fall back to guestCount
+        if (this.adults !== null || this.children !== null) {
+          this.adults = this.adults ?? 2; // Default to 2 adults if not specified
+          this.children = this.children ?? 0;
+        } else if (this.guestCount && this.guestCount > 0) {
+          // Fallback: assume all guests are adults
+          this.adults = this.guestCount;
+          this.children = 0;
+        }
         this.updateCompleteBookingInfo();
         this.cdr.markForCheck();
       });
@@ -163,7 +184,37 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
     setTimeout(() => {
       this.updateCompleteBookingInfo();
       this.cdr.detectChanges();
-    }, 300);
+      
+      // DEBUG: Log content dimensions
+      if (this.drawerContent) {
+        const el = this.drawerContent.nativeElement;
+        console.log('🔍 [DRAWER CONTENT DEBUG]');
+        console.log('  clientHeight:', el.clientHeight);
+        console.log('  scrollHeight:', el.scrollHeight);
+        console.log('  offsetHeight:', el.offsetHeight);
+        console.log('  scrollTop:', el.scrollTop);
+        console.log('  scrollable?:', el.scrollHeight > el.clientHeight);
+        console.log('  computed height:', window.getComputedStyle(el).height);
+        console.log('  padding-bottom:', window.getComputedStyle(el).paddingBottom);
+        console.log('  max scroll:', el.scrollHeight - el.clientHeight);
+        
+        // Add scroll listener
+        el.addEventListener('scroll', () => {
+          console.log('📜 SCROLL EVENT - scrollTop:', el.scrollTop, 'max:', el.scrollHeight - el.clientHeight);
+        });
+      } else {
+        console.log('❌ drawerContent is null!');
+      }
+      
+      if (this.calendarSection) {
+        const el = this.calendarSection.nativeElement;
+        console.log('🔍 [CALENDAR SECTION DEBUG]');
+        console.log('  offsetTop:', el.offsetTop);
+        console.log('  offsetHeight:', el.offsetHeight);
+        console.log('  clientHeight:', el.clientHeight);
+        console.log('  scrollHeight:', el.scrollHeight);
+      }
+    }, 500);
   }
 
   ngOnDestroy(): void {
@@ -432,6 +483,19 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
         behavior: 'smooth', 
         block: 'start' 
       });
+      
+      // Log dimensions after scroll
+      setTimeout(() => {
+        if (this.drawerContent) {
+          const el = this.drawerContent.nativeElement;
+          console.log('🔍 [AFTER SCROLL - DRAWER CONTENT]');
+          console.log('  scrollTop:', el.scrollTop);
+          console.log('  scrollHeight:', el.scrollHeight);
+          console.log('  clientHeight:', el.clientHeight);
+          console.log('  maxScroll:', el.scrollHeight - el.clientHeight);
+          console.log('  atBottom?:', el.scrollTop >= (el.scrollHeight - el.clientHeight - 10));
+        }
+      }, 1000);
     }
   }
 
@@ -439,8 +503,9 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
    * Increment adult count
    */
   incrementAdults(): void {
-    if (this.adults < 8) {
-      this.adults++;
+    const currentAdults = this.adults ?? 2;
+    if (currentAdults < 8) {
+      this.adults = currentAdults + 1;
       this.hasUserModifiedGuests = true;
       this.updateCompleteBookingInfo();
       this.cdr.markForCheck();
@@ -451,8 +516,9 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
    * Decrement adult count
    */
   decrementAdults(): void {
-    if (this.adults > 1) {
-      this.adults--;
+    const currentAdults = this.adults ?? 2;
+    if (currentAdults > 1) {
+      this.adults = currentAdults - 1;
       this.hasUserModifiedGuests = true;
       this.updateCompleteBookingInfo();
       this.cdr.markForCheck();
@@ -463,8 +529,9 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
    * Increment children count
    */
   incrementChildren(): void {
-    if (this.children < 6) {
-      this.children++;
+    const currentChildren = this.children ?? 0;
+    if (currentChildren < 6) {
+      this.children = currentChildren + 1;
       this.hasUserModifiedGuests = true;
       this.updateCompleteBookingInfo();
       this.cdr.markForCheck();
@@ -475,8 +542,9 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
    * Decrement children count
    */
   decrementChildren(): void {
-    if (this.children > 0) {
-      this.children--;
+    const currentChildren = this.children ?? 0;
+    if (currentChildren > 0) {
+      this.children = currentChildren - 1;
       this.hasUserModifiedGuests = true;
       this.updateCompleteBookingInfo();
       this.cdr.markForCheck();
@@ -492,8 +560,11 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
    *    - Manual interaction with guest selector
    */
   private computeCompleteBookingInfo(): boolean {
-    // Check if dates are selected
-    const hasDates = !!(this.rateCalendar?.selectedCheckIn && this.rateCalendar?.selectedCheckOut);
+    // Check if dates are selected - prioritize input dates over calendar dates
+    const hasDates = !!(
+      (this.checkInDate && this.checkOutDate) || 
+      (this.rateCalendar?.selectedCheckIn && this.rateCalendar?.selectedCheckOut)
+    );
     
     // Check if we have a specific guest count from conversation OR user modified guests
     const hasSpecificGuestCount = (this.guestCount !== null && this.guestCount > 0) || this.hasUserModifiedGuests;
@@ -552,11 +623,14 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
    */
   getGuestCountText(): string {
     const parts = [];
-    if (this.adults > 0) {
-      parts.push(`${this.adults} ${this.adults === 1 ? 'Adult' : 'Adults'}`);
+    const adultsCount = this.adults ?? 2;
+    const childrenCount = this.children ?? 0;
+    
+    if (adultsCount > 0) {
+      parts.push(`${adultsCount} ${adultsCount === 1 ? 'Adult' : 'Adults'}`);
     }
-    if (this.children > 0) {
-      parts.push(`${this.children} ${this.children === 1 ? 'Child' : 'Children'}`);
+    if (childrenCount > 0) {
+      parts.push(`${childrenCount} ${childrenCount === 1 ? 'Child' : 'Children'}`);
     }
     return parts.join(', ');
   }
@@ -688,5 +762,77 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
    */
   onCalendarClosed(): void {
     this.showRateCalendarPage = false;
+  }
+
+  /**
+   * Log drawer dimensions for debugging
+   */
+  private logDrawerDimensions(): void {
+    if (this.drawerContent) {
+      const el = this.drawerContent.nativeElement;
+      console.log('🔍 [DRAWER CONTENT DEBUG]');
+      console.log('  clientHeight:', el.clientHeight);
+      console.log('  scrollHeight:', el.scrollHeight);
+      console.log('  offsetHeight:', el.offsetHeight);
+      console.log('  scrollTop:', el.scrollTop);
+      console.log('  scrollable?:', el.scrollHeight > el.clientHeight);
+      console.log('  computed height:', window.getComputedStyle(el).height);
+      console.log('  padding-bottom:', window.getComputedStyle(el).paddingBottom);
+      console.log('  max scroll:', el.scrollHeight - el.clientHeight);
+      console.log('  CAN SCROLL TO BOTTOM?:', (el.scrollHeight - el.clientHeight) > 0);
+      
+      // Add scroll listener
+      el.addEventListener('scroll', () => {
+        const maxScroll = el.scrollHeight - el.clientHeight;
+        const atBottom = el.scrollTop >= maxScroll - 10;
+        console.log('📜 SCROLL - scrollTop:', Math.round(el.scrollTop), '/ max:', Math.round(maxScroll), 'atBottom?:', atBottom);
+      });
+    } else {
+      console.log('❌ drawerContent is STILL null!');
+    }
+    
+    if (this.calendarSection) {
+      const el = this.calendarSection.nativeElement;
+      console.log('🔍 [CALENDAR SECTION DEBUG]');
+      console.log('  offsetTop:', el.offsetTop);
+      console.log('  offsetHeight:', el.offsetHeight);
+      console.log('  clientHeight:', el.clientHeight);
+      console.log('  scrollHeight:', el.scrollHeight);
+    }
+  }
+
+  /**
+   * Calculate distance between hotel and POI using Haversine formula
+   * @returns Distance in miles, or null if no POI
+   */
+  getDistanceFromPOI(): string | null {
+    if (!this.hotel || !this.pointOfInterest) {
+      return null;
+    }
+
+    const hotelLat = this.hotel.location.coordinates.lat;
+    const hotelLng = this.hotel.location.coordinates.lng;
+    const poiLat = this.pointOfInterest.coordinates.lat;
+    const poiLng = this.pointOfInterest.coordinates.lng;
+
+    // Haversine formula
+    const R = 3959; // Earth's radius in miles
+    const dLat = (poiLat - hotelLat) * Math.PI / 180;
+    const dLng = (poiLng - hotelLng) * Math.PI / 180;
+    const a = 
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(hotelLat * Math.PI / 180) * Math.cos(poiLat * Math.PI / 180) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+
+    // Format distance
+    if (distance < 0.1) {
+      return 'Less than 0.1 miles';
+    } else if (distance < 1) {
+      return `${distance.toFixed(1)} miles`;
+    } else {
+      return `${distance.toFixed(1)} miles`;
+    }
   }
 }

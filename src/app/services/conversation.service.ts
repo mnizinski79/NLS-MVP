@@ -29,7 +29,8 @@ export class ConversationService {
     lastQuery: null,
     lastResponse: null,
     lastDisplayedHotels: [],
-    focusedHotel: null
+    focusedHotel: null,
+    pointOfInterest: null
   });
 
   private messages$ = new BehaviorSubject<Message[]>([]);
@@ -110,7 +111,8 @@ export class ConversationService {
       lastQuery: null,
       lastResponse: null,
       lastDisplayedHotels: [],
-      focusedHotel: null
+      focusedHotel: null,
+      pointOfInterest: null
     });
     this.messages$.next([]);
   }
