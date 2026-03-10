@@ -263,14 +263,15 @@
     </ng-container>
     
     <!-- Single button when user doesn't have complete booking info -->
-    <button 
-      *ngIf="!hasCompleteBookingInfo()"
-      class="cta-filled cta-full-width"
-      [style.background-color]="getBrandColor()"
-      (click)="scrollToCalendar()"
-    >
-      Check Availability
-    </button>
+    <ng-container *ngIf="!hasCompleteBookingInfo()">
+      <button 
+        class="cta-filled cta-full-width"
+        [style.background-color]="getBrandColor()"
+        (click)="scrollToCalendar()"
+      >
+        Check Availability
+      </button>
+    </ng-container>
   </div>
   </div>
 

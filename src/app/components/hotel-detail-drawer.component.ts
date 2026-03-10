@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild, AfterViewInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild, AfterViewInit, AfterViewChecked, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Hotel } from '../models/hotel.model';
 import { PointOfInterest } from '../models/ai-response.model';
@@ -37,7 +37,7 @@ import { MapComponent } from './map.component';
  *   (closed)="closeDrawer()">
  * </app-hotel-detail-drawer>
  */
-export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnDestroy {
+export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, AfterViewChecked, OnDestroy {
   /** Hotel to display details for */
   @Input() hotel: Hotel | null = null;
 
@@ -104,8 +104,15 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
   /** Track if user has modified guest counts */
   hasUserModifiedGuests: boolean = false;
 
+  /** Track if user has manually selected dates in calendar */
+  hasUserSelectedDates: boolean = false;
+
   /** Cached value for complete booking info to avoid expression changed errors */
   private _hasCompleteBookingInfo: boolean = false;
+
+  /** Track previous calendar dates to detect changes */
+  private _previousCalendarCheckIn: Date | null = null;
+  private _previousCalendarCheckOut: Date | null = null;
 
   /** Previously focused element for focus restoration */
   private previouslyFocusedElement: HTMLElement | null = null;
@@ -126,15 +133,10 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
         this._hasCompleteBookingInfo = this.computeCompleteBookingInfo();
         
         this.trapFocus();
-        // Setup observer when drawer becomes visible
         setTimeout(() => this.setupCalendarObserver(), 200);
-        // Update booking info when drawer opens
         setTimeout(() => {
           this.updateCompleteBookingInfo();
           this.cdr.detectChanges();
-          
-          // DEBUG: Log dimensions when drawer becomes visible
-          this.logDrawerDimensions();
         }, 400);
       } else {
         this.restoreFocus();
@@ -143,14 +145,11 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
 
     // Initialize guest count from conversation state if available
     if ((changes['adults'] || changes['children'] || changes['guestCount']) && !this.hasUserModifiedGuests) {
-      // Use setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
       setTimeout(() => {
-        // Use separate adults/children if provided, otherwise fall back to guestCount
         if (this.adults !== null || this.children !== null) {
-          this.adults = this.adults ?? 2; // Default to 2 adults if not specified
+          this.adults = this.adults ?? 2;
           this.children = this.children ?? 0;
         } else if (this.guestCount && this.guestCount > 0) {
-          // Fallback: assume all guests are adults
           this.adults = this.guestCount;
           this.children = 0;
         }
@@ -159,13 +158,9 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
       });
     }
 
-    // Update cached booking info when inputs change (even if already visible)
+    // Update cached booking info when inputs change
     if (changes['guestCount'] || changes['checkInDate'] || changes['checkOutDate']) {
       setTimeout(() => {
-        console.log('[Drawer] Input changed - updating booking info');
-        console.log('[Drawer] guestCount:', this.guestCount);
-        console.log('[Drawer] checkInDate:', this.checkInDate);
-        console.log('[Drawer] checkOutDate:', this.checkOutDate);
         this.updateCompleteBookingInfo();
         this.cdr.detectChanges();
       }, 100);
@@ -173,8 +168,6 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
   }
 
   ngAfterViewInit(): void {
-    console.log('[Drawer] ngAfterViewInit called');
-    console.log('[Drawer] calendarSection exists:', !!this.calendarSection);
     if (this.visible) {
       this.trapFocus();
     }
@@ -184,86 +177,69 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
     setTimeout(() => {
       this.updateCompleteBookingInfo();
       this.cdr.detectChanges();
-      
-      // DEBUG: Log content dimensions
-      if (this.drawerContent) {
-        const el = this.drawerContent.nativeElement;
-        console.log('🔍 [DRAWER CONTENT DEBUG]');
-        console.log('  clientHeight:', el.clientHeight);
-        console.log('  scrollHeight:', el.scrollHeight);
-        console.log('  offsetHeight:', el.offsetHeight);
-        console.log('  scrollTop:', el.scrollTop);
-        console.log('  scrollable?:', el.scrollHeight > el.clientHeight);
-        console.log('  computed height:', window.getComputedStyle(el).height);
-        console.log('  padding-bottom:', window.getComputedStyle(el).paddingBottom);
-        console.log('  max scroll:', el.scrollHeight - el.clientHeight);
-        
-        // Add scroll listener
-        el.addEventListener('scroll', () => {
-          console.log('📜 SCROLL EVENT - scrollTop:', el.scrollTop, 'max:', el.scrollHeight - el.clientHeight);
-        });
-      } else {
-        console.log('❌ drawerContent is null!');
-      }
-      
-      if (this.calendarSection) {
-        const el = this.calendarSection.nativeElement;
-        console.log('🔍 [CALENDAR SECTION DEBUG]');
-        console.log('  offsetTop:', el.offsetTop);
-        console.log('  offsetHeight:', el.offsetHeight);
-        console.log('  clientHeight:', el.clientHeight);
-        console.log('  scrollHeight:', el.scrollHeight);
-      }
     }, 500);
   }
 
+  ngAfterViewChecked(): void {
+    // Check if calendar dates have changed
+    if (this.rateCalendar) {
+      const currentCheckIn = this.rateCalendar.selectedCheckIn;
+      const currentCheckOut = this.rateCalendar.selectedCheckOut;
+      
+      // Compare with previous values
+      const checkInChanged = currentCheckIn?.getTime() !== this._previousCalendarCheckIn?.getTime();
+      const checkOutChanged = currentCheckOut?.getTime() !== this._previousCalendarCheckOut?.getTime();
+      
+      if (checkInChanged || checkOutChanged) {
+        // Check if this is NOT the initial auto-selection
+        const isInitialAutoSelection = !this._previousCalendarCheckIn && !this._previousCalendarCheckOut;
+        
+        if (!isInitialAutoSelection) {
+          // User has manually changed the dates
+          this.hasUserSelectedDates = true;
+        }
+        
+        // Update tracking
+        this._previousCalendarCheckIn = currentCheckIn ? new Date(currentCheckIn) : null;
+        this._previousCalendarCheckOut = currentCheckOut ? new Date(currentCheckOut) : null;
+        
+        // Update booking info (only if it actually changed to prevent infinite loop)
+        const newValue = this.computeCompleteBookingInfo();
+        if (newValue !== this._hasCompleteBookingInfo) {
+          this._hasCompleteBookingInfo = newValue;
+          this.cdr.detectChanges();
+        }
+      }
+    }
+  }
+
   ngOnDestroy(): void {
-    console.log('[Drawer] ngOnDestroy - cleaning up observer');
     if (this.calendarObserver) {
       this.calendarObserver.disconnect();
     }
   }
 
   private setupCalendarObserver(): void {
-    console.log('[Drawer] setupCalendarObserver called');
-    
     // Disconnect existing observer if any
     if (this.calendarObserver) {
-      console.log('[Drawer] Disconnecting existing observer');
       this.calendarObserver.disconnect();
     }
     
-    console.log('[Drawer] calendarSection exists:', !!this.calendarSection);
     if (this.calendarSection) {
-      console.log('[Drawer] Creating IntersectionObserver');
-      
       // Use different threshold based on booking info state
-      // View Rooms state (dual buttons): hide at 80% visibility
-      // Check Availability state (single button): hide at 30% visibility
       const targetThreshold = this._hasCompleteBookingInfo ? 0.8 : 0.3;
-      console.log('[Drawer] Using threshold:', targetThreshold, 'hasCompleteBookingInfo:', this._hasCompleteBookingInfo);
       
       this.calendarObserver = new IntersectionObserver(
         (entries) => {
-          console.log('[Drawer] IntersectionObserver callback fired, entries:', entries.length);
           entries.forEach(entry => {
-            console.log('[Drawer] Entry isIntersecting:', entry.isIntersecting);
-            console.log('[Drawer] Entry intersectionRatio:', entry.intersectionRatio);
-            console.log('[Drawer] Entry boundingClientRect:', entry.boundingClientRect);
-            console.log('[Drawer] Target threshold:', targetThreshold);
             const previousHideFooter = this.hideFooter;
             
             // Hide footer when intersection ratio meets or exceeds threshold
-            // Once hidden, keep it hidden as long as element is still intersecting
             if (entry.intersectionRatio >= targetThreshold) {
               this.hideFooter = true;
             } else if (!entry.isIntersecting) {
               this.hideFooter = false;
             }
-            // If intersecting but below threshold, keep current state (hysteresis)
-            
-            console.log('[Drawer] hideFooter set to:', this.hideFooter);
-            console.log('[Drawer] _hasCompleteBookingInfo:', this._hasCompleteBookingInfo);
             
             // Only trigger change detection if the value actually changed
             if (previousHideFooter !== this.hideFooter) {
@@ -273,14 +249,11 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
         },
         {
           threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-          rootMargin: '-80px 0px 0px 0px' // Account for footer height
+          rootMargin: '-80px 0px 0px 0px'
         }
       );
 
       this.calendarObserver.observe(this.calendarSection.nativeElement);
-      console.log('[Drawer] Observer attached to calendar section');
-    } else {
-      console.log('[Drawer] Calendar section not found!');
     }
   }
 
@@ -475,27 +448,11 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
    * Scroll to calendar section
    */
   scrollToCalendar(): void {
-    console.log('[Drawer] scrollToCalendar called');
-    console.log('[Drawer] calendarSection exists:', !!this.calendarSection);
     if (this.calendarSection) {
-      console.log('[Drawer] Scrolling to calendar section');
       this.calendarSection.nativeElement.scrollIntoView({ 
         behavior: 'smooth', 
         block: 'start' 
       });
-      
-      // Log dimensions after scroll
-      setTimeout(() => {
-        if (this.drawerContent) {
-          const el = this.drawerContent.nativeElement;
-          console.log('🔍 [AFTER SCROLL - DRAWER CONTENT]');
-          console.log('  scrollTop:', el.scrollTop);
-          console.log('  scrollHeight:', el.scrollHeight);
-          console.log('  clientHeight:', el.clientHeight);
-          console.log('  maxScroll:', el.scrollHeight - el.clientHeight);
-          console.log('  atBottom?:', el.scrollTop >= (el.scrollHeight - el.clientHeight - 10));
-        }
-      }, 1000);
     }
   }
 
@@ -553,21 +510,14 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
 
   /**
    * Check if user has complete booking information
-   * User has complete info if they have:
-   * 1. Dates selected in the calendar
-   * 2. Guest count either from:
-   *    - Explicit conversation state (e.g., "me and 4 friends" = 5 people)
-   *    - Manual interaction with guest selector
    */
   private computeCompleteBookingInfo(): boolean {
-    // Check if dates are selected - prioritize input dates over calendar dates
-    const hasDates = !!(
-      (this.checkInDate && this.checkOutDate) || 
-      (this.rateCalendar?.selectedCheckIn && this.rateCalendar?.selectedCheckOut)
-    );
+    const hasInputDates = !!(this.checkInDate && this.checkOutDate);
+    const hasManuallySelectedCalendarDates = this.hasUserSelectedDates && 
+      !!(this.rateCalendar?.selectedCheckIn && this.rateCalendar?.selectedCheckOut);
+    const hasDates = hasInputDates || hasManuallySelectedCalendarDates;
     
-    // Check if we have a specific guest count from conversation OR user modified guests
-    const hasSpecificGuestCount = (this.guestCount !== null && this.guestCount > 0) || this.hasUserModifiedGuests;
+    const hasSpecificGuestCount = (this.guestCount !== null && this.guestCount !== undefined && this.guestCount > 0) || this.hasUserModifiedGuests;
     
     return hasDates && hasSpecificGuestCount;
   }
@@ -588,7 +538,6 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
     
     // If the booking info state changed, recreate the observer with new threshold
     if (previousValue !== this._hasCompleteBookingInfo && this.calendarSection) {
-      console.log('[Drawer] Booking info changed, recreating observer with new threshold');
       this.setupCalendarObserver();
     }
   }
@@ -673,51 +622,28 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
    */
   onDateSelected(dateRange: DateRange): void {
     this.showRateCalendarPage = false;
+    this.hasUserSelectedDates = true; // Mark that user has selected dates
     this.dateSelected.emit(dateRange);
+    // Update booking info when dates are selected
+    this.updateCompleteBookingInfo();
+    this.cdr.detectChanges();
   }
 
   /**
    * View rooms - redirect to hotel website with selected dates
    */
   viewRooms(): void {
-    console.log('=== [Drawer] viewRooms called ===');
-    console.log('[Drawer] hotel:', this.hotel);
-    console.log('[Drawer] hotel exists:', !!this.hotel);
-    console.log('[Drawer] hotel.bookingUrl:', this.hotel?.bookingUrl);
-    console.log('[Drawer] rateCalendar:', this.rateCalendar);
-    console.log('[Drawer] rateCalendar exists:', !!this.rateCalendar);
-    console.log('[Drawer] selectedCheckIn:', this.rateCalendar?.selectedCheckIn);
-    console.log('[Drawer] selectedCheckOut:', this.rateCalendar?.selectedCheckOut);
-    console.log('[Drawer] hasCompleteBookingInfo():', this.hasCompleteBookingInfo());
-    console.log('[Drawer] adults:', this.adults);
-    console.log('[Drawer] children:', this.children);
+    if (!this.hotel || !this.rateCalendar) return;
     
-    if (!this.hotel) {
-      console.error('[Drawer] ERROR: No hotel available');
-      return;
-    }
-    
-    if (!this.rateCalendar) {
-      console.error('[Drawer] ERROR: No rate calendar component available');
-      return;
-    }
-    
-    if (!this.rateCalendar.selectedCheckIn || !this.rateCalendar.selectedCheckOut) {
-      console.error('[Drawer] ERROR: No dates selected');
-      console.log('[Drawer] selectedCheckIn:', this.rateCalendar.selectedCheckIn);
-      console.log('[Drawer] selectedCheckOut:', this.rateCalendar.selectedCheckOut);
-      return;
-    }
+    if (!this.rateCalendar.selectedCheckIn || !this.rateCalendar.selectedCheckOut) return;
     
     const checkIn = this.rateCalendar.selectedCheckIn;
     const checkOut = this.rateCalendar.selectedCheckOut;
     
-    console.log('[Drawer] Using dates:', { checkIn, checkOut });
-    
-    // Format dates for IHG (day, month-1+year format)
+    // Format dates for IHG
     const formatIHGDate = (date: Date) => {
       const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth()).padStart(2, '0'); // Month is 0-indexed (Jan=00, Feb=01, etc.)
+      const month = String(date.getMonth()).padStart(2, '0');
       const year = date.getFullYear();
       return { day, monthYear: `${month}${year}` };
     };
@@ -725,36 +651,17 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
     const checkInFormatted = formatIHGDate(checkIn);
     const checkOutFormatted = formatIHGDate(checkOut);
     
-    console.log('[Drawer] checkInFormatted:', checkInFormatted);
-    console.log('[Drawer] checkOutFormatted:', checkOutFormatted);
-    
-    // Use hotel's booking URL or create a generic search URL
     let bookingUrl: string;
     if (this.hotel.bookingUrl) {
-      console.log('[Drawer] Using hotel booking URL');
-      // Construct IHG booking URL with proper parameters
       bookingUrl = `${this.hotel.bookingUrl}&qAdlt=${this.adults}&qChld=${this.children}&qCiD=${checkInFormatted.day}&qCiMy=${checkInFormatted.monthYear}&qCoD=${checkOutFormatted.day}&qCoMy=${checkOutFormatted.monthYear}`;
     } else {
-      console.log('[Drawer] No booking URL, using Google fallback');
-      // Fallback to a generic hotel search
       const hotelName = encodeURIComponent(this.hotel.name);
       const checkInStr = checkIn.toLocaleDateString();
       const checkOutStr = checkOut.toLocaleDateString();
       bookingUrl = `https://www.google.com/search?q=${hotelName}+booking+${checkInStr}+to+${checkOutStr}`;
     }
     
-    console.log('[Drawer] Final booking URL:', bookingUrl);
-    console.log('[Drawer] Opening URL in new tab...');
-    
-    // Open in new tab
-    const newWindow = window.open(bookingUrl, '_blank');
-    console.log('[Drawer] window.open returned:', newWindow);
-    
-    if (!newWindow) {
-      console.error('[Drawer] ERROR: Failed to open new window (popup blocked?)');
-    } else {
-      console.log('[Drawer] SUCCESS: New window opened');
-    }
+    window.open(bookingUrl, '_blank');
   }
 
   /**
@@ -762,43 +669,6 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, OnD
    */
   onCalendarClosed(): void {
     this.showRateCalendarPage = false;
-  }
-
-  /**
-   * Log drawer dimensions for debugging
-   */
-  private logDrawerDimensions(): void {
-    if (this.drawerContent) {
-      const el = this.drawerContent.nativeElement;
-      console.log('🔍 [DRAWER CONTENT DEBUG]');
-      console.log('  clientHeight:', el.clientHeight);
-      console.log('  scrollHeight:', el.scrollHeight);
-      console.log('  offsetHeight:', el.offsetHeight);
-      console.log('  scrollTop:', el.scrollTop);
-      console.log('  scrollable?:', el.scrollHeight > el.clientHeight);
-      console.log('  computed height:', window.getComputedStyle(el).height);
-      console.log('  padding-bottom:', window.getComputedStyle(el).paddingBottom);
-      console.log('  max scroll:', el.scrollHeight - el.clientHeight);
-      console.log('  CAN SCROLL TO BOTTOM?:', (el.scrollHeight - el.clientHeight) > 0);
-      
-      // Add scroll listener
-      el.addEventListener('scroll', () => {
-        const maxScroll = el.scrollHeight - el.clientHeight;
-        const atBottom = el.scrollTop >= maxScroll - 10;
-        console.log('📜 SCROLL - scrollTop:', Math.round(el.scrollTop), '/ max:', Math.round(maxScroll), 'atBottom?:', atBottom);
-      });
-    } else {
-      console.log('❌ drawerContent is STILL null!');
-    }
-    
-    if (this.calendarSection) {
-      const el = this.calendarSection.nativeElement;
-      console.log('🔍 [CALENDAR SECTION DEBUG]');
-      console.log('  offsetTop:', el.offsetTop);
-      console.log('  offsetHeight:', el.offsetHeight);
-      console.log('  clientHeight:', el.clientHeight);
-      console.log('  scrollHeight:', el.scrollHeight);
-    }
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild, AfterViewInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild, AfterViewInit, AfterViewChecked, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Hotel } from '../models/hotel.model';
 import { PointOfInterest } from '../models/ai-response.model';
@@ -13,7 +13,7 @@ import { MapComponent } from './map.component';
   templateUrl: './hotel-detail-bottom-sheet.component.html',
   styleUrls: ['./hotel-detail-bottom-sheet.component.css']
 })
-export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit, OnDestroy {
+export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit, AfterViewChecked, OnDestroy {
   @Input() hotel: Hotel | null = null;
   @Input() visible: boolean = false;
   @Input() isMapContext: boolean = false; // True if opened from map overlay
@@ -45,8 +45,15 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   /** Track if user has modified guest counts */
   hasUserModifiedGuests: boolean = false;
   
+  /** Track if user has manually selected dates in calendar */
+  hasUserSelectedDates: boolean = false;
+  
   /** Cached value for complete booking info to avoid expression changed errors */
   private _hasCompleteBookingInfo: boolean = false;
+  
+  /** Track previous calendar dates to detect changes */
+  private _previousCalendarCheckIn: Date | null = null;
+  private _previousCalendarCheckOut: Date | null = null;
   
   isClosing: boolean = false; // Track closing animation state
   private previouslyFocusedElement: HTMLElement | null = null;
@@ -67,16 +74,14 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
 
     if (changes['visible']) {
       if (this.visible) {
-        this.isCollapsed = true; // Reset to collapsed state when opened
-        this.isClosing = false; // Reset closing state
+        this.isCollapsed = true;
+        this.isClosing = false;
         
         // Immediately compute booking info to avoid flash of wrong footer
         this._hasCompleteBookingInfo = this.computeCompleteBookingInfo();
         
         this.trapFocus();
-        // Setup observer when sheet becomes visible
         setTimeout(() => this.setupCalendarObserver(), 200);
-        // Update booking info when sheet opens
         setTimeout(() => {
           this.updateCompleteBookingInfo();
           this.cdr.detectChanges();
@@ -88,14 +93,11 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
 
     // Initialize guest count from conversation state if available
     if ((changes['adults'] || changes['children'] || changes['guestCount']) && !this.hasUserModifiedGuests) {
-      // Use setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
       setTimeout(() => {
-        // Use separate adults/children if provided, otherwise fall back to guestCount
         if (this.adults !== null || this.children !== null) {
-          this.adults = this.adults ?? 2; // Default to 2 adults if not specified
+          this.adults = this.adults ?? 2;
           this.children = this.children ?? 0;
         } else if (this.guestCount && this.guestCount > 0) {
-          // Fallback: assume all guests are adults
           this.adults = this.guestCount;
           this.children = 0;
         }
@@ -104,13 +106,9 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
       });
     }
 
-    // Update cached booking info when inputs change (even if already visible)
+    // Update cached booking info when inputs change
     if (changes['adults'] || changes['children'] || changes['guestCount'] || changes['checkInDate'] || changes['checkOutDate']) {
       setTimeout(() => {
-        console.log('[BottomSheet] Input changed - updating booking info');
-        console.log('[BottomSheet] guestCount:', this.guestCount);
-        console.log('[BottomSheet] checkInDate:', this.checkInDate);
-        console.log('[BottomSheet] checkOutDate:', this.checkOutDate);
         this.updateCompleteBookingInfo();
         this.cdr.detectChanges();
       }, 100);
@@ -118,8 +116,6 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   }
 
   ngAfterViewInit(): void {
-    console.log('[BottomSheet] ngAfterViewInit called');
-    console.log('[BottomSheet] calendarSection exists:', !!this.calendarSection);
     if (this.visible) {
       this.trapFocus();
     }
@@ -132,53 +128,66 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
     }, 300);
   }
 
+  ngAfterViewChecked(): void {
+    // Check if calendar dates have changed
+    if (this.rateCalendar) {
+      const currentCheckIn = this.rateCalendar.selectedCheckIn;
+      const currentCheckOut = this.rateCalendar.selectedCheckOut;
+      
+      // Compare with previous values
+      const checkInChanged = currentCheckIn?.getTime() !== this._previousCalendarCheckIn?.getTime();
+      const checkOutChanged = currentCheckOut?.getTime() !== this._previousCalendarCheckOut?.getTime();
+      
+      if (checkInChanged || checkOutChanged) {
+        // Check if this is NOT the initial auto-selection
+        const isInitialAutoSelection = !this._previousCalendarCheckIn && !this._previousCalendarCheckOut;
+        
+        if (!isInitialAutoSelection) {
+          // User has manually changed the dates
+          this.hasUserSelectedDates = true;
+        }
+        
+        // Update tracking
+        this._previousCalendarCheckIn = currentCheckIn ? new Date(currentCheckIn) : null;
+        this._previousCalendarCheckOut = currentCheckOut ? new Date(currentCheckOut) : null;
+        
+        // Update booking info (only if it actually changed to prevent infinite loop)
+        const newValue = this.computeCompleteBookingInfo();
+        if (newValue !== this._hasCompleteBookingInfo) {
+          this._hasCompleteBookingInfo = newValue;
+          this.cdr.detectChanges();
+        }
+      }
+    }
+  }
+
   ngOnDestroy(): void {
-    console.log('[BottomSheet] ngOnDestroy - cleaning up observer');
     if (this.calendarObserver) {
       this.calendarObserver.disconnect();
     }
   }
 
   private setupCalendarObserver(): void {
-    console.log('[BottomSheet] setupCalendarObserver called');
-    
     // Disconnect existing observer if any
     if (this.calendarObserver) {
-      console.log('[BottomSheet] Disconnecting existing observer');
       this.calendarObserver.disconnect();
     }
     
-    console.log('[BottomSheet] calendarSection exists:', !!this.calendarSection);
     if (this.calendarSection) {
-      console.log('[BottomSheet] Creating IntersectionObserver');
-      
       // Use different threshold based on booking info state
-      // View Rooms state (dual buttons): hide at 80% visibility
-      // Check Availability state (single button): hide at 30% visibility
       const targetThreshold = this._hasCompleteBookingInfo ? 0.8 : 0.3;
-      console.log('[BottomSheet] Using threshold:', targetThreshold, 'hasCompleteBookingInfo:', this._hasCompleteBookingInfo);
       
       this.calendarObserver = new IntersectionObserver(
         (entries) => {
-          console.log('[BottomSheet] IntersectionObserver callback fired, entries:', entries.length);
           entries.forEach(entry => {
-            console.log('[BottomSheet] Entry isIntersecting:', entry.isIntersecting);
-            console.log('[BottomSheet] Entry intersectionRatio:', entry.intersectionRatio);
-            console.log('[BottomSheet] Entry boundingClientRect:', entry.boundingClientRect);
-            console.log('[BottomSheet] Target threshold:', targetThreshold);
             const previousHideFooter = this.hideFooter;
             
             // Hide footer when intersection ratio meets or exceeds threshold
-            // Once hidden, keep it hidden as long as element is still intersecting
             if (entry.intersectionRatio >= targetThreshold) {
               this.hideFooter = true;
             } else if (!entry.isIntersecting) {
               this.hideFooter = false;
             }
-            // If intersecting but below threshold, keep current state (hysteresis)
-            
-            console.log('[BottomSheet] hideFooter set to:', this.hideFooter);
-            console.log('[BottomSheet] _hasCompleteBookingInfo:', this._hasCompleteBookingInfo);
             
             // Only trigger change detection if the value actually changed
             if (previousHideFooter !== this.hideFooter) {
@@ -193,9 +202,6 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
       );
 
       this.calendarObserver.observe(this.calendarSection.nativeElement);
-      console.log('[BottomSheet] Observer attached to calendar section');
-    } else {
-      console.log('[BottomSheet] Calendar section not found!');
     }
   }
 
@@ -410,10 +416,7 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   }
 
   scrollToCalendar(): void {
-    console.log('[BottomSheet] scrollToCalendar called');
-    console.log('[BottomSheet] calendarSection exists:', !!this.calendarSection);
     if (this.calendarSection) {
-      console.log('[BottomSheet] Scrolling to calendar section');
       this.calendarSection.nativeElement.scrollIntoView({ 
         behavior: 'smooth', 
         block: 'start' 
@@ -463,21 +466,14 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
 
   /**
    * Check if user has complete booking information
-   * User has complete info if they have:
-   * 1. Dates selected in the calendar
-   * 2. Guest count either from:
-   *    - Explicit conversation state (e.g., "me and 4 friends" = 5 people)
-   *    - Manual interaction with guest selector
    */
   private computeCompleteBookingInfo(): boolean {
-    // Check if dates are selected - prioritize input dates over calendar dates
-    const hasDates = !!(
-      (this.checkInDate && this.checkOutDate) || 
-      (this.rateCalendar?.selectedCheckIn && this.rateCalendar?.selectedCheckOut)
-    );
+    const hasInputDates = !!(this.checkInDate && this.checkOutDate);
+    const hasManuallySelectedCalendarDates = this.hasUserSelectedDates && 
+      !!(this.rateCalendar?.selectedCheckIn && this.rateCalendar?.selectedCheckOut);
+    const hasDates = hasInputDates || hasManuallySelectedCalendarDates;
     
-    // Check if we have a specific guest count from conversation OR user modified guests
-    const hasSpecificGuestCount = (this.guestCount !== null && this.guestCount > 0) || this.hasUserModifiedGuests;
+    const hasSpecificGuestCount = (this.guestCount !== null && this.guestCount !== undefined && this.guestCount > 0) || this.hasUserModifiedGuests;
     
     return hasDates && hasSpecificGuestCount;
   }
@@ -498,7 +494,6 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
     
     // If the booking info state changed, recreate the observer with new threshold
     if (previousValue !== this._hasCompleteBookingInfo && this.calendarSection) {
-      console.log('[BottomSheet] Booking info changed, recreating observer with new threshold');
       this.setupCalendarObserver();
     }
   }
@@ -562,48 +557,25 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
 
   onDateSelected(dateRange: DateRange): void {
     this.showRateCalendarPage = false;
+    this.hasUserSelectedDates = true; // Mark that user has selected dates
     this.dateSelected.emit(dateRange);
+    // Update booking info when dates are selected
+    this.updateCompleteBookingInfo();
+    this.cdr.detectChanges();
   }
 
   viewRooms(): void {
-    console.log('=== [BottomSheet] viewRooms called ===');
-    console.log('[BottomSheet] hotel:', this.hotel);
-    console.log('[BottomSheet] hotel exists:', !!this.hotel);
-    console.log('[BottomSheet] hotel.bookingUrl:', this.hotel?.bookingUrl);
-    console.log('[BottomSheet] rateCalendar:', this.rateCalendar);
-    console.log('[BottomSheet] rateCalendar exists:', !!this.rateCalendar);
-    console.log('[BottomSheet] selectedCheckIn:', this.rateCalendar?.selectedCheckIn);
-    console.log('[BottomSheet] selectedCheckOut:', this.rateCalendar?.selectedCheckOut);
-    console.log('[BottomSheet] hasCompleteBookingInfo():', this.hasCompleteBookingInfo());
-    console.log('[BottomSheet] adults:', this.adults);
-    console.log('[BottomSheet] children:', this.children);
+    if (!this.hotel || !this.rateCalendar) return;
     
-    if (!this.hotel) {
-      console.error('[BottomSheet] ERROR: No hotel available');
-      return;
-    }
-    
-    if (!this.rateCalendar) {
-      console.error('[BottomSheet] ERROR: No rate calendar component available');
-      return;
-    }
-    
-    if (!this.rateCalendar.selectedCheckIn || !this.rateCalendar.selectedCheckOut) {
-      console.error('[BottomSheet] ERROR: No dates selected');
-      console.log('[BottomSheet] selectedCheckIn:', this.rateCalendar.selectedCheckIn);
-      console.log('[BottomSheet] selectedCheckOut:', this.rateCalendar.selectedCheckOut);
-      return;
-    }
+    if (!this.rateCalendar.selectedCheckIn || !this.rateCalendar.selectedCheckOut) return;
     
     const checkIn = this.rateCalendar.selectedCheckIn;
     const checkOut = this.rateCalendar.selectedCheckOut;
     
-    console.log('[BottomSheet] Using dates:', { checkIn, checkOut });
-    
-    // Format dates for IHG (day, month-1+year format)
+    // Format dates for IHG
     const formatIHGDate = (date: Date) => {
       const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth()).padStart(2, '0'); // Month is 0-indexed (Jan=00, Feb=01, etc.)
+      const month = String(date.getMonth()).padStart(2, '0');
       const year = date.getFullYear();
       return { day, monthYear: `${month}${year}` };
     };
@@ -611,36 +583,17 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
     const checkInFormatted = formatIHGDate(checkIn);
     const checkOutFormatted = formatIHGDate(checkOut);
     
-    console.log('[BottomSheet] checkInFormatted:', checkInFormatted);
-    console.log('[BottomSheet] checkOutFormatted:', checkOutFormatted);
-    
-    // Use hotel's booking URL or create a generic search URL
     let bookingUrl: string;
     if (this.hotel.bookingUrl) {
-      console.log('[BottomSheet] Using hotel booking URL');
-      // Construct IHG booking URL with proper parameters
       bookingUrl = `${this.hotel.bookingUrl}&qAdlt=${this.adults}&qChld=${this.children}&qCiD=${checkInFormatted.day}&qCiMy=${checkInFormatted.monthYear}&qCoD=${checkOutFormatted.day}&qCoMy=${checkOutFormatted.monthYear}`;
     } else {
-      console.log('[BottomSheet] No booking URL, using Google fallback');
-      // Fallback to a generic hotel search
       const hotelName = encodeURIComponent(this.hotel.name);
       const checkInStr = checkIn.toLocaleDateString();
       const checkOutStr = checkOut.toLocaleDateString();
       bookingUrl = `https://www.google.com/search?q=${hotelName}+booking+${checkInStr}+to+${checkOutStr}`;
     }
     
-    console.log('[BottomSheet] Final booking URL:', bookingUrl);
-    console.log('[BottomSheet] Opening URL in new tab...');
-    
-    // Open in new tab
-    const newWindow = window.open(bookingUrl, '_blank');
-    console.log('[BottomSheet] window.open returned:', newWindow);
-    
-    if (!newWindow) {
-      console.error('[BottomSheet] ERROR: Failed to open new window (popup blocked?)');
-    } else {
-      console.log('[BottomSheet] SUCCESS: New window opened');
-    }
+    window.open(bookingUrl, '_blank');
   }
 
   onCalendarClosed(): void {
