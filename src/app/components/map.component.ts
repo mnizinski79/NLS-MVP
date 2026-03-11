@@ -157,12 +157,22 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
     mapOptions.center = this.center;
     mapOptions.zoom = this.zoom;
     
-    // Disable zoom controls on mobile
+    // Disable zoom controls on mobile, position on right for desktop
     if (this.isMobile) {
+      mapOptions.zoomControl = false;
+    } else {
+      // Disable default zoom control, we'll add custom positioned one
       mapOptions.zoomControl = false;
     }
 
     this.map = L.map(this.mapContainer.nativeElement, mapOptions);
+
+    // Add custom positioned zoom control for desktop (right side)
+    if (!this.isMobile) {
+      L.control.zoom({
+        position: 'topright' // Position on right side
+      }).addTo(this.map);
+    }
 
     // Add OpenStreetMap tile layer (light style)
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -208,17 +218,95 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * Adjust map bounds to fit all hotel markers with padding
+   * Centers hotels in the visible area between top and hotel cards at bottom
+   * On desktop, also centers between chat panel and right edge
+   * For single hotel (detail view), centers the pin in the middle of visible area
+   * Includes POI in bounds calculation if present
    */
   private centerOnHotels(): void {
     if (!this.map || this.hotels.length === 0) return;
 
-    const bounds = this.mapService.calculateBounds(this.hotels);
+    // Calculate bounds including POI if present
+    let bounds = this.mapService.calculateBounds(this.hotels);
+    
+    // If POI exists, extend bounds to include it
+    if (bounds && this.pointOfInterest) {
+      const poiLatLng = L.latLng(
+        this.pointOfInterest.coordinates.lat,
+        this.pointOfInterest.coordinates.lng
+      );
+      bounds = bounds.extend(poiLatLng);
+      console.log('📍 Extended bounds to include POI:', this.pointOfInterest.name);
+    }
 
     if (bounds) {
-      this.map.fitBounds(bounds, {
-        padding: [50, 50],
-        maxZoom: 15
+      const viewportHeight = window.innerHeight;
+      
+      console.log('🗺️ centerOnHotels called:', {
+        isMobile: this.isMobile,
+        viewportHeight,
+        hotelsCount: this.hotels.length,
+        hasPOI: !!this.pointOfInterest,
+        bounds: bounds
       });
+      
+      // Special handling for single hotel (detail view)
+      if (this.hotels.length === 1 && !this.pointOfInterest) {
+        console.log('🏨 Single hotel detected - using centered positioning');
+        // For detail view without POI, just center on the hotel without complex padding
+        const hotel = this.hotels[0];
+        this.map.setView(
+          [hotel.location.coordinates.lat, hotel.location.coordinates.lng],
+          15,
+          { animate: true, duration: 0.35 }
+        );
+        return;
+      }
+      
+      if (this.isMobile) {
+        // Mobile: center hotels between top of screen and top of hotel cards
+        // Hotel cards take up ~40% of screen height at bottom
+        const bottomPadding = Math.floor(viewportHeight * 0.42); // 42% for cards + safe area
+        const topPadding = Math.floor(bottomPadding / 2); // Half of bottom for vertical centering
+        
+        console.log('📱 Mobile: Using padding:', {
+          paddingTopLeft: [50, topPadding],
+          paddingBottomRight: [50, bottomPadding]
+        });
+        
+        this.map.fitBounds(bounds, {
+          paddingTopLeft: [50, topPadding], // 50px left, topPadding top
+          paddingBottomRight: [50, bottomPadding], // 50px right, bottomPadding bottom
+          maxZoom: 15
+        });
+      } else {
+        // Desktop: account for chat panel on left and cards at bottom
+        const bottomPadding = 420; // 380px cards + 40px margin
+        const topPadding = Math.floor(bottomPadding / 2); // Half of bottom for vertical centering
+        const leftPadding = 520; // Chat width + margins + centering offset
+        
+        console.log('💻 Desktop: Using custom padding:', {
+          paddingTopLeft: [leftPadding, topPadding],
+          paddingBottomRight: [50, bottomPadding]
+        });
+        
+        this.map.fitBounds(bounds, {
+          paddingTopLeft: [leftPadding, topPadding], // leftPadding left, topPadding top
+          paddingBottomRight: [50, bottomPadding], // 50px right, bottomPadding bottom
+          maxZoom: 15
+        });
+      }
+      
+      // Log final map state
+      setTimeout(() => {
+        if (this.map) {
+          console.log('🗺️ Map state after fitBounds:', {
+            center: this.map.getCenter(),
+            zoom: this.map.getZoom(),
+            bounds: this.map.getBounds()
+          });
+        }
+      }, 500);
     }
   }
 
@@ -264,8 +352,27 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
         const hotelLat = hotel.location.coordinates.lat;
         const hotelLng = hotel.location.coordinates.lng;
 
+        console.log('🎯 centerOnHotel called:', {
+          hotelId,
+          hotelName: hotel.name,
+          hotelLat,
+          hotelLng,
+          offsetY,
+          currentZoom: this.map.getZoom(),
+          currentCenter: this.map.getCenter()
+        });
+
         // Calculate center position with offset
         const centerWithOffset = this.calculateCenterWithOffset(hotelLat, hotelLng, offsetY);
+
+        console.log('🎯 Calculated center with offset:', {
+          originalLat: hotelLat,
+          originalLng: hotelLng,
+          offsetY,
+          newLat: centerWithOffset.lat,
+          newLng: centerWithOffset.lng,
+          latDiff: centerWithOffset.lat - hotelLat
+        });
 
         // Pan to the calculated center
         this.map.setView([centerWithOffset.lat, centerWithOffset.lng], this.map.getZoom(), {
@@ -275,6 +382,10 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
 
         // Clear timeout and resolve after animation completes
         setTimeout(() => {
+          console.log('🎯 Map centered, final state:', {
+            center: this.map?.getCenter(),
+            zoom: this.map?.getZoom()
+          });
           clearTimeout(timeout);
           resolve();
         }, 350);
@@ -661,8 +772,8 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
         html: `
           <div class="poi-marker-content">
             <div class="poi-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#C7370F" stroke="white" stroke-width="1.5"/>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="8" r="6" fill="#E57866" stroke="white" stroke-width="2"/>
               </svg>
             </div>
             <div class="poi-label">${poi.name}</div>

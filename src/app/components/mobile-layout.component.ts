@@ -88,7 +88,12 @@ export class MobileLayoutComponent implements OnChanges {
         // Position the pin at 20% from the top of the screen
         // This keeps it visible above the bottom sheet (which is at 66.67% height)
         const screenHeight = window.innerHeight;
-        const targetPositionFromTop = screenHeight * 0.20; // 20% from top
+        // For hotel detail view, center the pin in the visible area
+        // Account for bottom sheet taking up space
+        const bottomSheetHeight = screenHeight * 0.6; // Bottom sheet is ~60% of screen
+        const visibleMapHeight = screenHeight - bottomSheetHeight;
+        // Center the pin in the middle of visible map area
+        const targetPositionFromTop = visibleMapHeight / 2;
         
         // Calculate offset: how much to shift the map center
         // Positive offset moves the pin UP on screen (shifts map center DOWN)
@@ -96,6 +101,8 @@ export class MobileLayoutComponent implements OnChanges {
         
         console.log('📍 Map centering calculation:', {
           screenHeight,
+          bottomSheetHeight,
+          visibleMapHeight,
           targetPositionFromTop,
           offsetPixels,
           hotelId: this.selectedHotel.id,

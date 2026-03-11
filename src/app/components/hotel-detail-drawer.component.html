@@ -155,7 +155,7 @@
                     <path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                   </svg>
                 </button>
-                <span class="guest-count">{{ adults }}</span>
+                <span class="guest-count">{{ adults ?? 2 }}</span>
                 <button class="guest-btn" (click)="incrementAdults()" [disabled]="(adults ?? 2) >= 8">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 4v8M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -171,7 +171,7 @@
                     <path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                   </svg>
                 </button>
-                <span class="guest-count">{{ children }}</span>
+                <span class="guest-count">{{ children ?? 0 }}</span>
                 <button class="guest-btn" (click)="incrementChildren()" [disabled]="(children ?? 0) >= 6">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 4v8M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>

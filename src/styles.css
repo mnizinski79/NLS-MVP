@@ -265,12 +265,42 @@ body {
 }
 
 .poi-label {
-  background: #C7370F;
-  color: white;
+  background: #E57866;
+  color: #000000;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 400;
   white-space: nowrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Desktop Map Zoom Controls - Position on right and move when drawer opens */
+.desktop-layout .leaflet-top.leaflet-right {
+  top: 14px; /* Align with top of chat window (24px - 10px default leaflet margin) */
+  right: calc(1.5rem + 380px + 1.5rem - 10px); /* Adjust for leaflet's default 10px margin */
+  transition: right 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.desktop-layout.drawer-open .leaflet-top.leaflet-right {
+  right: calc(33% + 12px) !important; /* 33% drawer width + 12px spacing - important to override */
+}
+
+/* Remove default leaflet control margins for precise positioning */
+.desktop-layout .leaflet-top.leaflet-right .leaflet-control {
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+}
+
+
+
+/* Hotel Detail Drawer - Map controls positioning */
+.drawer .map-container .leaflet-top.leaflet-right {
+  top: 8px !important;
+  right: 8px !important;
+}
+
+.drawer .map-container .leaflet-control {
+  margin: 0 !important;
 }

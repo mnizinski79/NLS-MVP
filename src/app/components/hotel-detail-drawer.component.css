@@ -732,3 +732,14 @@
   display: block;
   width: 100%;
 }
+
+
+/* Map controls positioning within drawer */
+.map-container :deep(.leaflet-top.leaflet-right) {
+  top: 8px;
+  right: 8px;
+}
+
+.map-container :deep(.leaflet-control) {
+  margin: 0;
+}

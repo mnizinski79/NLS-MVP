@@ -224,16 +224,35 @@ export class HotelService {
    * Main filter pipeline - applies all filters in sequence
    * Filter order: brand → sentiment → price → amenities → rating → sort
    * If price filter returns 0 results, expands budget and sorts by price
+   * If location specified but filters return 0 results, shows top 3 by relevance
    * @param hotels - Array of hotels to filter
    * @param criteria - Search criteria object with optional filter parameters
    * @returns Filtered and sorted array of hotels
    */
   filterHotels(hotels: Hotel[], criteria: SearchCriteria): Hotel[] {
     let filtered = hotels;
+    
+    // Track if location/sentiment filter was applied
+    const hasLocationFilter = !!(criteria.sentiments?.length);
+    
+    // Track if ANY other filter was applied (amenities, price, rating, brand)
+    const hasOtherFilters = !!(
+      criteria.brands?.length ||
+      criteria.amenities?.length ||
+      criteria.priceRange ||
+      criteria.minRating !== undefined
+    );
+    
+    // If user has other filters but no specific location sentiment, treat as implicit NYC location
+    // This handles cases like "hotels in NYC with restaurant" where NYC isn't a specific sentiment
+    const hasImplicitLocation = hasOtherFilters && !hasLocationFilter;
 
     console.log('💰 PRICE FILTER DEBUG - Starting:', {
       totalHotels: hotels.length,
       priceRange: criteria.priceRange,
+      hasLocationFilter,
+      hasOtherFilters,
+      hasImplicitLocation,
       hotelPrices: hotels.map(h => ({ name: h.name, price: h.pricing.nightlyRate }))
     });
 
@@ -288,7 +307,16 @@ export class HotelService {
       console.log('💰 After rating filter:', filtered.length, 'hotels');
     }
 
-    // 6. Sort
+    // 6. Fallback: If location was specified (explicit or implicit) but no results, show top 3 by rating
+    // This ensures users get results when they specify a location but filters are too restrictive
+    if (filtered.length === 0 && (hasLocationFilter || hasImplicitLocation)) {
+      console.log('⚠️ No results found with filters, but location was specified. Showing top 3 hotels by rating.');
+      // Get all hotels, sort by rating, take top 3
+      filtered = this.sortHotels(hotels, 'rating_desc').slice(0, 3);
+      console.log('💰 Fallback results:', filtered.map(h => ({ name: h.name, rating: h.rating })));
+    }
+
+    // 7. Sort
     if (criteria.sortBy) {
       filtered = this.sortHotels(filtered, criteria.sortBy);
       console.log('💰 After sorting by', criteria.sortBy, ':', filtered.map(h => ({ name: h.name, price: h.pricing.nightlyRate })));

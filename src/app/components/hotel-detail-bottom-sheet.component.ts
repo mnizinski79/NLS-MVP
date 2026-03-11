@@ -173,14 +173,36 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
       this.calendarObserver.disconnect();
     }
     
-    if (this.calendarSection) {
+    if (this.calendarSection && this.sheetContainer) {
+      // Find the scroll container (.sheet-content)
+      const scrollContainer = this.sheetContainer.nativeElement.querySelector('.sheet-content');
+      
+      if (!scrollContainer) {
+        console.warn('📱 MOBILE: Could not find scroll container (.sheet-content)');
+        return;
+      }
+      
       // Use different threshold based on booking info state
       const targetThreshold = this._hasCompleteBookingInfo ? 0.8 : 0.3;
+      
+      console.log('📱 MOBILE: Setting up calendar observer', {
+        targetThreshold,
+        hasCompleteBookingInfo: this._hasCompleteBookingInfo,
+        scrollContainer: scrollContainer.className
+      });
       
       this.calendarObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach(entry => {
             const previousHideFooter = this.hideFooter;
+            
+            console.log('📱 MOBILE Calendar Observer:', {
+              intersectionRatio: entry.intersectionRatio,
+              targetThreshold,
+              isIntersecting: entry.isIntersecting,
+              hasCompleteBookingInfo: this._hasCompleteBookingInfo,
+              currentHideFooter: this.hideFooter
+            });
             
             // Hide footer when intersection ratio meets or exceeds threshold
             if (entry.intersectionRatio >= targetThreshold) {
@@ -189,6 +211,12 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
               this.hideFooter = false;
             }
             
+            console.log('📱 MOBILE Footer state after check:', {
+              previousHideFooter,
+              newHideFooter: this.hideFooter,
+              willTriggerChange: previousHideFooter !== this.hideFooter
+            });
+            
             // Only trigger change detection if the value actually changed
             if (previousHideFooter !== this.hideFooter) {
               this.cdr.detectChanges();
@@ -196,6 +224,7 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
           });
         },
         {
+          root: scrollContainer, // Use the scroll container as root
           threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
           rootMargin: '-80px 0px 0px 0px'
         }

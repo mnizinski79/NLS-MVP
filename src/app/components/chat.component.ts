@@ -102,10 +102,21 @@ export class ChatComponent {
 
   /**
    * Get date prompt message based on result count
+   * If AI is asking for dates in the message, return empty string (AI message is the prompt)
    * @param message - Message with hotel results
-   * @returns Contextual prompt message
+   * @returns Contextual prompt message or empty string if AI already asked
    */
   getDatePromptMessage(message: Message): string {
+    // Check if AI is already asking for dates in the message
+    const isAskingForDates = /\b(dates?|check-in|check-out|when|arrival|departure)\b.*\b(mind|in mind|thinking|looking|planning)\b/i.test(message.text) ||
+                            /\b(do you have|got any|have any)\b.*\b(dates?|check-in|check-out)\b/i.test(message.text);
+    
+    // If AI is asking for dates, don't show additional prompt (return empty string)
+    if (isAskingForDates) {
+      return '';
+    }
+    
+    // Otherwise, show default prompt based on result count
     const resultCount = message.hotels?.length || 0;
     const optionText = resultCount === 1 ? 'option' : 'options';
     return `You're down to ${resultCount} great ${optionText}. Prices vary by date — want to check availability?`;

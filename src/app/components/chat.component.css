@@ -157,6 +157,15 @@
   justify-content: center;
 }
 
+/* Action buttons container - side by side layout */
+.action-buttons-container {
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+
 .view-all-button {
   display: flex;
   align-items: center;
@@ -191,6 +200,45 @@
   height: 20px;
 }
 
+/* Secondary button styling for View All on Map when side-by-side */
+.view-all-button.secondary {
+  background-color: transparent;
+  color: #1F4456;
+  border: 1.5px solid #1F4456;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 0;
+  box-shadow: none;
+  max-width: none;
+  width: auto;
+}
+
+.view-all-button.secondary:hover {
+  background-color: #f3f4f6;
+  border-color: #163540;
+  color: #163540;
+  transform: translateY(-1px);
+}
+
+.view-all-button.secondary:active {
+  transform: translateY(0);
+  background-color: #e5e7eb;
+}
+
+.view-all-button.secondary .icon {
+  width: 18px;
+  height: 18px;
+}
+
 /* Mobile optimizations */
 @media (max-width: 1024px) {
   .message-wrapper {
@@ -223,7 +271,7 @@
 }
 
 .select-dates-button {
-  padding: 10px 20px;
+  padding: 12px 20px;
   background-color: #1F4456;
   color: white;
   border: none;
@@ -234,17 +282,60 @@
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 0;
+}
+
+.select-dates-button .icon {
+  width: 18px;
+  height: 18px;
 }
 
 .select-dates-button:hover {
-  background-color: #111827;
+  background-color: #163540;
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .select-dates-button:active {
+  transform: translateY(0);
+}
+
+/* Primary button styling for Select Dates when side-by-side */
+.select-dates-button.primary {
+  background-color: #1F4456;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.select-dates-button.primary .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.select-dates-button.primary:hover {
+  background-color: #163540;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.select-dates-button.primary:active {
   transform: translateY(0);
 }
 

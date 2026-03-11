@@ -234,12 +234,26 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, Aft
           entries.forEach(entry => {
             const previousHideFooter = this.hideFooter;
             
+            console.log('💻 DESKTOP Calendar Observer:', {
+              intersectionRatio: entry.intersectionRatio,
+              targetThreshold,
+              isIntersecting: entry.isIntersecting,
+              hasCompleteBookingInfo: this._hasCompleteBookingInfo,
+              currentHideFooter: this.hideFooter
+            });
+            
             // Hide footer when intersection ratio meets or exceeds threshold
             if (entry.intersectionRatio >= targetThreshold) {
               this.hideFooter = true;
             } else if (!entry.isIntersecting) {
               this.hideFooter = false;
             }
+            
+            console.log('💻 DESKTOP Footer state after check:', {
+              previousHideFooter,
+              newHideFooter: this.hideFooter,
+              willTriggerChange: previousHideFooter !== this.hideFooter
+            });
             
             // Only trigger change detection if the value actually changed
             if (previousHideFooter !== this.hideFooter) {

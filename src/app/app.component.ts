@@ -407,9 +407,26 @@ export class AppComponent implements OnInit, OnDestroy {
       console.log('📍 POI extracted from query:', aiResponse.pointOfInterest);
     }
 
-    // Show date picker for small result sets (1-3 hotels) ONLY if dates weren't already extracted
-    // This prompts users to add dates for more accurate pricing
-    const shouldShowDatePicker = hotels.length > 0 && hotels.length <= 3 && !this.hasDates;
+    // Detect if AI is asking for dates in the message
+    const isAskingForDates = /\b(dates?|check-in|check-out|when|arrival|departure)\b.*\b(mind|in mind|thinking|looking|planning)\b/i.test(aiResponse.message) ||
+                            /\b(do you have|got any|have any)\b.*\b(dates?|check-in|check-out)\b/i.test(aiResponse.message) ||
+                            /\b(specific|any)\b.*\b(dates?|check-in|check-out)\b.*\b(mind|in mind)\b/i.test(aiResponse.message);
+
+    // Show date picker if:
+    // 1. AI is explicitly asking for dates in the message, OR
+    // 2. Small result sets (1-3 hotels) AND dates weren't already extracted
+    // Priority: If AI asks for dates, always show picker (even with >3 results)
+    const shouldShowDatePicker = (isAskingForDates && hotels.length > 0) || 
+                                 (hotels.length > 0 && hotels.length <= 3 && !this.hasDates && !isAskingForDates);
+
+    console.log('📅 Date picker logic:', {
+      isAskingForDates,
+      hotelsCount: hotels.length,
+      hasDates: this.hasDates,
+      shouldShowDatePicker,
+      hasPOI: !!aiResponse.pointOfInterest,
+      aiMessage: aiResponse.message
+    });
 
     // Add AI message to chat with optional hotel results
     const aiMessage: Message = {

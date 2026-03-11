@@ -178,3 +178,25 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Leaflet Zoom Controls - Position on right side and move when drawer opens */
+:host ::ng-deep .leaflet-top.leaflet-right {
+  top: 24px;
+  right: 24px;
+  transition: right 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Move zoom controls inward when detail drawer is open (33% width + margin) */
+:host.drawer-open ::ng-deep .leaflet-top.leaflet-right,
+.drawer-open ::ng-deep .leaflet-top.leaflet-right {
+  right: calc(33% + 48px); /* 33% drawer width + 24px margin on each side */
+}
+
+/* Alternative selector without ng-deep */
+.desktop-layout.drawer-open .map-container .leaflet-control-zoom {
+  right: calc(33% + 48px) !important;
+}
+
+.desktop-layout .map-container .leaflet-control-zoom {
+  transition: right 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
