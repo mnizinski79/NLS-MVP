@@ -651,9 +651,23 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, Aft
     const checkInFormatted = formatIHGDate(checkIn);
     const checkOutFormatted = formatIHGDate(checkOut);
     
+    // Use default values if guest counts are null
+    const adultsCount = this.adults ?? 2;
+    const childrenCount = this.children ?? 0;
+    
+    console.log('🔗 Building booking URL:', {
+      checkIn: checkIn.toISOString(),
+      checkOut: checkOut.toISOString(),
+      checkInFormatted,
+      checkOutFormatted,
+      adults: adultsCount,
+      children: childrenCount
+    });
+    
     let bookingUrl: string;
     if (this.hotel.bookingUrl) {
-      bookingUrl = `${this.hotel.bookingUrl}&qAdlt=${this.adults}&qChld=${this.children}&qCiD=${checkInFormatted.day}&qCiMy=${checkInFormatted.monthYear}&qCoD=${checkOutFormatted.day}&qCoMy=${checkOutFormatted.monthYear}`;
+      bookingUrl = `${this.hotel.bookingUrl}&qAdlt=${adultsCount}&qChld=${childrenCount}&qCiD=${checkInFormatted.day}&qCiMy=${checkInFormatted.monthYear}&qCoD=${checkOutFormatted.day}&qCoMy=${checkOutFormatted.monthYear}`;
+      console.log('🔗 Final booking URL:', bookingUrl);
     } else {
       const hotelName = encodeURIComponent(this.hotel.name);
       const checkInStr = checkIn.toLocaleDateString();
