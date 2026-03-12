@@ -75,7 +75,8 @@
       "Broadway",
       "Theater District",
       "Rooftop Bar"
-    ]
+    ],
+    "bookingUrl": "https://www.ihg.com/voco/hotels/gb/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCXV&setPMCookies=true&qSHBrC=VX&qDest=170%20W.%2048th%20Street,%20New%20York,%20NY,%20US"
   },
   {
     "id": "NYCHC",
@@ -112,7 +113,8 @@
       "Times Square",
       "Skyline Views",
       "Theater District"
-    ]
+    ],
+    "bookingUrl": "https://www.ihg.com/intercontinental/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCHC&setPMCookies=true&qSHBrC=IC&qDest=300%20West%2044th%20Street,%20New%20York,%20NY,%20US"
   },
   {
     "id": "NYCDD",
@@ -149,7 +151,8 @@
       "Rockefeller Center",
       "Rooftop Bar",
       "New Opening"
-    ]
+    ],
+    "bookingUrl": "https://www.ihg.com/kimptonhotels/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCDD&setPMCookies=true&qSHBrC=KI&qDest=32%20West%2048th%20Street,%20New%20York,%20NY,%20US"
   },
   {
     "id": "NYCAT",
@@ -186,7 +189,8 @@
       "Central Location",
       "Value",
       "City Views"
-    ]
+    ],
+    "bookingUrl": "https://www.ihg.com/spnd/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAT&setPMCookies=true&qSHBrC=SP&qDest=790%207th%20Ave,%20New%20York,%20NY,%20US"
   },
   {
     "id": "NYCMA",
@@ -223,6 +227,7 @@
       "Family Friendly",
       "Value",
       "Convenient"
-    ]
+    ],
+    "bookingUrl": "https://www.ihg.com/holidayinn/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMA&setPMCookies=true&qSHBrC=HI&qDest=585%208th%20Avenue,%20New%20York,%20NY,%20US"
   }
 ]
