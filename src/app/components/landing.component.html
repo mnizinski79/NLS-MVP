@@ -22,27 +22,27 @@
               <div class="brand-icon">
                 <img src="assets/Sparkles.svg" alt="IHG AI Assistant" class="brand-logo">
               </div>
-              <p class="brand-subtitle">Find your perfect stay in New York City</p>
-            </div>
-            
-            <div class="examples-section">
-              <p class="examples-label">Popular searches</p>
-              <div class="examples-grid">
-                <button
-                  *ngFor="let query of exampleQueries"
-                  class="example-chip"
-                  (click)="onFirstMessage(query)"
-                  [attr.aria-label]="'Try example query: ' + query"
-                >
-                  {{ query }}
-                </button>
-              </div>
+              <p class="brand-tagline">6,900+ hotels across 100+ countries.<br>Wherever the world takes you, we're already there.</p>
+              <h2 class="brand-headline">So, where to?</h2>
             </div>
           </div>
         </div>
 
-        <!-- Input at bottom -->
+        <!-- Examples + Input at bottom -->
         <div class="input-container">
+          <div class="examples-section">
+            <p class="examples-label">Popular searches</p>
+            <div class="examples-grid">
+              <button
+                *ngFor="let query of exampleQueries"
+                class="example-chip"
+                (click)="onFirstMessage(query)"
+                [attr.aria-label]="'Try example query: ' + query"
+              >
+                {{ query }}
+              </button>
+            </div>
+          </div>
           <app-input
             [placeholder]="'Ask me about hotels in NYC...'"
             (messageSent)="onFirstMessage($event)"
@@ -54,12 +54,12 @@
     <!-- Right side: Globe -->
     <div class="landing-right">
       <div class="globe-container">
-        <om-globe
-          [rotationSpeed]="0.001"
-          [globeSize]="700"
-          [globeOptions]="globeOptions"
-          styleClass="interactive-globe"
-        ></om-globe>
+        <om-three-globe
+          [globeSize]="'700px'"
+          [globeConfig]="globeConfig"
+          [arcs]="globeArcs"
+          [arcAndRingColors]="['#1F4456']"
+        ></om-three-globe>
       </div>
     </div>
   </div>
@@ -77,9 +77,13 @@
         <div class="brand-icon">
           <img src="assets/Sparkles.svg" alt="IHG AI Assistant" class="brand-logo">
         </div>
-        <p class="brand-subtitle">Find your perfect stay in New York City</p>
+        <p class="brand-tagline">6,900+ hotels across 100+ countries.<br>Wherever the world takes you, we're already there.</p>
+        <h2 class="brand-headline">So, where to?</h2>
       </div>
-      
+    </div>
+    
+    <!-- Fixed input at bottom (like chat) -->
+    <div class="mobile-input-container">
       <div class="examples-section">
         <p class="examples-label">Popular searches</p>
         <div class="examples-grid">
@@ -93,10 +97,6 @@
           </button>
         </div>
       </div>
-    </div>
-    
-    <!-- Fixed input at bottom (like chat) -->
-    <div class="mobile-input-container">
       <app-input
         [placeholder]="'Ask me about hotels in NYC...'"
         (messageSent)="onFirstMessage($event)"
