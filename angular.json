@@ -30,7 +30,8 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "leaflet"
+              "leaflet",
+              "frame-ticker"
             ]
           },
           "configurations": {
