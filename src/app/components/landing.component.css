@@ -16,6 +16,30 @@
   }
 }
 
+/* IHG Banner */
+.ihg-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1F4456;
+  padding: 10px 16px;
+  flex-shrink: 0;
+}
+
+.ihg-banner-logo {
+  height: 16px;
+  width: auto;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.ihg-banner-feedback {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
 /* Desktop split view */
 .landing-desktop {
   display: none;
@@ -140,12 +164,12 @@
   border-radius: 0 0 16px 16px;
 }
 
-/* Desktop right side with globe - full width background */
+/* Desktop right side with globe - area right of chat panel */
 .landing-right {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 468px;
+  right: 0;
   height: 100%;
   display: flex;
   align-items: center;
@@ -154,14 +178,23 @@
   z-index: 1;
 }
 
+/* Background fill behind the chat panel */
+.landing-right::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -468px;
+  width: 468px;
+  height: 100%;
+  background: #e8eaed;
+}
+
 .globe-container {
-  width: 100%;
   max-width: 700px;
   height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 25%;
 }
 
 .interactive-globe {
@@ -225,6 +258,7 @@
   height: 48px;
   width: auto;
   object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .brand-subtitle {
@@ -329,3 +363,5 @@
     text-align: center;
   }
 }
+
+/* Property photos - removed */

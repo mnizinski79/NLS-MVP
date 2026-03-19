@@ -1,15 +1,21 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from './input.component';
 import { NgxGlobeComponent } from '@omnedia/ngx-globe';
+
+interface PhotoSlot {
+  currentSrc: string;
+  photos: string[];
+  currentIndex: number;
+  fading: boolean;
+}
 
 @Component({
   selector: 'app-landing',
   standalone: true,
   imports: [CommonModule, InputComponent, NgxGlobeComponent],
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./landing.component.css']
 })
 /**
  * LandingComponent - Full-screen landing page
@@ -27,7 +33,7 @@ import { NgxGlobeComponent } from '@omnedia/ngx-globe';
  *   (dismissed)="handleLandingDismissed()">
  * </app-landing>
  */
-export class LandingComponent {
+export class LandingComponent implements OnInit, OnDestroy {
   /** Whether the landing page is visible */
   @Input() visible: boolean = true;
 
@@ -43,6 +49,90 @@ export class LandingComponent {
     'Find pet-friendly hotels with a rooftop bar',
     'What are the cheapest options near Times Square?'
   ];
+
+  /** All available property photos */
+  private allPhotos: string[] = [
+    'assets/property-1.jpg', 'assets/property-2.jpg', 'assets/property-3.jpg',
+    'assets/property-4.jpg', 'assets/property-5.jpg', 'assets/property-6.jpg',
+    'assets/property-7.jpg', 'assets/property-8.jpg', 'assets/property-9.jpg',
+    'assets/property-10.jpg', 'assets/property-12.jpg', 'assets/property-13.jpg'
+  ];
+
+  /** 6 photo slots, each cycling through a subset of images */
+  photoSlots: PhotoSlot[] = [];
+
+  private rotationTimers: ReturnType<typeof setTimeout>[] = [];
+
+  /** Cycle durations in ms — scattered so swaps don't sync up */
+  private cycleDurations = [8000, 15000, 11000, 21000];
+
+  /** All fade in together */
+  private initialDelays = [0, 0, 0, 0];
+
+  ngOnInit(): void {
+    this.initPhotoSlots();
+    this.startRotations();
+  }
+
+  ngOnDestroy(): void {
+    this.rotationTimers.forEach(t => clearTimeout(t));
+    this.rotationTimers = [];
+  }
+
+  private initPhotoSlots(): void {
+    const shuffled = [...this.allPhotos].sort(() => Math.random() - 0.5);
+    
+    for (let i = 0; i < 4; i++) {
+      const slotPhotos = [
+        shuffled[i],
+        shuffled[i + 6] || shuffled[(i + 3) % 6]
+      ].filter(Boolean);
+      this.photoSlots.push({
+        currentSrc: slotPhotos[0],
+        photos: slotPhotos,
+        currentIndex: 0,
+        fading: true
+      });
+    }
+  }
+
+  private startRotations(): void {
+    this.photoSlots.forEach((slot, i) => {
+      // Staggered initial fade-in
+      const showTimer = setTimeout(() => {
+        slot.fading = false; // triggers .visible class
+
+        // Start the swap cycle after initial show
+        this.startSlotCycle(slot, i);
+      }, this.initialDelays[i]);
+
+      this.rotationTimers.push(showTimer);
+    });
+  }
+
+  private startSlotCycle(slot: PhotoSlot, index: number): void {
+    const cycle = () => {
+      // Fade out (remove .visible)
+      slot.fading = true;
+
+      // After fade-out completes (1.5s), swap image and fade back in
+      const swapTimer = setTimeout(() => {
+        slot.currentIndex = (slot.currentIndex + 1) % slot.photos.length;
+        slot.currentSrc = slot.photos[slot.currentIndex];
+        slot.fading = false; // fade back in
+
+        // Schedule next cycle
+        const nextTimer = setTimeout(cycle, this.cycleDurations[index]);
+        this.rotationTimers.push(nextTimer);
+      }, 1000);
+
+      this.rotationTimers.push(swapTimer);
+    };
+
+    // First swap after the cycle duration
+    const firstTimer = setTimeout(cycle, this.cycleDurations[index]);
+    this.rotationTimers.push(firstTimer);
+  }
 
   /** Globe configuration */
   globeOptions = {

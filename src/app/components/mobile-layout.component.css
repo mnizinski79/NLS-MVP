@@ -17,6 +17,33 @@
   z-index: 10;
 }
 
+/* IHG Banner */
+.ihg-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1F4456;
+  padding: 10px 16px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 11;
+}
+
+.ihg-banner-logo {
+  height: 16px;
+  width: auto;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.ihg-banner-feedback {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
 .header-title {
   font-size: 1.25rem;
   font-weight: 600;
