@@ -33,7 +33,7 @@ export class InputComponent {
   @Input() disabled: boolean = false;
 
   /** Placeholder text for the input field */
-  @Input() placeholder: string = 'Ask me about hotels in NYC...';
+  @Input() placeholder: string = 'Where do you want to go...';
 
   /** Emitted when user submits a valid message (after debouncing) */
   @Output() messageSent = new EventEmitter<string>();

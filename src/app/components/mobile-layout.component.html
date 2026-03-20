@@ -2,12 +2,10 @@
   <!-- IHG Banner -->
   <div class="ihg-banner">
     <img src="assets/IHG.svg" alt="IHG Hotels & Resorts" class="ihg-banner-logo" />
-    <span class="ihg-banner-feedback">Feedback?</span>
-  </div>
-
-  <!-- Header -->
-  <div class="header">
-    <h1 class="header-title">IHG Hotel Search</h1>
+    <button class="join-signin-btn">
+      <img src="assets/Loyalty.svg" alt="" class="loyalty-icon" />
+      Join / Sign in
+    </button>
   </div>
 
   <!-- Chat with inline cards - scrollable content -->
@@ -26,7 +24,7 @@
   <div class="input-container">
     <app-input
       [disabled]="inputDisabled"
-      placeholder="Ask me about hotels in NYC..."
+      placeholder="Where do you want to go..."
       (messageSent)="onMessageSent($event)">
     </app-input>
   </div>

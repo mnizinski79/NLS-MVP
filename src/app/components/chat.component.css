@@ -1,7 +1,7 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  padding: 16px 16px 24px 16px;
+  padding: 16px 24px 24px 24px;
   transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
   will-change: max-height, opacity, padding;
   overflow: hidden;
@@ -246,7 +246,7 @@
   }
 
   .chat-container {
-    padding: 16px 16px 0 16px;
+    padding: 16px 24px 0 24px;
   }
   
   .messages-list {

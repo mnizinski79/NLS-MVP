@@ -7,7 +7,10 @@
         <!-- IHG Banner -->
         <div class="ihg-banner">
           <img src="assets/IHG.svg" alt="IHG Hotels & Resorts" class="ihg-banner-logo" />
-          <span class="ihg-banner-feedback">Feedback?</span>
+          <button class="join-signin-btn">
+            <img src="assets/Loyalty.svg" alt="" class="loyalty-icon" />
+            Join / Sign in
+          </button>
         </div>
 
         <!-- Header -->
@@ -22,29 +25,29 @@
               <div class="brand-icon">
                 <img src="assets/Sparkles.svg" alt="IHG AI Assistant" class="brand-logo">
               </div>
-              <p class="brand-subtitle">Find your perfect stay in New York City</p>
-            </div>
-            
-            <div class="examples-section">
-              <p class="examples-label">Popular searches</p>
-              <div class="examples-grid">
-                <button
-                  *ngFor="let query of exampleQueries"
-                  class="example-chip"
-                  (click)="onFirstMessage(query)"
-                  [attr.aria-label]="'Try example query: ' + query"
-                >
-                  {{ query }}
-                </button>
-              </div>
+              <p class="brand-tagline">6,900+ hotels across 100+ countries.<br>Wherever the world takes you, we're already there.</p>
+              <p class="brand-subtitle">So, where to?</p>
             </div>
           </div>
         </div>
 
         <!-- Input at bottom -->
         <div class="input-container">
+          <div class="examples-section">
+            <p class="examples-label">Try asking</p>
+            <div class="examples-grid">
+              <button
+                *ngFor="let query of exampleQueries"
+                class="example-chip"
+                (click)="onFirstMessage(query)"
+                [attr.aria-label]="'Try example query: ' + query"
+              >
+                {{ query }}
+              </button>
+            </div>
+          </div>
           <app-input
-            [placeholder]="'Ask me about hotels in NYC...'"
+            [placeholder]="'Where do you want to go...'"
             (messageSent)="onFirstMessage($event)"
           ></app-input>
         </div>
@@ -69,7 +72,10 @@
     <!-- IHG Banner -->
     <div class="ihg-banner">
       <img src="assets/IHG.svg" alt="IHG Hotels & Resorts" class="ihg-banner-logo" />
-      <span class="ihg-banner-feedback">Feedback?</span>
+      <button class="join-signin-btn">
+        <img src="assets/Loyalty.svg" alt="" class="loyalty-icon" />
+        Join / Sign in
+      </button>
     </div>
 
     <div class="mobile-content">
@@ -77,11 +83,15 @@
         <div class="brand-icon">
           <img src="assets/Sparkles.svg" alt="IHG AI Assistant" class="brand-logo">
         </div>
-        <p class="brand-subtitle">Find your perfect stay in New York City</p>
+        <p class="brand-tagline">6,900+ hotels across 100+ countries.<br>Wherever the world takes you, we're already there.</p>
+        <p class="brand-subtitle">So, where to?</p>
       </div>
-      
+    </div>
+    
+    <!-- Fixed input at bottom (like chat) -->
+    <div class="mobile-input-container">
       <div class="examples-section">
-        <p class="examples-label">Popular searches</p>
+        <p class="examples-label">Try asking</p>
         <div class="examples-grid">
           <button
             *ngFor="let query of exampleQueries"
@@ -93,12 +103,8 @@
           </button>
         </div>
       </div>
-    </div>
-    
-    <!-- Fixed input at bottom (like chat) -->
-    <div class="mobile-input-container">
       <app-input
-        [placeholder]="'Ask me about hotels in NYC...'"
+        [placeholder]="'Where do you want to go...'"
         (messageSent)="onFirstMessage($event)"
       ></app-input>
     </div>

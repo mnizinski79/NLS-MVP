@@ -46,8 +46,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   /** Example queries to display in welcome box */
   exampleQueries: string[] = [
     'Show me luxury hotels in Midtown',
-    'Find pet-friendly hotels with a rooftop bar',
-    'What are the cheapest options near Times Square?'
+    'Find pet-friendly hotels with a rooftop bar'
   ];
 
   /** All available property photos */
