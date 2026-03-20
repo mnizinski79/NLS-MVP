@@ -44,7 +44,7 @@
             </div>
           </div>
           <app-input
-            [placeholder]="'Ask me about hotels in NYC...'"
+            [placeholder]="'Tell us where you want to go.'"
             (messageSent)="onFirstMessage($event)"
           ></app-input>
         </div>
@@ -60,6 +60,30 @@
           [arcs]="globeArcs"
           [arcAndRingColors]="['#1F4456']"
         ></om-three-globe>
+        <!-- Floating brand logos -->
+        <div class="brand-orbit">
+          <div
+            *ngFor="let slot of brandSlots"
+            class="brand-float"
+            [class.brand-visible]="slot.visible"
+            [style.left.%]="slot.x"
+            [style.top.%]="slot.y"
+            [style.width.px]="slot.size"
+            [style.height.px]="slot.size"
+          >
+            <img [src]="slot.logo" [alt]="slot.name" class="brand-float-logo" />
+          </div>
+          <!-- Floating property photos -->
+          <div
+            *ngFor="let photo of photoSlots"
+            class="photo-float"
+            [class.brand-visible]="photo.visible"
+            [style.left.%]="photo.x"
+            [style.top.%]="photo.y"
+          >
+            <img [src]="photo.src" alt="IHG Property" class="photo-float-img" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -98,7 +122,7 @@
         </div>
       </div>
       <app-input
-        [placeholder]="'Ask me about hotels in NYC...'"
+        [placeholder]="'Tell us where you want to go.'"
         (messageSent)="onFirstMessage($event)"
       ></app-input>
     </div>
