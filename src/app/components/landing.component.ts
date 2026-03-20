@@ -17,7 +17,7 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   exampleQueries: string[] = [
     'Show me luxury hotels in Midtown',
-    'Cheapest options near Times Square'
+    'Find pet-friendly hotels with a rooftop bar'
   ];
 
   /** Globe configuration — minimal light style */

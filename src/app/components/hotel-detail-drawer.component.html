@@ -82,10 +82,16 @@
         </button>
       </div>
 
+      <!-- Website link -->
+      <a *ngIf="hotel.bookingUrl" [href]="hotel.bookingUrl" target="_blank" rel="noopener noreferrer" class="visit-website-link">
+        Visit website →
+      </a>
+
       <!-- Description -->
       <div class="section">
         <h3 class="section-title">Description</h3>
         <p class="description-text">{{ hotel.description }}</p>
+        <p *ngIf="pointOfInterest" class="poi-distance">{{ getDistanceFromPOI() }} from {{ pointOfInterest.name }}</p>
       </div>
 
       <!-- Amenities -->
@@ -96,22 +102,6 @@
             <span class="amenity-icon">{{ amenity.icon }}</span>
             <span class="amenity-text">{{ amenity.name }}</span>
           </div>
-        </div>
-      </div>
-
-      <!-- Location map -->
-      <div class="section">
-        <h3 class="section-title">Location</h3>
-        <p *ngIf="pointOfInterest" class="poi-distance">{{ getDistanceFromPOI() }} from {{ pointOfInterest.name }}</p>
-        <div class="map-container">
-          <app-map
-            [hotels]="[hotel]"
-            [center]="[hotel.location.coordinates.lat, hotel.location.coordinates.lng]"
-            [zoom]="15"
-            [selectedHotelId]="hotel.id"
-            [isMobile]="false"
-            [pointOfInterest]="pointOfInterest"
-          ></app-map>
         </div>
       </div>
 

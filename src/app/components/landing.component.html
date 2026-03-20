@@ -7,7 +7,10 @@
         <!-- IHG Banner -->
         <div class="ihg-banner">
           <img src="assets/IHG.svg" alt="IHG Hotels & Resorts" class="ihg-banner-logo" />
-          <span class="ihg-banner-feedback">Feedback?</span>
+          <button class="join-signin-btn">
+            <img src="assets/Loyalty.svg" alt="" class="loyalty-icon" />
+            Join / Sign in
+          </button>
         </div>
 
         <!-- Header -->
@@ -23,7 +26,7 @@
                 <img src="assets/Sparkles.svg" alt="IHG AI Assistant" class="brand-logo">
               </div>
               <p class="brand-tagline">6,900+ hotels across 100+ countries.<br>Wherever the world takes you, we're already there.</p>
-              <h2 class="brand-headline">So, where to?</h2>
+              <p class="brand-subtitle">So, where to?</p>
             </div>
           </div>
         </div>
@@ -31,7 +34,7 @@
         <!-- Examples + Input at bottom -->
         <div class="input-container">
           <div class="examples-section">
-            <p class="examples-label">Popular searches</p>
+            <p class="examples-label">Try asking</p>
             <div class="examples-grid">
               <button
                 *ngFor="let query of exampleQueries"
@@ -44,7 +47,7 @@
             </div>
           </div>
           <app-input
-            [placeholder]="'Tell us where you want to go.'"
+            [placeholder]="'Where do you want to go...'"
             (messageSent)="onFirstMessage($event)"
           ></app-input>
         </div>
@@ -93,7 +96,10 @@
     <!-- IHG Banner -->
     <div class="ihg-banner">
       <img src="assets/IHG.svg" alt="IHG Hotels & Resorts" class="ihg-banner-logo" />
-      <span class="ihg-banner-feedback">Feedback?</span>
+      <button class="join-signin-btn">
+        <img src="assets/Loyalty.svg" alt="" class="loyalty-icon" />
+        Join / Sign in
+      </button>
     </div>
 
     <div class="mobile-content">
@@ -102,14 +108,14 @@
           <img src="assets/Sparkles.svg" alt="IHG AI Assistant" class="brand-logo">
         </div>
         <p class="brand-tagline">6,900+ hotels across 100+ countries.<br>Wherever the world takes you, we're already there.</p>
-        <h2 class="brand-headline">So, where to?</h2>
+        <p class="brand-subtitle">So, where to?</p>
       </div>
     </div>
     
     <!-- Fixed input at bottom (like chat) -->
     <div class="mobile-input-container">
       <div class="examples-section">
-        <p class="examples-label">Popular searches</p>
+        <p class="examples-label">Try asking</p>
         <div class="examples-grid">
           <button
             *ngFor="let query of exampleQueries"
@@ -122,7 +128,7 @@
         </div>
       </div>
       <app-input
-        [placeholder]="'Tell us where you want to go.'"
+        [placeholder]="'Where do you want to go...'"
         (messageSent)="onFirstMessage($event)"
       ></app-input>
     </div>
