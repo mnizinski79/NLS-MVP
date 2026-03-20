@@ -1,8 +1,9 @@
 <div *ngIf="visible" class="landing-container" [class.landing-exit]="!visible" role="main" aria-label="Hotel search landing page">
-  <!-- Desktop: Split view with globe on right -->
+
+  <!-- Desktop: Centered layout with globe background -->
   <div class="landing-desktop">
-    <!-- Left side: Chat Panel (matching desktop-layout) -->
-    <div class="landing-left">
+    <!-- Centered chat panel -->
+    <div class="landing-center">
       <div class="floating-chat-panel">
         <!-- IHG Banner -->
         <div class="ihg-banner">
@@ -13,39 +14,30 @@
           </button>
         </div>
 
-        <!-- Header -->
-        <div class="header">
-        </div>
-
-        <!-- Chat content area -->
+        <!-- Brand content -->
         <div class="chat-container">
-          <!-- Welcome content when no messages -->
           <div class="welcome-content">
             <div class="brand-section">
               <div class="brand-icon">
                 <img src="assets/Sparkles.svg" alt="IHG AI Assistant" class="brand-logo">
               </div>
+              <p class="brand-subtitle">Where to?</p>
               <p class="brand-tagline">6,900+ hotels across 100+ countries.<br>Wherever the world takes you, we're already there.</p>
-              <p class="brand-subtitle">So, where to?</p>
+            </div>
+
+            <!-- Scrolling card ticker -->
+            <div class="card-ticker-wrapper">
+              <div class="card-ticker" #tickerTrack>
+                <div *ngFor="let src of tickerCards; let i = index" class="ticker-card-wrap">
+                  <img [src]="src" alt="IHG Property" class="ticker-card" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Examples + Input at bottom -->
+        <!-- Input at bottom -->
         <div class="input-container">
-          <div class="examples-section">
-            <p class="examples-label">Try asking</p>
-            <div class="examples-grid">
-              <button
-                *ngFor="let query of exampleQueries"
-                class="example-chip"
-                (click)="onFirstMessage(query)"
-                [attr.aria-label]="'Try example query: ' + query"
-              >
-                {{ query }}
-              </button>
-            </div>
-          </div>
           <app-input
             [placeholder]="'Where do you want to go...'"
             (messageSent)="onFirstMessage($event)"
@@ -53,44 +45,8 @@
         </div>
       </div>
     </div>
-    
-    <!-- Right side: Globe -->
-    <div class="landing-right">
-      <div class="globe-container">
-        <om-three-globe
-          [globeSize]="'700px'"
-          [globeConfig]="globeConfig"
-          [arcs]="globeArcs"
-          [arcAndRingColors]="['#1F4456']"
-        ></om-three-globe>
-        <!-- Floating brand logos -->
-        <div class="brand-orbit">
-          <div
-            *ngFor="let slot of brandSlots"
-            class="brand-float"
-            [class.brand-visible]="slot.visible"
-            [style.left.%]="slot.x"
-            [style.top.%]="slot.y"
-            [style.width.px]="slot.size"
-            [style.height.px]="slot.size"
-          >
-            <img [src]="slot.logo" [alt]="slot.name" class="brand-float-logo" />
-          </div>
-          <!-- Floating property photos -->
-          <div
-            *ngFor="let photo of photoSlots"
-            class="photo-float"
-            [class.brand-visible]="photo.visible"
-            [style.left.%]="photo.x"
-            [style.top.%]="photo.y"
-          >
-            <img [src]="photo.src" alt="IHG Property" class="photo-float-img" />
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-  
+
   <!-- Mobile: Fixed input at bottom -->
   <div class="landing-mobile">
     <!-- IHG Banner -->
@@ -107,26 +63,22 @@
         <div class="brand-icon">
           <img src="assets/Sparkles.svg" alt="IHG AI Assistant" class="brand-logo">
         </div>
+        <p class="brand-subtitle">Where to?</p>
         <p class="brand-tagline">6,900+ hotels across 100+ countries.<br>Wherever the world takes you, we're already there.</p>
-        <p class="brand-subtitle">So, where to?</p>
       </div>
-    </div>
-    
-    <!-- Fixed input at bottom (like chat) -->
-    <div class="mobile-input-container">
-      <div class="examples-section">
-        <p class="examples-label">Try asking</p>
-        <div class="examples-grid">
-          <button
-            *ngFor="let query of exampleQueries"
-            class="example-chip"
-            (click)="onFirstMessage(query)"
-            [attr.aria-label]="'Try example query: ' + query"
-          >
-            {{ query }}
-          </button>
+
+      <!-- Scrolling card ticker on mobile too -->
+      <div class="card-ticker-wrapper">
+        <div class="card-ticker" #tickerTrackMobile>
+          <div *ngFor="let src of tickerCards; let i = index" class="ticker-card-wrap">
+            <img [src]="src" alt="IHG Property" class="ticker-card" />
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- Fixed input at bottom -->
+    <div class="mobile-input-container">
       <app-input
         [placeholder]="'Where do you want to go...'"
         (messageSent)="onFirstMessage($event)"
