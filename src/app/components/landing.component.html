@@ -43,7 +43,7 @@
         <div class="input-container">
           <div class="search-chips" role="list" aria-label="Suggested searches">
             <button *ngFor="let chip of searchChips" class="search-chip" role="listitem" (click)="onFirstMessage(chip.text)">
-              <span class="chip-icon" [innerHTML]="chip.icon"></span>
+              <i [class]="chip.icon" class="chip-icon" aria-hidden="true"></i>
               <span class="chip-text">{{ chip.text }}</span>
             </button>
           </div>
@@ -90,7 +90,7 @@
     <div class="mobile-input-container">
       <div class="search-chips" role="list" aria-label="Suggested searches">
         <button *ngFor="let chip of searchChips" class="search-chip" role="listitem" (click)="onFirstMessage(chip.text)">
-          <span class="chip-icon" [innerHTML]="chip.icon"></span>
+          <i [class]="chip.icon" class="chip-icon" aria-hidden="true"></i>
           <span class="chip-text">{{ chip.text }}</span>
         </button>
       </div>

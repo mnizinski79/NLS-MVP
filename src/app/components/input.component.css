@@ -100,7 +100,7 @@
 @media (max-width: 1024px) {
   .input-wrapper {
     margin: 0;
-    padding: 12px 0;
+    padding: 4px 0 0;
   }
 
   .input-field {

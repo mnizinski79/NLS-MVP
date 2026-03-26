@@ -29,7 +29,7 @@ export class MapService {
     const customIcon = L.divIcon({
       html: markerHtml,
       className: 'custom-hotel-marker',
-      iconSize: iconSize,
+      iconSize: undefined,
       iconAnchor: iconAnchor
     });
 
@@ -56,17 +56,18 @@ export class MapService {
       const price = Math.round(hotel.pricing.nightlyRate);
 
       // Smaller dimensions and less padding for mobile
-      const padding = isMobile ? '3px 6px' : '4px 8px';
+      const padding = isMobile ? '6px 10px 6px 6px' : '8px 12px 8px 8px';
       const borderRadius = isMobile ? 'var(--radius-sm)' : 'var(--radius-md)';
-      const logoSize = isMobile ? '22px' : '26px';
-      const logoContainerSize = isMobile ? '26px' : '30px';
+      const logoSize = isMobile ? '18px' : '20px';
+      const logoContainerSize = isMobile ? '18px' : '20px';
       const marginRight = isMobile ? '5px' : '6px';
       const fontSize = isMobile ? '12px' : '14px';
 
       return `
         <div class="marker-content" style="
-          display: flex;
+          display: inline-flex;
           align-items: center;
+          width: fit-content;
           background-color: ${brandColor};
           border-radius: ${borderRadius};
           padding: ${padding};
@@ -94,7 +95,7 @@ export class MapService {
             font-weight: 600;
             font-size: ${fontSize};
             white-space: nowrap;
-          " aria-hidden="true">${price}</span>
+          " aria-hidden="true">${price} USD</span>
         </div>
       `;
     }

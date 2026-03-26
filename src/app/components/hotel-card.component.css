@@ -65,6 +65,29 @@
   @apply text-xs text-gray-900 font-medium;
 }
 
+/* Badge Overlay (next to star rating) */
+.badge-overlay {
+  @apply absolute flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 shadow-md;
+  border-radius: var(--radius-md);
+  top: 0.5rem;
+  left: calc(0.5rem + 60px + 6px); /* offset past the rating pill */
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.badge-overlay i {
+  font-size: 13px;
+  color: #1F4456;
+}
+
+.badge-text {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #374151;
+}
+
 /* Brand Chiclet (Top Right) */
 .brand-chiclet {
   @apply absolute top-2 right-2 flex items-center justify-center shadow-md;
