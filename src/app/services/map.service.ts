@@ -57,7 +57,7 @@ export class MapService {
 
       // Smaller dimensions and less padding for mobile
       const padding = isMobile ? '3px 6px' : '4px 8px';
-      const borderRadius = isMobile ? '6px' : '8px';
+      const borderRadius = isMobile ? 'var(--radius-sm)' : 'var(--radius-md)';
       const logoSize = isMobile ? '22px' : '26px';
       const logoContainerSize = isMobile ? '26px' : '30px';
       const marginRight = isMobile ? '5px' : '6px';

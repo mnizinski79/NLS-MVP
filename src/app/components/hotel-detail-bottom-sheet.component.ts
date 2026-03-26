@@ -314,26 +314,37 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   }
 
   getAmenitiesWithIcons(): Array<{name: string, icon: string}> {
-    if (!this.hotel) return [];
-    
-    const iconMap: {[key: string]: string} = {
-      'Pool': '🏊',
-      'Fitness center': '💪',
-      'Rooftop bar': '🍸',
-      'Pets allowed': '🐕',
-      'Free WiFi': '📶',
-      'Parking': '🅿️',
-      'Restaurant': '🍽️',
-      'Spa': '💆',
-      'Room service': '🛎️',
-      'Business center': '💼'
-    };
+      if (!this.hotel) return [];
 
-    return this.hotel.amenities.map(amenity => ({
-      name: amenity,
-      icon: iconMap[amenity] || '✓'
-    }));
-  }
+      const iconMap: {[key: string]: string} = {
+        'Pool': 'ph ph-swimming-pool',
+        'Fitness Center': 'ph ph-barbell',
+        'Fitness center': 'ph ph-barbell',
+        'Rooftop Bar': 'ph ph-martini',
+        'Cocktail Bar': 'ph ph-wine',
+        'Pet Friendly': 'ph ph-paw-print',
+        'Pets allowed': 'ph ph-paw-print',
+        'Free Wi-Fi': 'ph ph-wifi-high',
+        'Free WiFi': 'ph ph-wifi-high',
+        'Parking': 'ph ph-car',
+        'Restaurant': 'ph ph-fork-knife',
+        'Spa': 'ph ph-flower-lotus',
+        'Room Service': 'ph ph-bell-concierge',
+        'Room service': 'ph ph-bell-concierge',
+        'Business Center': 'ph ph-briefcase',
+        'Business center': 'ph ph-briefcase',
+        'Concierge': 'ph ph-user',
+        'Kids Eat Free': 'ph ph-baby',
+        'Hosted Wine Hour': 'ph ph-wine',
+        'Terrace Rooms': 'ph ph-sun',
+        'Grab & Go Market': 'ph ph-storefront'
+      };
+
+      return this.hotel.amenities.map(amenity => ({
+        name: amenity,
+        icon: iconMap[amenity] || 'ph ph-check'
+      }));
+    }
 
   getThumbnailImages(): string[] {
     if (!this.hotel || this.hotel.imageUrls.length === 0) return [];

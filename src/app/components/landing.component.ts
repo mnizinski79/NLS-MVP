@@ -64,8 +64,18 @@ export class LandingComponent implements AfterViewInit, OnDestroy {
     'assets/LocationBrandCard-Vig.png',
   ];
 
+  private locationCardsDesktop = [
+    'assets/LocationBrandCard-IC-desk.png',
+    'assets/LocationBrandCard-IN-desk.png',
+    'assets/LocationBrandCard-K-desk.png',
+    'assets/LocationBrandCard-Reg-desk.png',
+    'assets/LocationBrandCard-SS-desk.png',
+    'assets/LocationBrandCard-Vig-desk.png',
+  ];
+
   // Doubled so there's always a seamless copy ahead
   tickerCards = [...this.locationCards, ...this.locationCards];
+  tickerCardsDesktop = [...this.locationCardsDesktop, ...this.locationCardsDesktop];
 
   @ViewChild('tickerTrack') tickerTrack!: ElementRef<HTMLElement>;
   @ViewChild('tickerTrackMobile') tickerTrackMobile!: ElementRef<HTMLElement>;
@@ -75,14 +85,16 @@ export class LandingComponent implements AfterViewInit, OnDestroy {
   private offset = 0;
   private speed = 0.3; // px per frame
 
+  private mapPanOffset = 0;
+
   constructor(private ngZone: NgZone) {}
 
   ngAfterViewInit(): void {
     // Initialize Leaflet background map (desktop only)
     if (this.mapContainer?.nativeElement) {
       this.map = L.map(this.mapContainer.nativeElement, {
-        center: [20, 0],
-        zoom: 2,
+        center: [30, 0],
+        zoom: 3,
         zoomControl: false,
         attributionControl: false,
         dragging: false,
@@ -108,18 +120,16 @@ export class LandingComponent implements AfterViewInit, OnDestroy {
     }
 
     // Ticker animation
-    // Ticker animation
+    // Ticker animation + map slow pan
     this.ngZone.runOutsideAngular(() => {
       const animate = () => {
         this.offset += this.speed;
         const track = this.tickerTrack?.nativeElement ?? this.tickerTrackMobile?.nativeElement;
         if (track) {
-          // Reset when we've scrolled exactly half (one full set)
           const halfWidth = track.scrollWidth / 2;
           if (this.offset >= halfWidth) {
             this.offset -= halfWidth;
           }
-          // Apply to both tracks
           if (this.tickerTrack?.nativeElement) {
             this.tickerTrack.nativeElement.style.transform = `translateX(-${this.offset}px)`;
           }

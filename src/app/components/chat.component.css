@@ -68,14 +68,14 @@
 
 .message-bubble {
   padding: 14px 18px;
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   word-wrap: break-word;
 }
 
 .user-bubble {
   background-color: #1F4456;
   color: white;
-  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: var(--radius-xs);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -140,7 +140,9 @@
   display: flex;
   gap: 12px;
   overflow-x: auto;
+  overflow-y: visible;
   padding-bottom: 8px;
+  padding-top: 12px;
   scroll-snap-type: x mandatory;
 }
 
@@ -175,7 +177,7 @@
   background-color: #1F4456;
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
@@ -208,7 +210,7 @@
   padding: 12px 16px;
   font-size: 14px;
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -275,7 +277,7 @@
   background-color: #1F4456;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -312,7 +314,7 @@
   padding: 12px 20px;
   font-size: 14px;
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -351,7 +353,7 @@
   width: 100%;
   max-width: 100%;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #e5e7eb;
 }
