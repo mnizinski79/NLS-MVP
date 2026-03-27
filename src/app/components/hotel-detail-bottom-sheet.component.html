@@ -83,10 +83,16 @@
 
     <!-- Hotel info -->
     <div class="hotel-info">
-      <!-- Rating pill -->
-      <div class="rating-pill">
-        <span class="star-icon" aria-hidden="true">★</span>
-        <span class="rating-value">{{ hotel.rating }}/5</span>
+      <!-- Rating pill + badge -->
+      <div class="rating-row">
+        <div class="rating-pill">
+          <i class="ph-fill ph-star" aria-hidden="true"></i>
+          <span class="rating-value">{{ hotel.rating }}/5</span>
+        </div>
+        <div *ngIf="hotel.badge" class="badge-pill">
+          <i [class]="hotel.badge.icon" aria-hidden="true"></i>
+          <span>{{ hotel.badge.text }}</span>
+        </div>
       </div>
 
       <!-- Hotel name -->
@@ -113,7 +119,7 @@
         <h3 class="section-title">Amenities</h3>
         <div class="amenities-grid">
           <div class="amenity-item" *ngFor="let amenity of getAmenitiesWithIcons()">
-            <span class="amenity-icon">{{ amenity.icon }}</span>
+            <i [class]="amenity.icon" class="amenity-icon" aria-hidden="true"></i>
             <span class="amenity-text">{{ amenity.name }}</span>
           </div>
         </div>

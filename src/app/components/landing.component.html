@@ -1,7 +1,10 @@
 <div *ngIf="visible" class="landing-container" [class.landing-exit]="!visible" role="main" aria-label="Hotel search landing page">
 
-  <!-- Desktop: Centered layout with globe background -->
+  <!-- Desktop: Centered layout with map background -->
   <div class="landing-desktop">
+    <!-- Leaflet flat map background -->
+    <div #mapContainer class="map-bg" aria-hidden="true"></div>
+
     <!-- Centered chat panel -->
     <div class="landing-center">
       <div class="floating-chat-panel">
@@ -17,18 +20,18 @@
         <!-- Brand content -->
         <div class="chat-container">
           <div class="welcome-content">
-            <div class="brand-section">
+            <div class="brand-text-group">
               <div class="brand-icon">
                 <img src="assets/Sparkles.svg" alt="IHG AI Assistant" class="brand-logo">
               </div>
-              <p class="brand-subtitle">Where to?</p>
-              <p class="brand-tagline">6,900+ hotels across 100+ countries.<br>Wherever the world takes you, we're already there.</p>
+              <p class="brand-subtitle">The world awaits. Where to next?</p>
+              <p class="brand-tagline">6,900+ hotels. 100+ countries. 20+ brands.</p>
             </div>
 
             <!-- Scrolling card ticker -->
             <div class="card-ticker-wrapper">
               <div class="card-ticker" #tickerTrack>
-                <div *ngFor="let src of tickerCards; let i = index" class="ticker-card-wrap">
+                <div *ngFor="let src of tickerCardsDesktop; let i = index" class="ticker-card-wrap">
                   <img [src]="src" alt="IHG Property" class="ticker-card" />
                 </div>
               </div>
@@ -38,6 +41,12 @@
 
         <!-- Input at bottom -->
         <div class="input-container">
+          <div class="search-chips" role="list" aria-label="Suggested searches">
+            <button *ngFor="let chip of searchChips" class="search-chip" role="listitem" (click)="onFirstMessage(chip.text)">
+              <i [class]="chip.icon" class="chip-icon" aria-hidden="true"></i>
+              <span class="chip-text">{{ chip.text }}</span>
+            </button>
+          </div>
           <app-input
             [placeholder]="'Where do you want to go...'"
             (messageSent)="onFirstMessage($event)"
@@ -59,12 +68,12 @@
     </div>
 
     <div class="mobile-content">
-      <div class="brand-section">
+      <div class="brand-text-group">
         <div class="brand-icon">
           <img src="assets/Sparkles.svg" alt="IHG AI Assistant" class="brand-logo">
         </div>
-        <p class="brand-subtitle">Where to?</p>
-        <p class="brand-tagline">6,900+ hotels across 100+ countries.<br>Wherever the world takes you, we're already there.</p>
+        <p class="brand-subtitle">The world awaits. Where to next?</p>
+        <p class="brand-tagline">6,900+ hotels. 100+ countries. 20+ brands.</p>
       </div>
 
       <!-- Scrolling card ticker on mobile too -->
@@ -79,6 +88,12 @@
 
     <!-- Fixed input at bottom -->
     <div class="mobile-input-container">
+      <div class="search-chips" role="list" aria-label="Suggested searches">
+        <button *ngFor="let chip of searchChips" class="search-chip" role="listitem" (click)="onFirstMessage(chip.text)">
+          <i [class]="chip.icon" class="chip-icon" aria-hidden="true"></i>
+          <span class="chip-text">{{ chip.text }}</span>
+        </button>
+      </div>
       <app-input
         [placeholder]="'Where do you want to go...'"
         (messageSent)="onFirstMessage($event)"

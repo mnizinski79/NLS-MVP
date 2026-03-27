@@ -2,8 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design Tokens: Border Radius ── */
+:root {
+  --radius-xs: 4px;      /* scrollbar thumbs, small UI bits */
+  --radius-sm: 6px;      /* calendar days, small buttons, dropdowns */
+  --radius-md: 6px;      /* buttons, inputs, badges, map pins, tags */
+  --radius-lg: 10px;     /* cards, chat bubbles, modals, images */
+  --radius-xl: 14px;     /* panels, drawers, chat window, input fields */
+  --radius-pill: 9999px; /* pills, chips, fully round */
+}
+
 /* Leaflet CSS - Required for map tiles to display correctly */
 @import 'leaflet/dist/leaflet.css';
+
+/* Phosphor Icons */
+@import '@phosphor-icons/web/regular';
+@import '@phosphor-icons/web/fill';
 
 /* Flatpickr overrides - Remove all borders, shadows, and backgrounds for inline calendar */
 .flatpickr-calendar.inline {
@@ -268,7 +282,7 @@ body {
   background: #E57866;
   color: #000000;
   padding: 4px 8px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
   font-size: 12px;
   font-weight: 400;
   white-space: nowrap;
