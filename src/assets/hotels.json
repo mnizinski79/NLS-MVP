@@ -1,84 +1,45 @@
 [
   {
-    "id": "NYCEA",
-    "name": "Kimpton Theta New York Times Square",
-    "brand": "Kimpton",
-    "rating": 4.2,
-    "location": {
-      "address": "790 8th Avenue, New York, NY 10019",
-      "neighborhood": "Times Square",
-      "coordinates": {
-        "lat": 40.761212,
-        "lng": -73.98651
-      }
-    },
-    "pricing": {
-      "nightlyRate": 345,
-      "roomRate": 345,
-      "fees": 60
-    },
-    "amenities": [
-      "Rooftop Bar",
-      "Fitness Center",
-      "Pet Friendly",
-      "Hosted Wine Hour"
-    ],
-    "description": "Renovated hotel located one block from Times Square with rooftop Bar Sprezzatura.",
-    "imageUrls": [
-      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9149634521-original",
-      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10073255838-original",
-      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9149634491-original",
-      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10073188294-original"
-    ],
-    "phone": "1-800-KIMPTON",
-    "sentiment": [
-      "Times Square",
-      "Rooftop Bar",
-      "Theater District",
-      "Modern"
-    ],
-    "bookingUrl": "https://www.ihg.com/kimptonhotels/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCEA&setPMCookies=true&qSHBrC=KI&qDest=790%208th%20Avenue,%20New%20York,%20NY,%20US",
-    "badge": { "icon": "ph-fill ph-leaf", "text": "Sustainable practices" }
-  },
-  {
     "id": "NYCXV",
     "name": "voco Times Square - Broadway",
     "brand": "voco",
-    "rating": 5,
+    "rating": 4,
     "location": {
-      "address": "170 W. 48th Street, New York, NY 10036",
-      "neighborhood": "Times Square",
+      "address": "170 W. 48th Street, New York, NY, 10036",
+      "neighborhood": "New York",
       "coordinates": {
         "lat": 40.7595257,
         "lng": -73.9838434
       }
     },
     "pricing": {
-      "nightlyRate": 285,
-      "roomRate": 285,
-      "fees": 40
+      "nightlyRate": 260,
+      "roomRate": 260,
+      "fees": 30
     },
     "amenities": [
-      "Rooftop Bar",
-      "Fitness Center",
       "Free Wi-Fi",
-      "Pet Friendly"
+      "Pet Friendly",
+      "Suites",
+      "Fitness Center",
+      "Restaurant"
     ],
-    "description": "Step into the energy of Times Square from a hotel that puts you in the center of it all. Just steps from the neon glow, you'll find Radio City Music Hall, Rockefeller Center, and the Theater District.",
+    "description": "Step into the energy of Times Square from a hotel that puts you in the center of it all. Whether you're here for a Broadway show, city sightseeing, or Manhattan nightlife, our hotel in Times Square, NYC, is your perfect launchpad. Just steps from the neon glow, you’ll find Radio City Music Hall, Rockefeller Center, and the Theater District, plus skyline views from your Times Square hotel room.\n\nOu",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/voco-new-york-10286760679-original",
-      "https://digital.ihg.com/is/image/ihg/voco-new-york-10518085643-original",
-      "https://digital.ihg.com/is/image/ihg/voco-new-york-10498503074-original"
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10383606458-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10383448845-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10518100995-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10893869611-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10518085643-original"
     ],
-    "phone": "1-212-555-0199",
-    "sentiment": [
-      "Times Square",
-      "Broadway",
-      "Theater District",
-      "Rooftop Bar"
-    ],
-    "bookingUrl": "https://www.ihg.com/voco/hotels/gb/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCXV&setPMCookies=true&qSHBrC=VX&qDest=170%20W.%2048th%20Street,%20New%20York,%20NY,%20US",
-    "badge": { "icon": "ph-fill ph-sparkle", "text": "New hotel" }
+    "phone": "1 888 377 8626",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCXV&setPMCookies=true",
+    "badge": {
+      "icon": "ph-fill ph-sparkle",
+      "text": "New hotel"
+    }
   },
   {
     "id": "NYCHC",
@@ -86,152 +47,2573 @@
     "brand": "InterContinental",
     "rating": 4.2,
     "location": {
-      "address": "300 West 44th Street, New York, NY 10036",
-      "neighborhood": "Times Square",
+      "address": "300 West 44th Street, New York, NY, 10036",
+      "neighborhood": "New York",
       "coordinates": {
         "lat": 40.758541,
         "lng": -73.988838
       }
     },
     "pricing": {
-      "nightlyRate": 495,
-      "roomRate": 495,
-      "fees": 55
+      "nightlyRate": 357,
+      "roomRate": 357,
+      "fees": 40
     },
     "amenities": [
-      "Cocktail Bar",
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
       "Fitness Center",
-      "Room Service",
-      "Concierge"
+      "Restaurant",
+      "Suites",
+      "Sustainable Practices",
+      "Entertainment"
     ],
-    "description": "Rising 36 stories above the pulse and pageantry of Times Square, InterContinental New York Times Square is a hub of tranquility nestled in Midtown Manhattan.",
+    "description": "Rising 36 stories above the pulse and pageantry of Times Square, InterContinental New York Times Square is a hub of tranquility nestled in Midtown Manhattan’s Theatre District. Sip a signature cocktail in The Stinger Cocktail Bar and Kitchen. Find ease in chic accommodations, including sleek and spacious guest rooms and Junior Suites.",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-9975465351-original",
-      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-8384822709-original"
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-10235572595-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-10924814857-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-9599953960-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-10406650674-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-9291823927-original"
     ],
-    "phone": "1-212-803-4500",
-    "sentiment": [
-      "Luxury",
-      "Times Square",
-      "Skyline Views",
-      "Theater District"
+    "phone": "1 888 IC HOTELS (1 888 424 6835)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCHC&setPMCookies=true",
+    "badge": {
+      "icon": "ph-fill ph-leaf",
+      "text": "Sustainable practices"
+    }
+  },
+  {
+    "id": "NYCEA",
+    "name": "Kimpton Theta New York - Times Square",
+    "brand": "Kimpton",
+    "rating": 3.7,
+    "location": {
+      "address": "790 8th Avenue, New York, NY, 10019",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.761212,
+        "lng": -73.98651
+      }
+    },
+    "pricing": {
+      "nightlyRate": 258,
+      "roomRate": 258,
+      "fees": 41
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center",
+      "Suites",
+      "Restaurant",
+      "Sustainable Practices"
     ],
-    "bookingUrl": "https://www.ihg.com/intercontinental/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCHC&setPMCookies=true&qSHBrC=IC&qDest=300%20West%2044th%20Street,%20New%20York,%20NY,%20US",
-    "badge": { "icon": "ph-fill ph-leaf", "text": "Sustainable practices" }
+    "description": "A calm retreat amid the Midtown action, Kimpton Theta encourages travelers and locals alike to relax and recharge in Times Square. Housed in an iconic building originally designed by pioneering midcentury architect Morris Lapidus, a stay at Kimpton Theta seamlessly blends modernist architecture with the relaxed elegance of the Italian Riviera.\nFrom the rooftop oasis of Bar Sprezzatura to the invit",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9149634521-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9149634966-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-8667404541-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10073188294-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-8707948413-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10136911396-original"
+    ],
+    "phone": "1 800 546 7866",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCEA&setPMCookies=true",
+    "badge": {
+      "icon": "ph-fill ph-leaf",
+      "text": "Sustainable practices"
+    }
   },
   {
     "id": "NYCDD",
     "name": "Kimpton Era Midtown New York",
     "brand": "Kimpton",
-    "rating": 4.5,
+    "rating": 4,
     "location": {
-      "address": "32 West 48th Street, New York, NY 10036",
-      "neighborhood": "Midtown",
+      "address": "32 West 48th Street, New York, NY, 10036",
+      "neighborhood": "New York",
       "coordinates": {
         "lat": 40.7577789,
         "lng": -73.9798407
       }
     },
     "pricing": {
-      "nightlyRate": 299,
-      "roomRate": 299,
-      "fees": 51
+      "nightlyRate": 270,
+      "roomRate": 270,
+      "fees": 45
     },
     "amenities": [
-      "Rooftop Bar",
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Suites",
       "Fitness Center",
-      "Terrace Rooms",
-      "Pet Friendly"
+      "Restaurant"
     ],
-    "description": "Opening in spring 2026 and redefining hospitality at Rockefeller Center while honoring its cultural legacy, Kimpton Era is a vibrant hub where tourists and locals converge.",
+    "description": "Opening in spring 2026 and redefining hospitality at Rockefeller Center while honoring its cultural legacy, Kimpton Era is a vibrant hub where tourists and locals converge. A dynamic blend of the new and the familiar, serving as both a destination and a launchpad for everything the city has to offer.\nBlending the sophistication of its iconic setting with the vibrant energy of modern New York, ever",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10623966449-original",
-      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10590660046-original"
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10623966452-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10623966446-original"
     ],
-    "phone": "1-800-KIMPTON",
-    "sentiment": [
-      "Modern",
-      "Rockefeller Center",
-      "Rooftop Bar",
-      "New Opening"
-    ],
-    "bookingUrl": "https://www.ihg.com/kimptonhotels/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCDD&setPMCookies=true&qSHBrC=KI&qDest=32%20West%2048th%20Street,%20New%20York,%20NY,%20US",
-    "badge": { "icon": "ph-fill ph-sparkle", "text": "New hotel" }
+    "phone": "1 800 546 7866",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCDD&setPMCookies=true",
+    "badge": {
+      "icon": "ph-fill ph-sparkle",
+      "text": "New hotel"
+    }
   },
   {
     "id": "NYCAT",
-    "name": "The Manhattan at Times Square Hotel",
+    "name": "Independent (SPHC) The Manhattan at Times Square",
     "brand": "Independent",
-    "rating": 3.5,
+    "rating": 4,
     "location": {
-      "address": "790 7th Ave, New York, NY 10019",
-      "neighborhood": "Times Square",
+      "address": "790 7th Ave, New York, NY, 10019",
+      "neighborhood": "New York",
       "coordinates": {
         "lat": 40.762293,
-        "lng": -73.9826365
+        "lng": -73.98263659999999
       }
     },
     "pricing": {
-      "nightlyRate": 199,
-      "roomRate": 199,
-      "fees": 51
+      "nightlyRate": 211,
+      "roomRate": 211,
+      "fees": 40
     },
     "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
       "Fitness Center",
-      "Business Center",
-      "Grab & Go Market",
-      "Concierge"
+      "Suites"
     ],
-    "description": "The Manhattan at Times Square Hotel is located in the heart of Midtown-Times Square, steps away from New York's best and most amazing attractions.",
+    "description": "Welcome to The Manhattan at Times Square Hotel—your top choice for a Times Square hotel in New York, NY. Experience the best of the Big Apple from our unbeatable location, just steps from iconic attractions, world-class dining, and the vibrant energy of Times Square.\n\nWhether you're visiting for business or leisure, our hotel near Times Square puts you close to Rockefeller Center, Broadway, MoMA, ",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-9357359629-original",
-      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-10310188810-original"
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-9357370808-original",
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-9392965843-original",
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-10310188824-original",
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-10383720116-original"
     ],
-    "phone": "1-212-581-3300",
-    "sentiment": [
-      "Times Square",
-      "Central Location",
-      "Value",
-      "City Views"
-    ],
-    "bookingUrl": "https://www.ihg.com/spnd/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAT&setPMCookies=true&qSHBrC=SP&qDest=790%207th%20Ave,%20New%20York,%20NY,%20US"
+    "phone": "877 333 6517",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAT&setPMCookies=true"
   },
   {
     "id": "NYCMA",
     "name": "Holiday Inn New York City - Times Square",
     "brand": "Holiday Inn",
-    "rating": 4.1,
+    "rating": 4.2,
     "location": {
-      "address": "585 8th Avenue, New York, NY 10018",
-      "neighborhood": "Times Square",
+      "address": "585 8th Avenue, New York, NY, 10018",
+      "neighborhood": "New York",
       "coordinates": {
         "lat": 40.755131,
         "lng": -73.99134
       }
     },
     "pricing": {
-      "nightlyRate": 169,
-      "roomRate": 169,
-      "fees": 31
+      "nightlyRate": 219,
+      "roomRate": 219,
+      "fees": 0
     },
     "amenities": [
-      "Kids Eat Free",
-      "Fitness Center",
+      "Free Wi-Fi",
       "Business Center",
-      "Free Wi-Fi"
+      "Fitness Center",
+      "Restaurant"
     ],
-    "description": "The Holiday Inn New York City – Times Square is located in the heart of Midtown-Times Square, steps away from New York's best and most amazing attractions.",
+    "description": "Enjoy all the excitement that the Big Apple offers when staying at the Holiday Inn New York City – Times Square. Nestled in the heart of the bustling Garment District, our Midtown Manhattan hotel is steps away from the city’s must-see attractions, including Hudson Yards, Madison Square Garden, The Javits Center, Times Square, Bryant Park, Herald Square and much more!\nDine at our on-site restaurant",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-4132403197-original",
-      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-4204279974-original"
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-4204272192-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-7978534294-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-8792076111-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-4204280071-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-10050176119-original"
     ],
-    "phone": "1-888-HOLIDAY",
-    "sentiment": [
-      "Times Square",
-      "Family Friendly",
-      "Value",
-      "Convenient"
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMA&setPMCookies=true"
+  },
+  {
+    "id": "NYCCW",
+    "name": "Candlewood Suites New York City- Times Square",
+    "brand": "Candlewood",
+    "rating": 4.2,
+    "location": {
+      "address": "339 W. 39th Street, New York, NY, 10018",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.755805,
+        "lng": -73.992297
+      }
+    },
+    "pricing": {
+      "nightlyRate": 290,
+      "roomRate": 290,
+      "fees": 20
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
     ],
-    "bookingUrl": "https://www.ihg.com/holidayinn/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMA&setPMCookies=true&qSHBrC=HI&qDest=585%208th%20Avenue,%20New%20York,%20NY,%20US"
+    "description": "Discover NYC Manhattan from Our Extended Stay Hotel\nSurrounded by the electrifying Times Square, Candlewood Suites New York City Times Square is the perfect NYC location for your extended stay. When blending business with leisure, our NYC hotel is convenient to major businesses in Times Square and the attractions of New York City. If you are traveling to \"the Big Apple\" for just an overnight stay ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/candlewood-suites-new-york-8029237393-original",
+      "https://digital.ihg.com/is/image/ihg/candlewood-suites-new-york-4393833199-original",
+      "https://digital.ihg.com/is/image/ihg/candlewood-suites-new-york-10501763285-original",
+      "https://digital.ihg.com/is/image/ihg/candlewood-suites-new-york-8029235900-original",
+      "https://digital.ihg.com/is/image/ihg/candlewood-suites-new-york-9682254944-original"
+    ],
+    "phone": "1 877 CANDLEWOOD (1 877 226 3539)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCCW&setPMCookies=true"
+  },
+  {
+    "id": "NYCWS",
+    "name": "Holiday Inn Express New York City Times Square",
+    "brand": "Independent",
+    "rating": 4,
+    "location": {
+      "address": "343 West 39th Street, New York, NY, 10018",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.755853,
+        "lng": -73.992412
+      }
+    },
+    "pricing": {
+      "nightlyRate": 290,
+      "roomRate": 290,
+      "fees": 20
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center"
+    ],
+    "description": "Embrace Times Square from Our Hotel in Midtown NYC\nOur New York City hotel boasts a great location in Midtown and close to Times Square. Located a short walk from Times Square attractions, the Holiday Inn Express Times Square offers comfortable accommodations near New York’s biggest attractions. With Times Square and Broadway outside our door, you'll find it easy getting to and from your New York ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-5030694862-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-9832638417-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-3522101621-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-5061402562-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-9752458404-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCWS&setPMCookies=true"
+  },
+  {
+    "id": "NYCPC",
+    "name": "Crowne Plaza HY36 Midtown Manhattan",
+    "brand": "Crowne Plaza",
+    "rating": 4.6,
+    "location": {
+      "address": "320 West 36th Street, New York, NY, 10018",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.753942,
+        "lng": -73.993635
+      }
+    },
+    "pricing": {
+      "nightlyRate": 298,
+      "roomRate": 298,
+      "fees": 29
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant",
+      "Suites",
+      "Entertainment"
+    ],
+    "description": "A Modern Midtown Manhattan Hotel near Penn Station.\nWelcome to the brand new Crowne Plaza Midtown Manhattan! We are committed to providing a legendarily personable guest experience unlike any other in hospitality today and take immense pride in ensuring your experience with us here in the greatest city in the world is an unforgettable one. Our state of the art amenities include spacious spa like s",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-new-york-5519815692-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-new-york-5476361491-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-new-york-10473992802-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-new-york-5211858170-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-new-york-10464945482-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-new-york-10473992762-original"
+    ],
+    "phone": "1 866 2 CROWNE (1 866 227 6963)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCPC&setPMCookies=true"
+  },
+  {
+    "id": "NYCVM",
+    "name": "voco Times Square South New York",
+    "brand": "voco",
+    "rating": 4.1,
+    "location": {
+      "address": "343 West 36th Street, New York, NY, 10018",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.7542754,
+        "lng": -73.9941703
+      }
+    },
+    "pricing": {
+      "nightlyRate": 264,
+      "roomRate": 264,
+      "fees": 25
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant"
+    ],
+    "description": "Settle into the energy of Midtown at voco Times Square South New York. Just steps from Penn Station and Moynihan Station, our hotel near Hudson Yards, Theatre District, Manhattan West, and Rockefeller Center is your base for the best things to do in New York City, from strolling through Times Square, or catching a Broadway show. Our hotel near the High Line NYC makes it easy to explore the city's ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10561100830-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-7439254886-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-8388960795-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10561100106-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10561099572-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-10561100252-original"
+    ],
+    "phone": "1 888 377 8626",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCVM&setPMCookies=true"
+  },
+  {
+    "id": "NYCTS",
+    "name": "Holiday Inn Express Manhattan Times Square South",
+    "brand": "Independent",
+    "rating": 4.3,
+    "location": {
+      "address": "60 West 36th Street, New York, NY, 10018",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.750518,
+        "lng": -73.986007
+      }
+    },
+    "pricing": {
+      "nightlyRate": 302,
+      "roomRate": 302,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center"
+    ],
+    "description": "A Times Square South Hotel in the Heart of Midtown NYC\n\nWelcome to the Holiday Inn Express Manhattan Times Square South, perfectly located on 36th Street in Midtown NYC. Just steps from Times Square, the Empire State Building, and Bryant Park, our hotel puts the best of New York City at your fingertips—Broadway theaters, shopping on Sixth Avenue, and iconic landmarks are all just a short walk away",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-3443512903-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-3767652965-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-3443481304-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-6447014110-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCTS&setPMCookies=true"
+  },
+  {
+    "id": "NYCTT",
+    "name": "EVEN Hotel New York - Times Square South",
+    "brand": "Independent",
+    "rating": 4.8,
+    "location": {
+      "address": "321 West 35th Street, New York, NY, 10001",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.753288,
+        "lng": -73.99401
+      }
+    },
+    "pricing": {
+      "nightlyRate": 332,
+      "roomRate": 332,
+      "fees": 28
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant"
+    ],
+    "description": "Welcome to EVEN Hotel New York – Times Square South, where comfort meets convenience in the heart of Manhattan in New York. Our hotel in Midtown West is perfectly positioned near Penn Station and Times Square, making it easy for you to experience the very best of New York, New York.\nWhether you’re visiting for business or leisure, explore Midtown West with ease. Explore local favorites such as the",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-4939180022-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-4939179478-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-5829088610-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-10993745422-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-4172002260-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-4210512432-original"
+    ],
+    "phone": "1 855 879 3836",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCTT&setPMCookies=true"
+  },
+  {
+    "id": "NYCHK",
+    "name": "Holiday Inn Express Manhattan Midtown West",
+    "brand": "Independent",
+    "rating": 4.1,
+    "location": {
+      "address": "538 West 48th Street, New York, NY, 10036",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.76389,
+        "lng": -73.993796
+      }
+    },
+    "pricing": {
+      "nightlyRate": 216,
+      "roomRate": 216,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center"
+    ],
+    "description": "Explore the vibrant neighborhood of Hell’s Kitchen starting from our inviting Holiday Inn Express Midtown Manhattan West hotel. Our prime location provides convenient access to renowned attractions such as Times Square, Broadway theaters, and Hudson Yards. As well as local points of interest such as the Manhattan Cruise Terminal and the Intrepid Air & Sea Museum. Immerse yourself in the diverse cu",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-3557967512-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-2533101166-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-3557955561-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-6447036175-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCHK&setPMCookies=true"
+  },
+  {
+    "id": "NYCPK",
+    "name": "Kimpton Ashbel New York Park Avenue",
+    "brand": "Kimpton",
+    "rating": 4,
+    "location": {
+      "address": "70 Park Avenue, New York, NY, 10016",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.7500529,
+        "lng": -73.97968639999999
+      }
+    },
+    "pricing": {
+      "nightlyRate": 345,
+      "roomRate": 345,
+      "fees": 35
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Suites",
+      "Fitness Center"
+    ],
+    "description": "Step inside the Kimpton Ashbel, where the rhythm slows, but everything else keeps pace. Set back from the action, yet brimming with New York City’s characteristic energy and charm, we’re considered a stylish retreat for the in-the-know traveler. Our pleasantly intimate spaces, clean lines, airy feel and classic service set us even further apart. Admire the excitement of the city from a distance fr",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-10724252649-original",
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-10748298873-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9240431650-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-11027419352-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10669166426-original",
+      "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-10800041747-original"
+    ],
+    "phone": "1 800 546 7866",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCPK&setPMCookies=true"
+  },
+  {
+    "id": "NYCHA",
+    "name": "InterContinental New York Barclay",
+    "brand": "InterContinental",
+    "rating": 4.1,
+    "location": {
+      "address": "111 East 48th St, New York, NY, 10017-1297",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.75544,
+        "lng": -73.973728
+      }
+    },
+    "pricing": {
+      "nightlyRate": 348,
+      "roomRate": 348,
+      "fees": 45
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Restaurant",
+      "Suites",
+      "Entertainment",
+      "Fitness Center",
+      "Sustainable Practices"
+    ],
+    "description": "Since 1926, InterContinental New York Barclay has welcomed the world’s most discerning guests. Immaculately refurbished throughout the years, our luxury Midtown Manhattan hotel eloquently recalls the grandeur of the Jazz Era and old New York while fusing modern-day conveniences and amenities. Conveniently located near Grand Central Station, our Manhattan event venue plays host to every occasion — ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-10260088700-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-5916453552-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-7913536163-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-4465901293-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-4466398972-original",
+      "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-4940856135-original"
+    ],
+    "phone": "1 888 IC HOTELS (1 888 424 6835)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCHA&setPMCookies=true",
+    "badge": {
+      "icon": "ph-fill ph-leaf",
+      "text": "Sustainable practices"
+    }
+  },
+  {
+    "id": "NYCAA",
+    "name": "Kimpton Hotel Eventi",
+    "brand": "Kimpton",
+    "rating": 4.3,
+    "location": {
+      "address": "851 6th Avenue, New York, NY, 10001",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.747202,
+        "lng": -73.989978
+      }
+    },
+    "pricing": {
+      "nightlyRate": 399,
+      "roomRate": 399,
+      "fees": 43
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center",
+      "Restaurant",
+      "Suites",
+      "Sustainable Practices"
+    ],
+    "description": "Honoring our artful Chelsea address, Hotel Eventi offers a cutting edge design-centric escape in the heart of Manhattan — which occupies an entire city block. The result? Two restaurants led by an award-winning chef, two buzzing new bars, and one stunning lobby that’s more like a warm-yet-vogue living room. If you can tear yourself away, the Empire State Building, Madison Square Garden, High Line ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-5379748765-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-4647126400-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-7221766704-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-4951718661-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-8569140083-original",
+      "https://digital.ihg.com/is/image/ihg/kimpton-new-york-4647140093-original"
+    ],
+    "phone": "1 800 546 7866",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAA&setPMCookies=true",
+    "badge": {
+      "icon": "ph-fill ph-leaf",
+      "text": "Sustainable practices"
+    }
+  },
+  {
+    "id": "NYCNY",
+    "name": "Holiday Inn Express NYC Chelsea - NoMad Area",
+    "brand": "Independent",
+    "rating": 4.3,
+    "location": {
+      "address": "232 West 29th Street, New York, NY, 10001",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.748246,
+        "lng": -73.993834
+      }
+    },
+    "pricing": {
+      "nightlyRate": 294,
+      "roomRate": 294,
+      "fees": 30
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center",
+      "Business Center"
+    ],
+    "description": "Explore Exhilarating New York City from our Chelsea NoMad Hotel! \n\nDiscover a fresh stay in the heart of the city at the newly updated Holiday Inn Express NYC Chelsea NoMad, an ideal choice among hotels in Chelsea NYC. Our modernized rooms and public spaces provide a seamless blend of contemporary style and practical features to keep you at your best. Enjoy complimentary Wi-Fi, in-room charging st",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-8589186748-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-10109198168-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-10501470980-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-9722050446-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-10109198239-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCNY&setPMCookies=true"
+  },
+  {
+    "id": "NYCEV",
+    "name": "EVEN Hotel New York - Midtown East",
+    "brand": "Independent",
+    "rating": 4.5,
+    "location": {
+      "address": "221 East 44th Street, New York, NY, 10017",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.751652,
+        "lng": -73.972491
+      }
+    },
+    "pricing": {
+      "nightlyRate": 274,
+      "roomRate": 274,
+      "fees": 38
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center",
+      "Business Center",
+      "Restaurant"
+    ],
+    "description": "Welcome to EVEN Hotel New York – Midtown East, where comfort meets convenience in the heart of Manhattan in New York. Our hotel in Midtown East is perfectly positioned near Grand Central Terminal, making it easy for you to experience the very best of New York, New York.  \n\n Whether you’re visiting for business or leisure, explore Midtown East with ease. Explore local favorites such as SUMMIT One V",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-4834033606-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-6109833382-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-8746971480-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-6110678544-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-6109822491-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-4834044804-original"
+    ],
+    "phone": "1 855 879 3836",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCEV&setPMCookies=true"
+  },
+  {
+    "id": "NYCVC",
+    "name": "Holiday Inn Manhattan 6th Ave - Chelsea",
+    "brand": "Holiday Inn",
+    "rating": 3.9,
+    "location": {
+      "address": "125 West 26th Street, New York City, NY, 10001",
+      "neighborhood": "New York City",
+      "coordinates": {
+        "lat": 40.7451,
+        "lng": -73.992199
+      }
+    },
+    "pricing": {
+      "nightlyRate": 288,
+      "roomRate": 288,
+      "fees": 23
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant"
+    ],
+    "description": "Welcome to the Holiday Inn Manhattan 6th Avenue, where comfort meets convenience in the heart of New York City. Perfectly positioned between Chelsea and the vibrant Flatiron District, our hotel offers easy access to public transportation, making it simple to explore iconic landmarks, world-class museums, and must-see sightseeing destinations. Whether you're catching a show on Broadway, visiting th",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-city-3090180899-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-city-9890039685-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-city-6326369510-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-city-8924788040-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-city-9890039688-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCVC&setPMCookies=true"
+  },
+  {
+    "id": "NYCVO",
+    "name": "voco The Franklin New York",
+    "brand": "voco",
+    "rating": 4.5,
+    "location": {
+      "address": "164 East 87 Street, New York, NY, 10128",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.7797404,
+        "lng": -73.9545392
+      }
+    },
+    "pricing": {
+      "nightlyRate": 322,
+      "roomRate": 322,
+      "fees": 11
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly"
+    ],
+    "description": "Housed in a 19th-century brownstone, voco® The Franklin combines historic charm with modern glamour in the cultural heart of New York City. Nestled on a quiet, tree-lined street, our Upper East Side hotel offers a comfortably chic haven in Manhattan. Step outside to explore NYC attractions, including the Museum Mile, Guggenheim Museum, and Central Park. Discover designer stores and restaurants alo",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-6671510166-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-6650784877-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-8388706732-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-6650783349-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-6654809634-original",
+      "https://digital.ihg.com/is/image/ihg/voco-new-york-6650784048-original"
+    ],
+    "phone": "1 888 377 8626",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCVO&setPMCookies=true"
+  },
+  {
+    "id": "NYCIS",
+    "name": "EVEN Hotel Long Island City - New York",
+    "brand": "Independent",
+    "rating": 4.4,
+    "location": {
+      "address": "42-59 Crescent Street, Long Island City, NY, 11101",
+      "neighborhood": "Long Island City",
+      "coordinates": {
+        "lat": 40.7488879,
+        "lng": -73.9417505
+      }
+    },
+    "pricing": {
+      "nightlyRate": 230,
+      "roomRate": 230,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant"
+    ],
+    "description": "Welcome to EVEN Hotel Long Island City - New York, where comfort meets convenience in the heart of Long Island City. Our hotel in the vibrant neighborhood near the Queensboro Bridge is perfectly positioned near the Queensboro Plaza Subway Station, making it easy for you to experience the very best of Long Island City, New York.\n\nWhether you’re visiting for business or leisure, explore Long Island ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/even-hotels-long-island-city-10660415313-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-long-island-city-10610119063-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-long-island-city-10516320909-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-long-island-city-10630723337-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-long-island-city-10610118936-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-long-island-city-10610119454-original"
+    ],
+    "phone": "1 855 879 3836",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCIS&setPMCookies=true",
+    "badge": {
+      "icon": "ph-fill ph-sparkle",
+      "text": "New hotel"
+    }
+  },
+  {
+    "id": "NYCOS",
+    "name": "Hotel Indigo Lower East Side New York",
+    "brand": "Indigo",
+    "rating": 4.1,
+    "location": {
+      "address": "171 Ludlow Street, New York, NY, 10002",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.721754,
+        "lng": -73.987838
+      }
+    },
+    "pricing": {
+      "nightlyRate": 238,
+      "roomRate": 238,
+      "fees": 45
+    },
+    "amenities": [
+      "Pet Friendly",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Settle into the creative energy of the city at Hotel Indigo Lower East Side New York. Our neighborhood has long been a hub for art, music, and culture, and staying here places you steps from icons like Katz’s Delicatessen, the Bowery, and the East Village. Explore vibrant street installations, indie boutiques, and the downtown spots that shape the area's spirit.\n\nInside the hotel, our bold lobby m",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-4185727439-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-7891399535-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-4031713741-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-4267052771-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-4267052501-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-10736650145-original"
+    ],
+    "phone": "1 877 8 INDIGO (1 877 846 3446)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCOS&setPMCookies=true"
+  },
+  {
+    "id": "NYCES",
+    "name": "Holiday Inn NYC - Lower East Side",
+    "brand": "Holiday Inn",
+    "rating": 4.4,
+    "location": {
+      "address": "150 Delancey Street, New York, NY, 10002",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.718292,
+        "lng": -73.98624
+      }
+    },
+    "pricing": {
+      "nightlyRate": 218,
+      "roomRate": 218,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant"
+    ],
+    "description": "Discover our Downtown Manhattan Hotel, the Holiday Inn NYC – Lower East Side, perfectly situated for exploring New York City's vibrant neighborhoods. Our New York City's Lower East Side hotel takes you steps from iconic spots like Katz's Deli, Chinatown, and the East Village, and a short walk to the Williamsburg Bridge. Enjoy easy access to all of Manhattan via the nearby F, M, J, and Z subway lin",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-3579777711-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-3545318574-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-8577617242-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-5133262413-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-9932768795-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCES&setPMCookies=true"
+  },
+  {
+    "id": "NYCEX",
+    "name": "Holiday Inn Express Long Island City E - New York",
+    "brand": "Independent",
+    "rating": 3.9,
+    "location": {
+      "address": "52-09 31st Place, Long Island City, NY, 11101",
+      "neighborhood": "Long Island City",
+      "coordinates": {
+        "lat": 40.73748,
+        "lng": -73.93607
+      }
+    },
+    "pricing": {
+      "nightlyRate": 241,
+      "roomRate": 241,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Suites",
+      "Business Center",
+      "Fitness Center"
+    ],
+    "description": "Discover the newest addition to Long Island City's skyline - the Holiday Inn Express Long Island CityOur 20-story hotel is conveniently located near Midtown Manhattan, offering easy access to the city's iconic attractions.  With a subway station just, a stone throws away complimentary shuttle daily to and from Vernon Jackson Station from 7am to 9am and 5pm to 7pm, you can easily explore all five b",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-long-island-city-10031487114-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-long-island-city-10051706145-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-long-island-city-10044462213-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-long-island-city-10794146192-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-long-island-city-10874048119-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-long-island-city-10031515158-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCEX&setPMCookies=true"
+  },
+  {
+    "id": "EWRNB",
+    "name": "Garner Hotel North Bergen - NYC Gateway",
+    "brand": "Independent",
+    "rating": 4,
+    "location": {
+      "address": "2750 Tonnelle Ave, North Bergen, NJ, 07047",
+      "neighborhood": "North Bergen",
+      "coordinates": {
+        "lat": 40.7739995,
+        "lng": -74.0409236
+      }
+    },
+    "pricing": {
+      "nightlyRate": 149,
+      "roomRate": 149,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Experience a quality stay at an affordable price at Garner Hotel North Bergen - NYC Gateway. Our hotel in North Bergen is conveniently located near the Lincoln Tunnel, the NJ Dream Wheel, and NYC’s Top of The Rock. \n At Garner, we focus on what truly matters: a location that connects you to everything you love, a clean, comfortable guest room, and a cozy bed that promises restful nights. Plus, our",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/garner-north-bergen-10880360223-original",
+      "https://digital.ihg.com/is/image/ihg/garner-north-bergen-10880360119-original",
+      "https://digital.ihg.com/is/image/ihg/garner-north-bergen-10880359910-original",
+      "https://digital.ihg.com/is/image/ihg/garner-north-bergen-10880360382-original",
+      "https://digital.ihg.com/is/image/ihg/garner-north-bergen-10880359975-original"
+    ],
+    "phone": "1 877 942 7637",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRNB&setPMCookies=true"
+  },
+  {
+    "id": "JERCY",
+    "name": "Holiday Inn Express & Suites Jersey City - Holland Tunnel",
+    "brand": "Independent",
+    "rating": 4.4,
+    "location": {
+      "address": "180 14th Street, Jersey City, NJ, 07310",
+      "neighborhood": "Jersey City",
+      "coordinates": {
+        "lat": 40.731858,
+        "lng": -74.040318
+      }
+    },
+    "pricing": {
+      "nightlyRate": 225,
+      "roomRate": 225,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Discover smart, simple travel at Holiday Inn Express & Suites Jersey City - Holland Tunnel. With convenient access to the Holland Tunnel, you’re just minutes from Lower Manhattan. Whether you’re visiting for business, a campus tour, medical appointments, or a weekend of exploring, we offer everything you need.\nStart each day with our complimentary Express Start™ Breakfast, featuring hot favorites,",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-6878365770-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-6324639121-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-6878365192-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-6878365819-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=JERCY&setPMCookies=true"
+  },
+  {
+    "id": "NYCAS",
+    "name": "voco Astoria",
+    "brand": "voco",
+    "rating": 4.7,
+    "location": {
+      "address": "30-17 31st Street, Astoria, NY, 11102",
+      "neighborhood": "Astoria",
+      "coordinates": {
+        "lat": 40.7662031,
+        "lng": -73.92157610000001
+      }
+    },
+    "pricing": {
+      "nightlyRate": 295,
+      "roomRate": 295,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center",
+      "Restaurant"
+    ],
+    "description": "We're excited to welcome you to the new voco Astoria, where modern comfort meets the boundless energy of one of New York City's most dynamic neighborhoods. Whether you're visiting for business, leisure, or a bit of both, we offer the perfect blend of Manhattan accessibility and Astoria's laid-back vibes.\nMinutes from world-class dining and rich cultural landmarks, enjoy easy access to the iconic s",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/voco-astoria-10704189372-original",
+      "https://digital.ihg.com/is/image/ihg/voco-astoria-10665289795-original",
+      "https://digital.ihg.com/is/image/ihg/voco-astoria-10197911107-original",
+      "https://digital.ihg.com/is/image/ihg/voco-astoria-10200751029-original",
+      "https://digital.ihg.com/is/image/ihg/voco-astoria-10694418365-original",
+      "https://digital.ihg.com/is/image/ihg/voco-astoria-10694420554-original"
+    ],
+    "phone": "1 888 377 8626",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAS&setPMCookies=true"
+  },
+  {
+    "id": "NYCWL",
+    "name": "Hotel Indigo NYC Financial District",
+    "brand": "Indigo",
+    "rating": 4.6,
+    "location": {
+      "address": "50 Trinity Place, New York, NY, 10006",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.7112863,
+        "lng": -74.0109989
+      }
+    },
+    "pricing": {
+      "nightlyRate": 256,
+      "roomRate": 256,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Restaurant",
+      "Fitness Center"
+    ],
+    "description": "Nestled at the corner of Trinity Place and Rector Street, in the historic Financial District, our hotel transcends time, combining local legacy with modern design. At Hotel Indigo NYC Financial District, you’ll enjoy views of the iconic Trinity Church, where Alexander Hamilton, Elizabeth and Angelica Schuyler, and other well-known figures are buried. Or pull back your curtains to experience views ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-8451479075-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-8756853441-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-8451479482-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-10599145080-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-8445833326-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-8756850011-original"
+    ],
+    "phone": "1 877 8 INDIGO (1 877 846 3446)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCWL&setPMCookies=true"
+  },
+  {
+    "id": "NYCMP",
+    "name": "Hotel Indigo Williamsburg - Brooklyn",
+    "brand": "Indigo",
+    "rating": 3.8,
+    "location": {
+      "address": "500 Metropolitan Ave, Brooklyn, NY, 11211",
+      "neighborhood": "Brooklyn",
+      "coordinates": {
+        "lat": 40.7134438,
+        "lng": -73.9518861
+      }
+    },
+    "pricing": {
+      "nightlyRate": 216,
+      "roomRate": 216,
+      "fees": 40
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center",
+      "Business Center",
+      "Restaurant",
+      "Suites"
+    ],
+    "description": "Set in the creative heart of Williamsburg, our Brooklyn hotel invites you to experience the neighborhood the way locals know it best. Step outside to the Williamsburg Bridge, Bedford Avenue, and waterfront parks with sweeping Manhattan views. With the Metropolitan Avenue subway station nearby, exploring galleries, boutiques, and Brooklyn restaurants feels effortless. Every corner sparks curiosity,",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-brooklyn-6248589523-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-brooklyn-6248586766-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-brooklyn-8820931180-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-brooklyn-8954731135-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-brooklyn-5970564139-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-brooklyn-6248589547-original"
+    ],
+    "phone": "1 877 8 INDIGO (1 877 846 3446)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMP&setPMCookies=true"
+  },
+  {
+    "id": "NYCMF",
+    "name": "Holiday Inn New York City - Wall Street",
+    "brand": "Holiday Inn",
+    "rating": 4,
+    "location": {
+      "address": "51 Nassau Street, New York, NY, 10038",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.708928,
+        "lng": -74.009025
+      }
+    },
+    "pricing": {
+      "nightlyRate": 245,
+      "roomRate": 245,
+      "fees": 15
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Fitness Center",
+      "Restaurant"
+    ],
+    "description": "Soak in the vibrant energy of downtown Manhattan at the Holiday Inn New York City – best hotel in Wall Street, where comfort meets convenience in one of NYC’s most iconic neighborhoods. Our hotel offers contemporary accommodations, sweeping city views and an unbeatable location in the heart of the Financial District—just steps from the New York Stock Exchange and Wall Street itself.  \n\nWhether you",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-6214230486-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-5158089600-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-10501690469-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-5158089292-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-10668952940-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMF&setPMCookies=true"
+  },
+  {
+    "id": "EWRCJ",
+    "name": "Holiday Inn Express & Suites Jersey City North - Hoboken",
+    "brand": "Independent",
+    "rating": 4.3,
+    "location": {
+      "address": "707 Tonnelle Avenue, Jersey City, NJ, 07307",
+      "neighborhood": "Jersey City",
+      "coordinates": {
+        "lat": 40.754258,
+        "lng": -74.056323
+      }
+    },
+    "pricing": {
+      "nightlyRate": 147,
+      "roomRate": 147,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Welcome to the Holiday Inn Express & Suites Jersey City North – Hoboken located near NJ Turnpike (95). Our location near Newark International Airport (EWR) and the New Jersey Turnpike makes it easy to travel through the region, while our close proximity to major routes, Newark Penn Station, Journals Square Train Station, Holland Tunnel and Lincoln Tunnel gives you easy access to New York City. For",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-5415947348-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-5415947173-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-5415947329-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-5415947193-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-5415947030-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRCJ&setPMCookies=true"
+  },
+  {
+    "id": "NYCGO",
+    "name": "Hotel Indigo NYC Downtown - Wall Street",
+    "brand": "Indigo",
+    "rating": 4.4,
+    "location": {
+      "address": "120 Water Street, New York, NY, 10005",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.7055132,
+        "lng": -74.0073182
+      }
+    },
+    "pricing": {
+      "nightlyRate": 257,
+      "roomRate": 257,
+      "fees": 30
+    },
+    "amenities": [
+      "Pet Friendly",
+      "Fitness Center",
+      "Restaurant"
+    ],
+    "description": "In the heart of New York’s Financial District, our boutique hotel puts you just steps from the iconic crossroads of Wall and Water Streets. Once the site of the Buttonwood tree, where the stock exchange first took root, today, this quiet corner of Lower Manhattan pulses with stories and modern energy of the Seaport. It’s a neighborhood of contrasts, where cobblestone paths meet steel and glass, an",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-8701740183-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-9802107054-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-8740021767-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-9779186436-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-7573837732-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-9774261515-original"
+    ],
+    "phone": "1 877 8 INDIGO (1 877 846 3446)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCGO&setPMCookies=true"
+  },
+  {
+    "id": "NYCSF",
+    "name": "Holiday Inn Express New York City-Wall Street",
+    "brand": "Independent",
+    "rating": 4.1,
+    "location": {
+      "address": "126 Water Street, New York, NY, 10005",
+      "neighborhood": "New York",
+      "coordinates": {
+        "lat": 40.70542,
+        "lng": -74.007048
+      }
+    },
+    "pricing": {
+      "nightlyRate": 252,
+      "roomRate": 252,
+      "fees": 17
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center"
+    ],
+    "description": "Welcome to the Holiday Inn Express® – Your Premier Wall Street Hotel New York. Nestled in the heart of the Financial District, our Wall Street hotel New York is just steps from iconic attractions and top corporate offices. Whether you’re visiting for business or leisure, our prime location puts you five minutes from the New York Stock Exchange and six minutes from the Federal Reserve Bank. Enjoy u",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-2533203496-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-5152488260-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-2697450255-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-9993471210-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-6447065285-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCSF&setPMCookies=true"
+  },
+  {
+    "id": "NYCNJ",
+    "name": "Candlewood Suites Secaucus - Meadowlands",
+    "brand": "Candlewood",
+    "rating": 4.4,
+    "location": {
+      "address": "279 Secaucus Road, Secaucus, NJ, 07094",
+      "neighborhood": "Secaucus",
+      "coordinates": {
+        "lat": 40.772027,
+        "lng": -74.058296
+      }
+    },
+    "pricing": {
+      "nightlyRate": 171,
+      "roomRate": 171,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Welcome to the Candlewood Suites Hotel Secaucus-Meadowlands, an Extended Stay Hotel! Great amenities await your stay at our newly renovated Apartment-like property. Our 24 hour Fitness Center, complimentary laundry facility, full kitchens in all guestrooms, complimentary digital access to New York Times and Financial Times, 37 or 43\" tv's in all rooms, and our lending locker to borrow games or app",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/candlewood-suites-secaucus-2533164542-original",
+      "https://digital.ihg.com/is/image/ihg/candlewood-suites-secaucus-6073965741-original",
+      "https://digital.ihg.com/is/image/ihg/candlewood-suites-secaucus-6073967266-original",
+      "https://digital.ihg.com/is/image/ihg/candlewood-suites-secaucus-6102331680-original"
+    ],
+    "phone": "1 877 CANDLEWOOD (1 877 226 3539)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCNJ&setPMCookies=true"
+  },
+  {
+    "id": "NYCWD",
+    "name": "Holiday Inn Express & Suites Woodside LaGuardia Airport",
+    "brand": "Independent",
+    "rating": 4.4,
+    "location": {
+      "address": "64-06 Queens Boulevard, Woodside, NY, 11377",
+      "neighborhood": "Woodside",
+      "coordinates": {
+        "lat": 40.740674,
+        "lng": -73.901286
+      }
+    },
+    "pricing": {
+      "nightlyRate": 341,
+      "roomRate": 341,
+      "fees": 36
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Welcome to the Holiday Inn Express & Suites Woodside, a modern hotel located in the vibrant heart of Queens, New York. Nestled in one of NYC’s most diverse neighborhoods, our newly built hotel offers easy access to everything the city has to offer. Whether you're visiting for business or leisure, you’ll enjoy thoughtful amenities like complimentary high-speed Wi-Fi, a 24-hour business center, and ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-woodside-7248891376-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-woodside-7248891802-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-woodside-7248891843-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-woodside-7248891611-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-woodside-7248891748-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCWD&setPMCookies=true"
+  },
+  {
+    "id": "MPENY",
+    "name": "Holiday Inn Express Queens - Maspeth",
+    "brand": "Independent",
+    "rating": 4.2,
+    "location": {
+      "address": "59-40 55th Road, Maspeth, NY, 11378",
+      "neighborhood": "Maspeth",
+      "coordinates": {
+        "lat": 40.72624,
+        "lng": -73.908071
+      }
+    },
+    "pricing": {
+      "nightlyRate": 277,
+      "roomRate": 277,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Welcome to the Holiday Inn Express Maspeth in Queens, New York.\nAre you looking for a comfortable and convenient hotel experience in New York? Look no further than the Holiday Inn Express Maspeth, whether you are visiting for business or leisure, our hotel offers everything you need for a relaxing and worry-free stay.\nLocation\nLocated in the heart of Queens, our hotel is just a short distance from",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-maspeth-10687507513-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-maspeth-10688745572-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-maspeth-10662222154-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-maspeth-10458449791-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-maspeth-7036805397-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-maspeth-10683824740-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=MPENY&setPMCookies=true"
+  },
+  {
+    "id": "LGABR",
+    "name": "Holiday Inn Brooklyn Downtown",
+    "brand": "Holiday Inn",
+    "rating": 3.9,
+    "location": {
+      "address": "300 Schermerhorn Street, Brooklyn, NY, 11217",
+      "neighborhood": "Brooklyn",
+      "coordinates": {
+        "lat": 40.687516,
+        "lng": -73.982327
+      }
+    },
+    "pricing": {
+      "nightlyRate": 218,
+      "roomRate": 218,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant",
+      "Suites"
+    ],
+    "description": "A Contemporary Downtown Brooklyn Hotel near Barclays Center \n\nWhen traveling to New York City, Holiday Inn Brooklyn Downtown wants to provide you with superior accommodations to meet your every need. Whether you’re here for business or pleasure the Holiday Inn Brooklyn Downtown is your sophisticated choice for comfort, quality and service.\nThe hotel is situated in an ideal location with the exciti",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-brooklyn-4569545529-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-brooklyn-4569604064-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-brooklyn-4570960365-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-brooklyn-6168601429-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-brooklyn-5971719180-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=LGABR&setPMCookies=true"
+  },
+  {
+    "id": "BXYEV",
+    "name": "EVEN Hotel Brooklyn",
+    "brand": "Independent",
+    "rating": 4.3,
+    "location": {
+      "address": "46 Nevins St, Brooklyn, NY, 11217",
+      "neighborhood": "Brooklyn",
+      "coordinates": {
+        "lat": 40.687371,
+        "lng": -73.981783
+      }
+    },
+    "pricing": {
+      "nightlyRate": 189,
+      "roomRate": 189,
+      "fees": 25
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant"
+    ],
+    "description": "Welcome to EVEN Hotel Brooklyn, where comfort meets convenience in the heart of Brooklyn. Our hotel in downtown Brooklyn is perfectly positioned near Barclays Center, making it easy for you to experience the very best of Brooklyn, New York.  \n Whether you’re visiting for business or leisure, explore Brooklyn with ease. Explore local favorites such as the Brooklyn Bridge and Brooklyn Bridge Park, B",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/even-hotels-brooklyn-10028702229-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-brooklyn-10028702344-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-brooklyn-4960988939-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-brooklyn-10028702242-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-brooklyn-10028702191-original",
+      "https://digital.ihg.com/is/image/ihg/even-hotels-brooklyn-10028702200-original"
+    ],
+    "phone": "1 855 879 3836",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=BXYEV&setPMCookies=true"
+  },
+  {
+    "id": "CSTNJ",
+    "name": "Holiday Inn Express & Suites Meadowlands Area",
+    "brand": "Independent",
+    "rating": 4.4,
+    "location": {
+      "address": "100 Paterson Plank Road, Carlstadt, NJ, 07072",
+      "neighborhood": "Carlstadt",
+      "coordinates": {
+        "lat": 40.8323,
+        "lng": -74.0867
+      }
+    },
+    "pricing": {
+      "nightlyRate": 229,
+      "roomRate": 229,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Meadowlands Hotel in New Jersey is Gateway to NYC\n\n10 miles from Times Square in Manhattan and only minutes from Hoboken, Secaucus and Newark, the Holiday Inn Express Meadowlands Area hotel in the New Jersey borough of Carlstadt offers area travelers and city residents a quiet, convenient respite from the Big Apple. \n\nLeisure travelers to our Meadowlands hotel enjoy New Jersey attractions, includi",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-carlstadt-4184197028-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-carlstadt-4184139823-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-carlstadt-4184194966-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-carlstadt-4184163753-original"
+    ],
+    "phone": "1 800 972 3160",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=CSTNJ&setPMCookies=true"
+  },
+  {
+    "id": "BXYSP",
+    "name": "Holiday Inn Express NYC Brooklyn - Sunset Park",
+    "brand": "Independent",
+    "rating": 4.1,
+    "location": {
+      "address": "833 39th Street, Brooklyn, NY, 11232",
+      "neighborhood": "Brooklyn",
+      "coordinates": {
+        "lat": 40.6469546,
+        "lng": -73.99647159999999
+      }
+    },
+    "pricing": {
+      "nightlyRate": 225,
+      "roomRate": 225,
+      "fees": 16
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center"
+    ],
+    "description": "NEW Downtown Brooklyn Hotel near Sunset Park\n\nStay Smart at the brand new Holiday Inn Express Brooklyn Sunset Park!\n\nLocated just a quick subway ride from downtown Manhattan, this brand new hotel is a perfect alternative to Manhattan hotels. You'll be steps from Sunset Park and a short ride from places like One World Trade Center, Madison Square Garden, Barclays Center and the Empire State Buildin",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-7912164584-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-7912158152-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-7912157717-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-7912165537-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=BXYSP&setPMCookies=true"
+  },
+  {
+    "id": "NYCLF",
+    "name": "voco Fiorello - LaGuardia Airport",
+    "brand": "voco",
+    "rating": 4.2,
+    "location": {
+      "address": "20-07 127th Street, Flushing, NY, 11356",
+      "neighborhood": "Flushing",
+      "coordinates": {
+        "lat": 40.7812868,
+        "lng": -73.8409874
+      }
+    },
+    "pricing": {
+      "nightlyRate": 0,
+      "roomRate": 0,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Restaurant",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Discover the ultimate destination at voco Fiorello - LaGuardia Airport, IHG Hotel. Near LaGuardia Airport and downtown Flushing, we offer easy access to Citi Field, Billie Jean King Tennis Center, Forest Hills Stadium, UBS Arena, and shopping at College Point.\n\nOur sustainable hotel features EV charging stations in a secure parking lot, plus a free LaGuardia Airport shuttle for easy travel. Enjoy ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/voco-flushing-8971308409-original",
+      "https://digital.ihg.com/is/image/ihg/voco-flushing-8971313703-original",
+      "https://digital.ihg.com/is/image/ihg/voco-flushing-8612826211-original",
+      "https://digital.ihg.com/is/image/ihg/voco-flushing-9023167382-original",
+      "https://digital.ihg.com/is/image/ihg/voco-flushing-8850809192-original",
+      "https://digital.ihg.com/is/image/ihg/voco-flushing-10210300549-original"
+    ],
+    "phone": "1 888 377 8626",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCLF&setPMCookies=true"
+  },
+  {
+    "id": "NYCFQ",
+    "name": "Hotel Indigo Flushing - LaGuardia",
+    "brand": "Indigo",
+    "rating": 4.3,
+    "location": {
+      "address": "36-03 Prince Street, Flushing, NY, 11354",
+      "neighborhood": "Flushing",
+      "coordinates": {
+        "lat": 40.7622978,
+        "lng": -73.8328087
+      }
+    },
+    "pricing": {
+      "nightlyRate": 374,
+      "roomRate": 374,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant",
+      "Suites"
+    ],
+    "description": "Relax and recharge at our pet-friendly boutique hotel in Flushing.\n\nHotel Indigo Flushing LaGuardia puts you minutes from the best of Queens and LaGuardia Airport (LGA). While you're here, you can root, root, root for the home team at the Mets' Citi Field, see top players in the US Open at the Billie Jean King National Tennis Center, and walk to NYC's largest Chinatown. You'll also find Queens Zoo",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-flushing-8066703934-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-flushing-8066703931-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-flushing-7896851741-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-flushing-7902452324-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-flushing-7982259442-original",
+      "https://digital.ihg.com/is/image/ihg/hotel-indigo-flushing-7908315346-original"
+    ],
+    "phone": "1 877 8 INDIGO (1 877 846 3446)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCFQ&setPMCookies=true"
+  },
+  {
+    "id": "NYCBA",
+    "name": "Holiday Inn Express & Suites Bronx - Zoo Area",
+    "brand": "Independent",
+    "rating": 3.5,
+    "location": {
+      "address": "4477 3rd Avenue, Bronx, NY, 10457",
+      "neighborhood": "Bronx",
+      "coordinates": {
+        "lat": 40.85318729999999,
+        "lng": -73.89222869999999
+      }
+    },
+    "pricing": {
+      "nightlyRate": 144,
+      "roomRate": 144,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Fitness Center",
+      "Business Center",
+      "Suites"
+    ],
+    "description": "Ideally located adjacent to the St Barnabas Hospital system and just minutes from the heart of Manhattan, our hotel offers easy access to the city's most iconic attractions. With a nearby subway station, exploring all five boroughs is effortless. Plus, we're conveniently situated only 15 miles from JFK International Airport, making us an excellent choice for both leisure and business travelers.\nIm",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-bronx-10794503221-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-bronx-10227267609-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-bronx-10794503325-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-bronx-8100738184-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-bronx-10794503241-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-bronx-10794503139-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCBA&setPMCookies=true"
+  },
+  {
+    "id": "HASNJ",
+    "name": "Holiday Inn Hasbrouck Heights-Meadowlands",
+    "brand": "Holiday Inn",
+    "rating": 4.3,
+    "location": {
+      "address": "283 Route 17 South, Hasbrouck Heights, NJ, 07604",
+      "neighborhood": "Hasbrouck Heights",
+      "coordinates": {
+        "lat": 40.860833,
+        "lng": -74.067389
+      }
+    },
+    "pricing": {
+      "nightlyRate": 138,
+      "roomRate": 138,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Fitness Center",
+      "Restaurant",
+      "Suites"
+    ],
+    "description": "Discover the perfect blend of location and comfort at Holiday Inn Hasbrouck Heights-Meadowlands, a hotel near MetLife Stadium offering easy access to top attractions in New Jersey. We are just minutes from Teterboro Airport and a short drive to the Meadowlands Racetrack. Enjoy proximity to iconic destinations like the American Dream Mall and the Meadowlands Racing & Entertainment complex.\nEnjoy co",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hasbrouck-heights-8061359454-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hasbrouck-heights-8061355024-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hasbrouck-heights-6163122319-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hasbrouck-heights-8083747397-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hasbrouck-heights-7105382642-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hasbrouck-heights-7622992337-original"
+    ],
+    "phone": "1 800 972 3160",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=HASNJ&setPMCookies=true"
+  },
+  {
+    "id": "ENGNJ",
+    "name": "Crowne Plaza Englewood",
+    "brand": "Crowne Plaza",
+    "rating": 4.1,
+    "location": {
+      "address": "401 S. Van Brunt Street, Englewood, NJ, 07631",
+      "neighborhood": "Englewood",
+      "coordinates": {
+        "lat": 40.883422,
+        "lng": -73.985618
+      }
+    },
+    "pricing": {
+      "nightlyRate": 169,
+      "roomRate": 169,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Suites",
+      "Restaurant"
+    ],
+    "description": "Discover a seamless blend of work and relaxation at Crowne Plaza Englewood. Ideally located near the New York-Presbyterian/Columbia University Irving Medical Center and just minutes from the George Washington Bridge, our hotel offers stylish accommodations and thoughtful amenities. Enjoy complimentary parking, high-speed Wi-Fi, and an inviting indoor pool.\nWhether you're here for business or leisu",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-englewood-2532882678-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-englewood-7404382701-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-englewood-6493444122-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-englewood-7404382714-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-englewood-7404383621-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-englewood-7404382549-original"
+    ],
+    "phone": "1 800 972 3160",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=ENGNJ&setPMCookies=true"
+  },
+  {
+    "id": "NYCBK",
+    "name": "Holiday Inn Express Brooklyn - Kings Hwy",
+    "brand": "Independent",
+    "rating": 3.3,
+    "location": {
+      "address": "5244 Kings Highway, Brooklyn, NY, 11234",
+      "neighborhood": "Brooklyn",
+      "coordinates": {
+        "lat": 40.637183,
+        "lng": -73.9266482
+      }
+    },
+    "pricing": {
+      "nightlyRate": 0,
+      "roomRate": 0,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center"
+    ],
+    "description": "Welcome and join us at our NEW Holiday Inn Express Brooklyn Kings Hwy invites travelers and families, wanting to experience the real Brooklyn lifestyle to stay with us and be part of our mix of rich cultures. The hotel is conveniently located only 35 minutes away from the Manhattan. Brooklyn also has many attractions like the iconic Coney Island Amusement Park, The Prospect Park Zoo, Brooklyn Muse",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-6828292847-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-6192261045-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-6192262029-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-6722563929-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-6828293117-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCBK&setPMCookies=true"
+  },
+  {
+    "id": "NYCAV",
+    "name": "avid hotels Brooklyn - Dyker Heights",
+    "brand": "Independent",
+    "rating": 4.6,
+    "location": {
+      "address": "636 86th Street, Brooklyn, NY, 11228",
+      "neighborhood": "Brooklyn",
+      "coordinates": {
+        "lat": 40.61880499999999,
+        "lng": -74.022375
+      }
+    },
+    "pricing": {
+      "nightlyRate": 180,
+      "roomRate": 180,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi"
+    ],
+    "description": "Welcome to the brand new Avid hotel",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/avid-hotels-brooklyn-9192921295-original",
+      "https://digital.ihg.com/is/image/ihg/avid-hotels-brooklyn-7991553374-original",
+      "https://digital.ihg.com/is/image/ihg/avid-hotels-brooklyn-9192921608-original",
+      "https://digital.ihg.com/is/image/ihg/avid-hotels-brooklyn-7991553686-original",
+      "https://digital.ihg.com/is/image/ihg/avid-hotels-brooklyn-7991553353-original"
+    ],
+    "phone": "1 877 495 2843",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAV&setPMCookies=true"
+  },
+  {
+    "id": "EWRHL",
+    "name": "Holiday Inn Newark International Airport",
+    "brand": "Holiday Inn",
+    "rating": 3.7,
+    "location": {
+      "address": "160 Frontage Road, Newark, NJ, 07114",
+      "neighborhood": "Newark",
+      "coordinates": {
+        "lat": 40.7129168,
+        "lng": -74.1663542
+      }
+    },
+    "pricing": {
+      "nightlyRate": 128,
+      "roomRate": 128,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Fitness Center",
+      "Business Center",
+      "Restaurant"
+    ],
+    "description": "As a premier hotel in Newark, NJ, the Holiday Inn Newark International Airport offers renovated comfort and convenience. We are just minutes from Newark Liberty International Airport (EWR) with a free 24-hour airport shuttle. Our central location off Interstate 78 and Route 1/9 makes us a great choice for travelers.Many consider us the best hotel in Newark NJ for easy access to the city. We're jus",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-newark-9753018212-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-newark-8880853356-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-newark-10051749208-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-newark-10286608770-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-newark-10073086491-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-newark-7720960220-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRHL&setPMCookies=true"
+  },
+  {
+    "id": "NYCJC",
+    "name": "Holiday Inn Express Jamaica - JFK AirTrain - NYC",
+    "brand": "Independent",
+    "rating": 3.8,
+    "location": {
+      "address": "97-18 Sutphin Blvd, Jamaica, NY, 11435",
+      "neighborhood": "Jamaica",
+      "coordinates": {
+        "lat": 40.6967893,
+        "lng": -73.8055126
+      }
+    },
+    "pricing": {
+      "nightlyRate": 427,
+      "roomRate": 427,
+      "fees": 4
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center"
+    ],
+    "description": "The Holiday Inn Express Jamaica, New York. Close to John F, Kennedy International Airport, JFK.\nIn addition to a world renowned International Airport, Jamaica New York in the burough of Queens is a great destination with easy access to New York City.  Experience easy access on the JFK AirTrain or explore further via the Long Island Rail Road.  \n\nThe Holiday Inn Express Jamaica's location provides ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-jamaica-6703300268-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-jamaica-6703307410-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-jamaica-6703302955-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-jamaica-6703300226-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-jamaica-6703301584-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCJC&setPMCookies=true"
+  },
+  {
+    "id": "MFHAM",
+    "name": "Holiday Inn Express Building 107",
+    "brand": "Independent",
+    "rating": 4,
+    "location": {
+      "address": "107 Schum Avenue, Brooklyn, NY, 11252",
+      "neighborhood": "Brooklyn",
+      "coordinates": {
+        "lat": 40.611908,
+        "lng": -74.028379
+      }
+    },
+    "pricing": {
+      "nightlyRate": 171,
+      "roomRate": 171,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Suites"
+    ],
+    "description": "Welcome to Holiday Inn Express on Fort Hamilton, an IHG Army Hotel.Whether you are traveling on official business, TDY, PCS, or simply visiting, our convenient military hotel offers all the comforts specifically designed for military travelers, families, contractors and retirees.Historic Fort Hamilton is the only active duty military installation in the greater New York City Metropolitan Area, con",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express---military-brooklyn-6150832028-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express---military-brooklyn-6150828448-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express---military-brooklyn-6150828454-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express---military-brooklyn-6150829383-original"
+    ],
+    "phone": "",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=MFHAM&setPMCookies=true"
+  },
+  {
+    "id": "SADNJ",
+    "name": "Crowne Plaza Saddle Brook",
+    "brand": "Crowne Plaza",
+    "rating": 4.2,
+    "location": {
+      "address": "50 Kenny Place, Saddle Brook, NJ, 07663",
+      "neighborhood": "Saddle Brook",
+      "coordinates": {
+        "lat": 40.903226,
+        "lng": -74.10361
+      }
+    },
+    "pricing": {
+      "nightlyRate": 116,
+      "roomRate": 116,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant",
+      "Suites"
+    ],
+    "description": "Located at the intersection of I-80 and the Garden State Parkway, Crowne Plaza Saddle Brook Hotel is the perfect place for all travelers visiting northern New Jersey and New York City. Our convenient Saddle Brook location puts you within thirty minutes of Newark International Airport (EWR) and a quick 33 minutes, via train, to Penn Station in midtown Manhattan New York City. \n\nThe Crowne Plaza Sad",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-saddle-brook-4421709704-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-saddle-brook-4432467110-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-saddle-brook-6009679917-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-saddle-brook-4421725839-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-saddle-brook-4293409224-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-saddle-brook-4432451633-original"
+    ],
+    "phone": "1 800 972 3160",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=SADNJ&setPMCookies=true"
+  },
+  {
+    "id": "EWRZB",
+    "name": "Holiday Inn Express Newark Airport – Elizabeth",
+    "brand": "Independent",
+    "rating": 4.1,
+    "location": {
+      "address": "1128 Spring Street, Elizabeth, NJ, 07201",
+      "neighborhood": "Elizabeth",
+      "coordinates": {
+        "lat": 40.6845989,
+        "lng": -74.1940401
+      }
+    },
+    "pricing": {
+      "nightlyRate": 157,
+      "roomRate": 157,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Fitness Center",
+      "Business Center"
+    ],
+    "description": "Welcome to our hotel in Newark, just 7 minutes from Newark Liberty International Airport. \nOur hotel puts you near all the best attractions in the Elizabeth area of Newark, from the historic Anheuser-Busch Co. brewery to the concerts, sports, and family-friendly shows at Prudential Center. We’re also within walking or biking distance to Rosemount Memorial Park, plus local dining and shopping. \nAt ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-elizabeth-7530566246-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-elizabeth-7532997675-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-elizabeth-7532997600-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-elizabeth-6825757345-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-elizabeth-7532993569-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRZB&setPMCookies=true"
+  },
+  {
+    "id": "EWRSP",
+    "name": "Crowne Plaza Newark Airport",
+    "brand": "Crowne Plaza",
+    "rating": 3.8,
+    "location": {
+      "address": "901 Spring Street, Elizabeth, NJ, 07201",
+      "neighborhood": "Elizabeth",
+      "coordinates": {
+        "lat": 40.67999,
+        "lng": -74.193688
+      }
+    },
+    "pricing": {
+      "nightlyRate": 121,
+      "roomRate": 121,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant"
+    ],
+    "description": "Explore New Jersey from Crowne Plaza Newark Airport hotel. Minutes from Newark Liberty International Airport, our free shuttle runs every 30 minutes for hassle-free travel. Near downtown Newark, downtown Elizabeth, and 45 minutes from New York City, we are near shops, restaurants, and iconic attractions. \nExperience sports and concerts at MetLife Stadium and Prudential Center. Shop The Mills at Je",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-elizabeth-8022656819-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-elizabeth-10073134466-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-elizabeth-10165962584-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-elizabeth-10218269105-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-elizabeth-10209846617-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-elizabeth-3868379404-original"
+    ],
+    "phone": "1 866 2 CROWNE (1 866 227 6963)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRSP&setPMCookies=true"
+  },
+  {
+    "id": "HPNNR",
+    "name": "Holiday Inn Express New Rochelle",
+    "brand": "Independent",
+    "rating": 4.4,
+    "location": {
+      "address": "43 Church Street, New Rochelle, NY, 10801",
+      "neighborhood": "New Rochelle",
+      "coordinates": {
+        "lat": 40.9072341,
+        "lng": -73.7809256
+      }
+    },
+    "pricing": {
+      "nightlyRate": 162,
+      "roomRate": 162,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center"
+    ],
+    "description": "Welcome to the Holiday Inn Express New Rochelle hotel located just off I-95 in a beautiful setting near 9 Beach Clubs, Hudson Park & Beach and Five Islands Park. Our New Rochelle hotel offers a convenient location for all leisure travelers and New Rochelle business travelers being just a short walk away from the Metro North New Rochelle Station. With Iona College, The College of New Rochelle, Albe",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-rochelle-9801720332-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-rochelle-9701120758-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-rochelle-9802259149-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-rochelle-9828836200-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-rochelle-9701608680-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-rochelle-9701120721-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=HPNNR&setPMCookies=true"
+  },
+  {
+    "id": "TOTNJ",
+    "name": "Garner Hotel Totowa",
+    "brand": "Independent",
+    "rating": 4,
+    "location": {
+      "address": "One Route 46 West, Totowa, NJ, 07512",
+      "neighborhood": "Totowa",
+      "coordinates": {
+        "lat": 40.8938192,
+        "lng": -74.2291142
+      }
+    },
+    "pricing": {
+      "nightlyRate": 134,
+      "roomRate": 134,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Experience a quality stay at an affordable price at Garner Totowa. Our hotel in Totowa is conveniently located near MetLife Stadium, Nickelodeon Universe Theme Park, and New York City, NY.  \n\n At Garner, we focus on what truly matters: a location that connects you to everything you love, a clean, comfortable guest room, and a cozy bed that promises restful nights. Plus, our complimentary hot break",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/garner-totowa-11038610128-original",
+      "https://digital.ihg.com/is/image/ihg/garner-totowa-10887692025-original",
+      "https://digital.ihg.com/is/image/ihg/garner-totowa-10887691457-original",
+      "https://digital.ihg.com/is/image/ihg/garner-totowa-10887692096-original",
+      "https://digital.ihg.com/is/image/ihg/garner-totowa-10887694705-original",
+      "https://digital.ihg.com/is/image/ihg/garner-totowa-10887692063-original"
+    ],
+    "phone": "1 877 942 7637",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=TOTNJ&setPMCookies=true",
+    "badge": {
+      "icon": "ph-fill ph-sparkle",
+      "text": "New hotel"
+    }
+  },
+  {
+    "id": "LDJNJ",
+    "name": "Holiday Inn Express & Suites Linden - Newark South",
+    "brand": "Independent",
+    "rating": 4.7,
+    "location": {
+      "address": "750 W. Edgar Road, Linden, NJ, 07036",
+      "neighborhood": "Linden",
+      "coordinates": {
+        "lat": 40.620912,
+        "lng": -74.2511509
+      }
+    },
+    "pricing": {
+      "nightlyRate": 157,
+      "roomRate": 157,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Welcome to the Newly Opened Holiday Inn Express & Suites\n\nWe’re delighted to welcome you to the brand-new Holiday Inn Express & Suites, where comfort, convenience, and thoughtful amenities come together to make every stay effortless and enjoyable. Whether you’re visiting for business, leisure, or a group gathering, our hotel is designed to help you rest, recharge, and stay productive—your way.\n\nSt",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-linden-10142154095-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-linden-10142154804-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-linden-10968984302-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-linden-10142154675-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-linden-10142154825-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-linden-10142154607-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=LDJNJ&setPMCookies=true",
+    "badge": {
+      "icon": "ph-fill ph-sparkle",
+      "text": "New hotel"
+    }
+  },
+  {
+    "id": "CLKNJ",
+    "name": "Holiday Inn Clark - Newark Area",
+    "brand": "Holiday Inn",
+    "rating": 4.3,
+    "location": {
+      "address": "36 Valley Road, Clark, NJ, 07066",
+      "neighborhood": "Clark",
+      "coordinates": {
+        "lat": 40.626631,
+        "lng": -74.301874
+      }
+    },
+    "pricing": {
+      "nightlyRate": 144,
+      "roomRate": 144,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant",
+      "Suites"
+    ],
+    "description": "Welcome to the Holiday Clark NJ. The hotel is within walking distance to Clark Commons shopping center where you can find shopping, dining, and entertainment. Situated off the Garden State Parkway at exit 135, guests enjoy complimentary parking & Wi-Fi. All rooms include a Microwave and a Mini Fridge and Keurig Coffee Maker. All 192 guests have recently been completely remodeled. Our restaurant is",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-clark-6116528156-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-clark-4059301958-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-clark-6118113605-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-clark-6116483829-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-clark-7641247281-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=CLKNJ&setPMCookies=true"
+  },
+  {
+    "id": "NYCWB",
+    "name": "Holiday Inn Westbury-Long Island",
+    "brand": "Holiday Inn",
+    "rating": 4.1,
+    "location": {
+      "address": "369 Old Country Rd, Carle Place, NY, 11514",
+      "neighborhood": "Carle Place",
+      "coordinates": {
+        "lat": 40.745549,
+        "lng": -73.601294
+      }
+    },
+    "pricing": {
+      "nightlyRate": 256,
+      "roomRate": 256,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant",
+      "Suites"
+    ],
+    "description": "The newly renovated Holiday Inn Westbury is located in the heart of Nassau County on Long Island in proximity to numerous businesses, colleges, shopping hubs, medical facilities, and the judicial districts of Mineola, Garden City, Westbury and Carle Place, NY. The hotel is located 25 minutes from the New York’s JFK, LaGuardia and Islip Airports and a 10-minute walk from the Long Island Railroad Ca",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-carle-place-6835163778-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-carle-place-5344916423-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-carle-place-3314322226-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-carle-place-6835195304-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-carle-place-5344916645-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCWB&setPMCookies=true"
+  },
+  {
+    "id": "EWRWB",
+    "name": "Holiday Inn Express & Suites Woodbridge",
+    "brand": "Independent",
+    "rating": 4.2,
+    "location": {
+      "address": "874 US Highway 1, Avenel, NJ, 07001",
+      "neighborhood": "Avenel",
+      "coordinates": {
+        "lat": 40.574822,
+        "lng": -74.289092
+      }
+    },
+    "pricing": {
+      "nightlyRate": 157,
+      "roomRate": 157,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Corporate businesses and New York City are close to this Woodbridge Hotel.\nOn your next trip to New Jersey, consider staying with us at the Holiday Inn Express Woodbridge. With close proximity to many area businesses as well as Manhattan, this is a perfect place to stay for any business or leisure traveler.  \nOur hotel in Woodbridge, New Jersey is conveniently located just off the New Jersey Turnp",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-avenel-4247027595-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-avenel-4319337749-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-avenel-4086606158-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-avenel-4319338976-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRWB&setPMCookies=true"
+  },
+  {
+    "id": "PASNJ",
+    "name": "Holiday Inn & Suites Parsippany Fairfield",
+    "brand": "Holiday Inn",
+    "rating": 4.2,
+    "location": {
+      "address": "707 Route 46 East, Parsippany, NJ, 07054",
+      "neighborhood": "Parsippany",
+      "coordinates": {
+        "lat": 40.8623,
+        "lng": -74.3777
+      }
+    },
+    "pricing": {
+      "nightlyRate": 127,
+      "roomRate": 127,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant",
+      "Suites"
+    ],
+    "description": "Welcome to Holiday Inn & Suites Parsippany Fairfield, where comfort, convenience, and exceptional hospitality come standard. Near Troy Hills, our Parsippany hotel offers the best of both worlds – easy access to I-80, 280, 46, and I-287 while still providing a quiet retreat.\nNear Seton Hall University and Centenary University, we are an ideal choice for visiting families and prospective students. E",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hotel-and-suites-parsippany-5681849398-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hotel-and-suites-parsippany-3651905850-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hotel-and-suites-parsippany-5681838814-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hotel-and-suites-parsippany-5681848983-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hotel-and-suites-parsippany-7788817897-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=PASNJ&setPMCookies=true"
+  },
+  {
+    "id": "RAMNJ",
+    "name": "Holiday Inn Express Ramsey-Mahwah",
+    "brand": "Independent",
+    "rating": 4.6,
+    "location": {
+      "address": "946 Route 17 North, Ramsey, NJ, 07446",
+      "neighborhood": "Ramsey",
+      "coordinates": {
+        "lat": 41.064969,
+        "lng": -74.130033
+      }
+    },
+    "pricing": {
+      "nightlyRate": 154,
+      "roomRate": 154,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Welcome to our hotel in beautiful Ramsey, New Jersey, just minutes from Ramapo College!  \n\nOur hotel is located just off New Jersey Route 17, putting you within easy reach of New York City. Bear Mountain State Park is 30 minutes from our Ramsey hotel, as are the American Dream Mall and DreamWorks Water Park.  \n\nThere’s lots to do closer to our hotel, too, from exploring the Ramapo College campus t",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-ramsey-5780722789-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-ramsey-5780722483-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-ramsey-5780722424-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-ramsey-5051388829-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-ramsey-5780710337-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=RAMNJ&setPMCookies=true"
+  },
+  {
+    "id": "HSKNJ",
+    "name": "Holiday Inn Express Haskell-Wayne Area",
+    "brand": "Independent",
+    "rating": 4.4,
+    "location": {
+      "address": "303 Union Avenue, Haskell, NJ, 07420",
+      "neighborhood": "Haskell",
+      "coordinates": {
+        "lat": 41.018214,
+        "lng": -74.30341
+      }
+    },
+    "pricing": {
+      "nightlyRate": 180,
+      "roomRate": 180,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Welcome to NEWLY RENOVATED 2018 Holiday Inn Express Haskell-Wayne Area hotel located just off I 287 in a quiet setting on Twin Lakes, the Holiday Inn Express Haskell Wayne Area hotel offers a peaceful retreat for all leisure travelers and Haskell business travelers. With Cedar Crest, Becton Dickinson and Chilton Memorial Hospital just around the corner, this hotel is ideally located for your next ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-haskell-5640483123-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-haskell-5640471824-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-haskell-5640483876-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-haskell-5640469871-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-haskell-6430024215-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=HSKNJ&setPMCookies=true"
+  },
+  {
+    "id": "HPNHY",
+    "name": "Holiday Inn Express & Suites Hawthorne - Elmsford North",
+    "brand": "Independent",
+    "rating": 4.5,
+    "location": {
+      "address": "20 Saw Mill River Road, Hawthorne, NY, 10532",
+      "neighborhood": "Hawthorne",
+      "coordinates": {
+        "lat": 41.0923437,
+        "lng": -73.8158289
+      }
+    },
+    "pricing": {
+      "nightlyRate": 151,
+      "roomRate": 151,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Suites",
+      "Business Center",
+      "Fitness Center"
+    ],
+    "description": "Welcome to the renovated and newly opened Holiday Inn Express Hawthorne – Elmsford North, where comfort, convenience, and hospitality blend to create a relaxing and enjoyable stay in Hawthorne.\n\nLocated near Westchester County Airport and just a short drive from New York City, our hotel offers the ideal base for exploring the area’s exciting attractions and local gems. Embark on an outdoor adventu",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-hawthorne-10542593029-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-hawthorne-10542593168-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-hawthorne-10542592975-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-hawthorne-10542592836-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-hawthorne-10542593127-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=HPNHY&setPMCookies=true",
+    "badge": {
+      "icon": "ph-fill ph-sparkle",
+      "text": "New hotel"
+    }
+  },
+  {
+    "id": "NYCMW",
+    "name": "Garner Hotel Mahwah",
+    "brand": "Independent",
+    "rating": 4,
+    "location": {
+      "address": "220 NJ-17, Mahwah, NJ, 07430",
+      "neighborhood": "Mahwah",
+      "coordinates": {
+        "lat": 41.0930827,
+        "lng": -74.1560714
+      }
+    },
+    "pricing": {
+      "nightlyRate": 145,
+      "roomRate": 145,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Garner Hotel Mahwah invites you to a relaxed, easy-going stay in Mahwah, New Jersey, where comfort and convenience are always within reach. Our modern hotel offers cozy guest rooms with plush bedding, free Wi-Fi, and friendly service, designed to help you recharge, whether you are here for business, family travel, or a quick stopover.\n\nStep outside and explore the best of the area. Hit the trails ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/garner-mahwah-9922689276-original",
+      "https://digital.ihg.com/is/image/ihg/garner-mahwah-10867166323-original",
+      "https://digital.ihg.com/is/image/ihg/garner-mahwah-10114586720-original",
+      "https://digital.ihg.com/is/image/ihg/garner-mahwah-10665002049-original",
+      "https://digital.ihg.com/is/image/ihg/garner-mahwah-9922689357-original"
+    ],
+    "phone": "1 877 942 7637",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMW&setPMCookies=true"
+  },
+  {
+    "id": "HZTNJ",
+    "name": "Holiday Inn Hazlet",
+    "brand": "Holiday Inn",
+    "rating": 4.1,
+    "location": {
+      "address": "2870 Highway 35, Hazlet, NJ, 07730",
+      "neighborhood": "Hazlet",
+      "coordinates": {
+        "lat": 40.417167,
+        "lng": -74.171569
+      }
+    },
+    "pricing": {
+      "nightlyRate": 157,
+      "roomRate": 157,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Suites",
+      "Restaurant"
+    ],
+    "description": "Hazlet Guests Love Hotel's Jersey Shore LocationWelcome to the Holiday Inn® Hazlet hotel, your home base in the Bayshore region of New Jersey. Well appointed to satisfy the needs of Jersey Shore vacationers and business travelers alike, this Hazlet hotel's pristine accommodations and hospitable staff ensure an unmatched travel experience.If you're seeking hotels in Hazlet, NJ for your next family ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hazlet-4920928152-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hazlet-2531665541-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hazlet-5395639131-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hazlet-6661628461-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-hazlet-11000493034-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=HZTNJ&setPMCookies=true"
+  },
+  {
+    "id": "SUFNY",
+    "name": "Crowne Plaza Suffern-Mahwah",
+    "brand": "Crowne Plaza",
+    "rating": 4.4,
+    "location": {
+      "address": "Three Executive Boulevard, Suffern, NY, 10901",
+      "neighborhood": "Suffern",
+      "coordinates": {
+        "lat": 41.118193,
+        "lng": -74.114601
+      }
+    },
+    "pricing": {
+      "nightlyRate": 137,
+      "roomRate": 137,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant",
+      "Suites",
+      "Entertainment"
+    ],
+    "description": "Welcome to our spacious Suffern, NY, hotel near Harriman State Park!  Our location just off the I-287 puts you in an ideal position to enjoy the best of our beautiful area. \nMahwah in New Jersey is only a few minutes away, and New York City is an easy 30-mile drive from our hotel. Many of New York’s natural spaces are within reach of our hotel, including Bear Mountain, Harriman State Park, and Dat",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-suffern-10681052204-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-suffern-10392818114-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-suffern-5889243403-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-suffern-10392817653-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-suffern-10392817230-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-suffern-10392818246-original"
+    ],
+    "phone": "1 866 2 CROWNE (1 866 227 6963)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=SUFNY&setPMCookies=true"
+  },
+  {
+    "id": "EDSCP",
+    "name": "Crowne Plaza Edison",
+    "brand": "Crowne Plaza",
+    "rating": 4.2,
+    "location": {
+      "address": "2055 Lincoln Highway, Edison, NJ, 08817",
+      "neighborhood": "Edison",
+      "coordinates": {
+        "lat": 40.524553,
+        "lng": -74.389539
+      }
+    },
+    "pricing": {
+      "nightlyRate": 116,
+      "roomRate": 116,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Restaurant",
+      "Suites",
+      "Fitness Center"
+    ],
+    "description": "The Crowne Plaza® Edison welcomes our guests to relax in our newly renovated spacious guestrooms and suites. Whether you’re traveling for business or pleasure, our premier hotel is designed with your comfort and enjoyment in mind.  \n  \nWe are conveniently located near the Jersey Turnpike, the New Jersey Convention and Exposition Center and major hospitals. Nearby attractions also include State The",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-edison-9975631525-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-edison-9975631433-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-edison-8457971409-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-edison-9975631539-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-edison-9975631573-original",
+      "https://digital.ihg.com/is/image/ihg/crowne-plaza-edison-9975631493-original"
+    ],
+    "phone": "1 866 2 CROWNE (1 866 227 6963)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EDSCP&setPMCookies=true"
+  },
+  {
+    "id": "NYCPV",
+    "name": "Holiday Inn Plainview-Long Island",
+    "brand": "Holiday Inn",
+    "rating": 4.2,
+    "location": {
+      "address": "215 Sunnyside Boulevard, Plainview, NY, 11803",
+      "neighborhood": "Plainview",
+      "coordinates": {
+        "lat": 40.797031,
+        "lng": -73.467659
+      }
+    },
+    "pricing": {
+      "nightlyRate": 191,
+      "roomRate": 191,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Pet Friendly",
+      "Business Center",
+      "Fitness Center",
+      "Restaurant",
+      "Suites"
+    ],
+    "description": "Perfectly situated off the Long Island Expressway at Exit 46, our hotel offers easy access to top corporations, including Canon, Geico, Capital One, Bank of America, Grumman Studios, Mattress Firm, and Leviton, making your business trips seamless and productive. \n\nWhether you’re visiting for work or play, our prime location puts you just moments away from the best of Long Island and New York City.",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-plainview-4681910449-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-plainview-5755938356-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-plainview-9058371667-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-plainview-5817299449-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-plainview-8526240200-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-plainview-4681877165-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCPV&setPMCookies=true"
+  },
+  {
+    "id": "PNFNJ",
+    "name": "Holiday Inn South Plainfield-Piscataway",
+    "brand": "Holiday Inn",
+    "rating": 4,
+    "location": {
+      "address": "4701 Stelton Road, South Plainfield, NJ, 07080",
+      "neighborhood": "South Plainfield",
+      "coordinates": {
+        "lat": 40.55522,
+        "lng": -74.434159
+      }
+    },
+    "pricing": {
+      "nightlyRate": 112,
+      "roomRate": 112,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Fitness Center",
+      "Restaurant",
+      "Suites"
+    ],
+    "description": "Welcome to Holiday Inn South Plainfield-Piscataway, your inviting hotel in Plainfield NJ designed for comfort, convenience, and connection. Whether traveling for business or leisure, our Plainfield hotel puts you close to Rutgers University, Robert Wood Johnson Hospital, and major corporate offices.Guests enjoy amenities including free Wi-Fi, a fitness center, and a heated indoor pool perfect for ",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-south-plainfield-10291776997-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-south-plainfield-10206945166-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-south-plainfield-10206963455-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-south-plainfield-10185816013-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-south-plainfield-10073184092-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-south-plainfield-10060292793-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=PNFNJ&setPMCookies=true"
+  },
+  {
+    "id": "EBKNJ",
+    "name": "Holiday Inn Express & Suites Tower Center New Brunswick",
+    "brand": "Independent",
+    "rating": 4.4,
+    "location": {
+      "address": "4 Tower Center Blvd, East Brunswick, NJ, 08816",
+      "neighborhood": "East Brunswick",
+      "coordinates": {
+        "lat": 40.4832,
+        "lng": -74.412
+      }
+    },
+    "pricing": {
+      "nightlyRate": 102,
+      "roomRate": 102,
+      "fees": 0
+    },
+    "amenities": [
+      "Free Wi-Fi",
+      "Business Center",
+      "Fitness Center",
+      "Suites"
+    ],
+    "description": "Hotel's Location in East Brunswick, NJ Conveniently situated off the NJ Turnpike (I-95) and close to downtown New Brunswick, NJ, we're near many of the top businesses and attractions. The hotel's prime locale and hospitality make the Holiday Inn Express® Hotel Tower Center New Brunswick a wonderful place to stay.Corporate guests find working here a joy since the hotel's location near the New Jerse",
+    "imageUrls": [
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-east-brunswick-4100967182-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-east-brunswick-4100920507-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-east-brunswick-2532499387-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-east-brunswick-4100978163-original",
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-east-brunswick-6448444533-original"
+    ],
+    "phone": "1 888 HOLIDAY (1 888 465 4329)",
+    "sentiment": [],
+    "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EBKNJ&setPMCookies=true"
   }
 ]

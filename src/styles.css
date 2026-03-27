@@ -19,6 +19,30 @@
 @import '@phosphor-icons/web/regular';
 @import '@phosphor-icons/web/fill';
 
+/* Leaflet MarkerCluster */
+@import 'leaflet.markercluster/dist/MarkerCluster.css';
+@import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+
+/* Custom cluster icon */
+.hotel-cluster .cluster-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #1F4456;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.hotel-cluster .cluster-icon span {
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: inherit;
+}
+
 /* Flatpickr overrides - Remove all borders, shadows, and backgrounds for inline calendar */
 .flatpickr-calendar.inline {
   box-shadow: none !important;

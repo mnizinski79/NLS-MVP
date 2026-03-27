@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as L from 'leaflet';
+import 'leaflet.markercluster';
 import { Hotel } from '../models/hotel.model';
 import { PointOfInterest } from '../models';
 import { MapService } from '../services/map.service';
@@ -81,6 +82,9 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
 
   /** Array of current markers on the map */
   private markers: L.Marker[] = [];
+
+  /** Cluster group for hotel markers */
+  private clusterGroup: L.MarkerClusterGroup | null = null;
 
   /** POI marker on the map */
   private poiMarker: L.Marker | null = null;
@@ -194,9 +198,28 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
   private updateMarkers(): void {
     if (!this.map) return;
 
-    // Clear existing markers
+    // Clear existing markers and cluster group
     this.markers.forEach(marker => marker.remove());
     this.markers = [];
+    if (this.clusterGroup) {
+      this.map.removeLayer(this.clusterGroup);
+    }
+
+    // Create cluster group
+    this.clusterGroup = (L as any).markerClusterGroup({
+      maxClusterRadius: 60,
+      showCoverageOnHover: false,
+      zoomToBoundsOnClick: true,
+      spiderfyOnMaxZoom: true,
+      iconCreateFunction: (cluster: any) => {
+        const count = cluster.getChildCount();
+        return L.divIcon({
+          html: `<div class="cluster-icon"><span>${count}</span></div>`,
+          className: 'hotel-cluster',
+          iconSize: L.point(40, 40),
+        });
+      }
+    });
 
     // Create new markers for each hotel
     this.hotels.forEach(hotel => {
@@ -205,10 +228,11 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
         (clickedHotel) => this.markerClicked.emit(clickedHotel),
         this.isMobile
       );
-
-      marker.addTo(this.map!);
       this.markers.push(marker);
     });
+
+    this.clusterGroup!.addLayers(this.markers);
+    this.map.addLayer(this.clusterGroup!);
 
     // Center map on hotels if there are any
     if (this.hotels.length > 0) {

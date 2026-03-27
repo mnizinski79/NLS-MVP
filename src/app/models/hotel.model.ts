@@ -1,7 +1,7 @@
 export interface Hotel {
   id: string;
   name: string;
-  brand: 'Kimpton' | 'voco' | 'InterContinental' | 'Holiday Inn' | 'Independent';
+  brand: 'Kimpton' | 'voco' | 'InterContinental' | 'Holiday Inn' | 'Crowne Plaza' | 'Indigo' | 'Candlewood' | 'Independent';
   rating: number; // 1-5 stars
   location: {
     address: string;
