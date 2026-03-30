@@ -28,6 +28,10 @@ const brandMap = {
   'ININ': 'Indigo',
   'HX': 'Holiday Inn Express',
   'HXHX': 'Holiday Inn Express',
+  'EX': 'Holiday Inn Express',
+  'HIEX': 'Holiday Inn Express',
+  'HEXS': 'Holiday Inn Express',
+  'MAEX': 'Holiday Inn Express',
   'AV': 'Avid',
   'AVAV': 'Avid',
   'GN': 'Garner',
@@ -125,6 +129,31 @@ for (const h of hotelInfoList) {
   // Booking URL
   const bookingUrl = `https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=${code}&setPMCookies=true`;
 
+  // Sentiment — derive from city, neighborhood, state
+  const city = h.address?.city || '';
+  const state = h.address?.state?.name || '';
+  const neighborhood = h.profile?.name || '';
+  const sentiment = [city];
+  if (state && state !== city) sentiment.push(state);
+  // Add NYC-specific sentiments
+  if (city === 'New York') {
+    sentiment.push('NYC', 'Manhattan', 'New York City');
+    if (neighborhood.includes('Times Square')) sentiment.push('Times Square', 'Midtown');
+    if (neighborhood.includes('Midtown')) sentiment.push('Midtown');
+    if (neighborhood.includes('Chelsea')) sentiment.push('Chelsea');
+    if (neighborhood.includes('SoHo')) sentiment.push('SoHo');
+    if (neighborhood.includes('Wall Street') || neighborhood.includes('Financial')) sentiment.push('Financial District', 'Downtown');
+  }
+  // Add borough sentiments
+  if (['Brooklyn', 'Bronx', 'Queens', 'Staten Island'].includes(city)) {
+    sentiment.push('NYC', 'New York', 'New York City');
+  }
+  // NJ hotels near NYC
+  if (state === 'New Jersey') {
+    sentiment.push('New Jersey', 'NJ');
+    if (h.distanceFrom?.miles < 15) sentiment.push('Near NYC');
+  }
+
   const hotel = {
     id: code,
     name: `${h.brandInfo?.brandName || brand} ${h.profile?.name || ''}`.trim(),
@@ -147,7 +176,7 @@ for (const h of hotelInfoList) {
     description: cleanDesc.slice(0, 400),
     imageUrls,
     phone: h.callCenter?.phoneNumber || '',
-    sentiment: [],
+    sentiment,
     bookingUrl,
     ...(badge ? { badge } : {}),
   };

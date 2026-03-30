@@ -80,6 +80,9 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
   /** Leaflet map instance */
   private map: L.Map | null = null;
 
+  /** Whether this is the first time hotels are loaded (skip centering) */
+  private isInitialLoad = true;
+
   /** Array of current markers on the map */
   private markers: L.Marker[] = [];
 
@@ -207,10 +210,11 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
 
     // Create cluster group
     this.clusterGroup = (L as any).markerClusterGroup({
-      maxClusterRadius: 60,
+      maxClusterRadius: 30,
       showCoverageOnHover: false,
       zoomToBoundsOnClick: true,
       spiderfyOnMaxZoom: true,
+      disableClusteringAtZoom: 14,
       iconCreateFunction: (cluster: any) => {
         const count = cluster.getChildCount();
         return L.divIcon({
@@ -234,10 +238,11 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
     this.clusterGroup!.addLayers(this.markers);
     this.map.addLayer(this.clusterGroup!);
 
-    // Center map on hotels if there are any
-    if (this.hotels.length > 0) {
+    // Center map on hotels — skip on initial load to keep default position
+    if (this.hotels.length > 0 && !this.isInitialLoad) {
       this.centerOnHotels();
     }
+    this.isInitialLoad = false;
   }
 
   /**
@@ -301,7 +306,7 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
         this.map.fitBounds(bounds, {
           paddingTopLeft: [50, topPadding], // 50px left, topPadding top
           paddingBottomRight: [50, bottomPadding], // 50px right, bottomPadding bottom
-          maxZoom: 15
+          maxZoom: 16
         });
       } else {
         // Desktop: account for chat panel on left and cards at bottom
@@ -317,7 +322,7 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
         this.map.fitBounds(bounds, {
           paddingTopLeft: [leftPadding, topPadding], // leftPadding left, topPadding top
           paddingBottomRight: [50, bottomPadding], // 50px right, bottomPadding bottom
-          maxZoom: 15
+          maxZoom: 16
         });
       }
       

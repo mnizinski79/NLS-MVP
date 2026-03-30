@@ -272,9 +272,9 @@ DATE & GUEST COUNT:
 Current query: "${query}"${context}
 
   Available attributes:
-  - Locations/Sentiments: Times Square, Broadway, Theater District, Rockefeller Center, Modern, Luxury, Rooftop Bar, Central Location, Value, Family Friendly, Convenient, Skyline Views, New Opening, City Views
-  - Amenities: Rooftop Bar, Fitness Center, Pet Friendly, Free Wi-Fi, Spa, Restaurant, Room Service, Concierge, Hosted Wine Hour, Cocktail Bar, Terrace Rooms, Business Center, Grab & Go Market
-  - Brands: Kimpton, voco, InterContinental, Holiday Inn, Independent
+  - Locations/Sentiments: NYC, New York, Manhattan, New York City, Times Square, Midtown, Broadway, Theater District, Rockefeller Center, Chelsea, SoHo, Financial District, Downtown, Brooklyn, Bronx, Long Island City, Jersey City, New Jersey, Near NYC, Modern, Luxury, Value, Family Friendly, Convenient, Skyline Views, Central Location
+  - Amenities: Rooftop Bar, Fitness Center, Pet Friendly, Free Wi-Fi, Spa, Restaurant, Room Service, Concierge, Hosted Wine Hour, Cocktail Bar, Terrace Rooms, Business Center, Grab & Go Market, Suites, Sustainable Practices, Entertainment
+  - Brands: Kimpton, voco, InterContinental, Holiday Inn, Crowne Plaza, Indigo, Candlewood, Independent
   - Price ranges: Budget (<$200), Mid-range ($200-400), Luxury (>$400)
   
   CRITICAL - HANDLING NON-EXISTENT AMENITIES:
@@ -301,17 +301,21 @@ Current query: "${query}"${context}
   - If user says "$350 budget" for a 4-night stay, set priceRange.max to 350-400 (NOT 87.50)
 
   SENTIMENT MAPPING RULES:
-  - "romantic" → use amenities: ["Rooftop Bar"] (rooftop bars offer romantic views)
-  - "luxury" or "upscale" → use sentiments: ["Luxury"] OR priceRange: {min: 400, max: null} and minRating: 4.5
-  - "budget" or "affordable" → use sentiments: ["Value"] OR priceRange: {min: null, max: 200}
-  - "central" or "convenient" → use sentiments: ["Times Square", "Central Location"]
-  - "Midtown" or "near Central Park" or "Rockefeller Center" → use sentiments: ["Rockefeller Center"] OR leave sentiments empty (all hotels are in central NYC)
-  - "Times Square" or "Broadway" or "Theater District" → use sentiments: ["Times Square", "Broadway", "Theater District"]
-  - "family-friendly" or "good for families" or "kid-friendly" → use sentiments: ["Family Friendly"]
-  - "modern" or "trendy" → use sentiments: ["Modern"]
-  - DO NOT use sentiment values that don't exist in the data
-  - When user asks for vibe/feeling, translate to concrete amenities or locations
-  - If unsure about location mapping, leave sentiments empty rather than using non-existent values
+  - "NYC" or "New York" or "New York City" → use sentiments: ["NYC"] (this filters to Manhattan + boroughs only)
+  - "Manhattan" → use sentiments: ["Manhattan"]
+  - "Brooklyn" → use sentiments: ["Brooklyn"]
+  - "Midtown" → use sentiments: ["Midtown"]
+  - "Times Square" or "Broadway" or "Theater District" → use sentiments: ["Times Square"]
+  - "Downtown" or "Financial District" or "Wall Street" → use sentiments: ["Financial District", "Downtown"]
+  - "romantic" → use amenities: ["Rooftop Bar"]
+  - "luxury" or "upscale" → use sentiments: ["NYC"] and priceRange: {min: 400, max: null} and minRating: 4.5
+  - "budget" or "affordable" → use sentiments: ["NYC"] and priceRange: {min: null, max: 200}
+  - "central" or "convenient" → use sentiments: ["Midtown", "Times Square"]
+  - "family-friendly" or "good for families" or "kid-friendly" → add sentiments: ["NYC"] if location not specified
+  - "modern" or "trendy" → use sentiments: ["NYC"]
+  - CRITICAL: When user says "NYC hotels" or "hotels in New York", ALWAYS set sentiments: ["NYC"] to filter to NYC-area hotels only
+  - DO NOT leave sentiments empty when user specifies a location — this will show ALL hotels including distant ones
+  - If unsure about location mapping, use sentiments: ["NYC"] as default for any New York area query
   
   CRITICAL - DO NOT AUTO-ADD "FAMILY FRIENDLY":
   - Just because someone mentions children or traveling with kids does NOT mean they want "Family Friendly" sentiment
@@ -561,11 +565,19 @@ Current query: "${query}"${context}
     
     // Map broader location terms to specific sentiment keywords
     const locationMappings: Record<string, string[]> = {
-      'midtown': ['Times Square', 'Theater District', 'Rockefeller Center', 'Broadway'],
+      'nyc': ['NYC'],
+      'new york': ['NYC', 'New York'],
+      'manhattan': ['Manhattan'],
+      'brooklyn': ['Brooklyn'],
+      'midtown': ['Midtown'],
       'times square': ['Times Square'],
       'broadway': ['Broadway', 'Theater District'],
       'theater district': ['Theater District'],
-      'rockefeller center': ['Rockefeller Center']
+      'rockefeller center': ['Rockefeller Center'],
+      'downtown': ['Downtown', 'Financial District'],
+      'financial district': ['Financial District'],
+      'chelsea': ['Chelsea'],
+      'soho': ['SoHo'],
     };
     
     let foundSentiments: string[] = [];

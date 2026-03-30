@@ -34,7 +34,14 @@
       "https://digital.ihg.com/is/image/ihg/voco-new-york-10518085643-original"
     ],
     "phone": "1 888 377 8626",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Times Square",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCXV&setPMCookies=true",
     "badge": {
       "icon": "ph-fill ph-sparkle",
@@ -79,7 +86,14 @@
       "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-9291823927-original"
     ],
     "phone": "1 888 IC HOTELS (1 888 424 6835)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Times Square",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCHC&setPMCookies=true",
     "badge": {
       "icon": "ph-fill ph-leaf",
@@ -122,7 +136,14 @@
       "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10136911396-original"
     ],
     "phone": "1 800 546 7866",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Times Square",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCEA&setPMCookies=true",
     "badge": {
       "icon": "ph-fill ph-leaf",
@@ -161,7 +182,13 @@
       "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10623966446-original"
     ],
     "phone": "1 800 546 7866",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCDD&setPMCookies=true",
     "badge": {
       "icon": "ph-fill ph-sparkle",
@@ -201,7 +228,14 @@
       "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-10383720116-original"
     ],
     "phone": "877 333 6517",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Times Square",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAT&setPMCookies=true"
   },
   {
@@ -238,7 +272,14 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-10050176119-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Times Square",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMA&setPMCookies=true"
   },
   {
@@ -275,13 +316,20 @@
       "https://digital.ihg.com/is/image/ihg/candlewood-suites-new-york-9682254944-original"
     ],
     "phone": "1 877 CANDLEWOOD (1 877 226 3539)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Times Square",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCCW&setPMCookies=true"
   },
   {
     "id": "NYCWS",
     "name": "Holiday Inn Express New York City Times Square",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4,
     "location": {
       "address": "343 West 39th Street, New York, NY, 10018",
@@ -310,7 +358,14 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-9752458404-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Times Square",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCWS&setPMCookies=true"
   },
   {
@@ -350,7 +405,13 @@
       "https://digital.ihg.com/is/image/ihg/crowne-plaza-new-york-10473992762-original"
     ],
     "phone": "1 866 2 CROWNE (1 866 227 6963)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCPC&setPMCookies=true"
   },
   {
@@ -388,13 +449,20 @@
       "https://digital.ihg.com/is/image/ihg/voco-new-york-10561100252-original"
     ],
     "phone": "1 888 377 8626",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Times Square",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCVM&setPMCookies=true"
   },
   {
     "id": "NYCTS",
     "name": "Holiday Inn Express Manhattan Times Square South",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.3,
     "location": {
       "address": "60 West 36th Street, New York, NY, 10018",
@@ -422,7 +490,14 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-6447014110-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Times Square",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCTS&setPMCookies=true"
   },
   {
@@ -460,13 +535,20 @@
       "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-4210512432-original"
     ],
     "phone": "1 855 879 3836",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Times Square",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCTT&setPMCookies=true"
   },
   {
     "id": "NYCHK",
     "name": "Holiday Inn Express Manhattan Midtown West",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.1,
     "location": {
       "address": "538 West 48th Street, New York, NY, 10036",
@@ -494,7 +576,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-6447036175-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCHK&setPMCookies=true"
   },
   {
@@ -531,7 +619,12 @@
       "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-10800041747-original"
     ],
     "phone": "1 800 546 7866",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCPK&setPMCookies=true"
   },
   {
@@ -572,7 +665,12 @@
       "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-4940856135-original"
     ],
     "phone": "1 888 IC HOTELS (1 888 424 6835)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCHA&setPMCookies=true",
     "badge": {
       "icon": "ph-fill ph-leaf",
@@ -615,7 +713,12 @@
       "https://digital.ihg.com/is/image/ihg/kimpton-new-york-4647140093-original"
     ],
     "phone": "1 800 546 7866",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAA&setPMCookies=true",
     "badge": {
       "icon": "ph-fill ph-leaf",
@@ -625,7 +728,7 @@
   {
     "id": "NYCNY",
     "name": "Holiday Inn Express NYC Chelsea - NoMad Area",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.3,
     "location": {
       "address": "232 West 29th Street, New York, NY, 10001",
@@ -655,7 +758,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-10109198239-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Chelsea"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCNY&setPMCookies=true"
   },
   {
@@ -693,7 +802,13 @@
       "https://digital.ihg.com/is/image/ihg/even-hotels-new-york-4834044804-original"
     ],
     "phone": "1 855 879 3836",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Midtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCEV&setPMCookies=true"
   },
   {
@@ -729,7 +844,10 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-city-9890039688-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "New York City",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCVC&setPMCookies=true"
   },
   {
@@ -764,7 +882,12 @@
       "https://digital.ihg.com/is/image/ihg/voco-new-york-6650784048-original"
     ],
     "phone": "1 888 377 8626",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCVO&setPMCookies=true"
   },
   {
@@ -802,7 +925,10 @@
       "https://digital.ihg.com/is/image/ihg/even-hotels-long-island-city-10610119454-original"
     ],
     "phone": "1 855 879 3836",
-    "sentiment": [],
+    "sentiment": [
+      "Long Island City",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCIS&setPMCookies=true",
     "badge": {
       "icon": "ph-fill ph-sparkle",
@@ -842,7 +968,12 @@
       "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-10736650145-original"
     ],
     "phone": "1 877 8 INDIGO (1 877 846 3446)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCOS&setPMCookies=true"
   },
   {
@@ -878,13 +1009,18 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-9932768795-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCES&setPMCookies=true"
   },
   {
     "id": "NYCEX",
     "name": "Holiday Inn Express Long Island City E - New York",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 3.9,
     "location": {
       "address": "52-09 31st Place, Long Island City, NY, 11101",
@@ -916,7 +1052,10 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-long-island-city-10031515158-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Long Island City",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCEX&setPMCookies=true"
   },
   {
@@ -952,13 +1091,19 @@
       "https://digital.ihg.com/is/image/ihg/garner-north-bergen-10880359975-original"
     ],
     "phone": "1 877 942 7637",
-    "sentiment": [],
+    "sentiment": [
+      "North Bergen",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRNB&setPMCookies=true"
   },
   {
     "id": "JERCY",
     "name": "Holiday Inn Express & Suites Jersey City - Holland Tunnel",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.4,
     "location": {
       "address": "180 14th Street, Jersey City, NJ, 07310",
@@ -987,7 +1132,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-6878365819-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Jersey City",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=JERCY&setPMCookies=true"
   },
   {
@@ -1024,7 +1175,10 @@
       "https://digital.ihg.com/is/image/ihg/voco-astoria-10694420554-original"
     ],
     "phone": "1 888 377 8626",
-    "sentiment": [],
+    "sentiment": [
+      "Astoria",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAS&setPMCookies=true"
   },
   {
@@ -1061,7 +1215,14 @@
       "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-8756850011-original"
     ],
     "phone": "1 877 8 INDIGO (1 877 846 3446)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Financial District",
+      "Downtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCWL&setPMCookies=true"
   },
   {
@@ -1100,7 +1261,13 @@
       "https://digital.ihg.com/is/image/ihg/hotel-indigo-brooklyn-6248589547-original"
     ],
     "phone": "1 877 8 INDIGO (1 877 846 3446)",
-    "sentiment": [],
+    "sentiment": [
+      "Brooklyn",
+      "New York",
+      "NYC",
+      "New York",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMP&setPMCookies=true"
   },
   {
@@ -1135,13 +1302,20 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-10668952940-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Financial District",
+      "Downtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMF&setPMCookies=true"
   },
   {
     "id": "EWRCJ",
     "name": "Holiday Inn Express & Suites Jersey City North - Hoboken",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.3,
     "location": {
       "address": "707 Tonnelle Avenue, Jersey City, NJ, 07307",
@@ -1171,7 +1345,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-jersey-city-5415947030-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Jersey City",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRCJ&setPMCookies=true"
   },
   {
@@ -1207,13 +1387,20 @@
       "https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-9774261515-original"
     ],
     "phone": "1 877 8 INDIGO (1 877 846 3446)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Financial District",
+      "Downtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCGO&setPMCookies=true"
   },
   {
     "id": "NYCSF",
     "name": "Holiday Inn Express New York City-Wall Street",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.1,
     "location": {
       "address": "126 Water Street, New York, NY, 10005",
@@ -1242,7 +1429,14 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-york-6447065285-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "New York",
+      "NYC",
+      "Manhattan",
+      "New York City",
+      "Financial District",
+      "Downtown"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCSF&setPMCookies=true"
   },
   {
@@ -1277,13 +1471,19 @@
       "https://digital.ihg.com/is/image/ihg/candlewood-suites-secaucus-6102331680-original"
     ],
     "phone": "1 877 CANDLEWOOD (1 877 226 3539)",
-    "sentiment": [],
+    "sentiment": [
+      "Secaucus",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCNJ&setPMCookies=true"
   },
   {
     "id": "NYCWD",
     "name": "Holiday Inn Express & Suites Woodside LaGuardia Airport",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.4,
     "location": {
       "address": "64-06 Queens Boulevard, Woodside, NY, 11377",
@@ -1314,13 +1514,16 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-woodside-7248891748-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Woodside",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCWD&setPMCookies=true"
   },
   {
     "id": "MPENY",
     "name": "Holiday Inn Express Queens - Maspeth",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.2,
     "location": {
       "address": "59-40 55th Road, Maspeth, NY, 11378",
@@ -1351,7 +1554,10 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-maspeth-10683824740-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Maspeth",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=MPENY&setPMCookies=true"
   },
   {
@@ -1389,7 +1595,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-brooklyn-5971719180-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Brooklyn",
+      "New York",
+      "NYC",
+      "New York",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=LGABR&setPMCookies=true"
   },
   {
@@ -1427,13 +1639,19 @@
       "https://digital.ihg.com/is/image/ihg/even-hotels-brooklyn-10028702200-original"
     ],
     "phone": "1 855 879 3836",
-    "sentiment": [],
+    "sentiment": [
+      "Brooklyn",
+      "New York",
+      "NYC",
+      "New York",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=BXYEV&setPMCookies=true"
   },
   {
     "id": "CSTNJ",
     "name": "Holiday Inn Express & Suites Meadowlands Area",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.4,
     "location": {
       "address": "100 Paterson Plank Road, Carlstadt, NJ, 07072",
@@ -1462,13 +1680,19 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-carlstadt-4184163753-original"
     ],
     "phone": "1 800 972 3160",
-    "sentiment": [],
+    "sentiment": [
+      "Carlstadt",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=CSTNJ&setPMCookies=true"
   },
   {
     "id": "BXYSP",
     "name": "Holiday Inn Express NYC Brooklyn - Sunset Park",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.1,
     "location": {
       "address": "833 39th Street, Brooklyn, NY, 11232",
@@ -1496,7 +1720,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-7912165537-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Brooklyn",
+      "New York",
+      "NYC",
+      "New York",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=BXYSP&setPMCookies=true"
   },
   {
@@ -1534,7 +1764,10 @@
       "https://digital.ihg.com/is/image/ihg/voco-flushing-10210300549-original"
     ],
     "phone": "1 888 377 8626",
-    "sentiment": [],
+    "sentiment": [
+      "Flushing",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCLF&setPMCookies=true"
   },
   {
@@ -1573,13 +1806,16 @@
       "https://digital.ihg.com/is/image/ihg/hotel-indigo-flushing-7908315346-original"
     ],
     "phone": "1 877 8 INDIGO (1 877 846 3446)",
-    "sentiment": [],
+    "sentiment": [
+      "Flushing",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCFQ&setPMCookies=true"
   },
   {
     "id": "NYCBA",
     "name": "Holiday Inn Express & Suites Bronx - Zoo Area",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 3.5,
     "location": {
       "address": "4477 3rd Avenue, Bronx, NY, 10457",
@@ -1610,7 +1846,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-bronx-10794503139-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Bronx",
+      "New York",
+      "NYC",
+      "New York",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCBA&setPMCookies=true"
   },
   {
@@ -1647,7 +1889,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-hasbrouck-heights-7622992337-original"
     ],
     "phone": "1 800 972 3160",
-    "sentiment": [],
+    "sentiment": [
+      "Hasbrouck Heights",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=HASNJ&setPMCookies=true"
   },
   {
@@ -1686,13 +1934,19 @@
       "https://digital.ihg.com/is/image/ihg/crowne-plaza-englewood-7404382549-original"
     ],
     "phone": "1 800 972 3160",
-    "sentiment": [],
+    "sentiment": [
+      "Englewood",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=ENGNJ&setPMCookies=true"
   },
   {
     "id": "NYCBK",
     "name": "Holiday Inn Express Brooklyn - Kings Hwy",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 3.3,
     "location": {
       "address": "5244 Kings Highway, Brooklyn, NY, 11234",
@@ -1721,7 +1975,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-brooklyn-6828293117-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Brooklyn",
+      "New York",
+      "NYC",
+      "New York",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCBK&setPMCookies=true"
   },
   {
@@ -1754,7 +2014,13 @@
       "https://digital.ihg.com/is/image/ihg/avid-hotels-brooklyn-7991553353-original"
     ],
     "phone": "1 877 495 2843",
-    "sentiment": [],
+    "sentiment": [
+      "Brooklyn",
+      "New York",
+      "NYC",
+      "New York",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAV&setPMCookies=true"
   },
   {
@@ -1791,13 +2057,19 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-newark-7720960220-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Newark",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRHL&setPMCookies=true"
   },
   {
     "id": "NYCJC",
     "name": "Holiday Inn Express Jamaica - JFK AirTrain - NYC",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 3.8,
     "location": {
       "address": "97-18 Sutphin Blvd, Jamaica, NY, 11435",
@@ -1825,13 +2097,16 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-jamaica-6703301584-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Jamaica",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCJC&setPMCookies=true"
   },
   {
     "id": "MFHAM",
     "name": "Holiday Inn Express Building 107",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4,
     "location": {
       "address": "107 Schum Avenue, Brooklyn, NY, 11252",
@@ -1860,7 +2135,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express---military-brooklyn-6150829383-original"
     ],
     "phone": "",
-    "sentiment": [],
+    "sentiment": [
+      "Brooklyn",
+      "New York",
+      "NYC",
+      "New York",
+      "New York City"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=MFHAM&setPMCookies=true"
   },
   {
@@ -1898,13 +2179,19 @@
       "https://digital.ihg.com/is/image/ihg/crowne-plaza-saddle-brook-4432451633-original"
     ],
     "phone": "1 800 972 3160",
-    "sentiment": [],
+    "sentiment": [
+      "Saddle Brook",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=SADNJ&setPMCookies=true"
   },
   {
     "id": "EWRZB",
     "name": "Holiday Inn Express Newark Airport – Elizabeth",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.1,
     "location": {
       "address": "1128 Spring Street, Elizabeth, NJ, 07201",
@@ -1933,7 +2220,13 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-elizabeth-7532993569-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Elizabeth",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRZB&setPMCookies=true"
   },
   {
@@ -1970,13 +2263,19 @@
       "https://digital.ihg.com/is/image/ihg/crowne-plaza-elizabeth-3868379404-original"
     ],
     "phone": "1 866 2 CROWNE (1 866 227 6963)",
-    "sentiment": [],
+    "sentiment": [
+      "Elizabeth",
+      "New Jersey",
+      "New Jersey",
+      "NJ",
+      "Near NYC"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRSP&setPMCookies=true"
   },
   {
     "id": "HPNNR",
     "name": "Holiday Inn Express New Rochelle",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.4,
     "location": {
       "address": "43 Church Street, New Rochelle, NY, 10801",
@@ -2006,7 +2305,10 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-new-rochelle-9701120721-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "New Rochelle",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=HPNNR&setPMCookies=true"
   },
   {
@@ -2043,7 +2345,12 @@
       "https://digital.ihg.com/is/image/ihg/garner-totowa-10887692063-original"
     ],
     "phone": "1 877 942 7637",
-    "sentiment": [],
+    "sentiment": [
+      "Totowa",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=TOTNJ&setPMCookies=true",
     "badge": {
       "icon": "ph-fill ph-sparkle",
@@ -2053,7 +2360,7 @@
   {
     "id": "LDJNJ",
     "name": "Holiday Inn Express & Suites Linden - Newark South",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.7,
     "location": {
       "address": "750 W. Edgar Road, Linden, NJ, 07036",
@@ -2084,7 +2391,12 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-linden-10142154607-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Linden",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=LDJNJ&setPMCookies=true",
     "badge": {
       "icon": "ph-fill ph-sparkle",
@@ -2125,7 +2437,12 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-clark-7641247281-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Clark",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=CLKNJ&setPMCookies=true"
   },
   {
@@ -2163,13 +2480,16 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-carle-place-5344916645-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Carle Place",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCWB&setPMCookies=true"
   },
   {
     "id": "EWRWB",
     "name": "Holiday Inn Express & Suites Woodbridge",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.2,
     "location": {
       "address": "874 US Highway 1, Avenel, NJ, 07001",
@@ -2198,7 +2518,12 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-avenel-4319338976-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Avenel",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EWRWB&setPMCookies=true"
   },
   {
@@ -2235,13 +2560,18 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-hotel-and-suites-parsippany-7788817897-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Parsippany",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=PASNJ&setPMCookies=true"
   },
   {
     "id": "RAMNJ",
     "name": "Holiday Inn Express Ramsey-Mahwah",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.6,
     "location": {
       "address": "946 Route 17 North, Ramsey, NJ, 07446",
@@ -2271,13 +2601,18 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-ramsey-5780710337-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Ramsey",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=RAMNJ&setPMCookies=true"
   },
   {
     "id": "HSKNJ",
     "name": "Holiday Inn Express Haskell-Wayne Area",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.4,
     "location": {
       "address": "303 Union Avenue, Haskell, NJ, 07420",
@@ -2308,13 +2643,18 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-haskell-6430024215-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Haskell",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=HSKNJ&setPMCookies=true"
   },
   {
     "id": "HPNHY",
     "name": "Holiday Inn Express & Suites Hawthorne - Elmsford North",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.5,
     "location": {
       "address": "20 Saw Mill River Road, Hawthorne, NY, 10532",
@@ -2345,7 +2685,10 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-hawthorne-10542593127-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Hawthorne",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=HPNHY&setPMCookies=true",
     "badge": {
       "icon": "ph-fill ph-sparkle",
@@ -2385,7 +2728,12 @@
       "https://digital.ihg.com/is/image/ihg/garner-mahwah-9922689357-original"
     ],
     "phone": "1 877 942 7637",
-    "sentiment": [],
+    "sentiment": [
+      "Mahwah",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMW&setPMCookies=true"
   },
   {
@@ -2423,7 +2771,12 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-hazlet-11000493034-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Hazlet",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=HZTNJ&setPMCookies=true"
   },
   {
@@ -2463,7 +2816,10 @@
       "https://digital.ihg.com/is/image/ihg/crowne-plaza-suffern-10392818246-original"
     ],
     "phone": "1 866 2 CROWNE (1 866 227 6963)",
-    "sentiment": [],
+    "sentiment": [
+      "Suffern",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=SUFNY&setPMCookies=true"
   },
   {
@@ -2501,7 +2857,12 @@
       "https://digital.ihg.com/is/image/ihg/crowne-plaza-edison-9975631493-original"
     ],
     "phone": "1 866 2 CROWNE (1 866 227 6963)",
-    "sentiment": [],
+    "sentiment": [
+      "Edison",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EDSCP&setPMCookies=true"
   },
   {
@@ -2540,7 +2901,10 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-plainview-4681877165-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "Plainview",
+      "New York"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCPV&setPMCookies=true"
   },
   {
@@ -2577,13 +2941,18 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-south-plainfield-10060292793-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "South Plainfield",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=PNFNJ&setPMCookies=true"
   },
   {
     "id": "EBKNJ",
     "name": "Holiday Inn Express & Suites Tower Center New Brunswick",
-    "brand": "Independent",
+    "brand": "Holiday Inn Express",
     "rating": 4.4,
     "location": {
       "address": "4 Tower Center Blvd, East Brunswick, NJ, 08816",
@@ -2613,7 +2982,12 @@
       "https://digital.ihg.com/is/image/ihg/holiday-inn-express-and-suites-east-brunswick-6448444533-original"
     ],
     "phone": "1 888 HOLIDAY (1 888 465 4329)",
-    "sentiment": [],
+    "sentiment": [
+      "East Brunswick",
+      "New Jersey",
+      "New Jersey",
+      "NJ"
+    ],
     "bookingUrl": "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=EBKNJ&setPMCookies=true"
   }
 ]
