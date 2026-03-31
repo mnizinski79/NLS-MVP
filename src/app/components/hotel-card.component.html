@@ -48,9 +48,9 @@
     <!-- Price -->
     <div class="hotel-price">
       <div class="price-label">From</div>
-      <div class="price-main">{{ pricing.formatRateNumber(hotel.pricing.nightlyRate) }} <span class="price-currency">{{ pricing.unitLabel }}</span></div>
+      <div class="price-main">{{ pricing.formatRateNumber(hotel.pricing.nightlyRate, hotel) }} <span class="price-currency" *ngIf="!pricing.formatCashPortion(hotel)">{{ pricing.unitLabel }}</span><span class="price-currency" *ngIf="pricing.formatCashPortion(hotel)">pts {{ pricing.formatCashPortion(hotel) }} / night</span></div>
       <div class="price-breakdown" *ngIf="pricing.mode === 'cash'">{{ hotel.pricing.roomRate.toFixed(0) }} room + {{ hotel.pricing.fees.toFixed(0) }} fees</div>
-      <div class="price-breakdown" *ngIf="pricing.mode === 'points'">{{ pricing.toPoints(hotel.pricing.roomRate).toLocaleString() }} room + {{ pricing.toPoints(hotel.pricing.fees).toLocaleString() }} fees</div>
+      <div class="price-breakdown" *ngIf="pricing.mode !== 'cash'">Excludes {{ hotel.pricing.fees.toFixed(0) }} USD Amenity Fee per night</div>
     </div>
   </div>
 </div>

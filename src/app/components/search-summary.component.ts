@@ -9,7 +9,7 @@ import { SearchContext } from '../models/message.model';
   template: `
     <div class="search-divider" *ngIf="context" role="status" [attr.aria-label]="'Search context: ' + getLocation() + ', ' + formatDates() + ', ' + getPriceLabel()">
       <span class="divider-text">
-        {{ getLocation() }} · {{ formatDates() }} · {{ getPriceLabel() }}
+        {{ getLocation() }} · {{ formatDates() }}
       </span>
     </div>
   `,
@@ -51,7 +51,7 @@ export class SearchSummaryComponent {
   }
 
   getPriceLabel(): string {
-    return this.context.pricingMode === 'points' ? 'Points' : 'USD';
+    return this.context.pricingMode === 'points' ? 'Points' : this.context.pricingMode === 'points+cash' ? 'Points + Cash' : 'USD';
   }
 
   private shortDate(iso: string): string {

@@ -68,7 +68,8 @@ export class HotelService {
       phone: raw.phoneNumber || raw.phone || '',
       sentiment: raw.sentiment || [],
       bookingUrl: raw.bookingUrl,
-      badge: raw.badge
+      badge: raw.badge,
+      pointsCash: raw.pointsCash
     };
   }
 

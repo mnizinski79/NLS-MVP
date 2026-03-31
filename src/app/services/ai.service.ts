@@ -37,8 +37,11 @@ export class AIService {
     const lowerQuery = query.toLowerCase();
     const pointsKeywords = ['points', 'rewards', 'redeem', 'use points', 'book with points', 'how many points', 'pts'];
     const cashKeywords = ['dollars', 'cash', 'usd', 'show me prices', 'cash price', 'dollar price'];
+    const pointsCashKeywords = ['points and cash', 'points + cash', 'points plus cash', 'cash and points', 'mix of points'];
     
-    if (pointsKeywords.some(k => lowerQuery.includes(k))) {
+    if (pointsCashKeywords.some(k => lowerQuery.includes(k))) {
+      this.pricing.setMode('points+cash');
+    } else if (pointsKeywords.some(k => lowerQuery.includes(k))) {
       this.pricing.setMode('points');
     } else if (cashKeywords.some(k => lowerQuery.includes(k))) {
       this.pricing.setMode('cash');
@@ -162,6 +165,7 @@ IHG ONE REWARDS & POINTS:
 - When a user mentions points, acknowledge it naturally: "Switching to points view!" or "Here are your options in points."
 - Do NOT say you can't display points — you CAN and the UI does it automatically.
 - Points are calculated at approximately 125x the cash rate (e.g., $200/night ≈ 25,000 points/night).
+- There is also a "Points + Cash" option where users pay a mix of points and a reduced cash amount. When a user asks about "points and cash" or "points + cash", the UI switches to this combined view.
 - If a user asks to switch back to cash/dollars, acknowledge that too.
 
 ---

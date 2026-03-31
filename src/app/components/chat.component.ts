@@ -78,6 +78,18 @@ export class ChatComponent {
   }
 
   /**
+   * Check if this is the most recent AI message with hotels
+   */
+  isLatestHotelMessage(message: Message): boolean {
+    for (let i = this.messages.length - 1; i >= 0; i--) {
+      if (this.messages[i].sender === 'ai' && this.messages[i].hotels?.length) {
+        return this.messages[i].id === message.id;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Check if message has more than 3 hotels (show "View All" button)
    * @param message - Message to check
    * @returns True if more than 3 hotels available

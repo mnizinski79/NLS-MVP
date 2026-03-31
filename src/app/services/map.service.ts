@@ -56,7 +56,7 @@ export class MapService {
   getMarkerHtml(hotel: Hotel, isMobile: boolean = false): string {
       const brandColor = BRAND_COLORS[hotel.brand] || '#000000';
       const brandLogo = BRAND_LOGOS[hotel.brand] || '';
-      const price = this.pricing.formatRate(hotel.pricing.nightlyRate);
+      const price = this.pricing.formatRate(hotel.pricing.nightlyRate, hotel);
 
       // Smaller dimensions and less padding for mobile
       const padding = isMobile ? '6px 10px 6px 6px' : '8px 12px 8px 8px';

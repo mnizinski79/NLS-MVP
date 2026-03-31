@@ -23,4 +23,5 @@ export interface Hotel {
   sentiment: string[]; // e.g., "Times Square", "Midtown", "Broadway"
   bookingUrl?: string; // Optional booking URL for the hotel
   badge?: { icon: string; text: string }; // Optional badge shown next to star rating
+  pointsCash?: { points: number; cash: number }; // Points + cash pricing option
 }

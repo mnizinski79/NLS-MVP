@@ -35,7 +35,7 @@
       </div>
 
       <!-- Date picker button for small result sets (show BEFORE hotel cards on desktop) -->
-      <div *ngIf="message.sender === 'ai' && !isMobile && message.showDatePicker && !isDatePickerVisible(message.id)" 
+      <div *ngIf="message.sender === 'ai' && !isMobile && message.showDatePicker && !isDatePickerVisible(message.id) && isLatestHotelMessage(message)" 
            class="date-picker-prompt">
         <p *ngIf="getDatePromptMessage(message)" class="date-prompt-text">{{ getDatePromptMessage(message) }}</p>
         <button class="select-dates-button" 
@@ -68,7 +68,7 @@
       </div>
 
       <!-- Action buttons for mobile: View All on Map (secondary, left) + Select Dates (primary, right) -->
-      <div *ngIf="message.sender === 'ai' && isMobile && message.hotels && message.hotels.length > 0" 
+      <div *ngIf="message.sender === 'ai' && isMobile && message.hotels && message.hotels.length > 0 && isLatestHotelMessage(message)" 
            class="action-buttons-container">
         <button class="view-all-button secondary" 
                 (click)="onViewAllClick()" 

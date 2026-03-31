@@ -83,7 +83,7 @@ export class LandingComponent implements AfterViewInit, OnDestroy {
 
   private rafId: number | null = null;
   private offset = 0;
-  private speed = 0.2; // px per frame
+  private speed = 0.25; // px per frame
 
   private mapPanOffset = 0;
 

@@ -5,7 +5,7 @@ export interface SearchContext {
   summary: string;        // e.g., "Hotels with a view"
   checkIn: string | null; // ISO date or null
   checkOut: string | null;
-  pricingMode: 'cash' | 'points';
+  pricingMode: 'cash' | 'points' | 'points+cash';
 }
 
 export interface Message {

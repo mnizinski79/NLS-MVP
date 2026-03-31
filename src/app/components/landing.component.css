@@ -254,7 +254,8 @@
 
 /* Card ticker — continuous right-to-left scroll */
 .card-ticker-wrapper {
-  width: 100%;
+  width: calc(100% + 4rem); /* Break out of parent padding (2rem each side on desktop) */
+  margin-left: -2rem;
   overflow: hidden;
   height: 22vh;
   display: flex;
@@ -459,6 +460,8 @@
   }
 
   .card-ticker-wrapper {
+    width: calc(100% + 3rem); /* Break out of mobile-content padding (1.5rem each side) */
+    margin-left: -1.5rem;
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
   }

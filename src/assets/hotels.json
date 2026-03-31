@@ -38,7 +38,14 @@
       "Modern"
     ],
     "bookingUrl": "https://www.ihg.com/kimptonhotels/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCEA&setPMCookies=true&qSHBrC=KI&qDest=790%208th%20Avenue,%20New%20York,%20NY,%20US",
-    "badge": { "icon": "ph-fill ph-leaf", "text": "Sustainable practices" }
+    "badge": {
+      "icon": "ph-fill ph-leaf",
+      "text": "Sustainable practices"
+    },
+    "pointsCash": {
+      "points": 10000,
+      "cash": 189
+    }
   },
   {
     "id": "NYCXV",
@@ -78,7 +85,14 @@
       "Rooftop Bar"
     ],
     "bookingUrl": "https://www.ihg.com/voco/hotels/gb/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCXV&setPMCookies=true&qSHBrC=VX&qDest=170%20W.%2048th%20Street,%20New%20York,%20NY,%20US",
-    "badge": { "icon": "ph-fill ph-sparkle", "text": "New hotel" }
+    "badge": {
+      "icon": "ph-fill ph-sparkle",
+      "text": "New hotel"
+    },
+    "pointsCash": {
+      "points": 8000,
+      "cash": 119
+    }
   },
   {
     "id": "NYCHC",
@@ -117,7 +131,14 @@
       "Theater District"
     ],
     "bookingUrl": "https://www.ihg.com/intercontinental/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCHC&setPMCookies=true&qSHBrC=IC&qDest=300%20West%2044th%20Street,%20New%20York,%20NY,%20US",
-    "badge": { "icon": "ph-fill ph-leaf", "text": "Sustainable practices" }
+    "badge": {
+      "icon": "ph-fill ph-leaf",
+      "text": "Sustainable practices"
+    },
+    "pointsCash": {
+      "points": 35000,
+      "cash": 279
+    }
   },
   {
     "id": "NYCDD",
@@ -156,7 +177,14 @@
       "New Opening"
     ],
     "bookingUrl": "https://www.ihg.com/kimptonhotels/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCDD&setPMCookies=true&qSHBrC=KI&qDest=32%20West%2048th%20Street,%20New%20York,%20NY,%20US",
-    "badge": { "icon": "ph-fill ph-sparkle", "text": "New hotel" }
+    "badge": {
+      "icon": "ph-fill ph-sparkle",
+      "text": "New hotel"
+    },
+    "pointsCash": {
+      "points": 9000,
+      "cash": 239
+    }
   },
   {
     "id": "NYCAT",
@@ -194,7 +222,11 @@
       "Value",
       "City Views"
     ],
-    "bookingUrl": "https://www.ihg.com/spnd/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAT&setPMCookies=true&qSHBrC=SP&qDest=790%207th%20Ave,%20New%20York,%20NY,%20US"
+    "bookingUrl": "https://www.ihg.com/spnd/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCAT&setPMCookies=true&qSHBrC=SP&qDest=790%207th%20Ave,%20New%20York,%20NY,%20US",
+    "pointsCash": {
+      "points": 5000,
+      "cash": 119
+    }
   },
   {
     "id": "NYCMA",
@@ -232,6 +264,10 @@
       "Value",
       "Convenient"
     ],
-    "bookingUrl": "https://www.ihg.com/holidayinn/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMA&setPMCookies=true&qSHBrC=HI&qDest=585%208th%20Avenue,%20New%20York,%20NY,%20US"
+    "bookingUrl": "https://www.ihg.com/holidayinn/hotels/us/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sBR&qSlH=NYCMA&setPMCookies=true&qSHBrC=HI&qDest=585%208th%20Avenue,%20New%20York,%20NY,%20US",
+    "pointsCash": {
+      "points": 8000,
+      "cash": 89
+    }
   }
 ]
