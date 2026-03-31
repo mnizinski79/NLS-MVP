@@ -48,11 +48,15 @@
         </button>
       </div>
 
-      <!-- Inline hotel cards for mobile -->
+      <!-- Search summary card + Inline hotel cards for mobile -->
       <div *ngIf="message.sender === 'ai' && isMobile && message.hotels && message.hotels.length > 0" 
            class="inline-hotels"
            role="region"
            aria-label="Hotel search results">
+        <app-search-summary
+          *ngIf="message.searchContext"
+          [context]="message.searchContext">
+        </app-search-summary>
         <div class="inline-hotels-container">
           <app-hotel-card 
             *ngFor="let hotel of getInlineHotels(message)"

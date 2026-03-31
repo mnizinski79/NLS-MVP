@@ -452,7 +452,8 @@ Current query: "${query}"${context}
     "checkOut": "YYYY-MM-DD or null",
     "adults": number or null,
     "children": number or null,
-    "pointOfInterest": {"name": "string", "coordinates": {"lat": number, "lng": number}} or null
+    "pointOfInterest": {"name": "string", "coordinates": {"lat": number, "lng": number}} or null,
+    "searchSummary": "Short 2-4 word TLDR of the search vibe (e.g., 'Romantic getaway', 'Budget-friendly stay', 'Family vacation', 'Luxury escape', 'Pet-friendly options', 'Business trip'). Required when shouldSearch is true."
   }
 
 
@@ -556,7 +557,8 @@ Current query: "${query}"${context}
           checkOut: parsed.checkOut,
           adults: parsed.adults,
           children: parsed.children,
-          pointOfInterest: parsed.pointOfInterest
+          pointOfInterest: parsed.pointOfInterest,
+          searchSummary: parsed.searchSummary
         };
 
       } catch (error) {

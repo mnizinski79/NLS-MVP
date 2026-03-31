@@ -1,12 +1,21 @@
 import { Hotel } from './hotel.model';
 
+export interface SearchContext {
+  location: string;       // e.g., "New York City"
+  summary: string;        // e.g., "Hotels with a view"
+  checkIn: string | null; // ISO date or null
+  checkOut: string | null;
+  pricingMode: 'cash' | 'points';
+}
+
 export interface Message {
   id: string;
   sender: 'user' | 'ai';
   text: string;
   timestamp: Date;
-  hotels?: Hotel[]; // For AI messages with results
-  showDatePicker?: boolean; // Trigger date picker display
-  showRateCalendar?: boolean; // Trigger rate calendar display
-  rateCalendarHotel?: Hotel; // Hotel for rate calendar
+  hotels?: Hotel[];
+  showDatePicker?: boolean;
+  showRateCalendar?: boolean;
+  rateCalendarHotel?: Hotel;
+  searchContext?: SearchContext;
 }

@@ -250,7 +250,9 @@
 }
 
 .visit-website-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
   font-size: 0.8rem;
   color: #1F4456;
   text-decoration: none;

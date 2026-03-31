@@ -108,6 +108,11 @@
         </button>
       </div>
 
+      <!-- Website link -->
+      <a *ngIf="hotel.bookingUrl" [href]="hotel.bookingUrl" target="_blank" rel="noopener noreferrer" class="visit-website-link">
+        Visit website <i class="ph ph-caret-right" aria-hidden="true"></i>
+      </a>
+
       <!-- Description -->
       <div class="section">
         <h3 class="section-title">Description</h3>

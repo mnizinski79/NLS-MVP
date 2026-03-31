@@ -7,13 +7,14 @@ import { ThinkingAnimationComponent } from './thinking-animation.component';
 import { HotelCardComponent } from './hotel-card.component';
 import { DatePickerComponent } from './date-picker.component';
 import { RateCalendarComponent, DateRange } from './rate-calendar.component';
+import { SearchSummaryComponent } from './search-summary.component';
 import { BRAND_COLORS } from '../models/brand-config';
 import { MarkdownPipe } from '../pipes/markdown.pipe';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule, ThinkingAnimationComponent, HotelCardComponent, DatePickerComponent, RateCalendarComponent, MarkdownPipe],
+  imports: [CommonModule, ThinkingAnimationComponent, HotelCardComponent, DatePickerComponent, RateCalendarComponent, MarkdownPipe, SearchSummaryComponent],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })

@@ -12,6 +12,8 @@ import { ConversationService } from './services/conversation.service';
 import { ConfigService } from './services/config.service';
 import { AuthService } from './services/auth.service';
 import { Hotel, Message, AIResponse, ConversationState, PointOfInterest } from './models';
+import { PricingService } from './services/pricing.service';
+import { SearchContext } from './models/message.model';
 
 @Component({
   selector: 'app-root',
@@ -143,7 +145,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private aiService: AIService,
     private conversationService: ConversationService,
     private configService: ConfigService,
-    private authService: AuthService
+    private authService: AuthService,
+    private pricingService: PricingService
   ) {
     // Set up viewport detection
     this.isMobile$ = fromEvent(window, 'resize').pipe(
@@ -428,6 +431,22 @@ export class AppComponent implements OnInit, OnDestroy {
       aiMessage: aiResponse.message
     });
 
+    // Build search context for summary card
+    let searchContext: SearchContext | undefined;
+    if (hotels.length > 0) {
+      const location = aiResponse.searchCriteria?.sentiments?.length
+        ? aiResponse.searchCriteria.sentiments[0]
+        : 'New York City';
+      const summary = aiResponse.searchSummary || 'Hotel search';
+      searchContext = {
+        location: `${location}. ${summary}`,
+        summary,
+        checkIn: aiResponse.checkIn || null,
+        checkOut: aiResponse.checkOut || null,
+        pricingMode: this.pricingService.mode,
+      };
+    }
+
     // Add AI message to chat with optional hotel results
     const aiMessage: Message = {
       id: this.generateMessageId(),
@@ -435,7 +454,8 @@ export class AppComponent implements OnInit, OnDestroy {
       text: aiResponse.message,
       timestamp: new Date(),
       hotels: hotels.length > 0 ? hotels : undefined,
-      showDatePicker: shouldShowDatePicker
+      showDatePicker: shouldShowDatePicker,
+      searchContext,
     };
     this.conversationService.addMessage(aiMessage);
 

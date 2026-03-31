@@ -348,7 +348,25 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
+  margin-bottom: 0;
+}
+
+/* Website link */
+.visit-website-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.8rem;
+  color: #1F4456;
+  text-decoration: none;
+  margin-top: 6px;
   margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.visit-website-link:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 
 .address-text {
