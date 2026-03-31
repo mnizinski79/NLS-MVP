@@ -4,12 +4,13 @@
 
 /* ── Design Tokens: Border Radius ── */
 :root {
+  --radius-none: 0px;    /* no rounding */
   --radius-xs: 4px;      /* scrollbar thumbs, small UI bits */
   --radius-sm: 6px;      /* calendar days, small buttons, dropdowns */
-  --radius-md: 6px;      /* buttons, inputs, badges, map pins, tags */
-  --radius-lg: 10px;     /* cards, chat bubbles, modals, images */
-  --radius-xl: 14px;     /* panels, drawers, chat window, input fields */
-  --radius-pill: 9999px; /* pills, chips, fully round */
+  --radius-md: 8px;      /* buttons, inputs, badges, map pins, tags */
+  --radius-lg: 12px;     /* cards, chat bubbles, modals, images */
+  --radius-xl: 20px;     /* panels, drawers, chat window, input fields */
+  --radius-pill: 1000px; /* pills, chips, fully round */
 }
 
 /* Leaflet CSS - Required for map tiles to display correctly */

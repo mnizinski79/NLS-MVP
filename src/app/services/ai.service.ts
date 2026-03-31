@@ -4,6 +4,7 @@ import { Observable, of, timer } from 'rxjs';
 import { map, catchError, timeout, retry } from 'rxjs/operators';
 import { AIResponse, ConversationState, SearchCriteria } from '../models';
 import { ConfigService } from './config.service';
+import { PricingService } from './pricing.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class AIService {
 
   constructor(
     private http: HttpClient,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private pricing: PricingService
   ) {}
 
   /**
@@ -30,6 +32,17 @@ export class AIService {
       focusedHotel: conversationState.focusedHotel?.name || 'null',
       lastDisplayedHotelsCount: conversationState.lastDisplayedHotels?.length || 0
     });
+
+    // Detect points/cash mode switching
+    const lowerQuery = query.toLowerCase();
+    const pointsKeywords = ['points', 'rewards', 'redeem', 'use points', 'book with points', 'how many points', 'pts'];
+    const cashKeywords = ['dollars', 'cash', 'usd', 'show me prices', 'cash price', 'dollar price'];
+    
+    if (pointsKeywords.some(k => lowerQuery.includes(k))) {
+      this.pricing.setMode('points');
+    } else if (cashKeywords.some(k => lowerQuery.includes(k))) {
+      this.pricing.setMode('cash');
+    }
     
     const apiKey = this.configService.getApiKey();
     
@@ -139,7 +152,17 @@ export class AIService {
         ? `\n\nConversation Context:\n${contextInfo.join('\n')}` 
         : '';
 
-      return `You are a warm and knowledgeable hotel search assistant — like a well-traveled professional who genuinely wants to help you find the perfect stay in New York City.
+      return `You are a warm and knowledgeable IHG Hotels & Resorts search assistant — like a well-traveled professional who genuinely wants to help you find the perfect stay. You represent IHG and all its brands (Kimpton, voco, InterContinental, Holiday Inn, Holiday Inn Express, Crowne Plaza, Indigo, Candlewood, and more).
+
+---
+
+IHG ONE REWARDS & POINTS:
+- This app supports IHG One Rewards points pricing. When a user asks about points, rewards, or redeeming points, the UI AUTOMATICALLY switches all prices to points display.
+- You DO have the ability to show points — the system handles it automatically when you detect points intent.
+- When a user mentions points, acknowledge it naturally: "Switching to points view!" or "Here are your options in points."
+- Do NOT say you can't display points — you CAN and the UI does it automatically.
+- Points are calculated at approximately 125x the cash rate (e.g., $200/night ≈ 25,000 points/night).
+- If a user asks to switch back to cash/dollars, acknowledge that too.
 
 ---
 

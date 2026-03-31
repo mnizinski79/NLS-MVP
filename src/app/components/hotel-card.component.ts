@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Hotel } from '../models/hotel.model';
 import { BRAND_COLORS, BRAND_LOGOS } from '../models/brand-config';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { PricingService } from '../services/pricing.service';
 
 @Component({
   selector: 'app-hotel-card',
@@ -10,7 +11,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
   imports: [CommonModule],
   templateUrl: './hotel-card.component.html',
   styleUrls: ['./hotel-card.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 /**
  * HotelCardComponent - Reusable hotel card display
@@ -39,6 +40,8 @@ export class HotelCardComponent {
 
   /** Emitted when the card is clicked, passes the hotel object */
   @Output() cardClicked = new EventEmitter<Hotel>();
+
+  constructor(public pricing: PricingService) {}
 
   /**
    * Handle card click and emit hotel object

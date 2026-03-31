@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import * as L from 'leaflet';
 import { Hotel } from '../models/hotel.model';
 import { BRAND_COLORS, BRAND_LOGOS } from '../models/brand-config';
+import { PricingService } from './pricing.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapService {
+
+  constructor(private pricing: PricingService) {}
 
   /**
    * Creates a custom Leaflet marker for a hotel with brand styling
@@ -53,7 +56,7 @@ export class MapService {
   getMarkerHtml(hotel: Hotel, isMobile: boolean = false): string {
       const brandColor = BRAND_COLORS[hotel.brand] || '#000000';
       const brandLogo = BRAND_LOGOS[hotel.brand] || '';
-      const price = Math.round(hotel.pricing.nightlyRate);
+      const price = this.pricing.formatRate(hotel.pricing.nightlyRate);
 
       // Smaller dimensions and less padding for mobile
       const padding = isMobile ? '6px 10px 6px 6px' : '8px 12px 8px 8px';
@@ -95,7 +98,7 @@ export class MapService {
             font-weight: 600;
             font-size: ${fontSize};
             white-space: nowrap;
-          " aria-hidden="true">${price} USD</span>
+          " aria-hidden="true">${price}</span>
         </div>
       `;
     }

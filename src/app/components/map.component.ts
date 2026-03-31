@@ -4,6 +4,8 @@ import * as L from 'leaflet';
 import { Hotel } from '../models/hotel.model';
 import { PointOfInterest } from '../models';
 import { MapService } from '../services/map.service';
+import { PricingService } from '../services/pricing.service';
+import { Subscription } from 'rxjs';
 
 // Simple interface for map viewport
 interface MapViewport {
@@ -94,7 +96,9 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
   /** Previous map state storage for restoration */
   private previousMapState: { center: [number, number], zoom: number, bounds: L.LatLngBounds | null } | null = null;
 
-  constructor(private mapService: MapService) {}
+  private pricingSubscription?: Subscription;
+
+  constructor(private mapService: MapService, private pricing: PricingService) {}
 
   /**
    * Initialize map on component init
@@ -102,6 +106,13 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit(): void {
     this.initMap();
     
+    // Re-render markers when pricing mode changes
+    this.pricingSubscription = this.pricing.mode$.subscribe(() => {
+      if (this.map && this.markers.length > 0) {
+        this.updateMarkers();
+      }
+    });
+
     // Add POI marker if it exists on init
     if (this.pointOfInterest) {
       console.log('📍 POI exists on init:', this.pointOfInterest);
@@ -141,6 +152,7 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
    * Clean up map instance on component destroy
    */
   ngOnDestroy(): void {
+    this.pricingSubscription?.unsubscribe();
     if (this.map) {
       this.map.remove();
       this.map = null;

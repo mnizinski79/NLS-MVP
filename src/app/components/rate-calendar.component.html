@@ -80,7 +80,7 @@
           >
             <div class="day-number">{{ day.dayNumber }}</div>
             <div class="day-price" *ngIf="day.isCurrentMonth && !day.isDisabled">
-              {{ day.price }}
+              {{ pricing.formatRateNumber(day.price) }}
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@
           >
             <div class="day-number">{{ day.dayNumber }}</div>
             <div class="day-price" *ngIf="day.isCurrentMonth && !day.isDisabled">
-              {{ day.price }}
+              {{ pricing.formatRateNumber(day.price) }}
             </div>
           </div>
         </div>
@@ -122,11 +122,11 @@
       <div class="booking-summary">
         <div class="summary-row">
           <span class="summary-label">{{ getDateRangeLabel() }}</span>
-          <span class="summary-price">{{ basePrice }} USD/night</span>
+          <span class="summary-price">{{ pricing.formatRate(basePrice) }}/night</span>
         </div>
         <div class="summary-row total">
           <span class="summary-label">Total</span>
-          <span class="summary-price">{{ totalPrice }} USD</span>
+          <span class="summary-price">{{ pricing.formatRate(totalPrice) }}</span>
         </div>
       </div>
       

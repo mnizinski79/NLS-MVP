@@ -5,6 +5,7 @@ import { PointOfInterest } from '../models/ai-response.model';
 import { BRAND_COLORS, BRAND_LOGOS } from '../models/brand-config';
 import { RateCalendarComponent, DateRange } from './rate-calendar.component';
 import { MapComponent } from './map.component';
+import { PricingService } from '../services/pricing.service';
 
 @Component({
   selector: 'app-hotel-detail-bottom-sheet',
@@ -59,7 +60,7 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   private previouslyFocusedElement: HTMLElement | null = null;
   private calendarObserver?: IntersectionObserver;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, public pricing: PricingService) {}
 
   // Gesture tracking
   private touchStartY: number = 0;

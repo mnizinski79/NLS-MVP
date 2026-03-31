@@ -5,6 +5,7 @@ import { PointOfInterest } from '../models/ai-response.model';
 import { BRAND_COLORS, BRAND_LOGOS } from '../models/brand-config';
 import { RateCalendarComponent, DateRange } from './rate-calendar.component';
 import { MapComponent } from './map.component';
+import { PricingService } from '../services/pricing.service';
 
 @Component({
   selector: 'app-hotel-detail-drawer',
@@ -120,7 +121,7 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, Aft
   /** Intersection observer for calendar section */
   private calendarObserver?: IntersectionObserver;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, public pricing: PricingService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['hotel'] && this.hotel) {

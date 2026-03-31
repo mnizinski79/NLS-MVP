@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange
 import { CommonModule } from '@angular/common';
 import { Hotel } from '../models/hotel.model';
 import { BRAND_LOGOS } from '../models/brand-config';
+import { PricingService } from '../services/pricing.service';
 
 export interface CalendarDay {
   date: Date;
@@ -49,6 +50,8 @@ export class RateCalendarComponent implements OnInit, OnChanges {
   totalPrice: number = 0;
 
   weekDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
+  constructor(public pricing: PricingService) {}
 
   ngOnInit(): void {
     this.initializeCalendar();

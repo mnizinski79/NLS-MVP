@@ -350,6 +350,13 @@
   text-align: center;
 }
 
+/* Brand sparkle icon */
+.brand-sparkle {
+  font-size: 36px;
+  color: #1F4456;
+  opacity: 1;
+}
+
 .brand-tagline {
   font-size: 0.9rem;
   color: #6b7280;
