@@ -55,7 +55,24 @@
 
   <!-- Hotel Cards (bottom, horizontal scroll) -->
   <div class="hotel-cards-container" *ngIf="hotels.length > 0">
-    <div class="hotel-cards-scroll">
+    <div class="cards-nav-bar">
+      <button class="cards-nav-arrow" 
+              (click)="scrollCards('left')" 
+              aria-label="Scroll hotel cards left"
+              [class.disabled]="!canScrollLeft">
+        <i class="ph ph-caret-left" aria-hidden="true"></i>
+      </button>
+      <div class="cards-progress-track">
+        <div class="cards-progress-fill" [style.width.%]="scrollProgress"></div>
+      </div>
+      <button class="cards-nav-arrow" 
+              (click)="scrollCards('right')" 
+              aria-label="Scroll hotel cards right"
+              [class.disabled]="!canScrollRight">
+        <i class="ph ph-caret-right" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="hotel-cards-scroll" #cardsScroll (scroll)="onCardsScroll()">
       <app-hotel-card
         *ngFor="let hotel of hotels"
         [hotel]="hotel"

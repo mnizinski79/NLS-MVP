@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, HostListener, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, HostListener, OnDestroy, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChatComponent } from './chat.component';
 import { HelperTagsComponent } from './helper-tags.component';
@@ -113,6 +113,12 @@ export class DesktopLayoutComponent implements OnDestroy {
   /** Reference to ChatComponent for direct method calls */
   @ViewChild(ChatComponent) chatComponent!: ChatComponent;
 
+  @ViewChild('cardsScroll') cardsScroll!: ElementRef<HTMLElement>;
+
+  canScrollLeft = false;
+  canScrollRight = true;
+  scrollProgress = 0;
+
   /** Safe getter for chat collapsed state */
   get isChatCollapsed(): boolean {
     return this.chatComponent?.isCollapsed ?? false;
@@ -177,6 +183,22 @@ export class DesktopLayoutComponent implements OnDestroy {
    */
   onHotelCardClicked(hotel: Hotel): void {
     this.enterFocusedView(hotel);
+  }
+
+  scrollCards(direction: 'left' | 'right'): void {
+    const el = this.cardsScroll?.nativeElement;
+    if (!el) return;
+    const scrollAmount = 300;
+    el.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+  }
+
+  onCardsScroll(): void {
+    const el = this.cardsScroll?.nativeElement;
+    if (!el) return;
+    this.canScrollLeft = el.scrollLeft > 10;
+    this.canScrollRight = el.scrollLeft < el.scrollWidth - el.clientWidth - 10;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    this.scrollProgress = maxScroll > 0 ? (el.scrollLeft / maxScroll) * 100 : 0;
   }
 
   /**

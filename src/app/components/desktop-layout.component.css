@@ -166,9 +166,8 @@
 .hotel-cards-container {
   position: absolute;
   bottom: 1.5rem;
-  left: calc(420px + 48px + 1.5rem); /* Chat width + margins + spacing */
+  left: calc(420px + 48px + 1.5rem);
   right: 1.5rem;
-  max-height: 380px;
   padding: 0;
   z-index: 10;
   overflow: visible;
@@ -176,6 +175,72 @@
   opacity: 1;
   transition: transform 350ms ease-out, opacity 350ms ease-out;
   will-change: transform, opacity;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Navigation bar above cards */
+.cards-nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-end;
+  pointer-events: auto;
+}
+
+.cards-nav-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1F4456;
+  font-size: 16px;
+}
+
+.cards-nav-arrow:hover:not(.disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.cards-nav-arrow.disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.cards-progress-track {
+  width: 80px;
+  height: 3px;
+  background: #e5e7eb;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.cards-progress-fill {
+  height: 100%;
+  background: #1F4456;
+  border-radius: 2px;
+  transition: width 0.15s ease;
+  min-width: 20%;
+}
+
+.cards-nav-left, .cards-nav-right {
+  /* removed — no longer needed */
+}
+
+.cards-nav-arrow:hover {
+  background: #f3f4f6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cards-nav-arrow:active:not(.disabled) {
+  transform: scale(0.95);
 }
 
 .hotel-cards-container.sliding-out {
