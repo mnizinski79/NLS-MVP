@@ -53,7 +53,7 @@
   </div>
 
   <!-- Hotel Details Page -->
-  <div *ngIf="!showRateCalendarPage" class="sheet-page">
+  <div class="sheet-page">
 
   <!-- Scrollable content -->
   <div class="sheet-content">
@@ -171,75 +171,31 @@
         </div>
       </div>
 
-      <!-- Calendar Section -->
-      <div #calendarSection class="section calendar-section">
-        <h3 class="section-title">Select dates</h3>
-        <p class="calendar-subheader">Fill in your trip information to check availability and pricing</p>
-        <div class="calendar-wrapper">
-          <!-- Guest Selector -->
-          <div class="guest-selector">
-            <div class="guest-row">
-              <span class="guest-label">Adults</span>
-              <div class="guest-controls">
-                <button class="guest-btn" (click)="decrementAdults()" [disabled]="(adults ?? 2) <= 1">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </button>
-                <span class="guest-count">{{ adults ?? 2 }}</span>
-                <button class="guest-btn" (click)="incrementAdults()" [disabled]="(adults ?? 2) >= 8">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 4v8M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div class="guest-row">
-              <span class="guest-label">Children</span>
-              <div class="guest-controls">
-                <button class="guest-btn" (click)="decrementChildren()" [disabled]="(children ?? 0) <= 0">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </button>
-                <span class="guest-count">{{ children ?? 0 }}</span>
-                <button class="guest-btn" (click)="incrementChildren()" [disabled]="(children ?? 0) >= 6">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 4v8M4 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
+      <!-- Booking Summary Section -->
+      <div class="section">
+        <app-booking-summary
+          [adults]="adults ?? 2"
+          [children]="children ?? 0"
+          [checkIn]="getEffectiveCheckIn()"
+          [checkOut]="getEffectiveCheckOut()"
+          (openGuests)="showGuestsModal = true"
+          (openDates)="showDatesModal = true">
+        </app-booking-summary>
 
-          <app-rate-calendar
-            #rateCalendar
-            [visible]="true"
-            [inline]="true"
-            [hotel]="hotel"
-            [basePrice]="(hotel?.pricing?.nightlyRate) || 200"
-            [brandColor]="getBrandColor()"
-            [initialCheckIn]="checkInDate"
-            [initialCheckOut]="checkOutDate"
-            (dateSelected)="onDateSelected($event)"
-            (closed)="onCalendarClosed()">
-          </app-rate-calendar>
-          
-          <!-- View Rooms button (always visible) -->
-          <div class="calendar-cta-container">
-            <button 
-              class="cta-filled cta-full-width"
-              [style.background-color]="getBrandColor()"
-              (click)="viewRooms()"
-            >
-              <span>View Rooms</span>
-              <svg class="cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </button>
-          </div>
+        <!-- View Rooms button -->
+        <div class="calendar-cta-container" style="margin-top: 16px;">
+          <button 
+            class="cta-filled cta-full-width"
+            [style.background-color]="getBrandColor()"
+            (click)="viewRooms()"
+          >
+            <span>View Rooms</span>
+            <svg class="cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -247,87 +203,26 @@
     </div>
   </div>
 
-  <!-- Floating footer with CTAs -->
-  <div *ngIf="!showRateCalendarPage" class="floating-footer" [class.footer-hidden]="hideFooter">
-    <!-- Dual buttons when user has complete booking info -->
-    <ng-container *ngIf="hasCompleteBookingInfo()">
-      <button 
-        class="cta-outline"
-        [style.border-color]="getBrandColor()"
-        [style.color]="getBrandColor()"
-        (click)="scrollToCalendar()"
-      >
-        Check Availability
-      </button>
-      <button 
-        class="cta-filled"
-        [style.background-color]="getBrandColor()"
-        (click)="viewRooms()"
-      >
-        <span>View Rooms</span>
-        <svg class="cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </button>
-    </ng-container>
-    
-    <!-- Single button when user doesn't have complete booking info -->
-    <ng-container *ngIf="!hasCompleteBookingInfo()">
-      <button 
-        class="cta-filled cta-full-width"
-        [style.background-color]="getBrandColor()"
-        (click)="scrollToCalendar()"
-      >
-        Check Availability
-      </button>
-    </ng-container>
-  </div>
   </div>
 
-  <!-- Rate Calendar Page -->
-  <div *ngIf="showRateCalendarPage" class="sheet-page calendar-page">
-    <!-- Back button below header -->
-    <div class="back-button-container">
-      <button
-        (click)="backToHotelDetails()"
-        class="back-button"
-        aria-label="Back to hotel details"
-      >
-        <svg class="back-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-        <span class="back-text">Back to hotel details</span>
-      </button>
-    </div>
+  <!-- Guests Sheet Modal -->
+  <app-guests-sheet
+    [visible]="showGuestsModal"
+    [adults]="adults ?? 2"
+    [children]="children ?? 0"
+    [isMobile]="true"
+    (closed)="showGuestsModal = false"
+    (guestsChanged)="onGuestsChanged($event)">
+  </app-guests-sheet>
 
-    <!-- Select dates header -->
-    <div class="calendar-header-section">
-      <h3 class="calendar-page-title">Select dates</h3>
-    </div>
-
-    <!-- Calendar content -->
-    <div class="calendar-content">
-      <app-rate-calendar
-        [visible]="true"
-        [inline]="true"
-        [hotel]="hotel"
-        [basePrice]="(hotel?.pricing?.nightlyRate) || 200"
-        (dateSelected)="onDateSelected($event)"
-        (closed)="onCalendarClosed()">
-      </app-rate-calendar>
-    </div>
-
-    <!-- Sticky footer for calendar -->
-    <div class="floating-footer">
-      <button 
-        class="cta-filled cta-full-width"
-        [style.background-color]="getBrandColor()"
-        (click)="onCalendarContinue()"
-      >
-        Continue
-      </button>
-    </div>
-  </div>
+  <!-- Dates Sheet Modal -->
+  <app-dates-sheet
+    [visible]="showDatesModal"
+    [hotel]="hotel"
+    [checkIn]="checkInDate"
+    [checkOut]="checkOutDate"
+    [isMobile]="true"
+    (closed)="showDatesModal = false"
+    (datesSelected)="onModalDatesSelected($event)">
+  </app-dates-sheet>
 </div>

@@ -6,11 +6,14 @@ import { BRAND_COLORS, BRAND_LOGOS } from '../models/brand-config';
 import { RateCalendarComponent, DateRange } from './rate-calendar.component';
 import { MapComponent } from './map.component';
 import { PricingService } from '../services/pricing.service';
+import { BookingSummaryComponent } from './booking-summary.component';
+import { GuestsSheetComponent } from './guests-sheet.component';
+import { DatesSheetComponent } from './dates-sheet.component';
 
 @Component({
   selector: 'app-hotel-detail-bottom-sheet',
   standalone: true,
-  imports: [CommonModule, RateCalendarComponent, MapComponent],
+  imports: [CommonModule, RateCalendarComponent, MapComponent, BookingSummaryComponent, GuestsSheetComponent, DatesSheetComponent],
   templateUrl: './hotel-detail-bottom-sheet.component.html',
   styleUrls: ['./hotel-detail-bottom-sheet.component.css']
 })
@@ -48,6 +51,12 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   
   /** Track if user has manually selected dates in calendar */
   hasUserSelectedDates: boolean = false;
+
+  /** Whether the guests modal is visible */
+  showGuestsModal: boolean = false;
+
+  /** Whether the dates modal is visible */
+  showDatesModal: boolean = false;
   
   /** Cached value for complete booking info to avoid expression changed errors */
   private _hasCompleteBookingInfo: boolean = false;
@@ -606,12 +615,10 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   }
 
   viewRooms(): void {
-    if (!this.hotel || !this.rateCalendar) return;
+    if (!this.hotel) return;
     
-    if (!this.rateCalendar.selectedCheckIn || !this.rateCalendar.selectedCheckOut) return;
-    
-    const checkIn = this.rateCalendar.selectedCheckIn;
-    const checkOut = this.rateCalendar.selectedCheckOut;
+    const checkIn = this.getEffectiveCheckIn();
+    const checkOut = this.getEffectiveCheckOut();
     
     // Format dates for IHG
     const formatIHGDate = (date: Date) => {
@@ -678,5 +685,49 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
     } else {
       return `${distance.toFixed(1)} miles`;
     }
+  }
+
+  /**
+   * Get effective check-in date for booking summary
+   */
+  getEffectiveCheckIn(): Date {
+    if (this.checkInDate) return this.checkInDate;
+    if (this.rateCalendar?.selectedCheckIn) return this.rateCalendar.selectedCheckIn;
+    return new Date();
+  }
+
+  /**
+   * Get effective check-out date for booking summary
+   */
+  getEffectiveCheckOut(): Date {
+    if (this.checkOutDate) return this.checkOutDate;
+    if (this.rateCalendar?.selectedCheckOut) return this.rateCalendar.selectedCheckOut;
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow;
+  }
+
+  /**
+   * Handle guests changed from modal
+   */
+  onGuestsChanged(event: {adults: number, children: number}): void {
+    this.adults = event.adults;
+    this.children = event.children;
+    this.hasUserModifiedGuests = true;
+    this.updateCompleteBookingInfo();
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Handle dates selected from modal
+   */
+  onModalDatesSelected(dateRange: DateRange): void {
+    this.checkInDate = dateRange.checkIn;
+    this.checkOutDate = dateRange.checkOut;
+    this.showDatesModal = false;
+    this.hasUserSelectedDates = true;
+    this.dateSelected.emit(dateRange);
+    this.updateCompleteBookingInfo();
+    this.cdr.detectChanges();
   }
 }
