@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Hotel } from '../models/hotel.model';
+import { PricingService } from '../services/pricing.service';
 
 @Component({
   selector: 'app-booking-summary',
@@ -38,15 +40,31 @@ import { CommonModule } from '@angular/common';
           </div>
           <i class="ph ph-caret-right row-chevron" aria-hidden="true"></i>
         </button>
+
+        <div class="row-divider"></div>
+
+        <!-- Price Row -->
+        <div class="summary-row price-row" *ngIf="hotel">
+          <div class="row-left">
+            <i class="ph ph-tag row-icon" aria-hidden="true"></i>
+            <div class="row-content">
+              <span class="row-label">PRICE</span>
+              <span class="row-value">{{ pricing.formatRate(hotel.pricing.nightlyRate, hotel) }} / night</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   `,
   styles: [`
     .booking-summary {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: var(--radius-lg, 12px);
-      padding: 16px;
+      background: #F5F5F5;
+      border: none;
+      border-radius: 0;
+      padding: 24px 16px;
+      margin-left: -24px;
+      margin-right: -24px;
+      margin-bottom: -24px;
     }
 
     .summary-header {
@@ -68,25 +86,27 @@ import { CommonModule } from '@angular/common';
     }
 
     .summary-rows {
-      display: flex;
-      flex-direction: column;
+      background: #ffffff;
+      border-radius: var(--radius-lg, 12px);
+      overflow: hidden;
     }
 
     .summary-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 0;
+      padding: 14px 16px;
       cursor: pointer;
-      background: none;
+      background: #ffffff;
       border: none;
       width: 100%;
       text-align: left;
       font-family: inherit;
+      transition: background 0.15s ease;
     }
 
     .summary-row:hover {
-      opacity: 0.8;
+      background: #fafafa;
     }
 
     .row-left {
@@ -127,7 +147,16 @@ import { CommonModule } from '@angular/common';
     .row-divider {
       height: 1px;
       background: #e5e7eb;
-      margin: 0;
+      margin: 0 16px;
+    }
+
+    .price-row {
+      cursor: default;
+      padding: 14px 16px;
+    }
+
+    .price-row:hover {
+      background: #ffffff;
     }
   `]
 })
@@ -136,9 +165,12 @@ export class BookingSummaryComponent {
   @Input() children: number = 0;
   @Input() checkIn: Date | null = null;
   @Input() checkOut: Date | null = null;
+  @Input() hotel: Hotel | null = null;
 
   @Output() openGuests = new EventEmitter<void>();
   @Output() openDates = new EventEmitter<void>();
+
+  constructor(public pricing: PricingService) {}
 
   getGuestText(): string {
     const totalGuests = this.adults + this.children;

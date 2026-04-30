@@ -6,6 +6,7 @@ import { InputComponent } from './input.component';
 import { MapComponent } from './map.component';
 import { HotelCardComponent } from './hotel-card.component';
 import { HotelDetailDrawerComponent } from './hotel-detail-drawer.component';
+import { DesktopSearchBarComponent } from './desktop-search-bar.component';
 import { Hotel } from '../models/hotel.model';
 import { Message } from '../models/message.model';
 import { DateSelection } from '../models/date-selection.model';
@@ -23,7 +24,8 @@ import { PointOfInterest } from '../models';
     InputComponent,
     MapComponent,
     HotelCardComponent,
-    HotelDetailDrawerComponent
+    HotelDetailDrawerComponent,
+    DesktopSearchBarComponent
   ],
   templateUrl: './desktop-layout.component.html',
   styleUrls: ['./desktop-layout.component.css']
@@ -118,6 +120,30 @@ export class DesktopLayoutComponent implements OnDestroy {
   canScrollLeft = false;
   canScrollRight = true;
   scrollProgress = 0;
+
+  /** Get the latest search context from messages */
+  get latestSearchContext(): { location: string; dates: string } | null {
+    for (let i = this.messages.length - 1; i >= 0; i--) {
+      const msg = this.messages[i];
+      if (msg.sender === 'ai' && msg.searchContext) {
+        const loc = msg.searchContext.location.split('.')[0].trim() || 'NYC';
+        const ci = msg.searchContext.checkIn;
+        const co = msg.searchContext.checkOut;
+        let dates: string;
+        if (ci && co) {
+          const fmt = (iso: string) => new Date(iso + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          dates = `${fmt(ci)} → ${fmt(co)}`;
+        } else {
+          const today = new Date();
+          const tmw = new Date(); tmw.setDate(tmw.getDate() + 1);
+          const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          dates = `${fmt(today)} → ${fmt(tmw)}`;
+        }
+        return { location: loc, dates };
+      }
+    }
+    return null;
+  }
 
   /** Safe getter for chat collapsed state */
   get isChatCollapsed(): boolean {

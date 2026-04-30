@@ -71,10 +71,18 @@ export class ChatComponent {
    * @returns Array of up to 3 hotels for inline display
    */
   getInlineHotels(message: Message): Hotel[] {
-    if (!message.hotels || !this.isMobile) {
+    if (!message.hotels) {
       return [];
     }
-    return message.hotels.slice(0, 3);
+    // On mobile: always show inline (up to 3)
+    if (this.isMobile) {
+      return message.hotels.slice(0, 3);
+    }
+    // On desktop: only show inline for previous messages (not the latest)
+    if (!this.isLatestHotelMessage(message)) {
+      return message.hotels.slice(0, 4);
+    }
+    return [];
   }
 
   /**

@@ -319,3 +319,10 @@ body {
 .drawer .map-container .leaflet-control {
   margin: 0 !important;
 }
+
+/* Beta label in IHG banner */
+.beta-label {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
