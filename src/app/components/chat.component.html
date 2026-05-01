@@ -4,7 +4,7 @@
      aria-live="polite" 
      aria-label="Conversation history">
   
-  <!-- Collapsed view - shows only most recent message, hi -->
+  <!-- Collapsed view - shows only most recent message -->
   <div class="collapsed-content" *ngIf="isCollapsed && messages.length > 0">
     <div class="most-recent-message">
       <div class="message-wrapper"
@@ -59,25 +59,6 @@
             *ngFor="let hotel of getInlineHotels(message)"
             [hotel]="hotel"
             [variant]="'mobile'"
-            (cardClicked)="onCardClick($event)">
-          </app-hotel-card>
-        </div>
-      </div>
-
-      <!-- Inline hotel cards for desktop (previous messages only) -->
-      <div *ngIf="message.sender === 'ai' && !isMobile && message.hotels && message.hotels.length > 0 && !isLatestHotelMessage(message)" 
-           class="inline-hotels inline-hotels-desktop"
-           role="region"
-           aria-label="Previous hotel search results">
-        <app-search-summary
-          *ngIf="message.searchContext"
-          [context]="message.searchContext">
-        </app-search-summary>
-        <div class="inline-hotels-container">
-          <app-hotel-card 
-            *ngFor="let hotel of getInlineHotels(message)"
-            [hotel]="hotel"
-            [variant]="'desktop'"
             (cardClicked)="onCardClick($event)">
           </app-hotel-card>
         </div>
