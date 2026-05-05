@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <!-- Mobile: Fixed input at bottom -->
+  <!-- Mobile: Redesigned landing -->
   <div class="landing-mobile">
     <!-- IHG Banner -->
     <div class="ihg-banner">
@@ -58,34 +58,41 @@
       <span class="beta-label">Beta</span>
     </div>
 
-    <div class="mobile-content">
-      <div class="brand-text-group">
-        <p class="brand-subtitle">The world awaits.<br>Where to next?</p>
-        <p class="brand-tagline">7,000+ hotels. 100+ countries. 20+ brands.</p>
-      </div>
-
-      <!-- Scrolling card ticker on mobile too -->
-      <div class="card-ticker-wrapper">
-        <div class="card-ticker" #tickerTrackMobile>
-          <div *ngFor="let src of tickerCards; let i = index" class="ticker-card-wrap">
-            <img [src]="src" alt="IHG Property" class="ticker-card" />
-          </div>
-        </div>
-      </div>
+    <!-- Map background -->
+    <div class="mobile-map-bg">
+      <img src="assets/landing-map-bg.png" alt="" class="mobile-map-img" aria-hidden="true" />
     </div>
 
-    <!-- Fixed input at bottom -->
-    <div class="mobile-input-container">
-      <div class="search-chips" role="list" aria-label="Suggested searches">
-        <button *ngFor="let chip of searchChips" class="search-chip" role="listitem" (click)="onFirstMessage(chip.text)">
-          <i [class]="chip.icon" class="chip-icon" aria-hidden="true"></i>
-          <span class="chip-text">{{ chip.text }}</span>
-        </button>
+    <!-- Hero content (left aligned) -->
+    <div class="mobile-hero">
+      <div class="ai-beta-tag">
+        <i class="ph-fill ph-sparkle" aria-hidden="true"></i>
+        AI BETA SEARCH
       </div>
-      <app-input
-        [placeholder]="'Where do you want to go...'"
-        (messageSent)="onFirstMessage($event)"
-      ></app-input>
+      <h1 class="mobile-headline">A new way to search</h1>
+      <p class="mobile-subheadline">The world awaits. Where to next?</p>
+    </div>
+
+    <!-- Bottom section: chips + disclaimer + input -->
+    <div class="mobile-bottom">
+      <div class="try-searching">
+        <span class="try-label">TRY SEARCHING:</span>
+        <div class="search-chips-stacked" role="list" aria-label="Suggested searches">
+          <button *ngFor="let chip of searchChips" class="search-chip-stacked" role="listitem" (click)="onFirstMessage(chip.text)">
+            <i [class]="chip.icon" class="chip-icon-stacked" aria-hidden="true"></i>
+            <span>{{ chip.text }}</span>
+          </button>
+        </div>
+      </div>
+
+      <p class="ai-disclaimer">This is a AI-generated beta experience. It's designed to guide your search, but it may occasionally make mistakes.</p>
+
+      <div class="mobile-input-container">
+        <app-input
+          [placeholder]="'Where do you want to go?'"
+          (messageSent)="onFirstMessage($event)"
+        ></app-input>
+      </div>
     </div>
   </div>
 </div>
