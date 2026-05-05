@@ -137,9 +137,9 @@
 /* Floating chat panel */
 .floating-chat-panel {
   width: 480px;
-  height: calc(100vh - 48px);
+  height: calc(100vh - 120px);
   background-color: #ffffff;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-md);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -203,11 +203,10 @@
   transition: opacity 350ms cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* Offset center down by half input-container height to visually center between banner and input */
-  padding-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  justify-content: flex-start;
+  padding-top: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   padding-bottom: 1rem;
 }
 
@@ -216,11 +215,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  padding: 1rem;
+  padding: 0;
 }
 
 .input-container {
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   background: #ffffff;
   flex-shrink: 0;
   border-radius: 0 0 var(--radius-xl) var(--radius-xl);
@@ -289,6 +288,40 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
+}
+
+/* Desktop hero content */
+.desktop-hero {
+  text-align: left;
+  padding: 0;
+}
+
+.desktop-headline {
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: #111827;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+.desktop-subheadline {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+  font-weight: 400;
+}
+
+.desktop-try-searching {
+  margin-bottom: 12px;
+}
+
+.desktop-try-searching .search-chip-stacked {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.desktop-try-searching .chip-icon-stacked {
+  font-size: 14px;
 }
 
 /* Mobile redesigned landing */

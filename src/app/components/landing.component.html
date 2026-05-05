@@ -14,35 +14,34 @@
           <span class="beta-label">Beta</span>
         </div>
 
-        <!-- Brand content -->
+        <!-- Hero content -->
         <div class="chat-container">
           <div class="welcome-content">
-            <div class="brand-text-group">
-              <p class="brand-subtitle">The world awaits.<br>Where to next?</p>
-              <p class="brand-tagline">7,000+ hotels. 100+ countries. 20+ brands.</p>
-            </div>
-
-            <!-- Scrolling card ticker -->
-            <div class="card-ticker-wrapper">
-              <div class="card-ticker" #tickerTrack>
-                <div *ngFor="let src of tickerCardsDesktop; let i = index" class="ticker-card-wrap">
-                  <img [src]="src" alt="IHG Property" class="ticker-card" />
-                </div>
+            <div class="desktop-hero">
+              <div class="ai-beta-tag">
+                <i class="ph-fill ph-sparkle" aria-hidden="true"></i>
+                AI BETA SEARCH
               </div>
+              <h1 class="desktop-headline">A new way to search</h1>
+              <p class="desktop-subheadline">The world awaits. Where to next?</p>
             </div>
           </div>
         </div>
 
-        <!-- Input at bottom -->
+        <!-- Bottom: chips + disclaimer + input -->
         <div class="input-container">
-          <div class="search-chips" role="list" aria-label="Suggested searches">
-            <button *ngFor="let chip of searchChips" class="search-chip" role="listitem" (click)="onFirstMessage(chip.text)">
-              <i [class]="chip.icon" class="chip-icon" aria-hidden="true"></i>
-              <span class="chip-text">{{ chip.text }}</span>
-            </button>
+          <div class="desktop-try-searching">
+            <span class="try-label">TRY SEARCHING:</span>
+            <div class="search-chips-stacked" role="list" aria-label="Suggested searches">
+              <button *ngFor="let chip of searchChips" class="search-chip-stacked" role="listitem" (click)="onFirstMessage(chip.text)">
+                <i [class]="chip.icon" class="chip-icon-stacked" aria-hidden="true"></i>
+                <span>{{ chip.text }}</span>
+              </button>
+            </div>
           </div>
+          <p class="ai-disclaimer">This is a AI-generated beta experience. It's designed to guide your search, but it may occasionally make mistakes.</p>
           <app-input
-            [placeholder]="'Where do you want to go...'"
+            [placeholder]="'Where do you want to go?'"
             (messageSent)="onFirstMessage($event)"
           ></app-input>
         </div>
