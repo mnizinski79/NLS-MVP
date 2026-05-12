@@ -39,11 +39,11 @@
               </button>
             </div>
           </div>
-          <p class="ai-disclaimer">This is a AI-generated beta experience. It's designed to guide your search, but it may occasionally make mistakes.</p>
           <app-input
             [placeholder]="'Where do you want to go?'"
             (messageSent)="onFirstMessage($event)"
           ></app-input>
+          <p class="ai-disclaimer">This is a AI-generated beta experience, it may occasionally make mistakes.</p>
         </div>
       </div>
     </div>
@@ -84,13 +84,12 @@
         </div>
       </div>
 
-      <p class="ai-disclaimer">This is a AI-generated beta experience. It's designed to guide your search, but it may occasionally make mistakes.</p>
-
       <div class="mobile-input-container">
         <app-input
           [placeholder]="'Where do you want to go?'"
           (messageSent)="onFirstMessage($event)"
         ></app-input>
+        <p class="ai-disclaimer">This is a AI-generated beta experience, it may occasionally make mistakes.</p>
       </div>
     </div>
   </div>
