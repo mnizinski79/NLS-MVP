@@ -29,16 +29,16 @@ export class LandingComponent implements AfterViewInit, OnDestroy {
 
   searchChips = [
     {
-      text: 'NYC hotels with a view',
-      icon: 'ph ph-buildings'
+      text: 'Romantic weekend in NYC',
+      icon: 'ph ph-heart'
     },
     {
-      text: 'Budget-friendly hotels near the Louvre',
+      text: 'Hotels in Manhattan under $300',
       icon: 'ph ph-tag'
     },
     {
-      text: 'Family beachfront hotels in Florida',
-      icon: 'ph ph-umbrella'
+      text: 'Pet-friendly hotel near Empire State Building',
+      icon: 'ph ph-paw-print'
     }
   ];
 
