@@ -1,7 +1,23 @@
 <div *ngIf="visible" class="landing-container" [class.landing-exit]="!visible" role="main" aria-label="Hotel search landing page">
 
+  <!-- Static Homepage (entry point) -->
+  <div *ngIf="showHomepage" class="homepage-overlay">
+    <!-- Desktop homepage -->
+    <div class="homepage-desktop">
+      <img src="assets/homepage-desktop.png" alt="IHG Hotels & Resorts" class="homepage-img" />
+      <button class="homepage-hotspot homepage-hotspot-desktop" (click)="enterSearch()" aria-label="Open AI hotel search">
+      </button>
+    </div>
+    <!-- Mobile homepage -->
+    <div class="homepage-mobile">
+      <img src="assets/homepage-mobile.png" alt="IHG Hotels & Resorts" class="homepage-img" />
+      <button class="homepage-hotspot homepage-hotspot-mobile" (click)="enterSearch()" aria-label="Open AI hotel search">
+      </button>
+    </div>
+  </div>
+
   <!-- Desktop: Centered layout with map background -->
-  <div class="landing-desktop">
+  <div *ngIf="!showHomepage" class="landing-desktop">
     <!-- Leaflet flat map background -->
     <div #mapContainer class="map-bg" aria-hidden="true"></div>
 
@@ -50,7 +66,7 @@
   </div>
 
   <!-- Mobile: Redesigned landing -->
-  <div class="landing-mobile">
+  <div *ngIf="!showHomepage" class="landing-mobile">
     <!-- IHG Banner -->
     <div class="ihg-banner">
       <img src="assets/IHG.svg" alt="IHG Hotels & Resorts" class="ihg-banner-logo" />

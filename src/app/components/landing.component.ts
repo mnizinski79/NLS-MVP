@@ -15,6 +15,13 @@ export class LandingComponent implements AfterViewInit, OnDestroy {
   @Output() dismissed = new EventEmitter<void>();
   @Output() messageSent = new EventEmitter<string>();
 
+  /** Whether to show the static homepage before the AI search landing */
+  showHomepage: boolean = true;
+
+  enterSearch(): void {
+    this.showHomepage = false;
+  }
+
   exampleQueries: string[] = [
     'Show me luxury hotels in Midtown',
     'Find pet-friendly hotels with a rooftop bar'

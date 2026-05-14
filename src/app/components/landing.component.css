@@ -9,6 +9,75 @@
   overflow: hidden;
 }
 
+/* Homepage overlay */
+.homepage-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1100;
+}
+
+.homepage-desktop {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.homepage-mobile {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 1025px) {
+  .homepage-desktop {
+    display: block;
+  }
+  .homepage-mobile {
+    display: none;
+  }
+}
+
+.homepage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.homepage-hotspot {
+  position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+
+/* Desktop hotspot — AI SEARCH BETA tag + "Try our new AI search >" */
+.homepage-hotspot-desktop {
+  top: 32%;
+  left: 4%;
+  width: 30%;
+  height: 5%;
+}
+
+/* Mobile hotspot — entire white box with AI beta tag and "Try our new AI search" */
+.homepage-hotspot-mobile {
+  top: 7.5%;
+  left: 3%;
+  width: 94%;
+  height: 11%;
+}
+
+.homepage-hotspot:hover {
+  background: rgba(199, 55, 15, 0.08);
+}
+
+.homepage-hotspot:active {
+  background: rgba(199, 55, 15, 0.15);
+}
+
 /* Darker background for desktop only */
 @media (min-width: 1025px) {
   .landing-container {
