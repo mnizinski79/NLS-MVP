@@ -20,6 +20,8 @@ export class LandingComponent implements AfterViewInit, OnDestroy {
 
   enterSearch(): void {
     this.showHomepage = false;
+    // Initialize map after the DOM updates
+    setTimeout(() => this.initMap(), 100);
   }
 
   exampleQueries: string[] = [
@@ -97,37 +99,44 @@ export class LandingComponent implements AfterViewInit, OnDestroy {
   constructor(private ngZone: NgZone) {}
 
   ngAfterViewInit(): void {
-    // Initialize Leaflet background map (desktop only)
-    if (this.mapContainer?.nativeElement) {
-      this.map = L.map(this.mapContainer.nativeElement, {
-        center: [30, 0],
-        zoom: 3,
-        zoomControl: false,
-        attributionControl: false,
-        dragging: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        touchZoom: false,
-        keyboard: false,
-      });
+    this.initMap();
+    this.startTicker();
+  }
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
+  private initMap(): void {
+    if (this.map) return; // Already initialized
+    if (!this.mapContainer?.nativeElement) return;
+
+    this.map = L.map(this.mapContainer.nativeElement, {
+      center: [30, 0],
+      zoom: 3,
+      zoomControl: false,
+      attributionControl: false,
+      dragging: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      touchZoom: false,
+      keyboard: false,
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19,
+    }).addTo(this.map);
+
+    // Plot hotel location dots with varied sizes
+    for (const loc of this.hotelLocations) {
+      const lat = loc[0];
+      const lng = loc[1];
+      L.circleMarker([lat, lng], {
+        radius: 3,
+        fillColor: '#1F4456',
+        fillOpacity: 0.4,
+        stroke: false,
       }).addTo(this.map);
-
-      // Plot hotel location dots
-      for (const [lat, lng] of this.hotelLocations) {
-        L.circleMarker([lat, lng], {
-          radius: 3,
-          fillColor: '#1F4456',
-          fillOpacity: 0.4,
-          stroke: false,
-        }).addTo(this.map);
-      }
     }
+  }
 
-    // Ticker animation
-    // Ticker animation + map slow pan
+  private startTicker(): void {
     this.ngZone.runOutsideAngular(() => {
       const animate = () => {
         this.offset += this.speed;

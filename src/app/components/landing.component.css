@@ -41,7 +41,8 @@
 
 .homepage-img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   object-fit: cover;
   object-position: top;
 }
@@ -54,28 +55,28 @@
   border-radius: var(--radius-md);
 }
 
-/* Desktop hotspot — AI SEARCH BETA tag + "Try our new AI search >" */
+/* Desktop hotspot — full screen */
 .homepage-hotspot-desktop {
-  top: 32%;
-  left: 4%;
-  width: 30%;
-  height: 5%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-/* Mobile hotspot — entire white box with AI beta tag and "Try our new AI search" */
+/* Mobile hotspot — full screen */
 .homepage-hotspot-mobile {
-  top: 7.5%;
-  left: 3%;
-  width: 94%;
-  height: 11%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .homepage-hotspot:hover {
-  background: rgba(199, 55, 15, 0.08);
+  background: transparent;
 }
 
 .homepage-hotspot:active {
-  background: rgba(199, 55, 15, 0.15);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 /* Darker background for desktop only */
