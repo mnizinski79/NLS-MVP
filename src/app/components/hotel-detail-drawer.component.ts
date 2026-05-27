@@ -78,6 +78,9 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, Aft
   /** Emitted when user clicks "Select dates" button */
   @Output() selectDatesRequested = new EventEmitter<void>();
 
+  /** Emitted when user clicks "View Rooms" */
+  @Output() viewRoomsRequested = new EventEmitter<Hotel>();
+
   /** Reference to drawer container for focus management */
   @ViewChild('drawerContainer') drawerContainer?: ElementRef;
 
@@ -704,40 +707,11 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, Aft
   }
 
   /**
-   * View rooms - redirect to hotel website with selected dates
+   * View rooms - emit event so the app can show room cards in the chat
    */
   viewRooms(): void {
     if (!this.hotel) return;
-    
-    const checkIn = this.getEffectiveCheckIn();
-    const checkOut = this.getEffectiveCheckOut();
-    
-    // Format dates for IHG
-    const formatIHGDate = (date: Date) => {
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth()).padStart(2, '0');
-      const year = date.getFullYear();
-      return { day, monthYear: `${month}${year}` };
-    };
-    
-    const checkInFormatted = formatIHGDate(checkIn);
-    const checkOutFormatted = formatIHGDate(checkOut);
-    
-    // Use default values if guest counts are null
-    const adultsCount = this.adults ?? 2;
-    const childrenCount = this.children ?? 0;
-    
-    let bookingUrl: string;
-    if (this.hotel.bookingUrl) {
-      bookingUrl = `${this.hotel.bookingUrl}&qAdlt=${adultsCount}&qChld=${childrenCount}&qCiD=${checkInFormatted.day}&qCiMy=${checkInFormatted.monthYear}&qCoD=${checkOutFormatted.day}&qCoMy=${checkOutFormatted.monthYear}`;
-    } else {
-      const hotelName = encodeURIComponent(this.hotel.name);
-      const checkInStr = checkIn.toLocaleDateString();
-      const checkOutStr = checkOut.toLocaleDateString();
-      bookingUrl = `https://www.google.com/search?q=${hotelName}+booking+${checkInStr}+to+${checkOutStr}`;
-    }
-    
-    window.open(bookingUrl, '_blank');
+    this.viewRoomsRequested.emit(this.hotel);
   }
 
   /**

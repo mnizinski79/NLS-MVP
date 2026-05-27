@@ -55,6 +55,7 @@ export class MobileLayoutComponent implements OnChanges {
   @Output() viewAllClicked = new EventEmitter<void>();
   @Output() dateSelected = new EventEmitter<DateSelection>();
   @Output() selectDatesRequested = new EventEmitter<Hotel>();
+  @Output() viewRoomsRequested = new EventEmitter<Hotel>();
 
   @ViewChild(MapComponent) mapComponent?: MapComponent;
 
@@ -218,9 +219,14 @@ export class MobileLayoutComponent implements OnChanges {
     if (this.showMapOverlay) {
       this.showMapOverlay = false;
     }
-    
+
     if (this.selectedHotel) {
       this.selectDatesRequested.emit(this.selectedHotel);
     }
+  }
+
+  onViewRoomsRequested(hotel: Hotel): void {
+    this.showBottomSheet = false;
+    this.viewRoomsRequested.emit(hotel);
   }
 }

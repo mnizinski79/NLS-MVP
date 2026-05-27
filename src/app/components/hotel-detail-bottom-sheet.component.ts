@@ -31,6 +31,7 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
   @Output() closed = new EventEmitter<void>();
   @Output() dateSelected = new EventEmitter<DateRange>();
   @Output() selectDatesRequested = new EventEmitter<void>();
+  @Output() viewRoomsRequested = new EventEmitter<Hotel>();
 
   @ViewChild('sheetContainer') sheetContainer?: ElementRef;
   @ViewChild('calendarSection') calendarSection?: ElementRef;
@@ -662,36 +663,7 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
 
   viewRooms(): void {
     if (!this.hotel) return;
-    
-    const checkIn = this.getEffectiveCheckIn();
-    const checkOut = this.getEffectiveCheckOut();
-    
-    // Format dates for IHG
-    const formatIHGDate = (date: Date) => {
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth()).padStart(2, '0');
-      const year = date.getFullYear();
-      return { day, monthYear: `${month}${year}` };
-    };
-    
-    const checkInFormatted = formatIHGDate(checkIn);
-    const checkOutFormatted = formatIHGDate(checkOut);
-    
-    // Use default values if guest counts are null
-    const adultsCount = this.adults ?? 2;
-    const childrenCount = this.children ?? 0;
-    
-    let bookingUrl: string;
-    if (this.hotel.bookingUrl) {
-      bookingUrl = `${this.hotel.bookingUrl}&qAdlt=${adultsCount}&qChld=${childrenCount}&qCiD=${checkInFormatted.day}&qCiMy=${checkInFormatted.monthYear}&qCoD=${checkOutFormatted.day}&qCoMy=${checkOutFormatted.monthYear}`;
-    } else {
-      const hotelName = encodeURIComponent(this.hotel.name);
-      const checkInStr = checkIn.toLocaleDateString();
-      const checkOutStr = checkOut.toLocaleDateString();
-      bookingUrl = `https://www.google.com/search?q=${hotelName}+booking+${checkInStr}+to+${checkOutStr}`;
-    }
-    
-    window.open(bookingUrl, '_blank');
+    this.viewRoomsRequested.emit(this.hotel);
   }
 
   onCalendarClosed(): void {

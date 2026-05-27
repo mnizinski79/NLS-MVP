@@ -34,6 +34,19 @@
         <p class="message-text" [innerHTML]="message.text | markdown"></p>
       </div>
 
+      <!-- Room cards (shown inline for all layouts when message has rooms) -->
+      <div *ngIf="message.sender === 'ai' && message.rooms && message.rooms.length > 0"
+           class="inline-rooms"
+           role="region"
+           aria-label="Available room types">
+        <div class="inline-rooms-container">
+          <app-room-card
+            *ngFor="let room of message.rooms"
+            [room]="room">
+          </app-room-card>
+        </div>
+      </div>
+
       <!-- Date picker button for small result sets (show BEFORE hotel cards on desktop) -->
       <div *ngIf="message.sender === 'ai' && !isMobile && message.showDatePicker && !isDatePickerVisible(message.id) && isLatestHotelMessage(message)" 
            class="date-picker-prompt">

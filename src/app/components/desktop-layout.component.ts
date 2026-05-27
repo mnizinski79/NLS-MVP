@@ -181,6 +181,9 @@ export class DesktopLayoutComponent implements OnDestroy {
   /** Emitted when user requests to select dates for a hotel */
   @Output() selectDatesRequested = new EventEmitter<Hotel>();
 
+  /** Emitted when user clicks "View Rooms" in the detail drawer */
+  @Output() viewRoomsRequested = new EventEmitter<Hotel>();
+
   /** Emitted when user removes a trip chip */
   @Output() chipRemoved = new EventEmitter<TripChip>();
 
@@ -269,6 +272,14 @@ export class DesktopLayoutComponent implements OnDestroy {
     if (this.selectedHotel) {
       this.selectDatesRequested.emit(this.selectedHotel);
     }
+  }
+
+  /**
+   * Handle view rooms request from detail drawer
+   */
+  onViewRoomsRequested(hotel: Hotel): void {
+    this.showDetailDrawer = false;
+    this.viewRoomsRequested.emit(hotel);
   }
 
   /**

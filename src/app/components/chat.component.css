@@ -417,3 +417,25 @@
   width: 100%;
   max-width: 100%;
 }
+
+/* ── Room cards ────────────────────────────────────────────────────────────── */
+
+.inline-rooms {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.inline-rooms-container {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 8px;
+  padding-top: 4px;
+  scroll-snap-type: x mandatory;
+}
+
+.inline-rooms-container app-room-card {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}

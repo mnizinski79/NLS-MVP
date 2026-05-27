@@ -13,6 +13,7 @@ import { ConfigService } from './services/config.service';
 import { AuthService } from './services/auth.service';
 import { Hotel, Message, AIResponse, ConversationState, PointOfInterest } from './models';
 import { PricingService } from './services/pricing.service';
+import { RoomService } from './services/room.service';
 import { SearchContext } from './models/message.model';
 import { TripChip } from './models/trip-chip.model';
 import { SearchCriteria } from './models/search-criteria.model';
@@ -68,6 +69,7 @@ import { SearchCriteria } from './models/search-criteria.model';
           (hotelFocused)="onHotelFocused($event)"
           (hotelUnfocused)="onHotelUnfocused()"
           (selectDatesRequested)="onSelectDatesRequested($event)"
+          (viewRoomsRequested)="onViewRoomsRequested($event)"
           (chipRemoved)="onChipRemoved($event)"
         ></app-desktop-layout>
         
@@ -98,6 +100,7 @@ import { SearchCriteria } from './models/search-criteria.model';
           (bottomSheetClosed)="onBottomSheetClosed()"
           (dateSelected)="onDateSelected($event)"
           (selectDatesRequested)="onSelectDatesRequested($event)"
+          (viewRoomsRequested)="onViewRoomsRequested($event)"
           (chipRemoved)="onChipRemoved($event)"
         ></app-mobile-layout>
       </ng-container>
@@ -155,7 +158,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private conversationService: ConversationService,
     private configService: ConfigService,
     private authService: AuthService,
-    private pricingService: PricingService
+    private pricingService: PricingService,
+    private roomService: RoomService
   ) {
     // Set up viewport detection
     this.isMobile$ = fromEvent(window, 'resize').pipe(
@@ -895,6 +899,38 @@ export class AppComponent implements OnInit, OnDestroy {
     console.log('🏨 Clearing focused hotel');
     this.conversationService.updateState({
       focusedHotel: null
+    });
+  }
+
+  /**
+   * Handle "View Rooms" click from hotel detail.
+   * Closes the drawer, adds a user message, then adds an AI message with room cards.
+   */
+  onViewRoomsRequested(hotel: Hotel): void {
+    this.showDetailDrawer = false;
+    this.showBottomSheet = false;
+
+    // Add the user-side message
+    const userMessage: Message = {
+      id: this.generateMessageId(),
+      sender: 'user',
+      text: `View rooms for ${hotel.name}`,
+      timestamp: new Date()
+    };
+    this.conversationService.addMessage(userMessage);
+
+    // Load rooms then add an AI message containing them
+    this.roomService.getRoomsForHotel(hotel.id).subscribe(rooms => {
+      const aiMessage: Message = {
+        id: this.generateMessageId(),
+        sender: 'ai',
+        text: rooms.length > 0
+          ? `Here are the available room types at **${hotel.name}**:`
+          : `I couldn't find specific room details for ${hotel.name} right now. You can view availability directly on their booking page.`,
+        timestamp: new Date(),
+        rooms: rooms.length > 0 ? rooms : undefined
+      };
+      this.conversationService.addMessage(aiMessage);
     });
   }
 
