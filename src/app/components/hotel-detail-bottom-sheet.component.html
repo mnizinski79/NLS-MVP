@@ -189,7 +189,7 @@
       </div>
 
       <!-- Booking Summary Section -->
-      <div class="section">
+      <div class="section" #calendarSection>
         <app-booking-summary
           [adults]="adults ?? 2"
           [children]="children ?? 0"
@@ -212,10 +212,20 @@
         </div>
       </div>
 
-      <!-- Spacer for floating footer - REMOVED, footer now overlays content -->
     </div>
   </div>
 
+  </div>
+
+  <!-- Floating "View Rooms" footer — hides when booking section scrolls into view -->
+  <div class="floating-footer" [class.footer-hidden]="hideFooter">
+    <button
+      class="cta-filled cta-full-width"
+      [style.background-color]="getBrandColor()"
+      (click)="viewRooms()"
+    >
+      <span>View Rooms</span>
+    </button>
   </div>
 
   <!-- Guests Sheet Modal -->
