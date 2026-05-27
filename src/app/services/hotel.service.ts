@@ -351,9 +351,12 @@ export class HotelService {
    * Intents that indicate the user had specific search intent and should see
    * match scores, regardless of how many explicit criteria the AI extracted.
    */
+  // Only intents that are inherently comparative/specific regardless of criteria.
+  // Broad completion intents like 'complete_query' and 'show_results_now' are
+  // intentionally excluded — the AI uses those for plain "hotels in nyc" too,
+  // so they're not reliable signals of a specific search.
   private readonly SPECIFIC_INTENTS = new Set([
-    'complete_query', 'show_results_now', 'refine_search',
-    'cheapest', 'most_expensive', 'preferences_only'
+    'cheapest', 'most_expensive'
   ]);
 
   private readonly GENERIC_SENTIMENTS = new Set([
