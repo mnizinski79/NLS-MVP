@@ -647,6 +647,12 @@
   transform: translateY(100%);
 }
 
+/* Button inside the footer should always fill the full available width */
+.floating-footer button {
+  flex: 1;
+  width: auto;
+}
+
 .cta-outline {
   flex: 1;
   padding: 14px 20px;
