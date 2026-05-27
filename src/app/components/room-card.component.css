@@ -24,38 +24,31 @@
   display: block;
 }
 
-/* Bed / capacity pill */
+/* Bed / capacity tag — matches hotel card .rating-overlay style */
 .capacity-overlay {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(4px);
-  border-radius: 20px;
-  padding: 5px 10px;
-  font-size: 13px;
-  font-weight: 600;
+  @apply absolute top-2 left-2 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 shadow-md;
+  border-radius: var(--radius-md);
   color: #111827;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
 .capacity-item {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
+  font-size: 0.75rem;  /* text-xs, matches .rating-value */
+  font-weight: 500;
 }
 
 .capacity-item i {
-  font-size: 14px;
+  font-size: 0.875rem; /* text-sm, matches .star-icon */
+  font-weight: 600;
 }
 
 .capacity-divider {
   width: 1px;
-  height: 12px;
+  height: 10px;
   background: #d1d5db;
+  margin: 0 2px;
 }
 
 /* Info section */
