@@ -61,6 +61,14 @@
             [variant]="'mobile'"
             (cardClicked)="onCardClick($event)">
           </app-hotel-card>
+          <!-- See all results card -->
+          <button *ngIf="message.hotels && message.hotels.length > 3" 
+                  class="see-all-card" 
+                  (click)="onViewAllClick()"
+                  aria-label="See all results on map">
+            <span class="see-all-text">See all results</span>
+            <i class="ph ph-arrow-right see-all-arrow" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
 

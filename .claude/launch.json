@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "nls-mvp",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["ng", "serve", "--port", "4201", "--proxy-config", "proxy.conf.json"],
+      "port": 4201
+    }
+  ]
+}

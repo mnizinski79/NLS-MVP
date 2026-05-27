@@ -422,6 +422,59 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, Aft
     }
 
   /**
+   * Returns the match breakdown for the current hotel based on its matchContext.
+   * Shows which searched-for amenities / sentiments the hotel has (matched) and
+   * which it is missing, so the detail view can render ✓ / ✗ rows.
+   */
+  getMatchBreakdown(): { matched: Array<{label: string, icon: string}>, missing: Array<{label: string, icon: string}> } {
+    if (!this.hotel?.matchContext) return { matched: [], missing: [] };
+
+    const ctx = this.hotel.matchContext;
+    const matched: Array<{label: string, icon: string}> = [];
+    const missing: Array<{label: string, icon: string}> = [];
+
+    const iconMap: {[key: string]: string} = {
+      'Pool': 'ph ph-swimming-pool',
+      'Fitness Center': 'ph ph-barbell',
+      'Fitness center': 'ph ph-barbell',
+      'Rooftop Bar': 'ph ph-martini',
+      'Cocktail Bar': 'ph ph-wine',
+      'Pet Friendly': 'ph ph-paw-print',
+      'Pets allowed': 'ph ph-paw-print',
+      'Free Wi-Fi': 'ph ph-wifi-high',
+      'Free WiFi': 'ph ph-wifi-high',
+      'Parking': 'ph ph-car',
+      'Restaurant': 'ph ph-fork-knife',
+      'Spa': 'ph ph-flower-lotus',
+      'Room Service': 'ph ph-bell-concierge',
+      'Room service': 'ph ph-bell-concierge',
+      'Business Center': 'ph ph-briefcase',
+      'Business center': 'ph ph-briefcase',
+      'Concierge': 'ph ph-user',
+      'Kids Eat Free': 'ph ph-baby',
+      'Hosted Wine Hour': 'ph ph-wine',
+      'Terrace Rooms': 'ph ph-sun',
+      'Grab & Go Market': 'ph ph-storefront',
+    };
+
+    // Amenities
+    for (const a of ctx.amenities) {
+      const has = this.hotel.amenities.some(ha => ha.toLowerCase() === a.toLowerCase());
+      const entry = { label: a, icon: iconMap[a] ?? 'ph ph-check' };
+      (has ? matched : missing).push(entry);
+    }
+
+    // Sentiments (non-generic neighbourhood / vibe tags)
+    for (const s of ctx.sentiments) {
+      const has = (this.hotel.sentiment ?? []).some(hs => hs.toLowerCase() === s.toLowerCase());
+      const entry = { label: s, icon: 'ph ph-map-pin' };
+      (has ? matched : missing).push(entry);
+    }
+
+    return { matched, missing };
+  }
+
+  /**
    * Get thumbnail images (always returns 3 images)
    * @returns Array of 3 image URLs
    */

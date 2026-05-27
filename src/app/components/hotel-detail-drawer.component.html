@@ -98,6 +98,28 @@
       <!-- Amenities -->
       <div class="section">
         <h3 class="section-title">Amenities</h3>
+
+        <!-- Match breakdown (only shown when matchContext exists) -->
+        <ng-container *ngIf="hotel.matchContext && (getMatchBreakdown().matched.length > 0 || getMatchBreakdown().missing.length > 0)">
+          <div class="match-breakdown">
+            <p class="match-breakdown-label">Based on your search</p>
+            <div class="match-breakdown-rows">
+              <div class="match-row match-row--hit" *ngFor="let item of getMatchBreakdown().matched">
+                <i [class]="item.icon" class="match-row-icon" aria-hidden="true"></i>
+                <span class="match-row-label">{{ item.label }}</span>
+                <span class="match-row-status match-row-status--hit" aria-label="Available">✓</span>
+              </div>
+              <div class="match-row match-row--miss" *ngFor="let item of getMatchBreakdown().missing">
+                <i [class]="item.icon" class="match-row-icon" aria-hidden="true"></i>
+                <span class="match-row-label">{{ item.label }}</span>
+                <span class="match-row-status match-row-status--miss" aria-label="Not available">✕</span>
+              </div>
+            </div>
+          </div>
+          <div class="amenities-divider"></div>
+        </ng-container>
+
+        <!-- Full amenities grid -->
         <div class="amenities-grid">
           <div class="amenity-item" *ngFor="let amenity of getAmenitiesWithIcons()">
             <i [class]="amenity.icon" class="amenity-icon" aria-hidden="true"></i>

@@ -9,3 +9,4 @@ export * from './app-config.model';
 export * from './brand-config';
 export * from './view-state.model';
 export * from './animation-config.model';
+export * from './trip-chip.model';

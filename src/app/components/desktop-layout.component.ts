@@ -13,6 +13,7 @@ import { DateSelection } from '../models/date-selection.model';
 import { ViewStateMode, MapState } from '../models/view-state.model';
 import { TRANSFORM_ANIMATION_CONFIG } from '../models/animation-config.model';
 import { PointOfInterest } from '../models';
+import { TripChip } from '../models/trip-chip.model';
 
 @Component({
   selector: 'app-desktop-layout',
@@ -93,6 +94,9 @@ export class DesktopLayoutComponent implements OnDestroy {
 
   /** Point of Interest from conversation state */
   @Input() pointOfInterest: PointOfInterest | null = null;
+
+  /** Active trip filter chips derived from conversation context */
+  @Input() activeChips: TripChip[] = [];
 
   /** Current view state mode (default, transforming, or focused) */
   viewState: ViewStateMode = 'default';
@@ -177,11 +181,21 @@ export class DesktopLayoutComponent implements OnDestroy {
   /** Emitted when user requests to select dates for a hotel */
   @Output() selectDatesRequested = new EventEmitter<Hotel>();
 
+  /** Emitted when user removes a trip chip */
+  @Output() chipRemoved = new EventEmitter<TripChip>();
+
   /**
    * Handle message sent from input component
    */
   onMessageSent(message: string): void {
     this.messageSent.emit(message);
+  }
+
+  /**
+   * Handle chip removal from input component
+   */
+  onChipRemoved(chip: TripChip): void {
+    this.chipRemoved.emit(chip);
   }
 
   /**

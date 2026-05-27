@@ -356,6 +356,52 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
       }));
     }
 
+  getMatchBreakdown(): { matched: Array<{label: string, icon: string}>, missing: Array<{label: string, icon: string}> } {
+    if (!this.hotel?.matchContext) return { matched: [], missing: [] };
+
+    const ctx = this.hotel.matchContext;
+    const matched: Array<{label: string, icon: string}> = [];
+    const missing: Array<{label: string, icon: string}> = [];
+
+    const iconMap: {[key: string]: string} = {
+      'Pool': 'ph ph-swimming-pool',
+      'Fitness Center': 'ph ph-barbell',
+      'Fitness center': 'ph ph-barbell',
+      'Rooftop Bar': 'ph ph-martini',
+      'Cocktail Bar': 'ph ph-wine',
+      'Pet Friendly': 'ph ph-paw-print',
+      'Pets allowed': 'ph ph-paw-print',
+      'Free Wi-Fi': 'ph ph-wifi-high',
+      'Free WiFi': 'ph ph-wifi-high',
+      'Parking': 'ph ph-car',
+      'Restaurant': 'ph ph-fork-knife',
+      'Spa': 'ph ph-flower-lotus',
+      'Room Service': 'ph ph-bell-concierge',
+      'Room service': 'ph ph-bell-concierge',
+      'Business Center': 'ph ph-briefcase',
+      'Business center': 'ph ph-briefcase',
+      'Concierge': 'ph ph-user',
+      'Kids Eat Free': 'ph ph-baby',
+      'Hosted Wine Hour': 'ph ph-wine',
+      'Terrace Rooms': 'ph ph-sun',
+      'Grab & Go Market': 'ph ph-storefront',
+    };
+
+    for (const a of ctx.amenities) {
+      const has = this.hotel.amenities.some(ha => ha.toLowerCase() === a.toLowerCase());
+      const entry = { label: a, icon: iconMap[a] ?? 'ph ph-check' };
+      (has ? matched : missing).push(entry);
+    }
+
+    for (const s of ctx.sentiments) {
+      const has = (this.hotel.sentiment ?? []).some(hs => hs.toLowerCase() === s.toLowerCase());
+      const entry = { label: s, icon: 'ph ph-map-pin' };
+      (has ? matched : missing).push(entry);
+    }
+
+    return { matched, missing };
+  }
+
   getThumbnailImages(): string[] {
     if (!this.hotel || this.hotel.imageUrls.length === 0) return [];
     

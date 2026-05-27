@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { TripChip } from '../models/trip-chip.model';
 
 @Component({
   selector: 'app-input',
@@ -35,8 +36,14 @@ export class InputComponent {
   /** Placeholder text for the input field */
   @Input() placeholder: string = 'Where do you want to go...';
 
+  /** Active trip filter chips shown below the input */
+  @Input() activeChips: TripChip[] = [];
+
   /** Emitted when user submits a valid message (after debouncing) */
   @Output() messageSent = new EventEmitter<string>();
+
+  /** Emitted when user removes a chip */
+  @Output() chipRemoved = new EventEmitter<TripChip>();
 
   /** Current input value */
   inputValue: string = '';
@@ -86,5 +93,12 @@ export class InputComponent {
    */
   clearInput(): void {
     this.inputValue = '';
+  }
+
+  /**
+   * Remove a trip chip
+   */
+  onChipRemoved(chip: TripChip): void {
+    this.chipRemoved.emit(chip);
   }
 }

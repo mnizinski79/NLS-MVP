@@ -14,6 +14,8 @@ import { AuthService } from './services/auth.service';
 import { Hotel, Message, AIResponse, ConversationState, PointOfInterest } from './models';
 import { PricingService } from './services/pricing.service';
 import { SearchContext } from './models/message.model';
+import { TripChip } from './models/trip-chip.model';
+import { SearchCriteria } from './models/search-criteria.model';
 
 @Component({
   selector: 'app-root',
@@ -56,6 +58,7 @@ import { SearchContext } from './models/message.model';
           [adults]="adults"
           [children]="children"
           [pointOfInterest]="pointOfInterest"
+          [activeChips]="activeChips"
           (messageSent)="onMessageSent($event)"
           (tagClicked)="onTagClicked($event)"
           (hotelCardClicked)="onHotelCardClicked($event)"
@@ -65,6 +68,7 @@ import { SearchContext } from './models/message.model';
           (hotelFocused)="onHotelFocused($event)"
           (hotelUnfocused)="onHotelUnfocused()"
           (selectDatesRequested)="onSelectDatesRequested($event)"
+          (chipRemoved)="onChipRemoved($event)"
         ></app-desktop-layout>
         
         <!-- Mobile Layout -->
@@ -86,6 +90,7 @@ import { SearchContext } from './models/message.model';
           [adults]="adults"
           [children]="children"
           [pointOfInterest]="pointOfInterest"
+          [activeChips]="activeChips"
           (messageSent)="onMessageSent($event)"
           (tagClicked)="onTagClicked($event)"
           (hotelCardClicked)="onHotelCardClicked($event)"
@@ -93,6 +98,7 @@ import { SearchContext } from './models/message.model';
           (bottomSheetClosed)="onBottomSheetClosed()"
           (dateSelected)="onDateSelected($event)"
           (selectDatesRequested)="onSelectDatesRequested($event)"
+          (chipRemoved)="onChipRemoved($event)"
         ></app-mobile-layout>
       </ng-container>
     </div>
@@ -136,6 +142,9 @@ export class AppComponent implements OnInit, OnDestroy {
   adults: number | null = null; // Number of adults from AI response
   children: number | null = null; // Number of children from AI response
   pointOfInterest: PointOfInterest | null = null; // POI from conversation state
+
+  // Active trip filter chips derived from conversation context
+  activeChips: TripChip[] = [];
 
   // Request cancellation
   private currentAIRequest$: Subscription | null = null;
@@ -187,17 +196,20 @@ export class AppComponent implements OnInit, OnDestroy {
       this.messages = messages;
     });
 
-    // Subscribe to conversation state to track dates and guest count
+    // Subscribe to conversation state to track dates, guest count, and active chips
     this.conversationService.getState().subscribe(state => {
       this.checkInDate = state.conversationContext.checkIn;
       this.checkOutDate = state.conversationContext.checkOut;
       this.guestCount = state.conversationContext.guestCount;
       this.pointOfInterest = state.pointOfInterest;
-      
+
       // Update hasDates flag
       if (this.checkInDate && this.checkOutDate) {
         this.hasDates = true;
       }
+
+      // Recompute trip filter chips from conversation context
+      this.activeChips = this.computeChips(state);
     });
 
     console.log('✅ App component initialized');
@@ -208,6 +220,113 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.currentAIRequest$) {
       this.currentAIRequest$.unsubscribe();
     }
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Trip chips
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /**
+   * Derive dismissable filter chips from the current conversation context.
+   * Dates are intentionally excluded — they live in the search-summary bar.
+   */
+  private computeChips(state: ConversationState): TripChip[] {
+    const chips: TripChip[] = [];
+    const ctx = state.conversationContext;
+
+    // Note: sentiments/location omitted — already shown in the search summary bar
+
+    // Brand chips
+    (ctx.brands || []).forEach(b => {
+      chips.push({ id: `brand-${b}`, label: b, type: 'brand', value: b });
+    });
+
+    // Amenity chips
+    (ctx.amenities || []).forEach(a => {
+      chips.push({ id: `amenity-${a}`, label: a, type: 'amenity', value: a });
+    });
+
+    // Price chip
+    const { min, max } = ctx.priceRange || { min: null, max: null };
+    if (min !== null || max !== null) {
+      let label = '';
+      if (min && max) label = `$${min}–$${max}/nt`;
+      else if (max)   label = `Under $${max}/nt`;
+      else if (min)   label = `$${min}+/nt`;
+      chips.push({ id: 'price', label, type: 'price', value: { min, max } });
+    }
+
+    // Rating chip
+    if (ctx.minRating !== null && ctx.minRating !== undefined) {
+      chips.push({ id: 'rating', label: `${ctx.minRating}★+`, type: 'rating', value: ctx.minRating });
+    }
+
+    // Guest chip (use adults/children if available, fall back to guestCount)
+    const totalGuests = (this.adults ?? 0) + (this.children ?? 0);
+    if (totalGuests > 0) {
+      const parts: string[] = [];
+      if (this.adults) parts.push(`${this.adults} adult${this.adults !== 1 ? 's' : ''}`);
+      if (this.children) parts.push(`${this.children} child${this.children !== 1 ? 'ren' : ''}`);
+      chips.push({ id: 'guests', label: parts.join(', '), type: 'guests', value: totalGuests });
+    } else if (ctx.guestCount) {
+      chips.push({ id: 'guests', label: `${ctx.guestCount} guests`, type: 'guests', value: ctx.guestCount });
+    }
+
+    return chips;
+  }
+
+  /**
+   * Handle chip removal: patch conversation context and re-run the hotel filter.
+   */
+  onChipRemoved(chip: TripChip): void {
+    this.conversationService.getState().pipe(take(1)).subscribe(state => {
+      const ctx = { ...state.conversationContext };
+
+      switch (chip.type) {
+        case 'sentiment':
+          ctx.sentiments = (ctx.sentiments || []).filter(s => s !== chip.value);
+          break;
+        case 'brand':
+          ctx.brands = (ctx.brands || []).filter(b => b !== chip.value);
+          break;
+        case 'amenity':
+          ctx.amenities = (ctx.amenities || []).filter(a => a !== chip.value);
+          break;
+        case 'price':
+          ctx.priceRange = { min: null, max: null };
+          break;
+        case 'rating':
+          ctx.minRating = null;
+          break;
+        case 'guests':
+          ctx.guestCount = null;
+          this.adults = null;
+          this.children = null;
+          break;
+      }
+
+      this.conversationService.updateState({ conversationContext: ctx });
+
+      // Re-run the hotel filter with the updated (reduced) criteria
+      const criteria: SearchCriteria = {};
+      if (ctx.sentiments?.length) criteria.sentiments = ctx.sentiments;
+      if (ctx.brands?.length)    criteria.brands = ctx.brands;
+      if (ctx.amenities?.length) criteria.amenities = ctx.amenities;
+      if (ctx.priceRange?.min !== null || ctx.priceRange?.max !== null) {
+        criteria.priceRange = {
+          min: ctx.priceRange?.min ?? undefined,
+          max: ctx.priceRange?.max ?? undefined
+        };
+      }
+      if (ctx.minRating !== null && ctx.minRating !== undefined) {
+        criteria.minRating = ctx.minRating;
+      }
+
+      const hasAnyCriteria = Object.keys(criteria).length > 0;
+      this.currentHotels = hasAnyCriteria
+        ? this.hotelService.filterHotels(this.allHotels, criteria)
+        : this.allHotels;
+    });
   }
 
   /**
@@ -325,6 +444,9 @@ export class AppComponent implements OnInit, OnDestroy {
       hotels = this.currentHotels;
       console.log('✅ Using current hotels:', hotels.length);
     }
+
+    // Enrich hotels with match scores (specific searches and meaningful intents)
+    hotels = this.hotelService.computeMatchScores(hotels, aiResponse.searchCriteria, aiResponse.intent);
 
     // Update current hotels for future refinements
     this.currentHotels = hotels;
