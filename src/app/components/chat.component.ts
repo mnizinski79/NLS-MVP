@@ -60,6 +60,9 @@ export class ChatComponent {
   /** Emitted when user clicks "View All" button (mobile) */
   @Output() viewAllClicked = new EventEmitter<void>();
 
+  /** Emitted when user taps a suggested reply chip */
+  @Output() replyChipClicked = new EventEmitter<string>();
+
   /** ID of message currently showing date picker */
   showDatePickerForMessage: string | null = null;
 
@@ -97,6 +100,14 @@ export class ChatComponent {
    */
   hasMoreHotels(message: Message): boolean {
     return !!(message.hotels && message.hotels.length > 3);
+  }
+
+  /**
+   * Handle suggested reply chip click
+   * @param reply - The reply text to emit
+   */
+  onReplyChipClick(reply: string): void {
+    this.replyChipClicked.emit(reply);
   }
 
   /**

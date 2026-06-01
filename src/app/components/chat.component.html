@@ -112,7 +112,7 @@
       </div>
 
       <!-- Rate calendar component -->
-      <div *ngIf="message.sender === 'ai' && message.showRateCalendar && message.rateCalendarHotel" 
+      <div *ngIf="message.sender === 'ai' && message.showRateCalendar && message.rateCalendarHotel"
            class="rate-calendar-container">
         <app-rate-calendar
           [visible]="true"
@@ -122,6 +122,24 @@
           (dateSelected)="onRateCalendarDatesSelected($event)"
           (closed)="onRateCalendarClosed()">
         </app-rate-calendar>
+      </div>
+
+      <!-- Suggested reply chips (tappable quick replies) -->
+      <div
+        *ngIf="message.sender === 'ai' && message.suggestedReplies && message.suggestedReplies.length > 0"
+        class="reply-chips"
+        role="list"
+        aria-label="Quick reply options"
+      >
+        <button
+          *ngFor="let reply of message.suggestedReplies"
+          type="button"
+          class="reply-chip"
+          role="listitem"
+          (click)="onReplyChipClick(reply)"
+        >
+          {{ reply }}
+        </button>
       </div>
     </div>
 

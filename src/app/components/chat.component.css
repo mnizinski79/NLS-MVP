@@ -439,3 +439,31 @@
   flex-shrink: 0;
   scroll-snap-align: start;
 }
+
+/* ── Reply chips ────────────────────────────────── */
+.reply-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.reply-chip {
+  background: #ffffff;
+  border: 1.5px solid #1F4456;
+  color: #1F4456;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+}
+
+.reply-chip:hover,
+.reply-chip:focus {
+  background: #1F4456;
+  color: #ffffff;
+  outline: none;
+}
