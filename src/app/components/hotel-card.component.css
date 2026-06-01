@@ -181,3 +181,40 @@
 .hotel-card:focus {
   @apply outline-none ring-2 ring-blue-500 ring-offset-2;
 }
+
+/* ── Near-match amber badge ─────────────────────── */
+.match-badge-near {
+  background: #854d0e;
+  color: #fef9c3;
+}
+
+/* ── Match reason callout ───────────────────────── */
+.match-reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #166534;
+}
+
+.match-reason-near {
+  background: #fef9c3;
+  border-color: #fde68a;
+  color: #854d0e;
+}
+
+.match-reason-icon {
+  flex-shrink: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+.match-reason-text {
+  flex: 1;
+}

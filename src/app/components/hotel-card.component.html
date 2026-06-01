@@ -39,14 +39,30 @@
       />
     </div>
 
-    <!-- Match Score Badge (Bottom Left) -->
-    <div *ngIf="hotel.matchScore" class="match-badge" [attr.aria-label]="hotel.matchScore + '% match for your search'">
+    <!-- Match Score Badge (Bottom Left) — colour driven by matchType -->
+    <div
+      *ngIf="hotel.matchScore"
+      class="match-badge"
+      [class.match-badge-near]="hotel.matchType === 'near'"
+      [attr.aria-label]="hotel.matchScore + '% match for your search'"
+    >
       {{ hotel.matchScore }}% match
     </div>
   </div>
 
   <!-- Hotel Info -->
   <div class="hotel-card-content">
+    <!-- Match reason callout — "Why this fits" or "What's missing" -->
+    <div
+      *ngIf="hotel.matchReason"
+      class="match-reason"
+      [class.match-reason-near]="hotel.matchType === 'near'"
+      [attr.aria-label]="hotel.matchType === 'best' ? 'Why this hotel fits: ' + hotel.matchReason : hotel.matchReason"
+    >
+      <span class="match-reason-icon" aria-hidden="true">{{ hotel.matchType === 'best' ? '🎯' : '⚠' }}</span>
+      <span class="match-reason-text">{{ hotel.matchReason }}</span>
+    </div>
+
     <!-- Hotel Name (2 lines with truncation) -->
     <h3 class="hotel-name">{{ hotel.name }}</h3>
 
