@@ -34,6 +34,19 @@
         <p class="message-text" [innerHTML]="message.text | markdown"></p>
       </div>
 
+      <!-- Room cards (shown inline for all layouts when message has rooms) -->
+      <div *ngIf="message.sender === 'ai' && message.rooms && message.rooms.length > 0"
+           class="inline-rooms"
+           role="region"
+           aria-label="Available room types">
+        <div class="inline-rooms-container">
+          <app-room-card
+            *ngFor="let room of message.rooms"
+            [room]="room">
+          </app-room-card>
+        </div>
+      </div>
+
       <!-- Date picker button for small result sets (show BEFORE hotel cards on desktop) -->
       <div *ngIf="message.sender === 'ai' && !isMobile && message.showDatePicker && !isDatePickerVisible(message.id) && isLatestHotelMessage(message)" 
            class="date-picker-prompt">
@@ -61,6 +74,14 @@
             [variant]="'mobile'"
             (cardClicked)="onCardClick($event)">
           </app-hotel-card>
+          <!-- See all results card -->
+          <button *ngIf="message.hotels && message.hotels.length > 3" 
+                  class="see-all-card" 
+                  (click)="onViewAllClick()"
+                  aria-label="See all results on map">
+            <span class="see-all-text">See all results</span>
+            <i class="ph ph-arrow-right see-all-arrow" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
 

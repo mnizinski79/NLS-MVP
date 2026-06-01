@@ -1,4 +1,4 @@
-/* Input wrapper - no borders, no background, just clean spacing */
+/* Input wrapper */
 .input-wrapper {
   padding: 0;
   margin: 0;
@@ -6,7 +6,7 @@
   background-color: transparent;
 }
 
-/* Screen reader only class */
+/* Screen reader only */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -19,61 +19,124 @@
   border-width: 0;
 }
 
-/* Pill container */
+/* ── Outer container ── */
 .input-pill {
-  position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   max-width: 700px;
   margin: 0 auto;
+  border: 1px solid #e5e5e5;
+  border-radius: var(--radius-lg);
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: hidden; /* clips children to rounded corners */
 }
 
-/* Input field - clean rounded rectangle style */
+.input-pill:focus-within {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Input row (text field + send button when no chips) ── */
+.input-row {
+  display: flex;
+  align-items: center;
+  padding: 0 8px 0 0;
+}
+
+/* ── Text field ── */
 .input-field {
   flex: 1;
-  padding: 16px 60px 16px 20px; /* Extra right padding for send button */
-  border: 1px solid #e5e5e5;
-  border-radius: var(--radius-lg); /* Changed from 50px to 16px for rounded rectangle */
-  background-color: #ffffff;
+  padding: 16px 8px 16px 20px;
+  border: none;
+  outline: none;
+  background: transparent;
   font-size: 15px;
   line-height: 1.5;
-  outline: none;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   color: #1F4456;
+  box-sizing: border-box;
+}
+
+/* When chips are present, reduce bottom padding so the footer row sits snug */
+.has-chips .input-field {
+  padding-bottom: 8px;
 }
 
 .input-field::placeholder {
   color: #9ca3af;
 }
 
-.input-field:focus {
-  border-color: #d1d5db;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
 .input-field:disabled {
-  background-color: #f9fafb;
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-/* Send button - rounded square inside input */
+/* ── Footer row (chips + send button, only when chips present) ── */
+.input-footer {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px 8px 12px;
+  gap: 6px;
+}
+
+/* ── Chips ── */
+.chips-row {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.trip-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  background: rgba(31, 68, 86, 0.08);
+  border: 1px solid rgba(31, 68, 86, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  color: #1F4456;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.trip-chip:hover {
+  background: rgba(31, 68, 86, 0.14);
+  border-color: rgba(31, 68, 86, 0.35);
+}
+
+.chip-label {
+  line-height: 1;
+}
+
+.chip-remove {
+  font-size: 11px;
+  color: rgba(31, 68, 86, 0.5);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ── Send button ── */
 .send-button {
-  position: absolute;
-  right: 12px;
+  flex-shrink: 0;
+  margin-left: auto; /* push to right edge when no chips */
   display: flex;
   align-items: center;
   justify-content: center;
   width: 36px;
   height: 36px;
   border: none;
-  border-radius: var(--radius-md); /* Changed from 50% to 10px for rounded square */
+  border-radius: var(--radius-md);
   background-color: #e5e7eb;
   color: #6b7280;
   cursor: pointer;
   transition: all 0.2s ease;
-  flex-shrink: 0;
 }
 
 .send-button.has-text {
@@ -96,7 +159,7 @@
   height: 18px;
 }
 
-/* Mobile optimizations */
+/* ── Mobile ── */
 @media (max-width: 1024px) {
   .input-wrapper {
     margin: 0;
@@ -104,10 +167,18 @@
   }
 
   .input-field {
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px; /* prevents iOS zoom */
     -webkit-appearance: none;
     appearance: none;
-    padding: 14px 56px 14px 18px;
+    padding: 14px 8px 14px 18px;
+  }
+
+  .has-chips .input-field {
+    padding-bottom: 6px;
+  }
+
+  .input-footer {
+    padding: 4px 6px 6px 10px;
   }
 
   .send-button {

@@ -101,6 +101,32 @@
   @apply w-full h-full object-contain;
 }
 
+/* Match Score Badge (Bottom Left of image) */
+.match-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: #dcfce7;
+  color: #15803d;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hotel-card-mobile .match-badge {
+  font-size: 10px;
+  padding: 3px 7px;
+  bottom: 6px;
+  left: 6px;
+}
+
 /* Hotel Card Content */
 .hotel-card-content {
   @apply flex flex-col p-4 flex-grow;

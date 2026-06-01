@@ -1,0 +1,109 @@
+.room-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image */
+.room-image {
+  position: relative;
+  height: 160px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.room-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Bed / capacity tag — matches hotel card .rating-overlay style */
+.capacity-overlay {
+  @apply absolute top-2 left-2 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 shadow-md;
+  border-radius: var(--radius-md);
+  color: #111827;
+}
+
+.capacity-item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.75rem;  /* text-xs, matches .rating-value */
+  font-weight: 500;
+}
+
+.capacity-item i {
+  font-size: 0.875rem; /* text-sm, matches .star-icon */
+  font-weight: 600;
+}
+
+.capacity-divider {
+  width: 1px;
+  height: 10px;
+  background: #d1d5db;
+  margin: 0 2px;
+}
+
+/* Info section */
+.room-info {
+  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.room-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 10px;
+}
+
+.room-amenities {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.room-amenity {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.room-amenity i {
+  font-size: 13px;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+/* "X more room amenities" link */
+.more-amenities {
+  margin-top: auto;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.more-amenities:hover {
+  color: #1F4456;
+}

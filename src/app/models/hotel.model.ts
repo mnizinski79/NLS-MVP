@@ -24,4 +24,12 @@ export interface Hotel {
   bookingUrl?: string; // Optional booking URL for the hotel
   badge?: { icon: string; text: string }; // Optional badge shown next to star rating
   pointsCash?: { points: number; cash: number }; // Points + cash pricing option
+  matchScore?: number; // 0–99 relevance score for the current search (undefined = don't show)
+  matchContext?: {    // criteria used to generate the score (travels with the hotel)
+    amenities: string[];
+    brands: string[];
+    priceRange: { min?: number; max?: number } | null;
+    minRating: number | null;
+    sentiments: string[]; // only non-generic ones
+  };
 }

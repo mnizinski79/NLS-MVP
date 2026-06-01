@@ -1,0 +1,194 @@
+{
+  "NYCEA": [
+    {
+      "id": "NYCEA-QQ",
+      "hotelId": "NYCEA",
+      "name": "2 Queen",
+      "beds": 2,
+      "capacity": 4,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10073255838-original",
+      "amenities": ["Walk-in shower", "Stocked mini bar", "City view", "42\" flat-screen TV", "Nespresso machine", "USB charging ports", "Marble bathroom", "Rainfall showerhead", "Premium bedding", "In-room safe", "Blackout curtains", "Robes & slippers", "Yoga mat on request", "Pet friendly", "Air conditioning"],
+      "nightlyRate": 345
+    },
+    {
+      "id": "NYCEA-KG",
+      "hotelId": "NYCEA",
+      "name": "King",
+      "beds": 1,
+      "capacity": 2,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9149634491-original",
+      "amenities": ["Walk-in shower", "Stocked mini bar", "Times Square view", "King bed", "Nespresso machine", "USB charging ports", "Marble bathroom", "Deep soaking tub", "Premium bedding", "In-room safe", "Blackout curtains", "Robes & slippers", "Air conditioning", "Smart TV", "Work desk"],
+      "nightlyRate": 389
+    },
+    {
+      "id": "NYCEA-SK",
+      "hotelId": "NYCEA",
+      "name": "Signature Suite",
+      "beds": 1,
+      "capacity": 3,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10073188294-original",
+      "amenities": ["Separate living area", "Panoramic city views", "King bed", "Soaking tub", "Walk-in shower", "Kitchenette", "Premium bar", "Nespresso machine", "65\" Smart TV", "Work desk", "In-room safe", "Robes & slippers", "Turndown service", "Welcome amenity", "Air conditioning"],
+      "nightlyRate": 549
+    }
+  ],
+  "NYCXV": [
+    {
+      "id": "NYCXV-QQ",
+      "hotelId": "NYCXV",
+      "name": "2 Queen",
+      "beds": 2,
+      "capacity": 4,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/voco-new-york-10073255838-2x1",
+      "amenities": ["Walk-in shower", "Mini bar", "Broadway view", "42\" flat-screen TV", "Nespresso machine", "USB charging ports", "Marble bathroom", "Premium bedding", "In-room safe", "Blackout curtains", "Robes & slippers", "Air conditioning", "Work desk", "Smart TV"],
+      "nightlyRate": 319
+    },
+    {
+      "id": "NYCXV-KG",
+      "hotelId": "NYCXV",
+      "name": "King",
+      "beds": 1,
+      "capacity": 2,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/voco-new-york-9149634521-2x1",
+      "amenities": ["Walk-in shower", "Mini bar", "City view", "King bed", "Nespresso machine", "USB charging ports", "Marble bathroom", "Premium bedding", "In-room safe", "Blackout curtains", "Robes & slippers", "Air conditioning", "Smart TV", "Work desk"],
+      "nightlyRate": 359
+    },
+    {
+      "id": "NYCXV-SK",
+      "hotelId": "NYCXV",
+      "name": "voco Suite",
+      "beds": 1,
+      "capacity": 3,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/voco-new-york-9149634491-2x1",
+      "amenities": ["Separate living area", "Panoramic Broadway views", "King bed", "Soaking tub", "Walk-in shower", "Kitchenette", "Premium bar", "65\" Smart TV", "Work desk", "In-room safe", "Robes & slippers", "Turndown service", "Air conditioning"],
+      "nightlyRate": 519
+    }
+  ],
+  "NYCHC": [
+    {
+      "id": "NYCHC-QQ",
+      "hotelId": "NYCHC",
+      "name": "2 Queen",
+      "beds": 2,
+      "capacity": 4,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-10073255838-2x1",
+      "amenities": ["Walk-in shower", "Stocked mini bar", "City view", "50\" flat-screen TV", "Nespresso machine", "USB charging ports", "Marble bathroom", "Premium bedding", "In-room safe", "Blackout curtains", "Robes & slippers", "Club InterContinental access"],
+      "nightlyRate": 449
+    },
+    {
+      "id": "NYCHC-KG",
+      "hotelId": "NYCHC",
+      "name": "Deluxe King",
+      "beds": 1,
+      "capacity": 2,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-9149634521-2x1",
+      "amenities": ["Walk-in shower", "Stocked mini bar", "Times Square view", "King bed", "Nespresso machine", "Club lounge access", "Marble bathroom", "Deep soaking tub", "Premium bedding", "In-room safe", "Turndown service", "Robes & slippers"],
+      "nightlyRate": 499
+    },
+    {
+      "id": "NYCHC-CK",
+      "hotelId": "NYCHC",
+      "name": "Club King",
+      "beds": 1,
+      "capacity": 2,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-9149634491-2x1",
+      "amenities": ["Club InterContinental lounge access", "Panoramic views", "King bed", "Separate seating area", "Walk-in shower", "Soaking tub", "Premium bar", "65\" Smart TV", "In-room safe", "Robes & slippers", "Turndown service", "Welcome amenity"],
+      "nightlyRate": 599
+    }
+  ],
+  "NYCDD": [
+    {
+      "id": "NYCDD-QQ",
+      "hotelId": "NYCDD",
+      "name": "2 Queen",
+      "beds": 2,
+      "capacity": 4,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/kimpton-era-new-york-10073255838-2x1",
+      "amenities": ["Walk-in shower", "Mini fridge", "City view", "55\" flat-screen TV", "USB charging ports", "Marble bathroom", "Premium bedding", "In-room safe", "Blackout curtains", "Robes & slippers", "Air conditioning", "Work desk"],
+      "nightlyRate": 299
+    },
+    {
+      "id": "NYCDD-KG",
+      "hotelId": "NYCDD",
+      "name": "King",
+      "beds": 1,
+      "capacity": 2,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/kimpton-era-new-york-9149634521-2x1",
+      "amenities": ["Walk-in shower", "Mini bar", "Midtown view", "King bed", "Nespresso machine", "Marble bathroom", "Premium bedding", "In-room safe", "Blackout curtains", "Robes & slippers", "Air conditioning", "Smart TV"],
+      "nightlyRate": 339
+    },
+    {
+      "id": "NYCDD-EK",
+      "hotelId": "NYCDD",
+      "name": "Era King Suite",
+      "beds": 1,
+      "capacity": 3,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/kimpton-era-new-york-9149634491-2x1",
+      "amenities": ["Separate living room", "Panoramic Midtown views", "King bed", "Soaking tub", "Walk-in shower", "Full bar setup", "Nespresso machine", "65\" Smart TV", "Work desk", "In-room safe", "Robes & slippers", "Turndown service"],
+      "nightlyRate": 479
+    }
+  ],
+  "NYCAT": [
+    {
+      "id": "NYCAT-QQ",
+      "hotelId": "NYCAT",
+      "name": "2 Queen",
+      "beds": 2,
+      "capacity": 4,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/the-manhattan-new-york-10073255838-2x1",
+      "amenities": ["Walk-in shower", "Mini fridge", "City view", "42\" flat-screen TV", "USB charging ports", "Premium bedding", "In-room safe", "Blackout curtains", "Air conditioning", "Work desk", "Coffee maker"],
+      "nightlyRate": 229
+    },
+    {
+      "id": "NYCAT-KG",
+      "hotelId": "NYCAT",
+      "name": "King",
+      "beds": 1,
+      "capacity": 2,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/the-manhattan-new-york-9149634521-2x1",
+      "amenities": ["Walk-in shower", "Mini fridge", "Times Square view", "King bed", "42\" flat-screen TV", "USB charging ports", "Premium bedding", "In-room safe", "Blackout curtains", "Air conditioning", "Coffee maker", "Work desk"],
+      "nightlyRate": 259
+    },
+    {
+      "id": "NYCAT-SK",
+      "hotelId": "NYCAT",
+      "name": "Manhattan Suite",
+      "beds": 1,
+      "capacity": 3,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/the-manhattan-new-york-9149634491-2x1",
+      "amenities": ["Separate sitting area", "City skyline view", "King bed", "Soaking tub", "Walk-in shower", "Mini bar", "55\" Smart TV", "Work desk", "In-room safe", "Robes & slippers", "Air conditioning", "Complimentary breakfast"],
+      "nightlyRate": 389
+    }
+  ],
+  "NYCMA": [
+    {
+      "id": "NYCMA-QQ",
+      "hotelId": "NYCMA",
+      "name": "2 Queen",
+      "beds": 2,
+      "capacity": 4,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-10073255838-2x1",
+      "amenities": ["Walk-in shower", "Mini fridge", "City view", "42\" flat-screen TV", "USB charging ports", "Premium bedding", "In-room safe", "Blackout curtains", "Air conditioning", "Coffee maker", "Work desk", "Free Wi-Fi"],
+      "nightlyRate": 179
+    },
+    {
+      "id": "NYCMA-KG",
+      "hotelId": "NYCMA",
+      "name": "King",
+      "beds": 1,
+      "capacity": 2,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-9149634521-2x1",
+      "amenities": ["Walk-in shower", "Mini fridge", "Times Square view", "King bed", "42\" flat-screen TV", "USB charging ports", "Premium bedding", "In-room safe", "Blackout curtains", "Air conditioning", "Coffee maker", "Free Wi-Fi"],
+      "nightlyRate": 199
+    },
+    {
+      "id": "NYCMA-SK",
+      "hotelId": "NYCMA",
+      "name": "Junior Suite",
+      "beds": 1,
+      "capacity": 3,
+      "imageUrl": "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-9149634491-2x1",
+      "amenities": ["Separate sitting area", "Panoramic view", "King bed", "Soaking tub", "Walk-in shower", "Mini bar", "55\" flat-screen TV", "Work desk", "In-room safe", "Robes & slippers", "Air conditioning", "Free Wi-Fi"],
+      "nightlyRate": 289
+    }
+  ]
+}

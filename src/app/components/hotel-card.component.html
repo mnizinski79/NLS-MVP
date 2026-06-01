@@ -25,18 +25,23 @@
     </div>
     
     <!-- Brand Chiclet (Top Right) -->
-    <div 
+    <div
       class="brand-chiclet"
       [style.background-color]="getBrandColor()"
       role="img"
       [attr.aria-label]="hotel.brand + ' brand'"
     >
-      <img 
-        [src]="getBrandLogo()" 
+      <img
+        [src]="getBrandLogo()"
         [alt]=""
         class="brand-logo"
         aria-hidden="true"
       />
+    </div>
+
+    <!-- Match Score Badge (Bottom Left) -->
+    <div *ngIf="hotel.matchScore" class="match-badge" [attr.aria-label]="hotel.matchScore + '% match for your search'">
+      {{ hotel.matchScore }}% match
     </div>
   </div>
 

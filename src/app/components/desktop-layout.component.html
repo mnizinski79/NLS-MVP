@@ -52,7 +52,9 @@
       <app-input
         [disabled]="inputDisabled"
         placeholder="Tell me what you're looking for..."
-        (messageSent)="onMessageSent($event)">
+        [activeChips]="activeChips"
+        (messageSent)="onMessageSent($event)"
+        (chipRemoved)="onChipRemoved($event)">
       </app-input>
     </div>
   </div>
@@ -101,6 +103,7 @@
     [pointOfInterest]="pointOfInterest"
     (closed)="onDetailDrawerClosed()"
     (dateSelected)="onDateSelected($event)"
-    (selectDatesRequested)="onSelectDatesRequested()">
+    (selectDatesRequested)="onSelectDatesRequested()"
+    (viewRoomsRequested)="onViewRoomsRequested($event)">
   </app-hotel-detail-drawer>
 </div>

@@ -10,6 +10,7 @@ import { Hotel } from '../models/hotel.model';
 import { Message } from '../models/message.model';
 import { DateSelection } from '../models/date-selection.model';
 import { PointOfInterest } from '../models';
+import { TripChip } from '../models/trip-chip.model';
 
 @Component({
   selector: 'app-mobile-layout',
@@ -43,8 +44,10 @@ export class MobileLayoutComponent implements OnChanges {
   @Input() adults: number | null = null;
   @Input() children: number | null = null;
   @Input() pointOfInterest: PointOfInterest | null = null;
+  @Input() activeChips: TripChip[] = [];
 
   @Output() messageSent = new EventEmitter<string>();
+  @Output() chipRemoved = new EventEmitter<TripChip>();
   @Output() tagClicked = new EventEmitter<string>();
   @Output() hotelCardClicked = new EventEmitter<Hotel>();
   @Output() markerClicked = new EventEmitter<Hotel>();
@@ -52,6 +55,7 @@ export class MobileLayoutComponent implements OnChanges {
   @Output() viewAllClicked = new EventEmitter<void>();
   @Output() dateSelected = new EventEmitter<DateSelection>();
   @Output() selectDatesRequested = new EventEmitter<Hotel>();
+  @Output() viewRoomsRequested = new EventEmitter<Hotel>();
 
   @ViewChild(MapComponent) mapComponent?: MapComponent;
 
@@ -117,6 +121,10 @@ export class MobileLayoutComponent implements OnChanges {
 
   onMessageSent(message: string): void {
     this.messageSent.emit(message);
+  }
+
+  onChipRemoved(chip: TripChip): void {
+    this.chipRemoved.emit(chip);
   }
 
   onTagClicked(query: string): void {
@@ -211,9 +219,14 @@ export class MobileLayoutComponent implements OnChanges {
     if (this.showMapOverlay) {
       this.showMapOverlay = false;
     }
-    
+
     if (this.selectedHotel) {
       this.selectDatesRequested.emit(this.selectedHotel);
     }
+  }
+
+  onViewRoomsRequested(hotel: Hotel): void {
+    this.showBottomSheet = false;
+    this.viewRoomsRequested.emit(hotel);
   }
 }

@@ -1,4 +1,5 @@
 import { Hotel } from './hotel.model';
+import { Room } from './room.model';
 
 export interface SearchContext {
   location: string;       // e.g., "New York City"
@@ -14,6 +15,7 @@ export interface Message {
   text: string;
   timestamp: Date;
   hotels?: Hotel[];
+  rooms?: Room[];
   showDatePicker?: boolean;
   showRateCalendar?: boolean;
   rateCalendarHotel?: Hotel;

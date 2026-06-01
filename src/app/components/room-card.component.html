@@ -1,0 +1,35 @@
+<div class="room-card">
+  <!-- Room image -->
+  <div class="room-image">
+    <img [src]="room.imageUrl" [alt]="room.name" loading="lazy" />
+
+    <!-- Bed + capacity overlay (top-left) -->
+    <div class="capacity-overlay">
+      <span class="capacity-item">
+        <i class="ph-fill ph-bed" aria-hidden="true"></i>
+        <span>{{ room.beds }}</span>
+      </span>
+      <span class="capacity-divider" aria-hidden="true"></span>
+      <span class="capacity-item">
+        <i class="ph-fill ph-user" aria-hidden="true"></i>
+        <span>{{ room.capacity }}</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Room info -->
+  <div class="room-info">
+    <h4 class="room-name">{{ room.name }}</h4>
+
+    <ul class="room-amenities" aria-label="Room amenities">
+      <li *ngFor="let amenity of previewAmenities" class="room-amenity">
+        <i class="ph ph-check" aria-hidden="true"></i>
+        <span>{{ amenity }}</span>
+      </li>
+    </ul>
+
+    <button *ngIf="remainingCount > 0" class="more-amenities" type="button">
+      {{ remainingCount }} more room amenities
+    </button>
+  </div>
+</div>
