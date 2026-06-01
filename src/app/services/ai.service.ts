@@ -457,7 +457,8 @@ Current query: "${query}"${context}
     "adults": number or null,
     "children": number or null,
     "pointOfInterest": {"name": "string", "coordinates": {"lat": number, "lng": number}} or null,
-    "searchSummary": "Short 2-4 word TLDR of the search vibe (e.g., 'Romantic getaway', 'Budget-friendly stay', 'Family vacation', 'Luxury escape', 'Pet-friendly options', 'Business trip'). Required when shouldSearch is true."
+    "searchSummary": "Short 2-4 word TLDR of the search vibe (e.g., 'Romantic getaway', 'Budget-friendly stay', 'Family vacation', 'Luxury escape', 'Pet-friendly options', 'Business trip'). Required when shouldSearch is true.",
+    "suggestedReplies": []
   }
 
 
@@ -482,7 +483,18 @@ Current query: "${query}"${context}
   - If user adds new criteria to existing results (e.g., "which ones have a rooftop bar"), set shouldRefine to true, shouldSearch to false
   - If user asks for cheapest/most expensive "of these" or "with X amenity" when hotels are displayed, set shouldRefine to true, shouldSearch to false, and include the amenity in searchCriteria
   - shouldRefine means filter the CURRENTLY DISPLAYED hotels, not all hotels
-  - NEVER set both shouldSearch and shouldRefine to true - they are mutually exclusive`;
+  - NEVER set both shouldSearch and shouldRefine to true - they are mutually exclusive
+
+  SCOPE NOTE (first turn only): If this is the first message in the conversation (no prior assistant messages), append this exact sentence at the end of your message field, on a new line: "ℹ️ I'll find your match — you'll complete booking on the hotel's secure page."
+
+  CLARIFYING QUESTIONS: When a user's query is vague (no location, no dates, no strong preference signal), ask exactly ONE targeted follow-up question before showing results. The question must:
+  - Reference a specific IHG property feature (e.g., kids-eat-free dining, family suites, rooftop bar)
+  - Be phrased warmly (not interrogative)
+  - Be accompanied by suggestedReplies chips
+  Never ask more than one follow-up question per turn. If the user uses a chip reply or says "skip", proceed to results immediately.
+
+  SUGGESTED REPLIES:
+  "suggestedReplies": string[] — REQUIRED when asking a clarifying question. Provide 3-4 short tappable reply options (max 4 words each) that directly answer your question. Always include "Skip" as the last option. Return [] when showing results directly.`;
     }
 
   /**
@@ -562,7 +574,10 @@ Current query: "${query}"${context}
           adults: parsed.adults,
           children: parsed.children,
           pointOfInterest: parsed.pointOfInterest,
-          searchSummary: parsed.searchSummary
+          searchSummary: parsed.searchSummary,
+          suggestedReplies: Array.isArray(parsed.suggestedReplies)
+            ? (parsed.suggestedReplies as string[]).slice(0, 4)
+            : [],
         };
 
       } catch (error) {
