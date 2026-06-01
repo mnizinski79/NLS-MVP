@@ -499,7 +499,79 @@ export class HotelService {
         sentiments: specificSentiments,
       };
 
-      return { ...hotel, matchScore, matchContext };
+      const { reason: matchReason, type: matchType } = this.generateMatchReason(hotel, matchContext, matchScore);
+      return { ...hotel, matchScore, matchContext, matchReason, matchType };
     });
+  }
+
+  /**
+   * Generates human-readable match reason copy for hotel cards.
+   * "Why this fits" for best matches, "What's missing" for near-matches.
+   */
+  private generateMatchReason(
+    hotel: Hotel,
+    context: NonNullable<Hotel['matchContext']>,
+    score: number
+  ): { reason: string; type: 'best' | 'near' } {
+    const type: 'best' | 'near' = score >= 90 ? 'best' : 'near';
+
+    if (type === 'best') {
+      const highlights: string[] = [];
+
+      // Matched amenities (up to 2)
+      const matchedAmenities = context.amenities
+        .filter(a => hotel.amenities.some(ha => ha.toLowerCase() === a.toLowerCase()))
+        .slice(0, 2);
+      if (matchedAmenities.length > 0) {
+        highlights.push(matchedAmenities.join(' & ') + ' available');
+      }
+
+      // Location match
+      const matchedSentiments = context.sentiments
+        .filter(s => hotel.sentiment.some(hs => hs.toLowerCase() === s.toLowerCase()))
+        .slice(0, 1);
+      if (matchedSentiments.length > 0) {
+        highlights.push(`located in ${matchedSentiments[0]}`);
+      }
+
+      // Price match callout
+      if (context.priceRange?.max && hotel.pricing.nightlyRate <= context.priceRange.max) {
+        highlights.push(`within your $${context.priceRange.max}/night budget`);
+      }
+
+      // Rating match
+      if (context.minRating && hotel.rating >= context.minRating) {
+        highlights.push(`${hotel.rating}-star rated`);
+      }
+
+      const reason = highlights.length > 0
+        ? highlights.join(', ')
+        : `matches your search criteria`;
+      return { reason: reason.charAt(0).toUpperCase() + reason.slice(1), type };
+    } else {
+      // Near-match: surface what's missing
+      const missing: string[] = [];
+
+      const missingAmenities = context.amenities
+        .filter(a => !hotel.amenities.some(ha => ha.toLowerCase() === a.toLowerCase()))
+        .slice(0, 2);
+      if (missingAmenities.length > 0) {
+        missing.push(`no ${missingAmenities.join(' or ')}`);
+      }
+
+      if (context.minRating && hotel.rating < context.minRating) {
+        missing.push(`rated ${hotel.rating}/5 (below your ${context.minRating}★ preference)`);
+      }
+
+      if (context.priceRange?.max && hotel.pricing.nightlyRate > context.priceRange.max) {
+        const over = Math.round(hotel.pricing.nightlyRate - context.priceRange.max);
+        missing.push(`$${over} over your budget`);
+      }
+
+      const reason = missing.length > 0
+        ? `Missing: ${missing.join(', ')}`
+        : `Partially matches your criteria`;
+      return { reason, type };
+    }
   }
 }
