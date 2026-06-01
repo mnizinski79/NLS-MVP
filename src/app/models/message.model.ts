@@ -20,4 +20,6 @@ export interface Message {
   showRateCalendar?: boolean;
   rateCalendarHotel?: Hotel;
   searchContext?: SearchContext;
+  /** Tappable reply chip labels shown below this AI message */
+  suggestedReplies?: string[];
 }

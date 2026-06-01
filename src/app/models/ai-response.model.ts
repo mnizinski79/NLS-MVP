@@ -24,4 +24,6 @@ export interface AIResponse {
   children?: number; // Number of children
   pointOfInterest?: PointOfInterest; // POI mentioned in query (e.g., "near Central Park")
   searchSummary?: string; // Short TLDR label for search context card (e.g., "Romantic getaway", "Budget-friendly stay")
+  /** Short reply options shown as tappable chips below the AI message */
+  suggestedReplies?: string[];
 }
