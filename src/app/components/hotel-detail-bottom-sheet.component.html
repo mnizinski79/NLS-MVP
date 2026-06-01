@@ -248,4 +248,38 @@
     (closed)="showDatesModal = false"
     (datesSelected)="onModalDatesSelected($event)">
   </app-dates-sheet>
+
+  <!-- Booking hand-off confirmation overlay -->
+  <div *ngIf="showHandoff" class="handoff-overlay" role="dialog" aria-modal="true" aria-label="Continue to booking">
+    <div class="handoff-card">
+      <div class="handoff-hotel-row">
+        <div class="handoff-hotel-icon">🏨</div>
+        <div>
+          <div class="handoff-hotel-name">{{ hotel?.name }}</div>
+          <div class="handoff-hotel-sub">IHG secure booking page</div>
+        </div>
+      </div>
+
+      <div class="handoff-carryover">
+        <div class="handoff-carryover-label">Carrying over from your search:</div>
+        <div *ngIf="adults || children" class="handoff-carryover-item">
+          <span class="handoff-check">✓</span>
+          <span>{{ (adults || 0) + (children || 0) }} guests</span>
+        </div>
+        <div *ngIf="checkInDate && checkOutDate" class="handoff-carryover-item">
+          <span class="handoff-check">✓</span>
+          <span>{{ checkInDate | date:'MMM d' }} → {{ checkOutDate | date:'MMM d' }}</span>
+        </div>
+        <div *ngIf="!checkInDate && !checkOutDate && !adults && !children" class="handoff-carryover-item">
+          <span class="handoff-check">✓</span>
+          <span>Your search criteria</span>
+        </div>
+      </div>
+
+      <div class="handoff-actions">
+        <button class="handoff-confirm" (click)="confirmViewRooms()">Continue to booking →</button>
+        <button class="handoff-cancel" (click)="cancelHandoff()">Stay here</button>
+      </div>
+    </div>
+  </div>
 </div>

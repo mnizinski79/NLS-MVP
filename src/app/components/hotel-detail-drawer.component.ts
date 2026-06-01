@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild, AfterViewInit, AfterViewChecked, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Hotel } from '../models/hotel.model';
 import { PointOfInterest } from '../models/ai-response.model';
 import { BRAND_COLORS, BRAND_LOGOS } from '../models/brand-config';
@@ -13,7 +13,7 @@ import { DatesSheetComponent } from './dates-sheet.component';
 @Component({
   selector: 'app-hotel-detail-drawer',
   standalone: true,
-  imports: [CommonModule, RateCalendarComponent, MapComponent, BookingSummaryComponent, GuestsSheetComponent, DatesSheetComponent],
+  imports: [CommonModule, DatePipe, RateCalendarComponent, MapComponent, BookingSummaryComponent, GuestsSheetComponent, DatesSheetComponent],
   templateUrl: './hotel-detail-drawer.component.html',
   styleUrls: ['./hotel-detail-drawer.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -706,12 +706,23 @@ export class HotelDetailDrawerComponent implements OnChanges, AfterViewInit, Aft
     this.cdr.detectChanges();
   }
 
+  /** Whether to show the booking hand-off confirmation overlay */
+  showHandoff: boolean = false;
+
   /**
-   * View rooms - emit event so the app can show room cards in the chat
+   * View rooms - show hand-off confirmation overlay first
    */
   viewRooms(): void {
-    if (!this.hotel) return;
-    this.viewRoomsRequested.emit(this.hotel);
+    this.showHandoff = true;
+  }
+
+  confirmViewRooms(): void {
+    this.showHandoff = false;
+    this.viewRoomsRequested.emit(this.hotel!);
+  }
+
+  cancelHandoff(): void {
+    this.showHandoff = false;
   }
 
   /**

@@ -879,3 +879,124 @@
   background: #f3f4f6;
   margin: 12px 0 16px;
 }
+
+/* ── Booking hand-off overlay ───────────────────── */
+.handoff-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100;
+  border-radius: inherit;
+}
+
+.handoff-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.handoff-hotel-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.handoff-hotel-icon {
+  width: 36px;
+  height: 36px;
+  background: #f0fdf4;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.handoff-hotel-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.handoff-hotel-sub {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.handoff-carryover {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+
+.handoff-carryover-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.handoff-carryover-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.handoff-check {
+  color: #4f46e5;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.handoff-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.handoff-confirm {
+  flex: 1;
+  background: #1F4456;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.handoff-confirm:hover {
+  background: #2a5a73;
+}
+
+.handoff-cancel {
+  background: #f3f4f6;
+  color: #4b5563;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.handoff-cancel:hover {
+  background: #e5e7eb;
+}

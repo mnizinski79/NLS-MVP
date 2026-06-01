@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild, AfterViewInit, AfterViewChecked, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Hotel } from '../models/hotel.model';
 import { PointOfInterest } from '../models/ai-response.model';
 import { BRAND_COLORS, BRAND_LOGOS } from '../models/brand-config';
@@ -13,7 +13,7 @@ import { DatesSheetComponent } from './dates-sheet.component';
 @Component({
   selector: 'app-hotel-detail-bottom-sheet',
   standalone: true,
-  imports: [CommonModule, RateCalendarComponent, MapComponent, BookingSummaryComponent, GuestsSheetComponent, DatesSheetComponent],
+  imports: [CommonModule, DatePipe, RateCalendarComponent, MapComponent, BookingSummaryComponent, GuestsSheetComponent, DatesSheetComponent],
   templateUrl: './hotel-detail-bottom-sheet.component.html',
   styleUrls: ['./hotel-detail-bottom-sheet.component.css']
 })
@@ -661,9 +661,20 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
     this.cdr.detectChanges();
   }
 
+  /** Whether to show the booking hand-off confirmation overlay */
+  showHandoff: boolean = false;
+
   viewRooms(): void {
-    if (!this.hotel) return;
-    this.viewRoomsRequested.emit(this.hotel);
+    this.showHandoff = true;
+  }
+
+  confirmViewRooms(): void {
+    this.showHandoff = false;
+    this.viewRoomsRequested.emit(this.hotel!);
+  }
+
+  cancelHandoff(): void {
+    this.showHandoff = false;
   }
 
   onCalendarClosed(): void {
