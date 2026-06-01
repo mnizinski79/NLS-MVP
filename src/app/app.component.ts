@@ -372,6 +372,12 @@ export class AppComponent implements OnInit, OnDestroy {
       this.currentAIRequest$ = null;
     }
 
+    // Clear suggestedReplies from last AI message (stale once user sends a new message)
+    const lastAi = [...this.messages].reverse().find(m => m.sender === 'ai');
+    if (lastAi) {
+      lastAi.suggestedReplies = [];
+    }
+
     // Add user message to chat immediately for responsive UX
     const userMessage: Message = {
       id: this.generateMessageId(),
@@ -582,6 +588,7 @@ export class AppComponent implements OnInit, OnDestroy {
       hotels: hotels.length > 0 ? hotels : undefined,
       showDatePicker: shouldShowDatePicker,
       searchContext,
+      suggestedReplies: aiResponse.suggestedReplies ?? [],
     };
     this.conversationService.addMessage(aiMessage);
 
