@@ -46,8 +46,22 @@
 
         <!-- Bottom: chips + disclaimer + input -->
         <div class="input-container">
+          <!-- Example teaser — shows value before user clicks in -->
+          <div class="example-teaser">
+            <div class="example-teaser-label">SEE HOW IT WORKS</div>
+            <div class="example-teaser-body">
+              <div class="example-user-row">
+                <div class="example-avatar example-avatar-user"></div>
+                <div class="example-bubble-user">{{ exampleTeaser.userMessage }}</div>
+              </div>
+              <div class="example-ai-row">
+                <div class="example-avatar example-avatar-ai">✦</div>
+                <div class="example-bubble-ai">{{ exampleTeaser.aiReply }}</div>
+              </div>
+            </div>
+          </div>
           <div class="desktop-try-searching">
-            <span class="try-label">TRY SEARCHING:</span>
+            <span class="try-label">WHAT'S THE OCCASION?</span>
             <div class="search-chips-stacked" role="list" aria-label="Suggested searches">
               <button *ngFor="let chip of searchChips" class="search-chip-stacked" role="listitem" (click)="onFirstMessage(chip.text)">
                 <i [class]="chip.icon" class="chip-icon-stacked" aria-hidden="true"></i>
@@ -90,8 +104,22 @@
 
     <!-- Bottom section: chips + disclaimer + input -->
     <div class="mobile-bottom">
+      <!-- Example teaser — mobile -->
+      <div class="example-teaser example-teaser-mobile">
+        <div class="example-teaser-label">SEE HOW IT WORKS</div>
+        <div class="example-teaser-body">
+          <div class="example-user-row">
+            <div class="example-avatar example-avatar-user"></div>
+            <div class="example-bubble-user">{{ exampleTeaser.userMessage }}</div>
+          </div>
+          <div class="example-ai-row">
+            <div class="example-avatar example-avatar-ai">✦</div>
+            <div class="example-bubble-ai">{{ exampleTeaser.aiReply }}</div>
+          </div>
+        </div>
+      </div>
       <div class="try-searching">
-        <span class="try-label">TRY SEARCHING:</span>
+        <span class="try-label">WHAT'S THE OCCASION?</span>
         <div class="search-chips-stacked" role="list" aria-label="Suggested searches">
           <button *ngFor="let chip of searchChips" class="search-chip-stacked" role="listitem" (click)="onFirstMessage(chip.text)">
             <i [class]="chip.icon" class="chip-icon-stacked" aria-hidden="true"></i>

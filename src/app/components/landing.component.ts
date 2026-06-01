@@ -31,18 +31,27 @@ export class LandingComponent implements AfterViewInit, OnDestroy {
 
   searchChips = [
     {
-      text: 'Romantic weekend in NYC',
+      text: 'Family trip to NYC',
+      icon: 'ph ph-baby'
+    },
+    {
+      text: 'Romantic weekend in Manhattan',
       icon: 'ph ph-heart'
     },
     {
-      text: 'Hotels in Manhattan under $300',
-      icon: 'ph ph-tag'
+      text: 'Business stay near Midtown',
+      icon: 'ph ph-briefcase'
     },
     {
-      text: 'Pet-friendly hotel near Empire State Building',
-      icon: 'ph ph-paw-print'
+      text: 'Special occasion — anniversary',
+      icon: 'ph ph-sparkle'
     }
   ];
+
+  exampleTeaser = {
+    userMessage: 'Family of 4, close to Times Square, somewhere the kids will love',
+    aiReply: 'Found 3 great matches — Holiday Inn Times Square has kids eat free 🎉'
+  };
 
   /** Hotel location points for the background map */
   hotelLocations: [number, number][] = [
