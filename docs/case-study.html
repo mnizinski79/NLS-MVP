@@ -417,7 +417,7 @@
       <div class="label">NYC Hotels</div>
     </div>
     <div class="hero-meta-item">
-      <div class="num">4</div>
+      <div class="num">5</div>
       <div class="label">Design Responses</div>
     </div>
     <div class="hero-meta-item">
@@ -512,6 +512,16 @@
         <div class="quote">
           "I gave it a very generic prompt and hoped it would dig deeper with follow-up questions. It didn't."
           <cite>— Participant 7</cite>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="icon">🔍</div>
+        <h3>Users couldn't tell what the AI remembered</h3>
+        <p>As conversations progressed across multiple turns, users lost confidence in what criteria the AI was still applying. There was no persistent visual signal showing active filters — so users re-stated preferences or weren't sure if previous context was still in play.</p>
+        <div class="quote">
+          "It seemed to have entered, but I didn't think I clicked to — I'm not sure how that one got in so quickly."
+          <cite>— Participant 9</cite>
         </div>
       </div>
     </div>
@@ -815,6 +825,67 @@
     </div>
   </section>
 
+    <hr class="divider" />
+
+    <!-- ── 5. Persistent Filter Chips ── -->
+    <div class="proposal">
+      <div class="proposal-header">
+        <div class="proposal-num">5</div>
+        <div>
+          <h3>Persistent Filter Chips — Always Show What the AI Knows</h3>
+          <p>Give users a live view of the criteria the AI is carrying through the conversation</p>
+        </div>
+      </div>
+
+      <div class="problem-quote">
+        <strong>Research signal</strong>
+        <div class="multi-quote">
+          <span><em>"I wasn't sure if it was still applying my earlier preferences — I ended up typing them again just in case."</em> — P9</span>
+          <span><em>"I didn't know exactly how the page would work — what it was keeping track of."</em> — P2</span>
+        </div>
+      </div>
+
+      <div class="solution-label">✦ Proposed solution</div>
+
+      <div class="built-badge">✓ Built on claude branch</div>
+
+      <div class="mockup-wrap">
+        <div class="mockup-label">Persistent Chips in Chat Input — Active Filters Always Visible</div>
+        <div class="phone-frame" style="max-width:360px">
+          <div style="padding:12px;font-size:11px;display:flex;flex-direction:column;gap:8px">
+
+            <!-- Previous AI turn -->
+            <div style="align-self:flex-end;background:#4f46e5;color:white;padding:7px 10px;border-radius:10px 10px 2px 10px;font-size:10px;max-width:80%">Family of 4, Times Square, under $300</div>
+            <div style="background:var(--gray-100);padding:10px;border-radius:10px 10px 10px 2px;font-size:10px;line-height:1.5;max-width:85%">
+              Great choices! Here are 3 family-friendly hotels in Midtown under $300. Want me to narrow further by amenity?
+            </div>
+
+            <!-- New user turn — chips persist below input -->
+            <div style="margin-top:8px;background:white;border:1px solid var(--gray-200);border-radius:12px;overflow:hidden">
+              <!-- Input field -->
+              <div style="padding:10px 12px;font-size:11px;color:var(--gray-400)">Ask a follow-up...</div>
+              <!-- Chips footer -->
+              <div style="padding:8px 10px;border-top:1px solid var(--gray-100);background:var(--gray-50);display:flex;flex-wrap:wrap;gap:6px;align-items:center">
+                <span style="background:#1F4456;color:white;padding:3px 10px;border-radius:20px;font-size:9px;font-weight:600;display:flex;align-items:center;gap:4px">📍 Times Square <span style="opacity:0.6;margin-left:2px">✕</span></span>
+                <span style="background:#1F4456;color:white;padding:3px 10px;border-radius:20px;font-size:9px;font-weight:600;display:flex;align-items:center;gap:4px">👨‍👩‍👧‍👦 Family of 4 <span style="opacity:0.6;margin-left:2px">✕</span></span>
+                <span style="background:#1F4456;color:white;padding:3px 10px;border-radius:20px;font-size:9px;font-weight:600;display:flex;align-items:center;gap:4px">💰 Under $300 <span style="opacity:0.6;margin-left:2px">✕</span></span>
+                <div style="margin-left:auto;background:#4f46e5;color:white;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">↑</div>
+              </div>
+            </div>
+
+            <div style="background:var(--green-light);border:1px solid var(--green-border);border-radius:8px;padding:8px;font-size:10px;color:var(--green);line-height:1.5">
+              ✓ Each chip is tappable to remove — e.g. removing "Under $300" immediately broadens the search without retyping anything.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;font-size:13px;color:var(--gray-600);line-height:1.6">
+        Active search criteria — location, guest count, price range, amenities, brand, rating — appear as persistent pill chips in the chat input footer throughout the conversation. Each chip shows the active filter and a remove (✕) button. Removing a chip immediately updates results without the user needing to rephrase. This gives users continuous visibility into what the AI is carrying forward, eliminating the uncertainty of "is it still applying that?"
+      </div>
+    </div>
+  </section>
+
   <!-- ══ WHAT'S ALREADY BUILT ═══════════════════════ -->
   <section class="section">
     <div class="section-tag">Progress</div>
@@ -831,7 +902,7 @@
 
       <div class="progress-item">
         <div class="check">✓</div>
-        <p><strong>Conversation context chips</strong> — Active search criteria (location, price range, amenities, guest count, brand) are displayed as removable pill chips in the chat input footer. Each chip shows the filter label and a remove (✕) button, letting users adjust criteria without retyping. This directly addresses the friction users felt when trying to refine searches.</p>
+        <p><strong>Persistent conversation context chips</strong> — Active search criteria (location, price range, amenities, guest count, brand) are displayed as persistent, removable pill chips in the chat input footer across every conversation turn. Each chip shows the filter label and a remove (✕) button — tapping it instantly updates results without retyping. This directly addresses the user finding that people didn't know what the AI was still carrying through between messages.</p>
       </div>
     </div>
   </section>
