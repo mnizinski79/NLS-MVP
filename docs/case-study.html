@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IHG AI Hotel Search — UX Case Study</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1F4456;
+      --navy-light: #2a5a73;
+      --red: #C8102E;
+      --red-light: #e8192f;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --gray-800: #1f2937;
+      --green: #166534;
+      --green-light: #f0fdf4;
+      --green-border: #bbf7d0;
+      --amber: #854d0e;
+      --amber-light: #fef9c3;
+      --amber-border: #fde68a;
+      --blue-accent: #4f46e5;
+      --blue-light: #f0f4ff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      line-height: 1.6;
+    }
+
+    /* ── HERO ───────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #0f2d3d 100%);
+      color: var(--white);
+      padding: 80px 40px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(200,16,46,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(200,16,46,0.2);
+      color: #fca5a5;
+      border: 1px solid rgba(200,16,46,0.4);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero h1 span { color: #fca5a5; }
+    .hero p {
+      font-size: 16px;
+      opacity: 0.75;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      text-align: center;
+    }
+    .hero-meta-item .num {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--white);
+    }
+    .hero-meta-item .label {
+      font-size: 11px;
+      opacity: 0.6;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────── */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section {
+      padding: 64px 0;
+    }
+    .section + .section {
+      border-top: 1px solid var(--gray-200);
+    }
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--gray-600);
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+
+    /* ── CARDS ──────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 680px) {
+      .card-grid-2 { grid-template-columns: 1fr; }
+    }
+
+    /* ── FINDING CARDS ──────────────────────────────── */
+    .finding-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      padding: 24px;
+      border-left: 4px solid var(--navy);
+    }
+    .finding-card .icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .finding-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .finding-card p {
+      font-size: 13px;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+    .finding-card .quote {
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: var(--gray-50);
+      border-left: 3px solid var(--gray-200);
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--gray-600);
+    }
+    .finding-card .quote cite {
+      display: block;
+      margin-top: 4px;
+      font-style: normal;
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+
+    /* ── STAT ROW ───────────────────────────────────── */
+    .stat-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .stat-box {
+      flex: 1;
+      min-width: 140px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+    }
+    .stat-box .big {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-box .label {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 4px;
+    }
+
+    /* ── DESIGN PROPOSAL SECTIONS ───────────────────── */
+    .proposal {
+      margin-bottom: 56px;
+    }
+    .proposal-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .proposal-num {
+      width: 40px;
+      height: 40px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .proposal-header h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .proposal-header p {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+    .problem-quote {
+      background: #fff5f5;
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #7f1d1d;
+    }
+    .problem-quote strong { display: block; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .problem-quote .multi-quote { display: flex; flex-direction: column; gap: 6px; }
+    .problem-quote em { font-style: italic; }
+
+    .solution-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    /* ── MOCKUPS ────────────────────────────────────── */
+    .mockup-wrap {
+      background: var(--gray-100);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .mockup-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .phone-frame {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    /* ── BUILT BADGE ────────────────────────────────── */
+    .built-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    /* ── OPEN QUESTIONS ─────────────────────────────── */
+    .question-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .question-card .q-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .question-card h4 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .question-card p { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+
+    /* ── PROGRESS CALLOUT ───────────────────────────── */
+    .progress-callout {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 1px solid var(--green-border);
+      border-radius: 14px;
+      padding: 28px 32px;
+    }
+    .progress-callout h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+    .progress-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .progress-item .check {
+      width: 22px;
+      height: 22px;
+      background: var(--green);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .progress-item p { font-size: 13px; color: #166534; line-height: 1.5; }
+    .progress-item p strong { color: #14532d; }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+    }
+    footer strong { color: var(--white); }
+
+    /* ── DIVIDER ────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--gray-200); margin: 32px 0; }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-tag">UX Case Study</div>
+  <h1>IHG AI Hotel Search<br/><span>From Testing Insights to Design Direction</span></h1>
+  <p>What 11 users taught us about value clarity, conversational intelligence, and the booking hand-off — and how we're responding.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="num">11</div>
+      <div class="label">Participants</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="num">70+</div>
+      <div class="label">NYC Hotels</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="num">4</div>
+      <div class="label">Design Responses</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="num">9 min</div>
+      <div class="label">Avg. Session</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ METHODOLOGY ═══════════════════════════════════ -->
+<div class="container">
+  <section class="section">
+    <div class="section-tag">Research Overview</div>
+    <h2 class="section-title">How We Tested</h2>
+    <p class="section-sub">Unmoderated remote sessions with think-aloud protocol. Participants were asked to find and book a hotel in NYC using a new version of the IHG website.</p>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="big">11</div><div class="label">Participants</div></div>
+      <div class="stat-box"><div class="big">~9</div><div class="label">Minutes per session</div></div>
+      <div class="stat-box"><div class="big">Remote</div><div class="label">Unmoderated</div></div>
+      <div class="stat-box"><div class="big">Think-aloud</div><div class="label">Protocol</div></div>
+    </div>
+
+    <div class="card">
+      <p style="font-size:13px;color:var(--gray-600);line-height:1.7">
+        <strong style="color:var(--navy)">Prototype scope:</strong> The prototype supported Manhattan-area IHG hotels only. Users who searched for other NYC neighbourhoods (Brooklyn, Financial District) received no results — a known prototype constraint. Feedback related to geography or result count stemming from this limitation was discounted in the analysis. All findings below reflect genuine design signals.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ KEY FINDINGS ══════════════════════════════════ -->
+  <section class="section">
+    <div class="section-tag">Research Synthesis</div>
+    <h2 class="section-title">Key Findings</h2>
+    <p class="section-sub">Four dominant themes emerged across sessions — grouped by pattern, not participant.</p>
+
+    <div class="card-grid">
+      <div class="finding-card">
+        <div class="icon">🤷</div>
+        <h3>Value proposition not evident</h3>
+        <p>The "AI Search Beta" label communicated nothing. Multiple users bypassed it entirely or dismissed it before engaging — not because they disliked AI, but because they couldn't see why to use it over the standard form.</p>
+        <div class="quote">
+          "Putting in Manhattan, New York and my dates takes two seconds — the AI is doing the same thing. I just don't see the value."
+          <cite>— Participant 3</cite>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="icon">💬</div>
+        <h3>Conversation felt natural once inside</h3>
+        <p>Users who engaged with the chat found it intuitive. The tone felt collaborative, the map pairing was praised, and the transition to hotel cards was smooth. Confusion was low inside the experience — skepticism was high before entering.</p>
+        <div class="quote">
+          "The AI made you feel like it was working with you — offering suggestions, filling in any gaps."
+          <cite>— Participant 6</cite>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="icon">🗺️</div>
+        <h3>Map + chat pairing was a highlight</h3>
+        <p>Multiple users independently called out the side-by-side map as the standout interaction — it provided spatial context without breaking the conversational flow. This pairing is genuinely novel vs. standard filter search.</p>
+        <div class="quote">
+          "Having the map display alongside the AI panel — that I like most."
+          <cite>— Participant 1</cite>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="icon">🚪</div>
+        <h3>Booking hand-off felt jarring</h3>
+        <p>Opening a new tab after a smooth AI conversation broke the sense of continuity. Users who had invested in the conversational flow expected to stay in it through to booking.</p>
+        <div class="quote">
+          "It's a little bit of a letdown to just get kicked out to a hotel website — if you want to refine, you expect everything within the AI."
+          <cite>— Participant 1</cite>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="icon">🎯</div>
+        <h3>Hotel cards felt generic, not curated</h3>
+        <p>Users wanted to understand <em>why</em> a hotel was recommended for their specific request. Star ratings and review counts were expected but missing. When nothing perfectly matched criteria, nothing was shown — leaving users with no fallback.</p>
+        <div class="quote">
+          "I'd like to see options that don't meet all my criteria but come close — maybe amber and then stating what it doesn't have."
+          <cite>— Participant 2</cite>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="icon">🧠</div>
+        <h3>AI didn't ask enough questions</h3>
+        <p>Users with vague, open-ended queries expected the AI to dig deeper — asking about occasion, priorities, and family needs. Instead it surfaced results immediately, feeling more like a filter than a concierge.</p>
+        <div class="quote">
+          "I gave it a very generic prompt and hoped it would dig deeper with follow-up questions. It didn't."
+          <cite>— Participant 7</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PRIORITY FINDING ═══════════════════════════ -->
+  <section class="section">
+    <div class="section-tag">Priority Finding</div>
+    <h2 class="section-title">The Core Problem: Value Clarity</h2>
+    <p class="section-sub">Before any usability issue, users needed a reason to try the AI feature at all. Without it, every downstream improvement is invisible.</p>
+
+    <div class="card-grid-2" style="margin-bottom:32px">
+      <div class="card">
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--red);margin-bottom:12px">Users who bypassed AI search entirely</p>
+        <div style="font-size:48px;font-weight:800;color:var(--navy)">3 / 11</div>
+        <p style="font-size:13px;color:var(--gray-600);margin-top:8px">Would have started with the standard form even after completing the AI search task</p>
+      </div>
+      <div class="card">
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--red);margin-bottom:12px">Could not articulate the AI's advantage</p>
+        <div style="font-size:48px;font-weight:800;color:var(--navy)">5 / 11</div>
+        <p style="font-size:13px;color:var(--gray-600);margin-top:8px">Could not clearly state why AI search was better than entering destination + dates manually</p>
+      </div>
+    </div>
+
+    <div style="background:var(--blue-light);border:1px solid #c7d2fe;border-radius:12px;padding:24px">
+      <p style="font-size:13px;font-weight:700;color:#3730a3;margin-bottom:12px">The value proposition that emerged from the sessions:</p>
+      <p style="font-size:18px;font-weight:700;color:var(--navy);line-height:1.4">"Describe your trip in your own words — and an AI that knows IHG's properties deeply will find the right fit for you."</p>
+      <p style="font-size:12px;color:var(--gray-600);margin-top:10px">Positioned as a mix of <strong>vibe-first search</strong> (occasion-driven, natural language) and <strong>concierge intelligence</strong> (IHG property knowledge, proactive recommendations). Most valuable for occasion-driven travelers and first-time NYC visitors.</p>
+    </div>
+  </section>
+
+  <!-- ══ DESIGN RESPONSES ═══════════════════════════ -->
+  <section class="section">
+    <div class="section-tag">Design Response</div>
+    <h2 class="section-title">Four Changes, One Narrative</h2>
+    <p class="section-sub">Each change is grounded in a specific research signal. Together they tell a coherent story: <em>search by vibe → AI understands you → results feel personal → booking feels intentional.</em></p>
+
+    <!-- ── 1. Entry Point ── -->
+    <div class="proposal">
+      <div class="proposal-header">
+        <div class="proposal-num">1</div>
+        <div>
+          <h3>Entry Point — Show Before You Ask</h3>
+          <p>Replace the silent label with a demonstration of value</p>
+        </div>
+      </div>
+
+      <div class="problem-quote">
+        <strong>Research signal</strong>
+        <div class="multi-quote">
+          <span><em>"I honestly probably wouldn't use it because it doesn't really say what it does."</em> — P8</span>
+          <span><em>"I just don't see the value — it's not a bad thing but it's not an advantage either."</em> — P3</span>
+        </div>
+      </div>
+
+      <div class="solution-label">✦ Proposed solution</div>
+      <div class="mockup-wrap">
+        <div class="mockup-label">Homepage AI Search Bar — Redesigned</div>
+        <div class="phone-frame">
+          <div style="background:var(--navy);color:white;padding:16px;font-size:12px">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px">
+              <div style="width:20px;height:20px;background:#4f46e5;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px">✦</div>
+              <span style="font-size:12px;font-weight:600">IHG AI Search</span>
+              <span style="margin-left:auto;background:rgba(200,16,46,0.3);color:#fca5a5;border:1px solid rgba(200,16,46,0.4);padding:2px 8px;border-radius:10px;font-size:9px;font-weight:700">BETA</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:12px;margin-bottom:12px">
+              <div style="font-size:9px;opacity:0.5;margin-bottom:8px;letter-spacing:0.5px">SEE HOW IT WORKS</div>
+              <div style="display:flex;gap:8px;margin-bottom:8px;align-items:flex-start">
+                <div style="width:18px;height:18px;background:#6366f1;border-radius:50%;flex-shrink:0;margin-top:1px"></div>
+                <div style="font-size:11px;opacity:0.85;line-height:1.4">"Family of 4, close to Times Square, somewhere the kids will love"</div>
+              </div>
+              <div style="display:flex;gap:8px;align-items:flex-start">
+                <div style="width:18px;height:18px;background:#4f46e5;border-radius:50%;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:8px">✦</div>
+                <div style="font-size:11px;color:#a5b4fc;line-height:1.4">Found 3 great matches — Holiday Inn Times Square has kids eat free 🎉</div>
+              </div>
+            </div>
+            <div style="background:#4f46e5;color:white;border-radius:8px;padding:10px;text-align:center;font-size:12px;font-weight:600">Describe your trip →</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;font-size:13px;color:var(--gray-600);line-height:1.6">
+        An inline example exchange — showing a real user message and AI response — communicates value before the user commits to clicking. Occasion chips (Family trip, Romantic weekend, Business stay) move <em>inside</em> the chat as the first AI prompt, not cluttering the homepage bar.
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── 2. Smarter AI ── -->
+    <div class="proposal">
+      <div class="proposal-header">
+        <div class="proposal-num">2</div>
+        <div>
+          <h3>AI Conversation — One Smart Follow-Up</h3>
+          <p>Move from filter wrapper to knowledgeable concierge</p>
+        </div>
+      </div>
+
+      <div class="problem-quote">
+        <strong>Research signal</strong>
+        <div class="multi-quote">
+          <span><em>"I was hoping for follow-up questions to fine-tune my search. It didn't dig deeper on a generic request."</em> — P7</span>
+          <span><em>"It's kind of silly to prompt me with options I didn't ask for — and then those options aren't in the displayed hotels."</em> — P5</span>
+        </div>
+      </div>
+
+      <div class="solution-label">✦ Proposed solution</div>
+      <div class="mockup-wrap">
+        <div class="mockup-label">AI Chat — Before & After</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <div style="font-size:10px;color:var(--red);font-weight:700;margin-bottom:8px;text-transform:uppercase">❌ Current</div>
+            <div class="phone-frame" style="font-size:11px">
+              <div style="padding:12px;display:flex;flex-direction:column;gap:8px">
+                <div style="align-self:flex-end;background:#4f46e5;color:white;padding:8px 10px;border-radius:10px 10px 2px 10px;font-size:11px">Family of 4, Times Square</div>
+                <div style="background:var(--gray-100);padding:10px;border-radius:10px 10px 10px 2px;font-size:11px;color:var(--gray-600)">Here are some hotels in Manhattan for a family of 4:</div>
+                <div style="font-size:10px;color:var(--red);text-align:center;padding:6px;background:#fff5f5;border-radius:6px">No follow-up. Generic results.</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--green);font-weight:700;margin-bottom:8px;text-transform:uppercase">✅ Proposed</div>
+            <div class="phone-frame" style="font-size:11px">
+              <div style="padding:12px;display:flex;flex-direction:column;gap:8px">
+                <div style="background:var(--gray-100);padding:8px;border-radius:8px;font-size:10px">
+                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px">WHAT BRINGS YOU TO NYC?</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:4px">
+                    <span style="background:white;border:1px solid var(--gray-200);padding:2px 8px;border-radius:20px;font-size:9px">🧳 Family</span>
+                    <span style="background:white;border:1px solid var(--gray-200);padding:2px 8px;border-radius:20px;font-size:9px">💑 Romantic</span>
+                    <span style="background:white;border:1px solid var(--gray-200);padding:2px 8px;border-radius:20px;font-size:9px">💼 Business</span>
+                  </div>
+                </div>
+                <div style="align-self:flex-end;background:#4f46e5;color:white;padding:6px 10px;border-radius:10px 10px 2px 10px;font-size:10px">Family of 4, Times Square</div>
+                <div style="background:var(--gray-100);padding:10px;border-radius:10px 10px 10px 2px;font-size:10px;line-height:1.5;color:var(--gray-800)">
+                  Love it! 🗽 One quick question: are the kids at a specific age? Some of our hotels have kids-eat-free dining that could be perfect.
+                  <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:8px">
+                    <span style="background:white;border:1px solid #4f46e5;color:#4f46e5;padding:2px 8px;border-radius:20px;font-size:9px">Under 10</span>
+                    <span style="background:white;border:1px solid #4f46e5;color:#4f46e5;padding:2px 8px;border-radius:20px;font-size:9px">Teens</span>
+                    <span style="background:white;border:1px solid var(--gray-200);color:var(--gray-400);padding:2px 8px;border-radius:20px;font-size:9px">Skip</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;font-size:13px;color:var(--gray-600);line-height:1.6">
+        The AI asks exactly <strong>one</strong> targeted clarifying question before showing results. The question must demonstrate IHG property knowledge (mentioning specific features like kids-eat-free), include tappable quick-reply chips, and always include a "Skip" option. Never more than one follow-up per turn.
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── 3. Hotel Cards ── -->
+    <div class="proposal">
+      <div class="proposal-header">
+        <div class="proposal-num">3</div>
+        <div>
+          <h3>Hotel Cards — Match Score + Curated Reasons</h3>
+          <p>Results that feel personal, not just filtered</p>
+        </div>
+      </div>
+
+      <div class="problem-quote">
+        <strong>Research signal</strong>
+        <div class="multi-quote">
+          <span><em>"I'd like to see options that don't meet everything but are close — amber, and then what it doesn't have."</em> — P2</span>
+          <span><em>"I'd want ratings right there — the people who actually slept there. That's really important to me."</em> — P3</span>
+        </div>
+      </div>
+
+      <div class="solution-label">✦ Proposed solution</div>
+
+      <div class="built-badge">✓ Partially built on claude branch</div>
+
+      <div class="mockup-wrap">
+        <div class="mockup-label">Hotel Card Redesign</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:640px;margin:0 auto">
+          <!-- Best match -->
+          <div style="background:white;border:1px solid var(--gray-200);border-radius:10px;overflow:hidden;font-size:11px;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
+            <div style="background:#4f46e5;color:white;padding:5px 10px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:space-between">
+              <span>✦ Top pick for your family</span>
+              <span style="background:rgba(255,255,255,0.25);padding:1px 7px;border-radius:10px;font-size:10px;font-weight:800">98%</span>
+            </div>
+            <div style="height:60px;background:var(--gray-200);display:flex;align-items:center;justify-content:center;color:var(--gray-400);font-size:10px">Hotel photo</div>
+            <div style="padding:10px">
+              <div style="font-weight:700;margin-bottom:1px">Holiday Inn Times Sq.</div>
+              <div style="font-size:9px;color:var(--gray-400);margin-bottom:6px">Midtown · 0.3mi from Times Square</div>
+              <div style="background:var(--green-light);border:1px solid var(--green-border);border-radius:6px;padding:6px;margin-bottom:6px;font-size:9px;color:var(--green);line-height:1.4">
+                🎯 Kids eat free on-site, family suites available
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">
+                <span style="background:var(--gray-100);padding:2px 6px;border-radius:20px;font-size:9px">🍽 Kids eat free</span>
+                <span style="background:var(--gray-100);padding:2px 6px;border-radius:20px;font-size:9px">🏋 Fitness</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="font-weight:800">$169<span style="font-size:9px;font-weight:400;color:var(--gray-400)">/night est.</span></div>
+                <div style="background:#4f46e5;color:white;padding:4px 10px;border-radius:6px;font-size:9px;font-weight:600">View rooms</div>
+              </div>
+            </div>
+          </div>
+          <!-- Near match -->
+          <div style="background:white;border:1px solid var(--amber-border);border-radius:10px;overflow:hidden;font-size:11px">
+            <div style="background:var(--amber-light);color:var(--amber);padding:5px 10px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:space-between">
+              <span>◐ Close match</span>
+              <span style="background:var(--amber-border);padding:1px 7px;border-radius:10px;font-size:10px;font-weight:800">74%</span>
+            </div>
+            <div style="height:60px;background:var(--gray-200);display:flex;align-items:center;justify-content:center;color:var(--gray-400);font-size:10px">Hotel photo</div>
+            <div style="padding:10px">
+              <div style="font-weight:700;margin-bottom:1px">Kimpton Era Hotel</div>
+              <div style="font-size:9px;color:var(--gray-400);margin-bottom:6px">Midtown Manhattan</div>
+              <div style="background:var(--amber-light);border:1px solid var(--amber-border);border-radius:6px;padding:6px;margin-bottom:6px;font-size:9px;color:var(--amber);line-height:1.4">
+                ⚠ No kids-eat-free — but highly rated for families
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">
+                <span style="background:var(--gray-100);padding:2px 6px;border-radius:20px;font-size:9px">🍸 Rooftop bar</span>
+                <span style="background:var(--gray-100);padding:2px 6px;border-radius:20px;font-size:9px">🏋 Fitness</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="font-weight:800">$224<span style="font-size:9px;font-weight:400;color:var(--gray-400)">/night est.</span></div>
+                <div style="background:#4f46e5;color:white;padding:4px 10px;border-radius:6px;font-size:9px;font-weight:600">View rooms</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;font-size:13px;color:var(--gray-600);line-height:1.6">
+        Match scores (90–100% blue, 60–89% amber, below 60% hidden) give users a scannable signal. "Why this fits" and "What's missing" copy references the user's actual stated preferences — not generic hotel descriptions. The claude branch already implements the scoring logic; this proposal adds the curated reason copy and near-match treatment.
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── 4. Hand-off ── -->
+    <div class="proposal">
+      <div class="proposal-header">
+        <div class="proposal-num">4</div>
+        <div>
+          <h3>Booking Hand-Off — Intentional, Not Jarring</h3>
+          <p>Set expectations early, confirm what carries over</p>
+        </div>
+      </div>
+
+      <div class="problem-quote">
+        <strong>Research signal</strong>
+        <div class="multi-quote">
+          <span><em>"Once I left the AI it felt clunky. I don't like the way it opened a new tab — that threw me."</em> — P6</span>
+          <span><em>"It's a letdown to get kicked out to a hotel website. If you want to refine, you expect to do everything within the AI."</em> — P1</span>
+        </div>
+      </div>
+
+      <div class="solution-label">✦ Proposed solution</div>
+      <div class="mockup-wrap">
+        <div class="mockup-label">Two-Part Hand-Off Design</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <div style="font-size:10px;color:var(--navy);font-weight:700;margin-bottom:8px;text-transform:uppercase">Fix 1 — Scope note in first AI response</div>
+            <div class="phone-frame">
+              <div style="padding:12px;font-size:11px;background:var(--gray-100);border-radius:10px;margin:12px;line-height:1.5">
+                Love it — Times Square puts you right in the action! 🗽 One quick question: are the kids at a specific age?
+                <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--gray-200);font-size:10px;color:var(--gray-400);display:flex;align-items:center;gap:4px">
+                  <span>ℹ️</span><span>I'll find your match — you'll book on the hotel's secure page</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--navy);font-weight:700;margin-bottom:8px;text-transform:uppercase">Fix 2 — Hand-off confirmation</div>
+            <div class="phone-frame">
+              <div style="padding:12px;font-size:11px">
+                <div style="font-size:10px;color:var(--gray-400);margin-bottom:8px">User taps "View rooms"...</div>
+                <div style="background:white;border:1px solid var(--gray-200);border-radius:10px;padding:12px;box-shadow:0 4px 16px rgba(0,0,0,0.1)">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+                    <div style="width:28px;height:28px;background:var(--green-light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px">🏨</div>
+                    <div>
+                      <div style="font-weight:700;font-size:11px">Holiday Inn Times Sq.</div>
+                      <div style="font-size:9px;color:var(--gray-400)">IHG secure booking page</div>
+                    </div>
+                  </div>
+                  <div style="background:var(--gray-50);border-radius:6px;padding:8px;margin-bottom:10px;font-size:10px;color:var(--gray-600);line-height:1.5">
+                    Carrying over:<br/>
+                    <span style="color:#4f46e5">✓</span> Family of 4 · 2 adults, 2 children<br/>
+                    <span style="color:#4f46e5">✓</span> Jul 15 → Jul 22
+                  </div>
+                  <div style="display:flex;gap:8px">
+                    <div style="flex:1;background:#4f46e5;color:white;padding:7px;border-radius:6px;text-align:center;font-size:10px;font-weight:600">Continue →</div>
+                    <div style="background:var(--gray-100);color:var(--gray-600);padding:7px 10px;border-radius:6px;text-align:center;font-size:10px">Stay here</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;font-size:13px;color:var(--gray-600);line-height:1.6">
+        Fix 1 sets scope expectations before the user invests deeply — not as a warning at the door. Fix 2 shows users exactly what's being carried over (guests, dates) and gives them a "Stay here" escape hatch. This design is intentionally lightweight to allow future evolution toward full in-context booking.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHAT'S ALREADY BUILT ═══════════════════════ -->
+  <section class="section">
+    <div class="section-tag">Progress</div>
+    <h2 class="section-title">Already Built on the Claude Branch</h2>
+    <p class="section-sub">Two of the four design responses have foundational implementations ready to build on.</p>
+
+    <div class="progress-callout">
+      <h3>✦ What's live in the claude branch</h3>
+
+      <div class="progress-item">
+        <div class="check">✓</div>
+        <p><strong>% Match scoring on hotel cards</strong> — <code>hotel.service.ts</code> implements <code>computeMatchScores()</code> using a weighted point system across amenities (35pts), brand (20pts), price (20pts), rating (15pts), and sentiments (10pts). Scores are scaled to a 75–99 range and displayed as a badge overlay on the hotel card image. Generic searches (e.g. "hotels in NYC") correctly suppress the badge.</p>
+      </div>
+
+      <div class="progress-item">
+        <div class="check">✓</div>
+        <p><strong>Conversation context chips</strong> — Active search criteria (location, price range, amenities, guest count, brand) are displayed as removable pill chips in the chat input footer. Each chip shows the filter label and a remove (✕) button, letting users adjust criteria without retyping. This directly addresses the friction users felt when trying to refine searches.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ OPEN QUESTIONS ═════════════════════════════ -->
+  <section class="section">
+    <div class="section-tag">Next Steps</div>
+    <h2 class="section-title">Open Questions for Stakeholders</h2>
+    <p class="section-sub">Three decisions to resolve before implementation begins.</p>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="question-card">
+        <div class="q-icon">Q1</div>
+        <div>
+          <h4>What is the algorithm for the % match score?</h4>
+          <p>The claude branch uses a weighted point system (amenities 35%, brand 20%, price 20%, rating 15%, sentiment 10%). Should this weighting be surfaced to users or kept internal? And should match score influence ranking order, or just labelling?</p>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-icon">Q2</div>
+        <div>
+          <h4>Who owns the "Why this fits" and "What's missing" copy?</h4>
+          <p>These one-line callouts on hotel cards must reference the user's actual stated preferences dynamically. Should this be AI-generated at query time, or assembled from a fixed set of editorial templates mapped to criteria types?</p>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="q-icon">Q3</div>
+        <div>
+          <h4>Is in-context booking on the product roadmap?</h4>
+          <p>Multiple users expressed disappointment at the hand-off to the hotel site. The proposed hand-off design is lightweight and can evolve toward full in-context booking. Understanding the roadmap timeline will determine how much to invest in the current transition vs. treating it as temporary scaffolding.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════ -->
+<footer>
+  <p><strong>IHG Hotels & Resorts</strong> · AI Hotel Search · UX Research &amp; Design · June 2026</p>
+  <p style="margin-top:6px">Prototype: Manhattan NYC · Powered by Gemini 2.5 Flash · Angular 17</p>
+</footer>
+
+</body>
+</html>
