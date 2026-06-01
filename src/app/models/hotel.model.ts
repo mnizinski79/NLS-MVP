@@ -32,4 +32,6 @@ export interface Hotel {
     minRating: number | null;
     sentiments: string[]; // only non-generic ones
   };
+  matchReason?: string;   // "Why this fits" or "What's missing" copy
+  matchType?: 'best' | 'near';  // controls card badge colour
 }
