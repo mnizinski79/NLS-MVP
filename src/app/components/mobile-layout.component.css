@@ -83,7 +83,7 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding: 0;
-  padding-bottom: 150px; /* Space for fixed input + filter chips row */
+  padding-bottom: 200px; /* Space for fixed input + up to 2 rows of filter chips */
 }
 
 /* Input container - fixed at bottom, with sharp gradient cutoff */

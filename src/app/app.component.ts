@@ -265,16 +265,7 @@ export class AppComponent implements OnInit, OnDestroy {
       chips.push({ id: 'rating', label: `${ctx.minRating}★+`, type: 'rating', value: ctx.minRating });
     }
 
-    // Guest chip (use adults/children if available, fall back to guestCount)
-    const totalGuests = (this.adults ?? 0) + (this.children ?? 0);
-    if (totalGuests > 0) {
-      const parts: string[] = [];
-      if (this.adults) parts.push(`${this.adults} adult${this.adults !== 1 ? 's' : ''}`);
-      if (this.children) parts.push(`${this.children} child${this.children !== 1 ? 'ren' : ''}`);
-      chips.push({ id: 'guests', label: parts.join(', '), type: 'guests', value: totalGuests });
-    } else if (ctx.guestCount) {
-      chips.push({ id: 'guests', label: `${ctx.guestCount} guests`, type: 'guests', value: ctx.guestCount });
-    }
+    // Guest count intentionally excluded from chips — shown in booking summary instead
 
     return chips;
   }
