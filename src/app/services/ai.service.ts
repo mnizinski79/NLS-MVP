@@ -495,7 +495,13 @@ Current query: "${query}"${context}
   - If user adds new criteria to existing results (e.g., "which ones have a rooftop bar"), set shouldRefine to true, shouldSearch to false
   - If user asks for cheapest/most expensive "of these" or "with X amenity" when hotels are displayed, set shouldRefine to true, shouldSearch to false, and include the amenity in searchCriteria
   - shouldRefine means filter the CURRENTLY DISPLAYED hotels, not all hotels
-  - NEVER set both shouldSearch and shouldRefine to true - they are mutually exclusive`;
+  - NEVER set both shouldSearch and shouldRefine to true - they are mutually exclusive
+
+  FILTER PERSISTENCE RULES:
+  - Search filters (brands, amenities, price, rating) persist across turns as chips the user can see
+  - Only include a searchCriteria field if the user explicitly mentioned it in THIS message
+  - If the user says "remove X", "no X", "without X", or "actually not X" — set that field to an empty array [] or null to clear it
+  - If the user didn't mention a filter, omit it from searchCriteria entirely (don't return empty arrays for unmentioned fields)`;
     }
 
   /**

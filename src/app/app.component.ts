@@ -786,39 +786,54 @@ export class AppComponent implements OnInit, OnDestroy {
         lastDisplayedHotels: hotels  // Used for refinement operations
       };
 
-      // Update conversation context if search criteria provided
-      // This accumulates user preferences across the conversation
+      // Update conversation context if search criteria provided.
+      // MERGE strategy: only update a field when the AI explicitly returns a
+      // non-empty value. This preserves existing chips across turns so users
+      // don't lose filters they set earlier (chips persist until the user
+      // removes them via × or explicitly asks to remove them in chat).
       if (aiResponse.searchCriteria) {
         const context = { ...currentState.conversationContext };
 
-        // Update brand preferences
-        if (aiResponse.searchCriteria.brands) {
+        // Brands — non-empty = replace; explicit [] = clear; undefined = keep existing
+        if (aiResponse.searchCriteria.brands?.length) {
           context.brands = aiResponse.searchCriteria.brands;
+        } else if (Array.isArray(aiResponse.searchCriteria.brands) && aiResponse.searchCriteria.brands.length === 0) {
+          context.brands = [];
         }
-        
-        // Update location/sentiment preferences
-        if (aiResponse.searchCriteria.sentiments) {
+
+        // Sentiments/location — replace if non-empty, clear if explicit []
+        if (aiResponse.searchCriteria.sentiments?.length) {
           context.sentiments = aiResponse.searchCriteria.sentiments;
-          updates.hasLocation = true;  // Track that user has specified location
+          updates.hasLocation = true;
+        } else if (Array.isArray(aiResponse.searchCriteria.sentiments) && aiResponse.searchCriteria.sentiments.length === 0) {
+          context.sentiments = [];
         }
-        
-        // Update amenity preferences
-        if (aiResponse.searchCriteria.amenities) {
-          context.amenities = aiResponse.searchCriteria.amenities;
-          updates.hasPreferences = true;  // Track that user has specified preferences
+
+        // Amenities — merge new ones in; explicit [] clears all
+        if (aiResponse.searchCriteria.amenities !== undefined) {
+          if (aiResponse.searchCriteria.amenities.length > 0) {
+            const existing = context.amenities || [];
+            const incoming = aiResponse.searchCriteria.amenities;
+            context.amenities = [...existing, ...incoming.filter(a => !existing.includes(a))];
+            updates.hasPreferences = true;
+          } else if (Array.isArray(aiResponse.searchCriteria.amenities)) {
+            // explicit [] = user removed amenity filter
+            context.amenities = [];
+          }
         }
-        
-        // Update price range preferences
-        if (aiResponse.searchCriteria.priceRange) {
+
+        // Price range — only replace if AI returned a real value
+        const pr = aiResponse.searchCriteria.priceRange;
+        if (pr && (pr.min != null || pr.max != null)) {
           context.priceRange = {
-            min: aiResponse.searchCriteria.priceRange.min ?? null,
-            max: aiResponse.searchCriteria.priceRange.max ?? null
+            min: pr.min ?? null,
+            max: pr.max ?? null
           };
           updates.hasPreferences = true;
         }
-        
-        // Update rating preferences
-        if (aiResponse.searchCriteria.minRating !== undefined) {
+
+        // Rating — only replace if AI returned a real value
+        if (aiResponse.searchCriteria.minRating != null) {
           context.minRating = aiResponse.searchCriteria.minRating;
           updates.hasPreferences = true;
         }
