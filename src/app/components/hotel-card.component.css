@@ -6,17 +6,17 @@
   flex-direction: column;
 }
 
-/* Desktop Variant: 280px × 340px */
+/* Desktop Variant: 280px, grows with content */
 .hotel-card-desktop {
   width: 280px;
-  height: 340px;
+  min-height: 340px;
   flex-shrink: 0;
 }
 
-/* Mobile Variant: 240px × 300px */
+/* Mobile Variant: 240px, grows with content */
 .hotel-card-mobile {
   width: 240px;
-  height: 300px;
+  min-height: 300px;
 }
 
 /* Hover Effect (Desktop Only) */
