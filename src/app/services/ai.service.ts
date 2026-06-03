@@ -462,11 +462,16 @@ Current query: "${query}"${context}
   }
 
   SUGGESTED REPLIES RULES:
-  - Only provide suggestedReplies when intent is "vague" AND you are asking a clarifying question
-  - Provide exactly 3 short options + "Skip" as the last chip (max 4 total)
+  - Provide suggestedReplies WHENEVER your message ends with a question or invites the user to narrow down (e.g. asking about dates, neighborhood, occasion, budget, guests)
+  - Provide exactly 3-4 short chips (no "Skip" option needed)
   - Each chip must be 1-4 words max
-  - Chips should directly answer the question you just asked (e.g. if asking about trip type: ["Just us two", "Family trip", "Business", "Skip"])
-  - Return [] for all other intents — never add chips when showing results
+  - Chips must directly answer the question you just asked:
+    * Asking about neighborhood → ["Times Square", "Midtown", "Upper East Side"]
+    * Asking about dates → ["This weekend", "Next week", "Flexible dates"]
+    * Asking about occasion → ["Just us two", "Family trip", "Business"]
+    * Asking about budget → ["Under $200", "Under $300", "No limit"]
+    * Asking about guests → ["Solo", "Couple", "Family"]
+  - Return [] only when your message is purely informational with no question
 
 
   SPECIAL INTENTS:

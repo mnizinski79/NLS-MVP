@@ -470,12 +470,3 @@
   outline: none;
 }
 
-.reply-chip:last-child {
-  border-color: #9ca3af;
-  color: #6b7280;
-}
-
-.reply-chip:last-child:hover {
-  background: #f3f4f6;
-  color: #374151;
-}
