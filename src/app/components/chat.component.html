@@ -34,6 +34,24 @@
         <p class="message-text" [innerHTML]="message.text | markdown"></p>
       </div>
 
+      <!-- Suggested reply chips — directly below AI text, above results -->
+      <div
+        *ngIf="message.sender === 'ai' && message.suggestedReplies && message.suggestedReplies.length > 0"
+        class="reply-chips"
+        role="list"
+        aria-label="Quick reply options"
+      >
+        <button
+          *ngFor="let reply of message.suggestedReplies"
+          type="button"
+          class="reply-chip"
+          role="listitem"
+          (click)="onReplyChipClick(reply)"
+        >
+          {{ reply }}
+        </button>
+      </div>
+
       <!-- Room cards (shown inline for all layouts when message has rooms) -->
       <div *ngIf="message.sender === 'ai' && message.rooms && message.rooms.length > 0"
            class="inline-rooms"
@@ -124,23 +142,6 @@
         </app-rate-calendar>
       </div>
 
-      <!-- Suggested reply chips -->
-      <div
-        *ngIf="message.sender === 'ai' && message.suggestedReplies && message.suggestedReplies.length > 0"
-        class="reply-chips"
-        role="list"
-        aria-label="Quick reply options"
-      >
-        <button
-          *ngFor="let reply of message.suggestedReplies"
-          type="button"
-          class="reply-chip"
-          role="listitem"
-          (click)="onReplyChipClick(reply)"
-        >
-          {{ reply }}
-        </button>
-      </div>
     </div>
 
     <!-- Thinking animation -->
