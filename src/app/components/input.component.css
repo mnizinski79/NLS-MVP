@@ -84,9 +84,16 @@
 .chips-row {
   flex: 1;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 6px;
   align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.chips-row::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .trip-chip {
