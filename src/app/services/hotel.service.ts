@@ -499,7 +499,78 @@ export class HotelService {
         sentiments: specificSentiments,
       };
 
-      return { ...hotel, matchScore, matchContext };
+      const matchData = this.generateMatchData(hotel, matchContext, matchScore);
+      return { ...hotel, matchScore, matchContext, ...matchData };
     });
+  }
+
+  /**
+   * Generates human-readable match explanation fields for a hotel.
+   * @param hotel - The hotel being evaluated
+   * @param context - The match context (criteria used for scoring)
+   * @param score - The computed match score (75–99)
+   * @returns matchReason, matchType, matchChips, matchedItems, missingItems
+   */
+  private generateMatchData(
+    hotel: Hotel,
+    context: NonNullable<Hotel['matchContext']>,
+    score: number
+  ): { matchReason: string; matchType: 'best' | 'near'; matchChips: string[]; matchedItems: string[]; missingItems: string[] } {
+    const matchType: 'best' | 'near' = score >= 90 ? 'best' : 'near';
+    const matchedItems: string[] = [];
+    const missingItems: string[] = [];
+
+    // Amenities
+    for (const amenity of context.amenities) {
+      const has = hotel.amenities?.some(ha => ha.toLowerCase() === amenity.toLowerCase());
+      if (has) {
+        matchedItems.push(amenity);
+      } else {
+        missingItems.push(amenity);
+      }
+    }
+
+    // Price
+    if (context.priceRange?.max != null) {
+      if (hotel.pricing.nightlyRate <= context.priceRange.max) {
+        matchedItems.push(`Under $${context.priceRange.max}/night`);
+      } else {
+        missingItems.push(`Under $${context.priceRange.max}/night`);
+      }
+    }
+
+    // Rating
+    if (context.minRating != null) {
+      if (hotel.rating >= context.minRating) {
+        matchedItems.push(`${hotel.rating}★ rated`);
+      } else {
+        missingItems.push(`${hotel.rating}★ rated`);
+      }
+    }
+
+    // Sentiments (first matched one as location label)
+    if (context.sentiments?.length) {
+      const matchedSentiment = context.sentiments.find(s =>
+        hotel.sentiment?.some(hs => hs.toLowerCase() === s.toLowerCase())
+      );
+      if (matchedSentiment) {
+        matchedItems.push(matchedSentiment);
+      } else {
+        missingItems.push(context.sentiments[0]);
+      }
+    }
+
+    const matchChips = matchedItems.slice(0, 3);
+
+    let matchReason: string;
+    if (matchType === 'best' && matchedItems.length > 0) {
+      matchReason = `Great match — ${matchedItems.slice(0, 2).join(' and ')}`;
+    } else if (matchType === 'near') {
+      matchReason = `Close match — ${missingItems[0] ? 'missing ' + missingItems[0] : 'partially matches your search'}`;
+    } else {
+      matchReason = 'Matches your search criteria';
+    }
+
+    return { matchReason, matchType, matchChips, matchedItems, missingItems };
   }
 }

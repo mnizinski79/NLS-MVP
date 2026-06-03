@@ -32,4 +32,9 @@ export interface Hotel {
     minRating: number | null;
     sentiments: string[]; // only non-generic ones
   };
+  matchReason?: string;        // warm 1-line sentence e.g. "Great for your family stay near Times Square"
+  matchType?: 'best' | 'near'; // 'best' = score >= 90, 'near' = 75–89
+  matchChips?: string[];       // top 2-3 matched amenity labels for card teaser
+  matchedItems?: string[];     // all matched criteria labels for drawer (✓ items)
+  missingItems?: string[];     // unmatched criteria labels for drawer (✗ items)
 }
