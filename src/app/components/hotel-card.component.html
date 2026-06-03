@@ -50,6 +50,16 @@
     <!-- Hotel Name (2 lines with truncation) -->
     <h3 class="hotel-name">{{ hotel.name }}</h3>
 
+    <!-- Match reason teaser -->
+    <div *ngIf="hotel.matchReason" class="match-teaser" [class.match-teaser-near]="hotel.matchType === 'near'">
+      <span class="match-teaser-icon" aria-hidden="true">{{ hotel.matchType === 'best' ? '🎯' : '◐' }}</span>
+      <span class="match-teaser-text">{{ hotel.matchReason }}</span>
+    </div>
+    <!-- Matched amenity chips -->
+    <div *ngIf="hotel.matchChips && hotel.matchChips.length > 0" class="match-chips">
+      <span *ngFor="let chip of hotel.matchChips" class="match-chip">{{ chip }}</span>
+    </div>
+
     <!-- Price -->
     <div class="hotel-price">
       <div class="price-label">From</div>

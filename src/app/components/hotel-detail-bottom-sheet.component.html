@@ -108,6 +108,19 @@
         </button>
       </div>
 
+      <!-- AI Match Summary -->
+      <div *ngIf="hotel?.matchReason" class="ai-match-summary" [class.ai-match-near]="hotel?.matchType === 'near'">
+        <div class="ai-match-header">
+          <span class="ai-match-star">✦</span>
+          <span class="ai-match-title">{{ hotel?.matchType === 'best' ? 'Why this fits your trip' : 'How this compares' }}</span>
+        </div>
+        <p class="ai-match-sentence">{{ hotel?.matchReason }}</p>
+        <div class="ai-match-chips">
+          <span *ngFor="let item of hotel?.matchedItems" class="ai-chip ai-chip-match">✓ {{ item }}</span>
+          <span *ngFor="let item of hotel?.missingItems" class="ai-chip ai-chip-missing">✗ {{ item }}</span>
+        </div>
+      </div>
+
       <!-- Description -->
       <div class="section">
         <h3 class="section-title">Description</h3>
