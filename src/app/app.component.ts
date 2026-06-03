@@ -578,11 +578,18 @@ export class AppComponent implements OnInit, OnDestroy {
       };
     }
 
+    // Append scope note on the very first AI response so users know
+    // they'll complete booking on the hotel's own page — set expectations early
+    const isFirstAiResponse = !this.conversationService.getMessagesSnapshot().some(m => m.sender === 'ai');
+    const messageText = isFirstAiResponse
+      ? `${aiResponse.message}\n\nℹ️ I'll find your match — you'll complete booking on the hotel's secure page.`
+      : aiResponse.message;
+
     // Add AI message to chat with optional hotel results
     const aiMessage: Message = {
       id: this.generateMessageId(),
       sender: 'ai',
-      text: aiResponse.message,
+      text: messageText,
       timestamp: new Date(),
       hotels: hotels.length > 0 ? hotels : undefined,
       showDatePicker: shouldShowDatePicker,
