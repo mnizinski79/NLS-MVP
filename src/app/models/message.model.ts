@@ -20,4 +20,5 @@ export interface Message {
   showRateCalendar?: boolean;
   rateCalendarHotel?: Hotel;
   searchContext?: SearchContext;
+  suggestedReplies?: string[]; // Tappable quick reply chips shown below this AI message
 }

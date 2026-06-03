@@ -60,6 +60,13 @@ export class ChatComponent {
   /** Emitted when user clicks "View All" button (mobile) */
   @Output() viewAllClicked = new EventEmitter<void>();
 
+  /** Emitted when user taps a suggested reply chip */
+  @Output() replyChipClicked = new EventEmitter<string>();
+
+  onReplyChipClick(reply: string): void {
+    this.replyChipClicked.emit(reply);
+  }
+
   /** ID of message currently showing date picker */
   showDatePickerForMessage: string | null = null;
 

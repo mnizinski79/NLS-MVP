@@ -85,6 +85,11 @@ export class ConversationService {
     return this.messages$.asObservable();
   }
 
+  /** Synchronous snapshot of current messages */
+  getMessagesSnapshot(): Message[] {
+    return this.messages$.getValue();
+  }
+
   /**
    * Clear all conversation state and message history
    * Resets to initial empty state

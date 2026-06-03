@@ -457,8 +457,16 @@ Current query: "${query}"${context}
     "adults": number or null,
     "children": number or null,
     "pointOfInterest": {"name": "string", "coordinates": {"lat": number, "lng": number}} or null,
-    "searchSummary": "Short 2-4 word TLDR of the search vibe (e.g., 'Romantic getaway', 'Budget-friendly stay', 'Family vacation', 'Luxury escape', 'Pet-friendly options', 'Business trip'). Required when shouldSearch is true."
+    "searchSummary": "Short 2-4 word TLDR of the search vibe (e.g., 'Romantic getaway', 'Budget-friendly stay', 'Family vacation', 'Luxury escape', 'Pet-friendly options', 'Business trip'). Required when shouldSearch is true.",
+    "suggestedReplies": ["chip1", "chip2", "chip3", "Skip"] or []
   }
+
+  SUGGESTED REPLIES RULES:
+  - Only provide suggestedReplies when intent is "vague" AND you are asking a clarifying question
+  - Provide exactly 3 short options + "Skip" as the last chip (max 4 total)
+  - Each chip must be 1-4 words max
+  - Chips should directly answer the question you just asked (e.g. if asking about trip type: ["Just us two", "Family trip", "Business", "Skip"])
+  - Return [] for all other intents — never add chips when showing results
 
 
   SPECIAL INTENTS:
@@ -562,7 +570,10 @@ Current query: "${query}"${context}
           adults: parsed.adults,
           children: parsed.children,
           pointOfInterest: parsed.pointOfInterest,
-          searchSummary: parsed.searchSummary
+          searchSummary: parsed.searchSummary,
+          suggestedReplies: Array.isArray(parsed.suggestedReplies)
+            ? (parsed.suggestedReplies as string[]).slice(0, 4)
+            : []
         };
 
       } catch (error) {
