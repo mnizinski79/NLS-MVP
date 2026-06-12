@@ -23,6 +23,25 @@
       "Pet Friendly",
       "Hosted Wine Hour"
     ],
+    "bedType": "1 King",
+    "verifiedAmenities": [
+      { "id": "rooftop_bar", "label": "Rooftop Bar" },
+      { "id": "fitness_center", "label": "Fitness Center" },
+      { "id": "pet_friendly", "label": "Pet Friendly" },
+      { "id": "hosted_wine_hour", "label": "Hosted Wine Hour" }
+    ],
+    "missingAmenities": [
+      { "id": "pool", "label": "Pool" },
+      { "id": "spa", "label": "Spa" }
+    ],
+    "neighborhood": {
+      "name": "Times Square",
+      "vibe": ["lively", "walkable"],
+      "walkScore": 98,
+      "nearby": ["Times Square 1 min", "Theater District 3 min", "Central Park 15 min"]
+    },
+    "pointsEarned": 10500,
+    "walkToDiningMin": 2,
     "description": "Renovated hotel located one block from Times Square with rooftop Bar Sprezzatura.",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/kimpton-new-york-9149634521-original",
@@ -71,6 +90,25 @@
       "Free Wi-Fi",
       "Pet Friendly"
     ],
+    "bedType": "1 King",
+    "verifiedAmenities": [
+      { "id": "rooftop_bar", "label": "Rooftop Bar" },
+      { "id": "fitness_center", "label": "Fitness Center" },
+      { "id": "free_wifi", "label": "Free Wi-Fi" },
+      { "id": "pet_friendly", "label": "Pet Friendly" }
+    ],
+    "missingAmenities": [
+      { "id": "pool", "label": "Pool" },
+      { "id": "restaurant", "label": "Restaurant" }
+    ],
+    "neighborhood": {
+      "name": "Times Square",
+      "vibe": ["lively", "walkable"],
+      "walkScore": 99,
+      "nearby": ["Radio City Music Hall 3 min", "Rockefeller Center 4 min", "Broadway theaters 1 min"]
+    },
+    "pointsEarned": 9500,
+    "walkToDiningMin": 2,
     "description": "Step into the energy of Times Square from a hotel that puts you in the center of it all. Just steps from the neon glow, you'll find Radio City Music Hall, Rockefeller Center, and the Theater District.",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/voco-new-york-10286760679-original",
@@ -118,6 +156,26 @@
       "Room Service",
       "Concierge"
     ],
+    "bedType": "1 King",
+    "verifiedAmenities": [
+      { "id": "cocktail_bar", "label": "Cocktail Bar" },
+      { "id": "fitness_center", "label": "Fitness Center" },
+      { "id": "room_service", "label": "Room Service" },
+      { "id": "concierge", "label": "Concierge" },
+      { "id": "restaurant", "label": "Restaurant" }
+    ],
+    "missingAmenities": [
+      { "id": "rooftop_bar", "label": "Rooftop Bar" },
+      { "id": "pool", "label": "Pool" }
+    ],
+    "neighborhood": {
+      "name": "Times Square",
+      "vibe": ["lively", "walkable"],
+      "walkScore": 97,
+      "nearby": ["Times Square 2 min", "Lincoln Center 15 min", "Central Park 12 min"]
+    },
+    "pointsEarned": 14000,
+    "walkToDiningMin": 3,
     "description": "Rising 36 stories above the pulse and pageantry of Times Square, InterContinental New York Times Square is a hub of tranquility nestled in Midtown Manhattan.",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/intercontinental-new-york-9975465351-original",
@@ -164,6 +222,25 @@
       "Terrace Rooms",
       "Pet Friendly"
     ],
+    "bedType": "2 Queen",
+    "verifiedAmenities": [
+      { "id": "rooftop_bar", "label": "Rooftop Bar" },
+      { "id": "fitness_center", "label": "Fitness Center" },
+      { "id": "terrace_rooms", "label": "Terrace Rooms" },
+      { "id": "pet_friendly", "label": "Pet Friendly" }
+    ],
+    "missingAmenities": [
+      { "id": "spa", "label": "Spa" },
+      { "id": "free_parking", "label": "Free Parking" }
+    ],
+    "neighborhood": {
+      "name": "Midtown",
+      "vibe": ["lively", "walkable"],
+      "walkScore": 96,
+      "nearby": ["Rockefeller Center 1 min", "5th Avenue 3 min", "Bryant Park 5 min"]
+    },
+    "pointsEarned": 11000,
+    "walkToDiningMin": 1,
     "description": "Opening in spring 2026 and redefining hospitality at Rockefeller Center while honoring its cultural legacy, Kimpton Era is a vibrant hub where tourists and locals converge.",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/kimpton-new-york-10623966449-original",
@@ -210,6 +287,26 @@
       "Grab & Go Market",
       "Concierge"
     ],
+    "bedType": "2 Queen",
+    "verifiedAmenities": [
+      { "id": "fitness_center", "label": "Fitness Center" },
+      { "id": "business_center", "label": "Business Center" },
+      { "id": "grab_go_market", "label": "Grab & Go Market" },
+      { "id": "concierge", "label": "Concierge" }
+    ],
+    "missingAmenities": [
+      { "id": "rooftop_bar", "label": "Rooftop Bar" },
+      { "id": "pet_friendly", "label": "Pet Friendly" },
+      { "id": "free_parking", "label": "Free Parking" }
+    ],
+    "neighborhood": {
+      "name": "Times Square",
+      "vibe": ["lively", "walkable"],
+      "walkScore": 98,
+      "nearby": ["Times Square 2 min", "Hudson Yards 12 min", "Columbus Circle 8 min"]
+    },
+    "pointsEarned": 8000,
+    "walkToDiningMin": 3,
     "description": "The Manhattan at Times Square Hotel is located in the heart of Midtown-Times Square, steps away from New York's best and most amazing attractions.",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/independent--sphc--new-york-9357359629-original",
@@ -252,6 +349,26 @@
       "Business Center",
       "Free Wi-Fi"
     ],
+    "bedType": "2 Queen",
+    "verifiedAmenities": [
+      { "id": "kids_eat_free", "label": "Kids Eat Free" },
+      { "id": "fitness_center", "label": "Fitness Center" },
+      { "id": "business_center", "label": "Business Center" },
+      { "id": "free_wifi", "label": "Free Wi-Fi" }
+    ],
+    "missingAmenities": [
+      { "id": "rooftop_bar", "label": "Rooftop Bar" },
+      { "id": "spa", "label": "Spa" },
+      { "id": "free_parking", "label": "Free Parking" }
+    ],
+    "neighborhood": {
+      "name": "Times Square",
+      "vibe": ["lively", "walkable"],
+      "walkScore": 95,
+      "nearby": ["Times Square 3 min", "Madison Square Garden 5 min", "Penn Station 6 min"]
+    },
+    "pointsEarned": 8500,
+    "walkToDiningMin": 4,
     "description": "The Holiday Inn New York City – Times Square is located in the heart of Midtown-Times Square, steps away from New York's best and most amazing attractions.",
     "imageUrls": [
       "https://digital.ihg.com/is/image/ihg/holiday-inn-new-york-4132403197-original",

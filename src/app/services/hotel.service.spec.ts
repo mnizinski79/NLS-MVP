@@ -21,9 +21,16 @@ describe('HotelService', () => {
       pricing: {
         nightlyRate: 300,
         roomRate: 350,
-        fees: 50
+        fees: 50,
+        allInNightly: 400
       },
       amenities: ['Rooftop Bar', 'Fitness Center'],
+      bedType: '1 King',
+      verifiedAmenities: [{ id: 'rooftop_bar', label: 'Rooftop Bar' }],
+      missingAmenities: [{ id: 'pool', label: 'Pool' }],
+      neighborhood: { name: 'Times Square', vibe: ['lively'], walkScore: 98, nearby: ['Times Square 1 min'] },
+      pointsEarned: 10000,
+      walkToDiningMin: 2,
       description: 'Luxury hotel',
       imageUrls: ['image1.jpg'],
       phone: '123-456-7890',
@@ -42,9 +49,16 @@ describe('HotelService', () => {
       pricing: {
         nightlyRate: 200,
         roomRate: 240,
-        fees: 40
+        fees: 40,
+        allInNightly: 280
       },
       amenities: ['Pool', 'Restaurant'],
+      bedType: '2 Queen',
+      verifiedAmenities: [],
+      missingAmenities: [{ id: 'rooftop_bar', label: 'Rooftop Bar' }],
+      neighborhood: { name: 'Midtown', vibe: ['walkable'], walkScore: 95, nearby: ['Bryant Park 5 min'] },
+      pointsEarned: 8000,
+      walkToDiningMin: 3,
       description: 'Comfortable stay',
       imageUrls: ['image2.jpg'],
       phone: '123-456-7891',
@@ -63,9 +77,16 @@ describe('HotelService', () => {
       pricing: {
         nightlyRate: 500,
         roomRate: 580,
-        fees: 80
+        fees: 80,
+        allInNightly: 660
       },
       amenities: ['Spa', 'Rooftop Bar'],
+      bedType: '1 King',
+      verifiedAmenities: [{ id: 'spa', label: 'Spa' }, { id: 'rooftop_bar', label: 'Rooftop Bar' }],
+      missingAmenities: [{ id: 'pool', label: 'Pool' }],
+      neighborhood: { name: 'Upper East Side', vibe: ['quiet'], walkScore: 90, nearby: ['Central Park 5 min'] },
+      pointsEarned: 14000,
+      walkToDiningMin: 4,
       description: 'Premium experience',
       imageUrls: ['image3.jpg'],
       phone: '123-456-7892',
@@ -92,6 +113,7 @@ describe('HotelService', () => {
         {
           id: '1',
           name: 'Test Hotel',
+          brand: 'Kimpton',
           brandId: 'kimpton',
           rating: 4.5,
           location: { lat: 40.7589, lng: -73.9851, address: '123 Main St' },
@@ -112,7 +134,7 @@ describe('HotelService', () => {
         done();
       });
 
-      const req = httpMock.expectOne('/hotels (1).json');
+      const req = httpMock.expectOne('assets/hotels.json');
       expect(req.request.method).toBe('GET');
       req.flush(rawData);
     });
@@ -143,7 +165,7 @@ describe('HotelService', () => {
         });
       });
 
-      const req = httpMock.expectOne('/hotels (1).json');
+      const req = httpMock.expectOne('assets/hotels.json');
       req.flush(rawData);
     });
 
@@ -156,7 +178,7 @@ describe('HotelService', () => {
         }
       });
 
-      const req = httpMock.expectOne('/hotels (1).json');
+      const req = httpMock.expectOne('assets/hotels.json');
       req.error(new ProgressEvent('error'));
     });
   });
@@ -359,6 +381,30 @@ describe('HotelService', () => {
     });
   });
 
+  it('derives allInNightly as roomRate + fees in transform', (done) => {
+    service.loadHotels().subscribe(hotels => {
+      const h = hotels[0];
+      expect(h.pricing.allInNightly).toBe(h.pricing.roomRate + h.pricing.fees);
+      expect(h.verifiedAmenities.length).toBeGreaterThan(0);
+      expect(typeof h.bedType).toBe('string');
+      done();
+    });
+    const req = httpMock.expectOne('assets/hotels.json');
+    req.flush([
+      {
+        id: 'T1', name: 'Test', brand: 'voco', rating: 4,
+        location: { address: 'a', neighborhood: 'Theater District', coordinates: { lat: 1, lng: 2 } },
+        pricing: { nightlyRate: 300, roomRate: 300, fees: 60 },
+        amenities: ['Rooftop Bar'],
+        verifiedAmenities: [{ id: 'rooftop_bar', label: 'Rooftop Bar' }],
+        missingAmenities: [{ id: 'pool', label: 'Pool' }],
+        neighborhood: { name: 'Theater District', vibe: ['lively'], walkScore: 98, nearby: ['x'] },
+        bedType: '1 King', pointsEarned: 9000, walkToDiningMin: 2,
+        description: '', imageUrls: [], phone: ''
+      }
+    ]);
+  });
+
   describe('getHotelById', () => {
     it('should return hotel by id', (done: any) => {
       const rawData = [
@@ -383,7 +429,7 @@ describe('HotelService', () => {
         done();
       });
 
-      const req = httpMock.expectOne('/hotels (1).json');
+      const req = httpMock.expectOne('assets/hotels.json');
       req.flush(rawData);
     });
 
@@ -409,7 +455,7 @@ describe('HotelService', () => {
         done();
       });
 
-      const req = httpMock.expectOne('/hotels (1).json');
+      const req = httpMock.expectOne('assets/hotels.json');
       req.flush(rawData);
     });
   });

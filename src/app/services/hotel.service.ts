@@ -60,9 +60,20 @@ export class HotelService {
       pricing: {
         nightlyRate: raw.pricing?.nightlyRate || raw.price?.nightlyRate || 0,
         roomRate: raw.pricing?.roomRate || raw.price?.amount || 0,
-        fees: raw.pricing?.fees || (raw.price?.amount - raw.price?.nightlyRate) || 0
+        fees: raw.pricing?.fees || (raw.price?.amount - raw.price?.nightlyRate) || 0,
+        allInNightly:
+          (raw.pricing?.roomRate || raw.price?.amount || 0) +
+          (raw.pricing?.fees || (raw.price?.amount - raw.price?.nightlyRate) || 0),
       },
       amenities: raw.amenities || [],
+      bedType: raw.bedType || '',
+      verifiedAmenities: raw.verifiedAmenities || [],
+      missingAmenities: raw.missingAmenities || [],
+      neighborhood: raw.neighborhood || {
+        name: raw.location?.neighborhood || '', vibe: [], walkScore: 0, nearby: []
+      },
+      pointsEarned: raw.pointsEarned || 0,
+      walkToDiningMin: raw.walkToDiningMin ?? 0,
       description: raw.description || '',
       imageUrls: raw.imageUrls || [],
       phone: raw.phoneNumber || raw.phone || '',
@@ -244,10 +255,18 @@ export class HotelService {
       criteria.priceRange ||
       criteria.minRating !== undefined
     );
-    
-    // If user has other filters but no specific location sentiment, treat as implicit NYC location
-    // This handles cases like "hotels in NYC with restaurant" where NYC isn't a specific sentiment
-    const hasImplicitLocation = hasOtherFilters && !hasLocationFilter;
+
+    // If user has non-brand filters but no specific location sentiment, treat as implicit NYC location.
+    // Brand filter is an explicit hard constraint (not a location proxy), so when a brand filter is
+    // specified alongside other filters, we do NOT apply the implicit-location fallback.
+    // This handles cases like "hotels in NYC with restaurant" where NYC isn't a specific sentiment.
+    const hasNonBrandFilters = !!(
+      criteria.amenities?.length ||
+      criteria.priceRange ||
+      criteria.minRating !== undefined
+    );
+    const hasBrandFilter = !!(criteria.brands?.length);
+    const hasImplicitLocation = hasNonBrandFilters && !hasLocationFilter && !hasBrandFilter;
 
     console.log('💰 PRICE FILTER DEBUG - Starting:', {
       totalHotels: hotels.length,
