@@ -15,6 +15,7 @@ export interface Hotel {
     nightlyRate: number;
     roomRate: number;
     fees: number;
+    allInNightly: number; // derived: roomRate + fees
   };
   amenities: string[]; // e.g., "Rooftop Bar", "Fitness Center"
   description: string;
@@ -37,4 +38,15 @@ export interface Hotel {
   matchChips?: string[];       // top 2-3 matched amenity labels for card teaser
   matchedItems?: string[];     // all matched criteria labels for drawer (✓ items)
   missingItems?: string[];     // unmatched criteria labels for drawer (✗ items)
+  bedType: string;                                    // e.g. "1 King", "2 Queen"
+  verifiedAmenities: { id: string; label: string }[]; // ONLY claimable amenity set
+  missingAmenities: { id: string; label: string }[];  // honest ✗
+  neighborhood: {
+    name: string;
+    vibe: string[];
+    walkScore: number;
+    nearby: string[];
+  };
+  pointsEarned: number;
+  walkToDiningMin: number;
 }
