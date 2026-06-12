@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiConfigEndpoint: '/api/config'
+  apiConfigEndpoint: '/api/config',
+  searchStrategy: 'CONCIERGE',
 };

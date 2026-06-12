@@ -1,0 +1,8 @@
+export enum SearchStrategy {
+  RECEIPTS = 'RECEIPTS',
+  ALL_IN = 'ALL_IN',
+  COMPARE = 'COMPARE',
+  SCORECARD = 'SCORECARD',
+  CONCIERGE = 'CONCIERGE',
+  TRIP_CANVAS = 'TRIP_CANVAS',
+}
