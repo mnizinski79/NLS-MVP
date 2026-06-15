@@ -1,0 +1,7 @@
+.refine-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.refine-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
+  border: 1px solid #d1d5db; background: #fff; border-radius: 999px; font-size: 13px; cursor: pointer; }
+.refine-chip:hover { border-color: #1F4456; }
+.refine-chip:focus-visible { outline: 2px solid #1F4456; outline-offset: 2px; }
+.refine-label { color: #111827; font-weight: 500; }
+.refine-count { color: #6b7280; font-size: 12px; }

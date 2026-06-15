@@ -1,0 +1,8 @@
+<div class="refine-row" role="group" aria-label="Refine results">
+  <button *ngFor="let c of chips" type="button" class="refine-chip"
+          [attr.aria-label]="c.label + ', ' + c.count + ' results'"
+          (click)="picked.emit(c)">
+    <span class="refine-label">{{ c.label }}</span>
+    <span class="refine-count">{{ c.count }}</span>
+  </button>
+</div>
