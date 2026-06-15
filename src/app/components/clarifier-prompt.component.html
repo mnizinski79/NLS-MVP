@@ -1,0 +1,7 @@
+<div class="clarifier" role="group" [attr.aria-label]="text">
+  <p class="clarifier-text">{{ text }}</p>
+  <div class="clarifier-chips">
+    <button *ngFor="let c of chips" type="button" class="clarifier-chip"
+            (click)="chosen.emit(c)">{{ c.label }}</button>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.clarifier { background: #eef4f6; border-radius: 12px; padding: 12px 14px; }
+.clarifier-text { margin: 0 0 8px; font-size: 14px; color: #1F4456; font-weight: 500; }
+.clarifier-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.clarifier-chip { padding: 6px 12px; border: 1px solid #1F4456; background: #fff; color: #1F4456;
+  border-radius: 999px; font-size: 13px; cursor: pointer; }
+.clarifier-chip:hover { background: #1F4456; color: #fff; }
+.clarifier-chip:focus-visible { outline: 2px solid #1F4456; outline-offset: 2px; }
