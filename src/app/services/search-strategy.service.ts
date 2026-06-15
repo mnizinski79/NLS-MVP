@@ -1,12 +1,16 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { SearchStrategy } from '../models/search-strategy.model';
+import { ISearchStrategy } from '../strategies/search-strategy.interface';
+import { ConciergeStrategy } from '../strategies/concierge.strategy';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class SearchStrategyService {
   private subject: BehaviorSubject<SearchStrategy>;
-  strategy$;
+  strategy$: Observable<SearchStrategy>;
+
+  private concierge = inject(ConciergeStrategy);
 
   constructor() {
     this.subject = new BehaviorSubject<SearchStrategy>(this.parse(environment.searchStrategy));
@@ -23,6 +27,15 @@ export class SearchStrategyService {
 
   setStrategyFromString(value: string): void {
     this.subject.next(this.parse(value));
+  }
+
+  /** Resolve the active strategy object. New strategies register here later. */
+  current(): ISearchStrategy {
+    switch (this.active) {
+      case SearchStrategy.CONCIERGE:
+      default:
+        return this.concierge;
+    }
   }
 
   private parse(value: string | undefined): SearchStrategy {
