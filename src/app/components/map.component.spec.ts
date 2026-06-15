@@ -39,12 +39,18 @@ describe('MapComponent', () => {
         neighborhood: 'Test Area',
         coordinates: { lat: 40.7580, lng: -73.9855 }
       },
-      pricing: { nightlyRate: 200, roomRate: 180, fees: 20 },
+      pricing: { nightlyRate: 200, roomRate: 180, fees: 20, allInNightly: 200 },
       amenities: ['WiFi'],
       description: 'Test',
       imageUrls: [],
       phone: '123-456-7890',
-      sentiment: ['Test']
+      sentiment: ['Test'],
+      bedType: '1 King',
+      verifiedAmenities: [],
+      missingAmenities: [],
+      neighborhood: { name: '', vibe: [], walkScore: 0, nearby: [] },
+      pointsEarned: 0,
+      walkToDiningMin: 0
     };
 
     let emittedHotel;

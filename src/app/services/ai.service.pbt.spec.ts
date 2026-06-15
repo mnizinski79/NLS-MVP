@@ -29,7 +29,9 @@ describe('AIService - Property-Based Tests', () => {
     turnCount: 0,
     lastQuery: null,
     lastResponse: null,
-    lastDisplayedHotels: []
+    lastDisplayedHotels: [],
+    focusedHotel: null,
+    pointOfInterest: null
   };
 
   beforeEach(() => {

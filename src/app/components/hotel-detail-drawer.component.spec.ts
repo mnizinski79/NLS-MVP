@@ -19,13 +19,20 @@ describe('HotelDetailDrawerComponent', () => {
     pricing: {
       nightlyRate: 250,
       roomRate: 220,
-      fees: 30
+      fees: 30,
+      allInNightly: 250
     },
     amenities: ['WiFi', 'Pool', 'Gym'],
     description: 'A test hotel',
     imageUrls: ['image1.jpg', 'image2.jpg', 'image3.jpg'],
     phone: '555-1234',
-    sentiment: ['Times Square']
+    sentiment: ['Times Square'],
+    bedType: '1 King',
+    verifiedAmenities: [],
+    missingAmenities: [],
+    neighborhood: { name: '', vibe: [], walkScore: 0, nearby: [] },
+    pointsEarned: 0,
+    walkToDiningMin: 0
   };
 
   beforeEach(async () => {

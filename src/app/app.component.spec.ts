@@ -25,13 +25,20 @@ describe('AppComponent', () => {
       pricing: {
         nightlyRate: 200,
         roomRate: 200,
-        fees: 0
+        fees: 0,
+        allInNightly: 200
       },
       amenities: ['WiFi', 'Pool'],
       description: 'Test hotel',
       imageUrls: [],
       phone: '555-1234',
-      sentiment: ['Midtown']
+      sentiment: ['Midtown'],
+      bedType: '1 King',
+      verifiedAmenities: [],
+      missingAmenities: [],
+      neighborhood: { name: '', vibe: [], walkScore: 0, nearby: [] },
+      pointsEarned: 0,
+      walkToDiningMin: 0
     }
   ];
 

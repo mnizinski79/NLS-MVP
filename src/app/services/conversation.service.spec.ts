@@ -181,13 +181,20 @@ describe('ConversationService', () => {
           pricing: {
             nightlyRate: 300,
             roomRate: 250,
-            fees: 50
+            fees: 50,
+            allInNightly: 300
           },
           amenities: ['WiFi', 'Pool'],
           description: 'A great hotel',
           imageUrls: ['image1.jpg'],
           phone: '555-1234',
-          sentiment: ['Times Square']
+          sentiment: ['Times Square'],
+          bedType: '1 King',
+          verifiedAmenities: [],
+          missingAmenities: [],
+          neighborhood: { name: '', vibe: [], walkScore: 0, nearby: [] },
+          pointsEarned: 0,
+          walkToDiningMin: 0
         }
       ];
 

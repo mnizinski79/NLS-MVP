@@ -31,13 +31,20 @@ describe('AppComponent E2E Tests', () => {
       pricing: {
         nightlyRate: 250,
         roomRate: 200,
-        fees: 50
+        fees: 50,
+        allInNightly: 250
       },
       amenities: ['Rooftop Bar', 'Fitness Center'],
       description: 'A test hotel',
       imageUrls: ['test.jpg'],
       phone: '555-1234',
-      sentiment: ['Times Square', 'Midtown']
+      sentiment: ['Times Square', 'Midtown'],
+      bedType: '1 King',
+      verifiedAmenities: [],
+      missingAmenities: [],
+      neighborhood: { name: '', vibe: [], walkScore: 0, nearby: [] },
+      pointsEarned: 0,
+      walkToDiningMin: 0
     },
     {
       id: '2',
@@ -52,13 +59,20 @@ describe('AppComponent E2E Tests', () => {
       pricing: {
         nightlyRate: 180,
         roomRate: 150,
-        fees: 30
+        fees: 30,
+        allInNightly: 180
       },
       amenities: ['Pool', 'Restaurant'],
       description: 'Another test hotel',
       imageUrls: ['test2.jpg'],
       phone: '555-5678',
-      sentiment: ['Downtown', 'Financial District']
+      sentiment: ['Downtown', 'Financial District'],
+      bedType: '1 King',
+      verifiedAmenities: [],
+      missingAmenities: [],
+      neighborhood: { name: '', vibe: [], walkScore: 0, nearby: [] },
+      pointsEarned: 0,
+      walkToDiningMin: 0
     }
   ];
 
