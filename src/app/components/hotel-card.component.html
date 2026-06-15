@@ -8,7 +8,7 @@
   (keydown.space)="onClick()"
   role="button"
   tabindex="0"
-  [attr.aria-label]="'View details for ' + hotel.name + ', ' + hotel.rating + ' stars, ' + formatPrice() + ' per night'"
+  [attr.aria-label]="'View details for ' + hotel.name + ', ' + hotel.rating + ' stars, ' + (vm ? vm.allInPrimary : pricing.formatAllIn(hotel)) + ' all-in per night'"
 >
   <!-- Hotel Image -->
   <div class="hotel-card-image">

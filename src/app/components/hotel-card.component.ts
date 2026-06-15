@@ -71,15 +71,6 @@ export class HotelCardComponent {
   }
 
   /**
-   * Format nightly rate for display
-   * @returns Formatted price string (e.g., "250/night")
-   */
-  formatPrice(): string {
-    const { nightlyRate, roomRate, fees } = this.hotel.pricing;
-    return `${nightlyRate.toFixed(0)}/night`;
-  }
-
-  /**
    * Get detailed price breakdown
    * @returns Formatted breakdown string showing room rate and fees
    */
