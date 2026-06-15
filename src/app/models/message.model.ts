@@ -1,5 +1,7 @@
 import { Hotel } from './hotel.model';
 import { Room } from './room.model';
+import { QuickReply, HotelResultVM } from './search-strategy.model';
+import { RefinementChipVM } from '../services/match.service';
 
 export interface SearchContext {
   location: string;       // e.g., "New York City"
@@ -21,4 +23,7 @@ export interface Message {
   rateCalendarHotel?: Hotel;
   searchContext?: SearchContext;
   suggestedReplies?: string[]; // Tappable quick reply chips shown below this AI message
+  clarifier?: { text: string; chips: QuickReply[] };
+  refinementChips?: RefinementChipVM[];
+  resultVms?: HotelResultVM[];
 }

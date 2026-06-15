@@ -34,6 +34,14 @@
         <p class="message-text" [innerHTML]="message.text | markdown"></p>
       </div>
 
+      <!-- Clarifier prompt — below AI message bubble, before hotel results -->
+      <app-clarifier-prompt
+        *ngIf="message.sender === 'ai' && message.clarifier"
+        [text]="message.clarifier.text"
+        [chips]="message.clarifier.chips"
+        (chosen)="clarifierChosen.emit($event)">
+      </app-clarifier-prompt>
+
       <!-- Suggested reply chips — directly below AI text, above results -->
       <div
         *ngIf="message.sender === 'ai' && message.suggestedReplies && message.suggestedReplies.length > 0"
@@ -86,10 +94,11 @@
           [context]="message.searchContext">
         </app-search-summary>
         <div class="inline-hotels-container">
-          <app-hotel-card 
+          <app-hotel-card
             *ngFor="let hotel of getInlineHotels(message)"
             [hotel]="hotel"
             [variant]="'mobile'"
+            [vm]="getVmFor(message, hotel)"
             (cardClicked)="onCardClick($event)">
           </app-hotel-card>
           <!-- See all results card -->
@@ -102,6 +111,13 @@
           </button>
         </div>
       </div>
+
+      <!-- Refinement chips — below inline hotel cards, latest hotel message only -->
+      <app-refinement-chips
+        *ngIf="message.sender === 'ai' && message.refinementChips?.length && isLatestHotelMessage(message)"
+        [chips]="message.refinementChips!"
+        (picked)="refinementPicked.emit($event)">
+      </app-refinement-chips>
 
       <!-- Action buttons for mobile: View All on Map (secondary, left) + Select Dates (primary, right) -->
       <div *ngIf="message.sender === 'ai' && isMobile && message.hotels && message.hotels.length > 0 && isLatestHotelMessage(message)" 

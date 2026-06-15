@@ -11,11 +11,15 @@ import { SearchSummaryComponent } from './search-summary.component';
 import { RoomCardComponent } from './room-card.component';
 import { BRAND_COLORS } from '../models/brand-config';
 import { MarkdownPipe } from '../pipes/markdown.pipe';
+import { ClarifierPromptComponent } from './clarifier-prompt.component';
+import { RefinementChipsComponent } from './refinement-chips.component';
+import { QuickReply } from '../models/search-strategy.model';
+import { RefinementChipVM } from '../services/match.service';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule, ThinkingAnimationComponent, HotelCardComponent, DatePickerComponent, RateCalendarComponent, MarkdownPipe, SearchSummaryComponent, RoomCardComponent],
+  imports: [CommonModule, ThinkingAnimationComponent, HotelCardComponent, DatePickerComponent, RateCalendarComponent, MarkdownPipe, SearchSummaryComponent, RoomCardComponent, ClarifierPromptComponent, RefinementChipsComponent],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
@@ -63,8 +67,21 @@ export class ChatComponent {
   /** Emitted when user taps a suggested reply chip */
   @Output() replyChipClicked = new EventEmitter<string>();
 
+  /** Emitted when user selects a clarifier quick-reply chip */
+  @Output() clarifierChosen = new EventEmitter<QuickReply>();
+
+  /** Emitted when user selects a refinement chip */
+  @Output() refinementPicked = new EventEmitter<RefinementChipVM>();
+
   onReplyChipClick(reply: string): void {
     this.replyChipClicked.emit(reply);
+  }
+
+  /**
+   * Find the matching HotelResultVM for a hotel in a message
+   */
+  getVmFor(message: Message, hotel: Hotel) {
+    return message.resultVms?.find(v => v.hotel.id === hotel.id);
   }
 
   /** ID of message currently showing date picker */
