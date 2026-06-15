@@ -15,6 +15,10 @@ export interface RefinementChipVM { label: string; count: string; criterion: Cri
 
 @Injectable({ providedIn: 'root' })
 export class MatchService {
+  /** Shown scores sit in a deliberately compressed 75–99 band so every result reads as a credible match. */
+  private readonly BASE_SCORE = 75;
+  private readonly SCORE_SPAN = 24;
+
   constructor(private claims: ClaimService) {}
 
   /** Count how many hotels satisfy each candidate; drop zero-result candidates. */
@@ -22,7 +26,7 @@ export class MatchService {
     const total = hotels.length;
     const chips: RefinementChipVM[] = [];
     for (const c of candidates) {
-      const n = hotels.filter(h => this.satisfies(h, c.criterion)).length;
+      const n = hotels.filter(h => this.meetsCriterion(h, c.criterion)).length;
       if (n > 0) {
         chips.push({ label: c.label, count: `${n} of ${total}`, criterion: c.criterion });
       }
@@ -30,7 +34,7 @@ export class MatchService {
     return chips;
   }
 
-  private satisfies(hotel: Hotel, criterion: Criterion): boolean {
+  private meetsCriterion(hotel: Hotel, criterion: Criterion): boolean {
     switch (criterion.kind) {
       case 'amenity':
         return (hotel.verifiedAmenities ?? []).some(a => a.id === criterion.value);
@@ -52,7 +56,7 @@ export class MatchService {
     } else {
       pct = Math.max(0, Math.min(1, (hotel.rating - 3) / 2)); // quality proxy
     }
-    const score = Math.min(Math.round(75 + pct * 24), 99);
+    const score = Math.min(Math.round(this.BASE_SCORE + pct * this.SCORE_SPAN), 99);
     return { score, reasons: has, misses: missing };
   }
 }

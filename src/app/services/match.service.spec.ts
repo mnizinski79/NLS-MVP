@@ -36,6 +36,12 @@ describe('MatchService.score', () => {
     const r = svc.score(hotel([{id:'rooftop_bar',label:'Rooftop Bar'}]), { amenities: ['Rooftop Bar'] });
     expect(r.reasons.map(x => x.id)).toContain('rooftop_bar');
   });
+
+  it('normalizes a label-form criterion that is unverified into misses', () => {
+    const r = svc.score(hotel([{ id: 'rooftop_bar', label: 'Rooftop Bar' }]), { amenities: ['Free Wi-Fi'] });
+    expect(r.reasons.map(x => x.id)).not.toContain('free_wi_fi');
+    expect(r.misses.map(x => x.id)).toContain('free_wi_fi');
+  });
 });
 
 describe('MatchService.inventoryCounts', () => {
