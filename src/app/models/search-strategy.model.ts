@@ -1,3 +1,6 @@
+import { IntentType } from './conversation-state.model';
+import { SearchCriteria } from './search-criteria.model';
+
 export enum SearchStrategy {
   RECEIPTS = 'RECEIPTS',
   ALL_IN = 'ALL_IN',
@@ -6,9 +9,6 @@ export enum SearchStrategy {
   CONCIERGE = 'CONCIERGE',
   TRIP_CANVAS = 'TRIP_CANVAS',
 }
-
-import { IntentType } from './conversation-state.model';
-import { SearchCriteria } from './search-criteria.model';
 
 export interface TurnPlan {
   intent: IntentType;

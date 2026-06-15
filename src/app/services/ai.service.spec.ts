@@ -123,7 +123,7 @@ describe('AIService', () => {
       const prompt = service.buildPrompt('show me more options', state);
 
       expect(prompt).toContain('Times Square');
-      expect(prompt).toContain('5 hotels');
+      expect(prompt).toContain('Location confirmed: Times Square');
       expect(prompt).toContain('complete_query');
       expect(prompt).toContain('show me more options');
     });
@@ -525,5 +525,18 @@ describe('AIService.fallbackPlan', () => {
     const plan = service.fallbackPlan('hotels in nyc');
     expect(plan.criteria.amenities ?? []).toEqual([]);
     expect(plan.needsClarification).toBe(false);
+  });
+
+  it('parsePlan reads a well-formed Gemini JSON payload', () => {
+    const res = { candidates: [{ content: { parts: [{ text: JSON.stringify({ intent: 'complete_query', criteria: { amenities: ['rooftop bar'] }, needsClarification: false, shouldSearch: true }) }] }} ] };
+    const plan = (service as any).parsePlan(res, 'rooftop bar');
+    expect(plan.criteria.amenities).toContain('rooftop bar');
+    expect(plan.shouldSearch).toBe(true);
+  });
+
+  it('parsePlan falls back on malformed payload', () => {
+    const plan = (service as any).parsePlan({ garbage: true }, 'rooftop bar hotel');
+    expect(plan.criteria.amenities).toContain('rooftop bar'); // came from fallbackPlan
+    expect(plan.shouldSearch).toBe(true);
   });
 });

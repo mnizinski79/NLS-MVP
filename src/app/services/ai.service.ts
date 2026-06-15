@@ -934,8 +934,15 @@ Current query: "${query}"${context}
     const url = `${this.GEMINI_API_URL}?key=${apiKey}`;
     return this.http.post(url, payload, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(
       timeout(this.TIMEOUT_MS),
+      retry({
+        count: this.MAX_RETRIES,
+        delay: (error, retryCount) => timer(1000 * retryCount)
+      }),
       map(res => this.parsePlan(res, query)),
-      catchError(() => of(this.fallbackPlan(query))),
+      catchError((error) => {
+        this.logError('AI Planner Error', error, query);
+        return of(this.fallbackPlan(query));
+      }),
     );
   }
 
@@ -947,8 +954,10 @@ Current query: "${query}"${context}
       'pool': 'pool', 'spa': 'spa', 'gym': 'fitness center', 'fitness': 'fitness center',
       'wifi': 'free wi-fi', 'wi-fi': 'free wi-fi', 'pet': 'pet friendly', 'restaurant': 'restaurant',
     };
+    // Public for testability. Deterministic keyword → amenity mapping.
+    // Longer phrases first so "rooftop bar" wins over the "rooftop" alias.
     const amenities: string[] = [];
-    for (const k of Object.keys(amenityVocab)) {
+    for (const k of Object.keys(amenityVocab).sort((a, b) => b.length - a.length)) {
       if (q.includes(k) && !amenities.includes(amenityVocab[k])) amenities.push(amenityVocab[k]);
     }
     const criteria: SearchCriteria = {};
@@ -986,6 +995,6 @@ Current query: "${query}"${context}
       'Set needsClarification=true ONLY when the request is genuinely ambiguous about a must-have vs nice-to-have preference. Never invent amenities the user did not mention.',
       `User query: ${query}`,
       state.lastQuery ? `Previous query: ${state.lastQuery}` : '',
-    ].join('\n');
+    ].filter(Boolean).join('\n');
   }
 }
