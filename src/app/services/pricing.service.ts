@@ -67,4 +67,31 @@ export class PricingService {
     if (this.mode === 'points+cash') return 'pts + cash';
     return this.mode === 'points' ? 'pts' : 'USD';
   }
+
+  /** All-in per night = room + taxes & fees (authoritative). */
+  allInNightly(hotel: Hotel): number {
+    return Math.round(hotel.pricing.allInNightly);
+  }
+
+  /** All-in trip total once nights are known. */
+  allInTotal(hotel: Hotel, nights: number): number {
+    return this.allInNightly(hotel) * Math.max(1, nights);
+  }
+
+  /** Primary price string — all-in leads everywhere. */
+  formatAllIn(hotel: Hotel): string {
+    const allIn = this.allInNightly(hotel);
+    if (this.mode === 'points') {
+      return `${this.toPoints(allIn).toLocaleString()} pts`;
+    }
+    if (this.mode === 'points+cash' && hotel.pointsCash) {
+      return `${hotel.pointsCash.points.toLocaleString()} pts + $${hotel.pointsCash.cash}`;
+    }
+    return `$${allIn}`;
+  }
+
+  /** Secondary fine print — base + fees only. */
+  formatFinePrint(hotel: Hotel): string {
+    return `$${Math.round(hotel.pricing.roomRate)} room + $${Math.round(hotel.pricing.fees)} taxes & fees`;
+  }
 }
