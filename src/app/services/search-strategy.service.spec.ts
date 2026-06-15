@@ -37,3 +37,24 @@ describe('SearchStrategyService.current', () => {
     expect(service.current()).toBeInstanceOf(ConciergeStrategy);
   });
 });
+
+describe('SearchStrategyService swap', () => {
+  let service: SearchStrategyService;
+  beforeEach(() => {
+    TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
+    service = TestBed.inject(SearchStrategyService);
+  });
+
+  it('current() always returns a strategy implementing planTurn/buildView', () => {
+    const s = service.current();
+    expect(typeof s.planTurn).toBe('function');
+    expect(typeof s.buildView).toBe('function');
+  });
+
+  it('switching the flag to an unimplemented strategy does not throw (falls back to concierge)', () => {
+    service.setStrategy(SearchStrategy.COMPARE);
+    expect(() => service.current()).not.toThrow();
+    const s = service.current();
+    expect(typeof s.buildView).toBe('function');
+  });
+});
