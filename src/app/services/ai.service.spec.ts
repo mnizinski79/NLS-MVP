@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { AIService } from './ai.service';
 import { ConfigService } from './config.service';
 import { ConversationState } from '../models';
+import { TurnPlan } from '../models/search-strategy.model';
 
 describe('AIService', () => {
   let service: AIService;
@@ -29,7 +30,9 @@ describe('AIService', () => {
     turnCount: 0,
     lastQuery: null,
     lastResponse: null,
-    lastDisplayedHotels: []
+    lastDisplayedHotels: [],
+    focusedHotel: null,
+    pointOfInterest: null
   };
 
   beforeEach(() => {
@@ -142,13 +145,20 @@ describe('AIService', () => {
             pricing: {
               nightlyRate: 300,
               roomRate: 280,
-              fees: 20
+              fees: 20,
+              allInNightly: 300
             },
             amenities: [],
             description: 'Test',
             imageUrls: [],
             phone: '555-1234',
-            sentiment: ['Times Square']
+            sentiment: ['Times Square'],
+            bedType: '1 King',
+            verifiedAmenities: [],
+            missingAmenities: [],
+            neighborhood: { name: 'Times Square', vibe: [], walkScore: 90, nearby: [] },
+            pointsEarned: 0,
+            walkToDiningMin: 5
           }
         ]
       };
@@ -494,5 +504,26 @@ describe('AIService', () => {
       expect(typeof result.shouldSearch).toBe('boolean');
       expect(typeof result.shouldRefine).toBe('boolean');
     });
+  });
+});
+
+describe('AIService.fallbackPlan', () => {
+  let service: AIService;
+  beforeEach(() => {
+    TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
+    service = TestBed.inject(AIService);
+  });
+
+  it('builds a TurnPlan with criteria from keywords and no hotel-fact text', () => {
+    const plan: TurnPlan = service.fallbackPlan('rooftop bar hotel in nyc');
+    expect(plan.criteria.amenities).toContain('rooftop bar');
+    expect(plan.shouldSearch).toBe(true);
+    expect((plan as any).message).toBeUndefined();
+  });
+
+  it('returns vague intent and no amenities when none are mentioned', () => {
+    const plan = service.fallbackPlan('hotels in nyc');
+    expect(plan.criteria.amenities ?? []).toEqual([]);
+    expect(plan.needsClarification).toBe(false);
   });
 });

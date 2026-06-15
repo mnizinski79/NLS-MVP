@@ -5,6 +5,7 @@ import { map, catchError, timeout, retry } from 'rxjs/operators';
 import { AIResponse, ConversationState, SearchCriteria } from '../models';
 import { ConfigService } from './config.service';
 import { PricingService } from './pricing.service';
+import { TurnPlan } from '../models/search-strategy.model';
 
 @Injectable({
   providedIn: 'root'
@@ -918,4 +919,73 @@ Current query: "${query}"${context}
       // Take first maxSentences and join them
       return sentences.slice(0, maxSentences).join('').trim();
     }
+
+  /** Planner entry point: returns a structured TurnPlan (never hotel-fact prose). */
+  planTurn(query: string, state: ConversationState): Observable<TurnPlan> {
+    const apiKey = this.configService.getApiKey();
+    if (!apiKey) {
+      return of(this.fallbackPlan(query));
+    }
+    const prompt = this.buildPlannerPrompt(query, state);
+    const payload = {
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { temperature: 0.3, responseMimeType: 'application/json' },
+    };
+    const url = `${this.GEMINI_API_URL}?key=${apiKey}`;
+    return this.http.post(url, payload, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(
+      timeout(this.TIMEOUT_MS),
+      map(res => this.parsePlan(res, query)),
+      catchError(() => of(this.fallbackPlan(query))),
+    );
+  }
+
+  /** Deterministic planner used when Gemini is unavailable. */
+  fallbackPlan(query: string): TurnPlan {
+    const q = query.toLowerCase();
+    const amenityVocab: Record<string, string> = {
+      'rooftop bar': 'rooftop bar', 'rooftop': 'rooftop bar',
+      'pool': 'pool', 'spa': 'spa', 'gym': 'fitness center', 'fitness': 'fitness center',
+      'wifi': 'free wi-fi', 'wi-fi': 'free wi-fi', 'pet': 'pet friendly', 'restaurant': 'restaurant',
+    };
+    const amenities: string[] = [];
+    for (const k of Object.keys(amenityVocab)) {
+      if (q.includes(k) && !amenities.includes(amenityVocab[k])) amenities.push(amenityVocab[k]);
+    }
+    const criteria: SearchCriteria = {};
+    if (amenities.length) criteria.amenities = amenities;
+    return {
+      intent: amenities.length ? 'complete_query' : 'vague',
+      criteria,
+      needsClarification: false,
+      shouldSearch: true,
+    };
+  }
+
+  /** Parse a Gemini planner response into a TurnPlan; fall back on any problem. */
+  private parsePlan(response: any, query: string): TurnPlan {
+    try {
+      const text = response?.candidates?.[0]?.content?.parts?.[0]?.text;
+      const obj = JSON.parse(text);
+      return {
+        intent: obj.intent ?? 'complete_query',
+        criteria: obj.criteria ?? {},
+        needsClarification: !!obj.needsClarification,
+        clarifier: obj.clarifier,
+        shouldSearch: obj.shouldSearch !== false,
+      };
+    } catch {
+      return this.fallbackPlan(query);
+    }
+  }
+
+  /** Planner prompt: instruct the model to emit ONLY a plan, never hotel facts. */
+  private buildPlannerPrompt(query: string, state: ConversationState): string {
+    return [
+      'You are a search PLANNER for a hotel assistant. You do NOT describe hotels.',
+      'Return ONLY JSON: { "intent": string, "criteria": { "amenities"?: string[], "sentiments"?: string[], "priceRange"?: {"min"?:number,"max"?:number}, "minRating"?: number }, "needsClarification": boolean, "clarifier"?: { "dimension": string, "kind": "must_vs_nice"|"pick_one"|"confirm" }, "shouldSearch": boolean }.',
+      'Set needsClarification=true ONLY when the request is genuinely ambiguous about a must-have vs nice-to-have preference. Never invent amenities the user did not mention.',
+      `User query: ${query}`,
+      state.lastQuery ? `Previous query: ${state.lastQuery}` : '',
+    ].join('\n');
+  }
 }
