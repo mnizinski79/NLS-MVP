@@ -351,9 +351,9 @@ export class HotelDetailBottomSheetComponent implements OnChanges, AfterViewInit
         'Grab & Go Market': 'ph ph-storefront'
       };
 
-      return this.hotel.amenities.map(amenity => ({
-        name: amenity,
-        icon: iconMap[amenity] || 'ph ph-check'
+      return (this.hotel.verifiedAmenities ?? []).map(a => ({
+        name: a.label,
+        icon: iconMap[a.label] || 'ph ph-check'
       }));
     }
 
