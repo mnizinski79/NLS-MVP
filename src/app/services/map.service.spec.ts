@@ -22,13 +22,25 @@ describe('MapService', () => {
     pricing: {
       nightlyRate: 250,
       roomRate: 230,
-      fees: 20
+      fees: 20,
+      allInNightly: 250
     },
     amenities: ['WiFi', 'Pool'],
     description: 'Test hotel description',
     imageUrls: ['test.jpg'],
     phone: '555-1234',
-    sentiment: ['Times Square']
+    sentiment: ['Times Square'],
+    bedType: '1 King',
+    verifiedAmenities: [],
+    missingAmenities: [],
+    neighborhood: {
+      name: 'Test Area',
+      vibe: [],
+      walkScore: 90,
+      nearby: []
+    },
+    pointsEarned: 0,
+    walkToDiningMin: 5
   };
 
   beforeEach(() => {
@@ -90,8 +102,8 @@ describe('MapService', () => {
       expect(html).toContain('$250');
     });
 
-    it('should round nightly rate to nearest integer', () => {
-      const hotelWithDecimal = { ...mockHotel, pricing: { ...mockHotel.pricing, nightlyRate: 249.99 } };
+    it('should round all-in nightly rate to nearest integer', () => {
+      const hotelWithDecimal = { ...mockHotel, pricing: { ...mockHotel.pricing, allInNightly: 249.99 } };
       const html = service.getMarkerHtml(hotelWithDecimal);
 
       expect(html).toContain('$250');
