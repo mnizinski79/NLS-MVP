@@ -53,7 +53,7 @@ export class ClaimService {
   }
 
   /** CANONICAL amenity id derivation — must match hotels.json data exactly. */
-  toId(label: string): string {
+  public toId(label: string): string {
     return label.toLowerCase().trim().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
   }
 

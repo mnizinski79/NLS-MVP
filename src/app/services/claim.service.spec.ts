@@ -41,7 +41,7 @@ describe('ClaimService', () => {
   });
 
   it('whyThisHotel only references verified facts and bed type', () => {
-    const s = svc.whyThisHotel(hotel(), { amenities: ['rooftop_bar'] } as any);
+    const s = svc.whyThisHotel(hotel(), { amenities: ['Rooftop Bar'] } as any);
     expect(s).toContain('Rooftop Bar');
     expect(s).not.toContain('Pool');
   });
@@ -50,5 +50,11 @@ describe('ClaimService', () => {
     // whyThisHotel requests by label "Free Wi-Fi" and must hit the verified id free_wi_fi
     const s = svc.whyThisHotel(hotel(), { amenities: ['Free Wi-Fi'] } as any);
     expect(s).toContain('Free Wi-Fi');
+  });
+
+  it('claimAmenities humanizes an id absent from both verified and missing lists', () => {
+    const r = svc.claimAmenities(hotel(), ['business_center']);
+    expect(r.has).toEqual([]);
+    expect(r.missing).toEqual([{ id: 'business_center', label: 'Business Center' }]);
   });
 });
