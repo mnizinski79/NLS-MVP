@@ -9,9 +9,37 @@ export interface MatchResult {
   misses: AmenityRef[];       // honest ✗
 }
 
+export interface Criterion { kind: 'amenity' | 'neighborhood' | 'vibe'; value: string; }
+export interface RefinementCandidate { label: string; criterion: Criterion; }
+export interface RefinementChipVM { label: string; count: string; criterion: Criterion; }
+
 @Injectable({ providedIn: 'root' })
 export class MatchService {
   constructor(private claims: ClaimService) {}
+
+  /** Count how many hotels satisfy each candidate; drop zero-result candidates. */
+  inventoryCounts(hotels: Hotel[], candidates: RefinementCandidate[]): RefinementChipVM[] {
+    const total = hotels.length;
+    const chips: RefinementChipVM[] = [];
+    for (const c of candidates) {
+      const n = hotels.filter(h => this.satisfies(h, c.criterion)).length;
+      if (n > 0) {
+        chips.push({ label: c.label, count: `${n} of ${total}`, criterion: c.criterion });
+      }
+    }
+    return chips;
+  }
+
+  private satisfies(hotel: Hotel, criterion: Criterion): boolean {
+    switch (criterion.kind) {
+      case 'amenity':
+        return (hotel.verifiedAmenities ?? []).some(a => a.id === criterion.value);
+      case 'neighborhood':
+        return hotel.neighborhood?.name?.toLowerCase() === criterion.value.toLowerCase();
+      case 'vibe':
+        return (hotel.neighborhood?.vibe ?? []).map(v => v.toLowerCase()).includes(criterion.value.toLowerCase());
+    }
+  }
 
   score(hotel: Hotel, criteria: SearchCriteria | null | undefined): MatchResult {
     // Reuse the canonical id rule from ClaimService so labels map to data ids.

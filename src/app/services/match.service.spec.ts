@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { MatchService } from './match.service';
+import { MatchService, RefinementCandidate } from './match.service';
 import { ClaimService } from './claim.service';
 import { Hotel } from '../models/hotel.model';
 
@@ -35,5 +35,39 @@ describe('MatchService.score', () => {
     // "Rooftop Bar" (label) must match verified id rooftop_bar via ClaimService.toId
     const r = svc.score(hotel([{id:'rooftop_bar',label:'Rooftop Bar'}]), { amenities: ['Rooftop Bar'] });
     expect(r.reasons.map(x => x.id)).toContain('rooftop_bar');
+  });
+});
+
+describe('MatchService.inventoryCounts', () => {
+  let svc: MatchService;
+  beforeEach(() => {
+    TestBed.configureTestingModule({ providers: [MatchService, ClaimService] });
+    svc = TestBed.inject(MatchService);
+  });
+
+  it('returns live counts and drops zero-result candidates', () => {
+    const hotels = [
+      hotel([{ id: 'rooftop_bar', label: 'Rooftop Bar' }]),
+      hotel([]),
+    ];
+    const candidates: RefinementCandidate[] = [
+      { label: 'Rooftop bar', criterion: { kind: 'amenity', value: 'rooftop_bar' } },
+      { label: 'Pool',        criterion: { kind: 'amenity', value: 'pool' } }, // 0 hotels → dropped
+    ];
+    const chips = svc.inventoryCounts(hotels, candidates);
+    expect(chips.find(c => c.label === 'Rooftop bar')?.count).toBe('1 of 2');
+    expect(chips.find(c => c.label === 'Pool')).toBeUndefined();
+  });
+
+  it('counts vibe and neighborhood criteria too', () => {
+    const h = hotel([]);
+    const chips = svc.inventoryCounts([h], [
+      { label: 'Lively', criterion: { kind: 'vibe', value: 'lively' } },
+      { label: 'Theater District', criterion: { kind: 'neighborhood', value: 'Theater District' } },
+      { label: 'Quiet', criterion: { kind: 'vibe', value: 'quiet' } }, // 0 → dropped
+    ]);
+    expect(chips.find(c => c.label === 'Lively')?.count).toBe('1 of 1');
+    expect(chips.find(c => c.label === 'Theater District')?.count).toBe('1 of 1');
+    expect(chips.find(c => c.label === 'Quiet')).toBeUndefined();
   });
 });
