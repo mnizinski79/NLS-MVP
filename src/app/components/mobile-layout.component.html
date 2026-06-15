@@ -14,7 +14,9 @@
       (dateSelected)="onDateSelected($event)"
       (hotelCardClicked)="onHotelCardClicked($event)"
       (viewAllClicked)="onViewAllClicked()"
-      (replyChipClicked)="onTagClicked($event)">
+      (replyChipClicked)="onTagClicked($event)"
+      (clarifierChosen)="clarifierChosen.emit($event)"
+      (refinementPicked)="refinementPicked.emit($event)">
     </app-chat>
   </div>
 
@@ -57,6 +59,7 @@
         <app-hotel-card
           *ngFor="let hotel of hotels"
           [hotel]="hotel"
+          [vm]="getVmFor(hotel)"
           [variant]="'mobile'"
           [highlighted]="selectedHotel?.id === hotel.id"
           (cardClicked)="onHotelCardClicked($event)">

@@ -11,6 +11,8 @@ import { Message } from '../models/message.model';
 import { DateSelection } from '../models/date-selection.model';
 import { PointOfInterest } from '../models';
 import { TripChip } from '../models/trip-chip.model';
+import { HotelResultVM, QuickReply } from '../models/search-strategy.model';
+import { RefinementChipVM } from '../services/match.service';
 
 @Component({
   selector: 'app-mobile-layout',
@@ -56,6 +58,20 @@ export class MobileLayoutComponent implements OnChanges {
   @Output() dateSelected = new EventEmitter<DateSelection>();
   @Output() selectDatesRequested = new EventEmitter<Hotel>();
   @Output() viewRoomsRequested = new EventEmitter<Hotel>();
+
+  /** Per-hotel view-models (all-in price, bed type, AI reason) */
+  @Input() resultVms: HotelResultVM[] = [];
+
+  /** Emitted when user answers a clarifier quick-reply */
+  @Output() clarifierChosen = new EventEmitter<QuickReply>();
+
+  /** Emitted when user taps a refinement chip */
+  @Output() refinementPicked = new EventEmitter<RefinementChipVM>();
+
+  /** Look up the view-model for a given hotel */
+  getVmFor(hotel: Hotel): HotelResultVM | undefined {
+    return this.resultVms.find(v => v.hotel.id === hotel.id);
+  }
 
   @ViewChild(MapComponent) mapComponent?: MapComponent;
 

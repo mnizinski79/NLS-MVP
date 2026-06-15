@@ -14,6 +14,8 @@ import { ViewStateMode, MapState } from '../models/view-state.model';
 import { TRANSFORM_ANIMATION_CONFIG } from '../models/animation-config.model';
 import { PointOfInterest } from '../models';
 import { TripChip } from '../models/trip-chip.model';
+import { HotelResultVM, QuickReply } from '../models/search-strategy.model';
+import { RefinementChipVM } from '../services/match.service';
 
 @Component({
   selector: 'app-desktop-layout',
@@ -186,6 +188,20 @@ export class DesktopLayoutComponent implements OnDestroy {
 
   /** Emitted when user removes a trip chip */
   @Output() chipRemoved = new EventEmitter<TripChip>();
+
+  /** Per-hotel view-models (all-in price, bed type, AI reason) */
+  @Input() resultVms: HotelResultVM[] = [];
+
+  /** Emitted when user answers a clarifier quick-reply */
+  @Output() clarifierChosen = new EventEmitter<QuickReply>();
+
+  /** Emitted when user taps a refinement chip */
+  @Output() refinementPicked = new EventEmitter<RefinementChipVM>();
+
+  /** Look up the view-model for a given hotel */
+  getVmFor(hotel: Hotel): HotelResultVM | undefined {
+    return this.resultVms.find(v => v.hotel.id === hotel.id);
+  }
 
   /**
    * Handle message sent from input component

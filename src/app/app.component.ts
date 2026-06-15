@@ -62,6 +62,7 @@ import { TurnPlan, TurnView, HotelResultVM } from './models/search-strategy.mode
           [children]="children"
           [pointOfInterest]="pointOfInterest"
           [activeChips]="activeChips"
+          [resultVms]="currentResultVms"
           (messageSent)="onMessageSent($event)"
           (tagClicked)="onTagClicked($event)"
           (hotelCardClicked)="onHotelCardClicked($event)"
@@ -73,6 +74,8 @@ import { TurnPlan, TurnView, HotelResultVM } from './models/search-strategy.mode
           (selectDatesRequested)="onSelectDatesRequested($event)"
           (viewRoomsRequested)="onViewRoomsRequested($event)"
           (chipRemoved)="onChipRemoved($event)"
+          (clarifierChosen)="onClarifierChosen($event)"
+          (refinementPicked)="onRefinementPicked($event)"
         ></app-desktop-layout>
         
         <!-- Mobile Layout -->
@@ -95,6 +98,7 @@ import { TurnPlan, TurnView, HotelResultVM } from './models/search-strategy.mode
           [children]="children"
           [pointOfInterest]="pointOfInterest"
           [activeChips]="activeChips"
+          [resultVms]="currentResultVms"
           (messageSent)="onMessageSent($event)"
           (tagClicked)="onTagClicked($event)"
           (hotelCardClicked)="onHotelCardClicked($event)"
@@ -104,6 +108,8 @@ import { TurnPlan, TurnView, HotelResultVM } from './models/search-strategy.mode
           (selectDatesRequested)="onSelectDatesRequested($event)"
           (viewRoomsRequested)="onViewRoomsRequested($event)"
           (chipRemoved)="onChipRemoved($event)"
+          (clarifierChosen)="onClarifierChosen($event)"
+          (refinementPicked)="onRefinementPicked($event)"
         ></app-mobile-layout>
       </ng-container>
     </div>
