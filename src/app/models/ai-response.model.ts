@@ -25,4 +25,6 @@ export interface AIResponse {
   pointOfInterest?: PointOfInterest; // POI mentioned in query (e.g., "near Central Park")
   searchSummary?: string; // Short TLDR label for search context card (e.g., "Romantic getaway", "Budget-friendly stay")
   suggestedReplies?: string[]; // Tappable quick reply chips shown below the AI message
+  needsClarification?: boolean;
+  clarifier?: { dimension: string; kind: 'must_vs_nice' | 'pick_one' | 'confirm' };
 }

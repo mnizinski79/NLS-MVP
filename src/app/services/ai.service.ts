@@ -459,8 +459,13 @@ Current query: "${query}"${context}
     "children": number or null,
     "pointOfInterest": {"name": "string", "coordinates": {"lat": number, "lng": number}} or null,
     "searchSummary": "Short 2-4 word TLDR of the search vibe (e.g., 'Romantic getaway', 'Budget-friendly stay', 'Family vacation', 'Luxury escape', 'Pet-friendly options', 'Business trip'). Required when shouldSearch is true.",
-    "suggestedReplies": ["chip1", "chip2", "chip3", "Skip"] or []
+    "suggestedReplies": ["chip1", "chip2", "chip3", "Skip"] or [],
+    "needsClarification": true|false (optional),
+    "clarifier": {"dimension": "amenity_id_snake_case", "kind": "must_vs_nice"} (optional)
   }
+
+  CLARIFIER RULES:
+  - Set needsClarification=true ONLY when the request is genuinely ambiguous about whether a specific amenity is a must-have vs nice-to-have; set clarifier.dimension to that amenity's id (snake_case) and clarifier.kind to 'must_vs_nice'. Otherwise omit them.
 
   SUGGESTED REPLIES RULES:
   - Provide suggestedReplies WHENEVER your message ends with a question or invites the user to narrow down (e.g. asking about dates, neighborhood, occasion, budget, guests)
@@ -585,7 +590,9 @@ Current query: "${query}"${context}
           searchSummary: parsed.searchSummary,
           suggestedReplies: Array.isArray(parsed.suggestedReplies)
             ? (parsed.suggestedReplies as string[]).slice(0, 4)
-            : []
+            : [],
+          needsClarification: parsed.needsClarification ?? false,
+          clarifier: parsed.clarifier
         };
 
       } catch (error) {

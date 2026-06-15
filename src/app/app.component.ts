@@ -17,6 +17,8 @@ import { RoomService } from './services/room.service';
 import { SearchContext } from './models/message.model';
 import { TripChip } from './models/trip-chip.model';
 import { SearchCriteria } from './models/search-criteria.model';
+import { SearchStrategyService } from './services/search-strategy.service';
+import { TurnPlan, TurnView, HotelResultVM } from './models/search-strategy.model';
 
 @Component({
   selector: 'app-root',
@@ -129,6 +131,7 @@ export class AppComponent implements OnInit, OnDestroy {
   showLanding = true;
   allHotels: Hotel[] = [];
   currentHotels: Hotel[] = [];
+  currentResultVms: HotelResultVM[] = [];
   messages: Message[] = [];
   isThinking = false;
   selectedHotel: Hotel | null = null;
@@ -159,7 +162,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private configService: ConfigService,
     private authService: AuthService,
     private pricingService: PricingService,
-    private roomService: RoomService
+    private roomService: RoomService,
+    private strategyService: SearchStrategyService
   ) {
     // Set up viewport detection
     this.isMobile$ = fromEvent(window, 'resize').pipe(
@@ -451,6 +455,17 @@ export class AppComponent implements OnInit, OnDestroy {
     // Update current hotels for future refinements
     this.currentHotels = hotels;
 
+    // Build the CONCIERGE presentation view-model from the finalized hotels.
+    const plan: TurnPlan = {
+      intent: aiResponse.intent,
+      criteria: aiResponse.searchCriteria ?? {},
+      needsClarification: !!aiResponse.needsClarification,
+      clarifier: aiResponse.clarifier,
+      shouldSearch: aiResponse.shouldSearch,
+    };
+    const turnView: TurnView = this.strategyService.current().buildView(userQuery, plan, hotels);
+    this.currentResultVms = turnView.results;
+
     // Handle extracted dates from AI response
     if (aiResponse.checkIn && aiResponse.checkOut) {
       console.log('🔍 APP COMPONENT - Dates detected in AI response:', {
@@ -586,6 +601,9 @@ export class AppComponent implements OnInit, OnDestroy {
       showDatePicker: shouldShowDatePicker,
       searchContext,
       suggestedReplies: aiResponse.suggestedReplies ?? [],
+      resultVms: turnView.results.length ? turnView.results : undefined,
+      refinementChips: turnView.refinementChips,
+      clarifier: turnView.clarifier,
     };
     this.conversationService.addMessage(aiMessage);
 
@@ -849,6 +867,18 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   onTagClicked(query: string): void {
     this.onMessageSent(query);
+  }
+
+  /** User answered the clarifier — re-run as a refined query. */
+  onClarifierChosen(reply: { label: string; value: string }): void {
+    const [, dim] = reply.value.split(':');
+    const amenity = (dim ?? '').replace(/_/g, ' ');
+    this.onMessageSent(`I'd like a hotel with ${amenity}`);
+  }
+
+  /** User tapped a refinement chip — re-run narrowed by that chip. */
+  onRefinementPicked(chip: { label: string }): void {
+    this.onMessageSent(`Show me the ones with ${chip.label.toLowerCase()}`);
   }
 
   /**
