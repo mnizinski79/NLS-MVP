@@ -182,6 +182,34 @@
   @apply outline-none ring-2 ring-blue-500 ring-offset-2;
 }
 
+/* Bed type + reason (added by Task 12) */
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.bed-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #374151;
+}
+
+.card-reason {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #4b5563;
+  /* clamp to 2 lines so the card doesn't overflow on long AI-generated reasons */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* ── Match reason teaser ────────────────────────── */
 .match-teaser {
   display: flex;

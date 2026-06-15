@@ -60,12 +60,20 @@
       <span *ngFor="let chip of hotel.matchChips" class="match-chip">{{ chip }}</span>
     </div>
 
-    <!-- Price -->
+    <!-- Price (all-in leads) -->
     <div class="hotel-price">
-      <div class="price-label">From</div>
-      <div class="price-main">{{ pricing.formatRateNumber(hotel.pricing.nightlyRate, hotel) }} <span class="price-currency" *ngIf="!pricing.formatCashPortion(hotel)">{{ pricing.unitLabel }}</span><span class="price-currency" *ngIf="pricing.formatCashPortion(hotel)">pts {{ pricing.formatCashPortion(hotel) }} / night</span></div>
-      <div class="price-breakdown" *ngIf="pricing.mode === 'cash'">{{ hotel.pricing.roomRate.toFixed(0) }} room + {{ hotel.pricing.fees.toFixed(0) }} fees</div>
-      <div class="price-breakdown" *ngIf="pricing.mode !== 'cash'">Excludes {{ hotel.pricing.fees.toFixed(0) }} USD Amenity Fee per night</div>
+      <div class="price-label">All-in / night</div>
+      <div class="price-main">
+        {{ vm ? vm.allInPrimary : pricing.formatAllIn(hotel) }}
+        <span class="price-currency">total</span>
+      </div>
+      <div class="price-breakdown">{{ vm ? vm.finePrint : pricing.formatFinePrint(hotel) }}</div>
     </div>
+    <!-- Bed type -->
+    <div class="card-meta">
+      <span class="bed-type"><i class="ph-fill ph-bed" aria-hidden="true"></i> {{ vm ? vm.bedType : hotel.bedType }}</span>
+    </div>
+    <!-- Reason line (only when vm provides one) -->
+    <p class="card-reason" *ngIf="vm?.reason">{{ vm?.reason }}</p>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { Hotel } from '../models/hotel.model';
 import { BRAND_COLORS, BRAND_LOGOS } from '../models/brand-config';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { PricingService } from '../services/pricing.service';
+import { HotelResultVM } from '../models/search-strategy.model';
 
 @Component({
   selector: 'app-hotel-card',
@@ -37,6 +38,9 @@ export class HotelCardComponent {
 
   /** Whether the card should be visually highlighted */
   @Input() highlighted: boolean = false;
+
+  /** Optional view-model from CONCIERGE/AI search; when provided, drives all-in price, bed type, and reason */
+  @Input() vm?: HotelResultVM;
 
   /** Emitted when the card is clicked, passes the hotel object */
   @Output() cardClicked = new EventEmitter<Hotel>();
