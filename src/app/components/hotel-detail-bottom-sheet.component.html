@@ -127,6 +127,16 @@
         <p class="description-text">{{ hotel.description }}</p>
       </div>
 
+      <!-- Why this hotel -->
+      <div class="section" *ngIf="hotel.neighborhood">
+        <h3 class="section-title">Why this hotel</h3>
+        <p class="description-text">
+          {{ hotel.bedType }} · {{ hotel.neighborhood.name }}
+          <span *ngIf="hotel.neighborhood.vibe?.length"> · {{ hotel.neighborhood.vibe.join(', ') }}</span>
+        </p>
+        <p class="poi-distance" *ngIf="hotel.walkToDiningMin">{{ hotel.walkToDiningMin }} min walk to dining · Walk score {{ hotel.neighborhood.walkScore }}</p>
+      </div>
+
       <!-- Amenities -->
       <div class="section">
         <h3 class="section-title">Amenities</h3>
@@ -213,9 +223,16 @@
           (openDates)="showDatesModal = true">
         </app-booking-summary>
 
+        <!-- All-in itemization -->
+        <div class="allin-itemization">
+          <div class="allin-row"><span>Room (per night)</span><span>${{ hotel.pricing.roomRate }}</span></div>
+          <div class="allin-row"><span>Taxes &amp; fees</span><span>${{ hotel.pricing.fees }}</span></div>
+          <div class="allin-row allin-total"><span>All-in / night</span><span>${{ hotel.pricing.allInNightly }}</span></div>
+        </div>
+
         <!-- View Rooms button -->
         <div class="calendar-cta-container" style="margin-top: 16px;">
-          <button 
+          <button
             class="cta-filled cta-full-width"
             [style.background-color]="getBrandColor()"
             (click)="viewRooms()"

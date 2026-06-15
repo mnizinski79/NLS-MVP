@@ -1038,3 +1038,7 @@
   background: #fef9c3;
   color: #854d0e;
 }
+
+.allin-itemization { margin: 8px 0 4px; border-top: 1px solid #f3f4f6; padding-top: 8px; }
+.allin-row { display: flex; justify-content: space-between; font-size: 13px; color: #4b5563; padding: 3px 0; }
+.allin-total { font-weight: 700; color: #111827; border-top: 1px solid #f3f4f6; margin-top: 4px; padding-top: 6px; }
