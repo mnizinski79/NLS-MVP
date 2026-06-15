@@ -44,6 +44,8 @@ export class HotelService {
    * @returns Transformed Hotel object
    */
   private transformRawHotel(raw: any): Hotel {
+    const roomRate = raw.pricing?.roomRate || raw.price?.amount || 0;
+    const fees = raw.pricing?.fees || (raw.price?.amount - raw.price?.nightlyRate) || 0;
     return {
       id: raw.id,
       name: raw.name,
@@ -59,11 +61,9 @@ export class HotelService {
       },
       pricing: {
         nightlyRate: raw.pricing?.nightlyRate || raw.price?.nightlyRate || 0,
-        roomRate: raw.pricing?.roomRate || raw.price?.amount || 0,
-        fees: raw.pricing?.fees || (raw.price?.amount - raw.price?.nightlyRate) || 0,
-        allInNightly:
-          (raw.pricing?.roomRate || raw.price?.amount || 0) +
-          (raw.pricing?.fees || (raw.price?.amount - raw.price?.nightlyRate) || 0),
+        roomRate,
+        fees,
+        allInNightly: roomRate + fees,
       },
       amenities: raw.amenities || [],
       bedType: raw.bedType || '',
@@ -248,14 +248,6 @@ export class HotelService {
     // Track if location/sentiment filter was applied
     const hasLocationFilter = !!(criteria.sentiments?.length);
     
-    // Track if ANY other filter was applied (amenities, price, rating, brand)
-    const hasOtherFilters = !!(
-      criteria.brands?.length ||
-      criteria.amenities?.length ||
-      criteria.priceRange ||
-      criteria.minRating !== undefined
-    );
-
     // If user has non-brand filters but no specific location sentiment, treat as implicit NYC location.
     // Brand filter is an explicit hard constraint (not a location proxy), so when a brand filter is
     // specified alongside other filters, we do NOT apply the implicit-location fallback.
@@ -272,7 +264,6 @@ export class HotelService {
       totalHotels: hotels.length,
       priceRange: criteria.priceRange,
       hasLocationFilter,
-      hasOtherFilters,
       hasImplicitLocation,
       hotelPrices: hotels.map(h => ({ name: h.name, price: h.pricing.nightlyRate }))
     });

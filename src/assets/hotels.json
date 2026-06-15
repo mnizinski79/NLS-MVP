@@ -94,7 +94,7 @@
     "verifiedAmenities": [
       { "id": "rooftop_bar", "label": "Rooftop Bar" },
       { "id": "fitness_center", "label": "Fitness Center" },
-      { "id": "free_wifi", "label": "Free Wi-Fi" },
+      { "id": "free_wi_fi", "label": "Free Wi-Fi" },
       { "id": "pet_friendly", "label": "Pet Friendly" }
     ],
     "missingAmenities": [
@@ -154,7 +154,8 @@
       "Cocktail Bar",
       "Fitness Center",
       "Room Service",
-      "Concierge"
+      "Concierge",
+      "Restaurant"
     ],
     "bedType": "1 King",
     "verifiedAmenities": [
@@ -354,7 +355,7 @@
       { "id": "kids_eat_free", "label": "Kids Eat Free" },
       { "id": "fitness_center", "label": "Fitness Center" },
       { "id": "business_center", "label": "Business Center" },
-      { "id": "free_wifi", "label": "Free Wi-Fi" }
+      { "id": "free_wi_fi", "label": "Free Wi-Fi" }
     ],
     "missingAmenities": [
       { "id": "rooftop_bar", "label": "Rooftop Bar" },

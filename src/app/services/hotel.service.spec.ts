@@ -381,7 +381,7 @@ describe('HotelService', () => {
     });
   });
 
-  it('derives allInNightly as roomRate + fees in transform', (done) => {
+  it('derives allInNightly as roomRate + fees in transform', (done: any) => {
     service.loadHotels().subscribe(hotels => {
       const h = hotels[0];
       expect(h.pricing.allInNightly).toBe(h.pricing.roomRate + h.pricing.fees);
